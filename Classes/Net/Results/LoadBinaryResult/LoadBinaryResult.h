@@ -1,0 +1,8 @@
+
+//
+
+@interface LoadBinaryResult : BinaryResult {
+    
+}
+
+@end

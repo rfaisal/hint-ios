@@ -1,0 +1,18 @@
+//
+//  Task.h
+//  Mobserv
+//
+
+//  Copyright 2010 Mob1serv team. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+
+@interface Task : Performer<ActionStatusDelegate> {
+	NSUInteger itemsCount;
+	NSUInteger currentItem;
+}
+@property (nonatomic) NSUInteger itemsCount;
+@property (nonatomic) NSUInteger currentItem;
+@end
