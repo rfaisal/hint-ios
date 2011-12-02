@@ -37,20 +37,17 @@
 @synthesize viewController = _viewController;
 @synthesize loginOrRegisterController = _loginOrRegisterController;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     [SSLocationDataSource sharedDataSource];            // initialization of SSLocationDataSource    
-    
     
     // QB settings
 	[QBSettings setLogLevel:QBLogLevelDebug];
 	[QBSettings setServerDomainTemplate:[NSString stringWithFormat:@"%@%@", @"%@.", endpoint]];	
-
+    
+    [QBGeoposService setDomain:@"location.quickblox.com"];
 	[QBGeoposService AuthorizeAppId:appID key:appKey secret:appSecret];	
 	[QBGeoposService setServiceZone:ServiceZoneProduction];
-    
+
 	[QBUsersService AuthorizeAppId:appID key:appKey secret:appSecret];
     [QBUsersService setServiceZone:ServiceZoneProduction];
 		
@@ -60,7 +57,10 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
-    [self.viewController presentModalViewController:self.loginOrRegisterController animated:YES];
+    [self.viewController presentModalViewController:self.loginOrRegisterController animated:NO];
+    
+    
+    //[self searchGeoData:nil];
     
     return YES;
 }
@@ -128,31 +128,28 @@
 #pragma mark -
 #pragma mark Private
 
-- (void) searchGeoData:(NSTimer*) timer
-{
+- (void) searchGeoData:(NSTimer*) timer{
 	QBGeoDataSearchRequest *searchRequest = [[QBGeoDataSearchRequest alloc] init];
-	searchRequest.sort_by = GeoDataSortByKindDistance;	
-	searchRequest.last_only = YES;
+    searchRequest.radius = 1000;
+	//searchRequest.last_only = YES;
 	[QBGeoposService findGeoData:searchRequest delegate:self];
 	[searchRequest release];
 }
 
--(void)setupSearchGeoDataTimer;
-{
-	[NSTimer scheduledTimerWithTimeInterval:kGeoposServiceGetGeoDatInterval
+-(void)setupSearchGeoDataTimer;{
+	[NSTimer scheduledTimerWithTimeInterval:1
 									 target:self
 								   selector:@selector(searchGeoData:)
 								   userInfo:nil
 									repeats:NO];
 }
 
--(void) processGeoDatAsync:(NSArray*)geodatas
-{
+-(void) processGeoDatAsync:(NSArray*)geodatas{
+    
 	NSManagedObjectContext * context = [StorageProvider threadSafeContext];
 	NSError *error = nil;
 	BOOL hasChanges = NO;
-	for (QBGeoData *geoData in geodatas) 
-	{
+	for (QBGeoData *geoData in geodatas) {
 		CLLocation *location = [[CLLocation alloc] initWithLatitude:geoData.latitude longitude:geoData.longitude];
 
 		hasChanges |= [[UsersProvider sharedProvider] updateOrCreateUser:[NSNumber numberWithInt:geoData.user.ID]																			location:location  
@@ -163,14 +160,12 @@
 		[location release];
 	}
 	
-	if(hasChanges)
-	{
+	if(hasChanges){
 		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
 		[nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
 		hasChanges = [context save:&error];
 		[nc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
-		if(hasChanges)
-		{
+		if(hasChanges){
 			[nc postNotificationName:nRefreshAnnotationDetails object:nil userInfo:nil];			
 		}		
 	}
@@ -178,69 +173,54 @@
 	[self performSelectorOnMainThread:@selector(setupSearchGeoDataTimer) withObject:nil waitUntilDone:NO];
 }
 
-- (void)mergeChanges:(NSNotification *)notification
-{	
+- (void)mergeChanges:(NSNotification *)notification{	
 	NSManagedObjectContext * sharedContext = [StorageProvider sharedInstance].managedObjectContext;
 	NSManagedObjectContext * currentContext = (NSManagedObjectContext *)[notification object];
-	if ( currentContext == sharedContext) 
-	{		
+	if ( currentContext == sharedContext) {		
 		[currentContext performSelector:@selector(mergeChangesFromContextDidSaveNotification:) 
 							   onThread:[NSThread currentThread] 
 							 withObject:notification 
 						  waitUntilDone:NO];		
-	}
-	else 
-	{
+	}else {
 		[sharedContext performSelectorOnMainThread:@selector(mergeChangesFromContextDidSaveNotification:)
 										withObject:notification 
 									 waitUntilDone:YES];	
 	}
 }
 
-- (void) signIn
-{
-    Users* user = [[UsersProvider sharedProvider] currentUser];
-    
-    if (user){
-        NSLog(@"username in app delegate: %@", user.mbUser.login);
-        
-        /*
-        if (![[SSLocationDataSource sharedDataSource] isLocationValid])
-        {
-            [[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Location absent.", @"Location absent") 
-                                         message:NSLocalizedString(@"Please, wait until location will be updated", @"Wrong location") 
-                                        delegate:nil 
-                               cancelButtonTitle:NSLocalizedString(@"OK", @"OK") 
-                               otherButtonTitles:nil] autorelease] show];
-            
-            return ;
-        }*/
-        
-        [self.viewController dismissModalViewControllerAnimated:YES];
-                
-        NSLog(@"username in app delegate: %@", user.mbUser.login);
-        //[XMPPService sharedService].shouldConnect = YES;
-        //[[XMPPService sharedService] connect];
-    }    
-    else
-    {
+- (void) signIn{
+    Users *user = [[UsersProvider sharedProvider] currentUser];
+    if(user == nil){
         [[[[UIAlertView alloc] initWithTitle:@"" 
                                      message:NSLocalizedString(@"Please, login at first", @"login at first") 
                                     delegate:nil 
                            cancelButtonTitle:NSLocalizedString(@"OK", @"OK") 
                            otherButtonTitles:nil] autorelease] show];
+        return;
     }
+    
+    /*
+    if (![[SSLocationDataSource sharedDataSource] isLocationValid])
+    {
+        [[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Location absent.", @"Location absent") 
+                                     message:NSLocalizedString(@"Please, wait until location will be updated", @"Wrong location") 
+                                    delegate:nil 
+                           cancelButtonTitle:NSLocalizedString(@"OK", @"OK") 
+                           otherButtonTitles:nil] autorelease] show];
+        
+        return ;
+    }*/
+    
+    [self.viewController dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction) logout{
     [QBUsersService logoutUser:nil];
-    [[XMPPService sharedService] disconnect];
+    
     [self.viewController presentModalViewController:self.loginOrRegisterController animated:YES];
-
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
     [_window release];
     [_viewController release];
     [_loginOrRegisterController release];

@@ -23,6 +23,7 @@
 @property (nonatomic, retain) IBOutlet UITextField *email;
 @property (nonatomic, retain) IBOutlet UITextField *password;
 @property (nonatomic, retain) IBOutlet UITextField *retypePassword;
+@property (nonatomic, retain) IBOutlet UITextField *fullName;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 - (IBAction)next:(id)sender;

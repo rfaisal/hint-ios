@@ -229,7 +229,8 @@ static id instance = nil;
 
 - (NSArray*)getAllUsersWithError:(NSError **)error {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:[self entityName] inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[self entityName] 
+                                              inManagedObjectContext:self.managedObjectContext];
     [request setEntity:entity];
     
     NSArray* results = [self.managedObjectContext executeFetchRequest:request error:error];

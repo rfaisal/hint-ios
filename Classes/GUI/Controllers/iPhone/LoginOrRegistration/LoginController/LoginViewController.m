@@ -16,8 +16,7 @@
 @synthesize password;
 @synthesize activityIndicator;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -25,32 +24,17 @@
     return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
     [login release];
     [password release];
     [activityIndicator release];
     [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewDidUnload
-{
+- (void)viewDidUnload{
     [self setLogin:nil];
     [self setPassword:nil];
     [self setActivityIndicator:nil];
@@ -59,44 +43,32 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)next:(id)sender 
-{
-	if (isBusy) 
-	{
+- (IBAction)next:(id)sender {
+	if (isBusy) {
 		return;
 	}
-
-    Users *user = [[UsersProvider sharedProvider] currentUser];
-    
-    if (!user)
-    {
-        user = [[UsersProvider sharedProvider] createEmptyUser];
-    }
     
     QBUUser *qbUser = [[QBUUser alloc] init];
-    
     qbUser.ownerID = ownerID;        
     qbUser.login = login.text;
 	qbUser.password = password.text;
     qbUser.fullName = login.text;
-        
+    
+    // authenticate
     [QBUsersService authenticateUser:qbUser delegate:self context:nil];
     
     [qbUser release];
     
     [self busy:YES];
-
 }
 
 - (IBAction)back:(id)sender {
-	if (isBusy) 
-	{
+	if (isBusy) {
 		return;
 	}
 
@@ -106,96 +78,77 @@
 #pragma mark -
 #pragma mark ActionStatusDelegate
 
--(void)completedWithResult:(Result*)result
-{
+-(void)completedWithResult:(Result*)result{
 	[self completedWithResult:result context:nil];
 }
 
--(void)completedWithResult:(Result*)result context:(void*)contextInfo
-{
+-(void)completedWithResult:(Result*)result context:(void*)contextInfo{
 	int status = ((RestAnswer*)result.answer).response.status;
-	if([result isKindOfClass:[QBUUserAuthenticateResult class]])
-	{
-		QBUUserAuthenticateResult* res = (QBUUserAuthenticateResult*)result;
-		if(res.success)
-		{
+    
+	if([result isKindOfClass:[QBUUserAuthenticateResult class]]){
+		QBUUserAuthenticateResult* res = (QBUUserAuthenticateResult *)result;
+		if(res.success){
+            // identify User
 			[QBUsersService identifyUser:self context:nil];
-		}
-		else if(401 == status)
-		{
+		}else if(401 == status){
 			[self showMessage:NSLocalizedString(@"Not registered!", "") message:nil];
-		}
-		else if(422 == status)
-		{
+		}else if(422 == status){
 			[self processErrors:result.answer.errors];
 		}
-	}
-	else if([result isKindOfClass:[QBUUserIdentifyResult class]])
-	{
-		QBUUserIdentifyResult* res = (QBUUserIdentifyResult*)result;
-		if(res.success && 200 == status)
-		{
-			QBUUserIdentifyAnswer *answer = (QBUUserIdentifyAnswer*)res.answer;
+        
+	}else if([result isKindOfClass:[QBUUserIdentifyResult class]]){
+		QBUUserIdentifyResult* res = (QBUUserIdentifyResult *)result;
+        
+		if(res.success && 200 == status){
+			QBUUserIdentifyAnswer *answer = (QBUUserIdentifyAnswer *)res.answer;
             
+            // store current user
             Users *user = [[UsersProvider sharedProvider] currentUser];
+            if(user == nil){
+                user = [[UsersProvider sharedProvider] createEmptyUser];
+            }
             user.mbUser = answer.user;
             [[UsersProvider sharedProvider] saveUser];
-            NSLog(@"registered username: %@",answer.user.login);
+            
+
 			[self showMessage:NSLocalizedString(@"Authentication successful", "") 
 					  message:[NSString stringWithFormat:NSLocalizedString(@"%@ was authenticated", ""), answer.user.fullName]];
  
-		}
-		else if(401 == status)
-		{			
+		}else if(401 == status){			
 			[self showMessage:NSLocalizedString(@"Identification failed", "") message:nil];
-		}	
-		else if(422 == status)
-		{
+		}	else if(422 == status){
 			[self processErrors:result.answer.errors];
 		}
-	}
-	else if([result isKindOfClass:[QBUUserBaseWebAuthResult class]])
-	{
-		QBUUserBaseWebAuthResult* res = (QBUUserBaseWebAuthResult*)result;
-		if(res.success && 202 == status)
-		{
+	
+    }else if([result isKindOfClass:[QBUUserBaseWebAuthResult class]]){
+		QBUUserBaseWebAuthResult* res = (QBUUserBaseWebAuthResult *)result;
+        
+		if(res.success && 202 == status){
 			[QBUsersService identifyUser:self context:nil];
-		}
-		else if(401 == status)
-		{			
+		}else if(401 == status){			
 			[self showMessage:NSLocalizedString(@"Identification failed", "") message:nil];
-		}	
-		else if(422 == status)
-		{
+		}	else if(422 == status){
 			[self processErrors:result.answer.errors];
 		}
-	}
-	else if([result isKindOfClass:[QBUUserResetPasswordByEmailResult class]])
-	{
+        
+	}else if([result isKindOfClass:[QBUUserResetPasswordByEmailResult class]]){
 		QBUUserResetPasswordByEmailResult* res = (QBUUserResetPasswordByEmailResult*)result;
-		if(res.success && 200 == status)
-		{
+		if(res.success && 200 == status){
 			[self showMessage:NSLocalizedString(@"Your new password or resetting instructions has been mailed", "") message:nil];
 			//You will receive an email with instructions about how to reset your password in a few minutes. 
-		}
-		else if(404 == status)
-		{			
+		}else if(404 == status){			
 			[self showMessage:NSLocalizedString(@"Email not found", "") message:nil];
-		}	
-		else if(422 == status)
-		{
+		}else if(422 == status){
 			[self processErrors:result.answer.errors];
 		}
 	}
 }
-
 
 
 #pragma mark -
 #pragma mark Private
 
--(void)showMessage:(NSString*)title message:(NSString*)msg
-{
+-(void)showMessage:(NSString*)title message:(NSString*)msg{
 	[self busy:NO];
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title 
@@ -208,55 +161,39 @@
 	[alert release];	
 }
 
--(void)processErrors:(NSMutableArray*)errors
-{
+-(void)processErrors:(NSMutableArray*)errors{
 	NSMutableString *errorsString = [NSMutableString stringWithCapacity:0];
 	
-	for(NSString *error in errors)
-	{
+	for(NSString *error in errors){
 		[errorsString appendFormat:@"%@\n", error];
 	}
 	
-	if ([errorsString length] > 0) 
-	{
+	if ([errorsString length] > 0) {
 		[self showMessage:NSLocalizedString(@"Error", "") message:errorsString];
-	}
-	else 
-	{
+	}else {
 		[self busy:NO];
 	}	
 }
 
--(void)busy:(BOOL) _isBusy
-{	
+-(void)busy:(BOOL) _isBusy{	
 	isBusy = _isBusy;
 	
-	if (isBusy) 
-	{
+	if (isBusy) {
 		[activityIndicator startAnimating];
-        
-	}
-	else 
-	{
+	}else {
 		[activityIndicator stopAnimating];		
 	}	
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [password resignFirstResponder];
     [login resignFirstResponder];
 }
 
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	if (alertView.tag == 1) 
-	{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+	if (alertView.tag == 1) {
         [(SuperSampleAppDelegate*)[[UIApplication sharedApplication] delegate] signIn];
-        
 	}
 }
-
 
 @end

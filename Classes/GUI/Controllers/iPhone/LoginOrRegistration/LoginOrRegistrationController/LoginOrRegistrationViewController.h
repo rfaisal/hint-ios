@@ -21,6 +21,5 @@
 
 - (IBAction)openLoginController:(id)sender;
 - (IBAction)openRegistrationController:(id)sender;
-- (IBAction)proceedToApp:(id)sender;
 
 @end

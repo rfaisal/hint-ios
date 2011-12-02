@@ -16,8 +16,7 @@
 @synthesize registrationController;
 @synthesize loginController;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -25,31 +24,15 @@
     return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
     [registrationController release];
     [loginController release];
     [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewDidUnload
-{
+- (void)viewDidUnload{
     [self setRegistrationController:nil];
     [self setLoginController:nil];
     [super viewDidUnload];
@@ -57,8 +40,7 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
@@ -69,10 +51,6 @@
 
 - (IBAction)openRegistrationController:(id)sender {
     [self presentModalViewController:registrationController animated:YES];
-}
-
-- (IBAction)proceedToApp:(id)sender {
-    [(SuperSampleAppDelegate*)[[UIApplication sharedApplication] delegate] signIn];
 }
 
 @end
