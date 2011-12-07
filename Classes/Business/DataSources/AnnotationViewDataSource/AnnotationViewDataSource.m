@@ -34,7 +34,7 @@
 -(void) reloadData
 {
     NSArray *usersArray = [[UsersProvider sharedProvider] getAllUsersWithError:nil];
-    NSLog(@"usersArray: %@",usersArray);
+
     BOOL needUpdate = NO;
 	if([mapView.annotations count] != 0)
 	{

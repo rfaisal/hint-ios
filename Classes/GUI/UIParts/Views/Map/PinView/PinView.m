@@ -18,7 +18,7 @@
 -(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier{
     if ((self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier])) {
 
-		UIImage *img = [UIImage imageNamed: @"marker_offline.png"];
+		UIImage *img = [UIImage imageNamed: @"marker_map.png"];
 		
 		self.backgroundColor = [UIColor clearColor];
 		
@@ -37,6 +37,7 @@
         [imageView release];
 		
         
+        /*
         // power
 		powerView = [[UIImageView alloc] init];
 		powerView.frame = CGRectMake(self.frame.size.width / 2 - img.size.width / 2 + 2, 26, 26, 3);
@@ -44,8 +45,9 @@
 		powerView.layer.cornerRadius = (0 - 2) * 0.5;
 		[self addSubview: powerView];
         [powerView release];
+         */
 		
-        
+        /*
         // last message view
 		lastMessage = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, labelWidth, labelHeight)];
 		lastMessage.backgroundColor = [UIColor colorWithRed: .5 green: .5 blue: .5 alpha: .7];
@@ -55,7 +57,7 @@
 		lastMessage.textColor = [UIColor whiteColor];
 		lastMessage.font = [UIFont boldSystemFontOfSize: 10];
 		[self addSubview: lastMessage];
-        [lastMessage release];
+        [lastMessage release];*/
 		
 		// correct frame, check it on infinite loop =)
 		CGRect r = self.frame;
@@ -76,8 +78,6 @@
 
 -(void)handleTap:(UITapGestureRecognizer *) gesture{
     Users *model = self.annotationModel.userModel;
-    
-    NSLog(@"user uid from pinvew: %@", model.uid);
     
     [[NSNotificationCenter defaultCenter] postNotificationName:nOpenAnnotationDetails 
                                                         object:nil 

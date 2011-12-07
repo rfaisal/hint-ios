@@ -121,10 +121,11 @@
 	
     BOOL hasChanges = NO;
     
+    NSLog(@"geodatas count=%d", [geodatas count]);
 	for (QBGeoData *geoData in geodatas) {
 		CLLocation *location = [[CLLocation alloc] initWithLatitude:geoData.latitude longitude:geoData.longitude];
         
-		hasChanges |= [[UsersProvider sharedProvider] updateOrCreateUser:[NSNumber numberWithInt:geoData.user.ID]                                                                                       
+		hasChanges |= [[UsersProvider sharedProvider] updateOrCreateUser:geoData.user                                                                                      
                                                                 location:location  
 																 context:context
 																   error:&error];	

@@ -13,33 +13,34 @@
     
 }
 
-- (Users*)userByID:(NSManagedObjectID*)mid error:(NSError**)error;
-- (Users*)userByID:(NSManagedObjectID*)mid context:(NSManagedObjectContext*)context error:(NSError**)error;
+- (Users *)userByID:(NSManagedObjectID *)mid error:(NSError **)error;
+- (Users *)userByID:(NSManagedObjectID *)mid context:(NSManagedObjectContext *)context error:(NSError **)error;
 
-- (Users*)userByUID:(NSNumber*)uid;
-- (Users*)userByUID:(NSNumber*)uid context:(NSManagedObjectContext*)context;
+- (Users *)userByUID:(NSNumber *)uid;
+- (Users *)userByUID:(NSNumber *)uid context:(NSManagedObjectContext*)context;
 
-- (Users*)addUserWithUID:(NSNumber*)uid name:(NSString*)name location:(CLLocation*)location;
-- (Users*)addUserWithUID:(NSNumber*)uid name:(NSString*)name location:(CLLocation*)location context:(NSManagedObjectContext*)context;
+- (Users *)addUserWithUID:(NSNumber *)uid name:(NSString *)name location:(CLLocation *)location;
+- (Users *)addUserWithUID:(NSNumber *)uid name:(NSString *)name location:(CLLocation *)location context:(NSManagedObjectContext *)context;
 
-- (Users *)sourceUserWithID:(NSString*)uid 
-						avatarID:(NSManagedObjectID*)avatarId 					   
+- (Users *)sourceUserWithID:(NSString *)uid 
+						avatarID:(NSManagedObjectID *)avatarId 					   
 						  operation:(NSString *)operation
-							context:(NSManagedObjectContext*)context;
+							context:(NSManagedObjectContext *)context;
 
 - (void) saveUser;
 - (Users *)currentUser;
          
-- (Users*)createEmptyUser;
+- (Users *)createEmptyUser;
                                             
-- (NSArray*)getAllUsersWithError:(NSError **)error;
+- (NSArray *)getAllUsersWithError:(NSError **)error;
 
-- (BOOL)updateOrCreateUser:(NSNumber*)uid					  
-				  location:(CLLocation*)location
-					 error:(NSError**)error;
+- (BOOL)updateOrCreateUser:(QBUUser *)qbUser					  
+				  location:(CLLocation *)location
+					 error:(NSError **)error;
 
-- (BOOL)updateOrCreateUser:(NSNumber*)uid 					  
-				  location:(CLLocation*)location 
-				   context:(NSManagedObjectContext*)context 
-					 error:(NSError**)error;
+- (BOOL)updateOrCreateUser:(QBUUser *)qbUser 					  
+				  location:(CLLocation *)location 
+				   context:(NSManagedObjectContext *)context 
+					 error:(NSError **)error;
+
 @end

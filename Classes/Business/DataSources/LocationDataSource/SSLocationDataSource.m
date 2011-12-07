@@ -7,11 +7,10 @@
 @implementation SSLocationDataSource
 
 
-+ (SSLocationDataSource*)sharedDataSource {
++ (SSLocationDataSource *)sharedDataSource {
 	static id instance = nil;
 	@synchronized (self) {
-		if ((instance == nil))
-		{
+		if (instance == nil){
 			instance = [[self alloc] init];
 		}
 	}
@@ -19,8 +18,7 @@
 }
 
 -(id)init{ 
-	if((self=[super init])) 
-	{ 
+	if(self = [super init]) { 
 		locationManager = [[CLLocationManager alloc] init];  
 		locationManager.distanceFilter = 10;  		
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters; 
@@ -30,8 +28,7 @@
 	return self; 
 } 
 
-
--(CLLocation*) getCurrentLocation{
+-(CLLocation *) getCurrentLocation{
     return [locationManager location];
 }
 
@@ -40,18 +37,15 @@
     [super dealloc];
 }
 
-- (BOOL)isLocationValid
-{
+- (BOOL)isLocationValid{
 	float dLat = fabs(locationManager.location.coordinate.latitude - 0.0f);
 	float dLon = fabs(locationManager.location.coordinate.longitude - 0.0f);
 	return dLat > 0.001 && dLon > 0.001;
 }
 
-
 - (void)locationManager:(CLLocationManager *)manager
 	didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation
-{
+           fromLocation:(CLLocation *)oldLocation{
     NSLog(@"Location updated to %@", newLocation);
 }
 
