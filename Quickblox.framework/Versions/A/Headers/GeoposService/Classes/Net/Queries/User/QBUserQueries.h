@@ -1,5 +1,0 @@
-#import "Base/QBUserQuery.h"
-#import "Create/QBUserCreateQuery.h"
-#import "Get/QBUserGetQuery.h"
-#import "Update/QBUserUpdateQuery.h"
-#import "Delete/QBUserDeleteQuery.h"

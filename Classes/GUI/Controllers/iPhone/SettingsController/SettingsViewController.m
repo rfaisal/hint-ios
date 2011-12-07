@@ -21,24 +21,20 @@
 #import "Resources.h"
 #import "ImageResize.h"
 
-
 @implementation SettingsViewController
 @synthesize aboutTextView;
 @synthesize avatarView;
 @synthesize userName, imagePicker;
 @synthesize canceler;
 
-
-- (void)dealloc 
-{
+- (void)dealloc {
     [userName release];
     [avatarView release];
     [aboutTextView release];
     [super dealloc];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -46,71 +42,46 @@
     return self;
 }
 
-
-- (void) startInit
-{
+- (void) startInit{
     Users* user = [[UsersProvider sharedProvider] currentUser];
     [self loadSettinsForUser:user];
 }
 
-
-- (void)loadSettinsForUser:(Users*)user
-{
+- (void)loadSettinsForUser:(Users*)user{
     self.userName.text = user.mbUser.login;
 }
-
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
 
 - (IBAction)choosePicture:(id)sender {
 
     self.imagePicker = [[[UIImagePickerController alloc] init] autorelease];
     imagePicker.delegate = self;
     imagePicker.allowsEditing = NO;
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]&&![DeviceHardware simulator])
-    {
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]&&![DeviceHardware simulator]){
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
 //        imagePicker.showsCameraControls = NO;
 //        [self performSelector:@selector(timeToShot:) withObject:nil afterDelay:2];
-    }
-    else if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum])
-    {
+    }else if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]){
         imagePicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     }
     [self presentModalViewController:imagePicker animated:YES];
-
-    
 }
 
 - (void) imagePickerControllerDidCancel:(UIImagePickerController *) picker {
-	
 	[self dismissModalViewControllerAnimated:YES];
 }
 
-- (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info 
-{
+- (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info {
 	[self dismissModalViewControllerAnimated:NO];
 	[avatarView setImage:(UIImage *) [info valueForKey:UIImagePickerControllerOriginalImage]];
 }
 
-
-
 - (IBAction)takePicture:(id)sender {
 }
 
--(IBAction) save: (id)sender
-{
+-(IBAction) save: (id)sender{
     [userName resignFirstResponder];
     [aboutTextView resignFirstResponder];
-	if(nil == avatarView.image)
-	{
+	if(nil == avatarView.image){
 		return;
 	}
 	
@@ -122,37 +93,25 @@
 							delegate:self];	
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    
-
 }
 
 #pragma mark - View lifecycle
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
 	
     Users* user = [[UsersProvider sharedProvider] currentUser];
     
     QBUUser *qbUser = user.mbUser;
     
-	if(user.mbUser.website)
-	{
+	if(user.mbUser.website){
 		//[MBBBlob URLWithUID:element.[[CurrentUser curentUser].dbUser.photo global_url]]
 		[QBBlobsService GetBlobAsync:user.mbUser.website delegate:self];
 	}
 }
 
-- (void)releseProperties 
-{
+- (void)releseProperties {
     [self setUserName:nil];
     [self setAvatarView:nil];
     self.imagePicker=nil;
@@ -163,62 +122,44 @@
     [super releaseProperties];
 }
 
-- (void)releaseAll 
-{    
+- (void)releaseAll {    
     [super releaseAll];
 }
 
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
 #pragma mark - ActionStatusDelegate
 
-- (void)completedWithResult:(Result*)result
-{
+- (void)completedWithResult:(Result*)result{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
-	if([result isKindOfClass:[QBUploadFileTaskResult class]])
-	{
+	if([result isKindOfClass:[QBUploadFileTaskResult class]]){
 		QBUploadFileTaskResult* res = (QBUploadFileTaskResult*)result;
-		if(res.success)
-		{
+		if(res.success){
 			NSString *blobID = res.uploadedFileBlob.UID;
 			[self performSelectorInBackground:@selector(saveAvatarAsync:) withObject:blobID];			
-		}
-		else 
-		{
+		}else {
 			NSLog(@"Error: %@",result.errors);
 		}
-	}
-	else if([result isKindOfClass:[QBBlobFileResult class]])
-	{
+	}else if([result isKindOfClass:[QBBlobFileResult class]]){
 		QBBlobFileResult* res = (QBBlobFileResult*)result;
-		if(res.success)
-		{
+		if(res.success){
 			NSData *avatarData = res.data;
-			if(avatarData)
-			{
+			if(avatarData){
 				avatarView.image = [UIImage imageWithData:avatarData];	
 			}						
-		}
-		else 
-		{
+		}else {
 			NSLog(@"Error: %@",result.errors);
 		}
-	}
-	else 
-	{
+	}else {
 		NSLog(@"Unexpected result %@",result);
 	}
 }
 
--(void) saveAvatarAsync:(NSString*)blobID 
-{	
+-(void) saveAvatarAsync:(NSString*)blobID {	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSManagedObjectContext * context = [StorageProvider threadSafeContext];
 	
@@ -234,8 +175,7 @@
     
     [[UsersProvider sharedProvider] saveUser];
     
-	if(sourceImage)
-	{
+	if(sourceImage){
 		//sourceImage.thumbnail = UIImagePNGRepresentation([ImageResize resizedImage:avatarView.image withRect:CGRectMake(0, 0, 50, 50)]);
 		//user.photo = sourceImage;
 		
@@ -248,19 +188,15 @@
 	[pool drain];
 }
 
-- (void)mergeChanges:(NSNotification *)notification
-{	
+- (void)mergeChanges:(NSNotification *)notification{	
 	NSManagedObjectContext * sharedContext = [StorageProvider sharedInstance].managedObjectContext;
 	NSManagedObjectContext * currentContext = (NSManagedObjectContext *)[notification object];
-	if ( currentContext == sharedContext) 
-	{		
+	if ( currentContext == sharedContext) {		
 		[currentContext performSelector:@selector(mergeChangesFromContextDidSaveNotification:) 
 							   onThread:[NSThread currentThread] 
 							 withObject:notification 
 						  waitUntilDone:NO];		
-	}
-	else 
-	{
+	}else {
 		[sharedContext performSelectorOnMainThread:@selector(mergeChangesFromContextDidSaveNotification:)
 										withObject:notification 
 									 waitUntilDone:YES];	
@@ -271,4 +207,5 @@
     [self setAboutTextView:nil];
     [super viewDidUnload];
 }
+
 @end

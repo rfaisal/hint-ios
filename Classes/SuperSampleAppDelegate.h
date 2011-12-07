@@ -10,7 +10,7 @@
 @class SuperSampleViewController;
 @class LoginOrRegistrationViewController;
 
-@interface SuperSampleAppDelegate : NSObject <UIApplicationDelegate, ActionStatusDelegate>{		
+@interface SuperSampleAppDelegate : NSObject <UIApplicationDelegate>{		
     LoginOrRegistrationViewController *_loginOrRegisterController;
 }
 

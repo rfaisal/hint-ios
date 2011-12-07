@@ -52,11 +52,11 @@ static NSString * const kChangedOperation = @"changed";
 static NSString * const kDeletedOperation = @"deleted";
 
 #pragma mark Mob1serv
-static NSString* const endpoint = @"quickblox.com";
-static NSUInteger const appID = 20;
-static NSUInteger const ownerID = 35;
-static NSString* const appKey = @"4MaxhVSUD2q3TtT";
-static NSString* const appSecret = @"VrjtJ5TUqg4TTNU";
+static NSString* const endpoint = @"qbtest01.quickblox.com";
+static NSUInteger const appID = 9;
+static NSUInteger const ownerID = 210;
+static NSString* const appKey = @"X4qhaEBkXuc2mx7";
+static NSString* const appSecret = @"KRymutHJ5v-nP9d";
 
 
 static NSString* const MESSAGE_KEY = @"MESSAGE_KEY";

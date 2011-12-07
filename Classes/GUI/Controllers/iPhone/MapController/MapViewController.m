@@ -16,6 +16,10 @@
 #import "PinDetailedViewController.h"
 #import "PrivateChatViewController.h"
 
+// Data
+#import "StorageProvider.h"
+#import "UsersProvider.h"
+
 @implementation MapViewController
 @synthesize mapView;
 @synthesize annotationDataSource;
@@ -54,6 +58,80 @@
 //    [self loadAnnotation];
 
 }
+
+- (void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    [self searchGeoData:nil];
+    [self startSearchGeoData];
+}
+
+- (void) viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    [updateGeoDataTimer invalidate];
+    updateGeoDataTimer = nil;
+}
+
+- (void) searchGeoData:(NSTimer *) timer{
+	QBGeoDataSearchRequest *searchRequest = [[QBGeoDataSearchRequest alloc] init];
+	searchRequest.last_only = YES;
+    searchRequest.status = YES;
+    searchRequest.userAppID = appID;
+	[QBGeoposService findGeoData:searchRequest delegate:self];
+	[searchRequest release];
+}
+
+-(void)startSearchGeoData{
+	updateGeoDataTimer = [NSTimer scheduledTimerWithTimeInterval:kGeoposServiceGetGeoDatInterval
+									 target:self
+								   selector:@selector(searchGeoData:)
+								   userInfo:nil
+									repeats:YES];
+}
+
+
+-(void) processGeoDatAsync:(NSArray*)geodatas{
+    
+	NSManagedObjectContext * context = [StorageProvider threadSafeContext];
+	NSError *error = nil;
+	BOOL hasChanges = NO;
+	for (QBGeoData *geoData in geodatas) {
+		CLLocation *location = [[CLLocation alloc] initWithLatitude:geoData.latitude longitude:geoData.longitude];
+        
+		hasChanges |= [[UsersProvider sharedProvider] updateOrCreateUser:[NSNumber numberWithInt:geoData.user.ID]																			location:location  
+																 context:context
+																   error:&error];	
+        NSLog(@"geo data user: %@", geoData.user);
+		[location release];
+	}
+	
+	if(hasChanges){
+		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
+		[nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
+		hasChanges = [context save:&error];
+		[nc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
+		if(hasChanges){
+			[nc postNotificationName:nRefreshAnnotationDetails object:nil userInfo:nil];			
+		}		
+	}
+}
+
+- (void)mergeChanges:(NSNotification *)notification{	
+	NSManagedObjectContext * sharedContext = [StorageProvider sharedInstance].managedObjectContext;
+	NSManagedObjectContext * currentContext = (NSManagedObjectContext *)[notification object];
+	if ( currentContext == sharedContext) {		
+		[currentContext performSelector:@selector(mergeChangesFromContextDidSaveNotification:) 
+							   onThread:[NSThread currentThread] 
+							 withObject:notification 
+						  waitUntilDone:NO];		
+	}else {
+		[sharedContext performSelectorOnMainThread:@selector(mergeChangesFromContextDidSaveNotification:)
+										withObject:notification 
+									 waitUntilDone:YES];	
+	}
+}
+
 
 - (void)subscribe {
     [[NSNotificationCenter defaultCenter] addObserver:self 
@@ -114,6 +192,18 @@
     [privateChatController release];
     
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark ActionStatusDelegate
+
+- (void)completedWithResult:(Result *)result{
+	if(result.success){
+		if([result isKindOfClass:[QBGeoDataSearchResult class]]){
+			QBGeoDataSearchResult *geoDataSearchRes = (QBGeoDataSearchResult *)result;
+			[self performSelectorInBackground:@selector(processGeoDatAsync:) withObject:geoDataSearchRes.geodatas];
+		}
+	}
 }
 
 - (void)viewDidUnload {

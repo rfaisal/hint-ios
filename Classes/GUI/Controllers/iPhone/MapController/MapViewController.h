@@ -12,9 +12,11 @@
 @class PinDetailedViewController;
 @class PrivateChatViewController;
 
-@interface MapViewController : SubscribedViewController {
+@interface MapViewController : SubscribedViewController <ActionStatusDelegate> {
     MKMapView *mapView;
     AnnotationViewDataSource *annotationDataSource;
+    
+    NSTimer *updateGeoDataTimer;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
@@ -22,11 +24,10 @@
 @property (nonatomic, retain) IBOutlet PinDetailedViewController* pinDetailedController;
 @property (retain, nonatomic) IBOutlet PrivateChatViewController *privateChatController;
 
--(void)openAnnotationDetails:(id) object;
+- (void)openAnnotationDetails:(id) object;
 - (void)subscribe;
 - (void)unsubscribe;
-//-(void) setPinForLocation: (CLLocation*)location;
-//
-//-(void) loadAnnotation;
+- (void)startSearchGeoData;
+- (void) searchGeoData:(NSTimer *) timer;
 
 @end

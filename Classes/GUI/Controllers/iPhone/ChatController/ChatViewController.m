@@ -28,10 +28,8 @@
 @synthesize chatDataSource;
 @synthesize tabView;
 @synthesize textField;
-@synthesize privateChatController;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -39,43 +37,16 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
-
-
 -(void)subscribe{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openChatView:) name:nOpenChatView object:nil];
     [super subscribe];
 }
 
 -(void)unsubscribe{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:nOpenChatView object:nil];
     [super unsubscribe];
 }
 
--(void)openChatView:(NSNotification*)notification
-{
-    [self.navigationController pushViewController:self.privateChatController animated:YES];
-    self.privateChatController.objectID = [[notification userInfo] objectForKey:nkData];
-}
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     
     [chatDataSource reloadData];
@@ -85,23 +56,20 @@
     [tap setNumberOfTapsRequired:1];
     [tap setNumberOfTouchesRequired:1];
     [self.tabView addGestureRecognizer:tap];
-
 }
 
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload{
     [self setTextField:nil];
-    self.privateChatController=nil;
     [self setChatDataSource:nil];
     [self setTabView:nil];
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
@@ -111,38 +79,23 @@
 
 -(IBAction) sendAction:(id)sender{
     
-    if ([textField.text isEqualToString:@""]) 
-	{
+    if ([textField.text isEqualToString:@""]) {
         return;
     }    
     
-    Users* user = [[UsersProvider sharedProvider] currentUser];
+    Users *user = [[UsersProvider sharedProvider] currentUser];
     
-	int userID = user.mbUser.ID;
-	QBGeoData *geoData = [QBGeoData currentGeoData];
     
-	//WARNING We should use User from GeoData. Is is temporarily fix. 
-	/*geoData.user = [User GetUser:userID].user;
-    if(geoData.user==nil)
-	{
-        User *geoDataUser = [[User alloc] init];
-        geoDataUser.ID = userID;
-        geoDataUser.name = [[CurrentUser curentUser] mbUser].login;
-        geoData.user = [User CreateUser:geoDataUser].user;
-		[geoDataUser release];
-    }*/
+    // Need use normal user belowe
 
-	QBUser *geoDataUser = [[QBUser alloc] init];
-	geoDataUser.ID = userID;
-	geoDataUser.name = user.mbUser.login;
-	geoData.user = geoDataUser;
-	[geoDataUser release];
-	
+	QBGeoData *geoData = [QBGeoData currentGeoData];
+	geoData.user = user.mbUser;
+
+    // post geodata
 	[QBGeoposService postGeoData:geoData delegate:self context:[[NSString alloc] initWithString:textField.text]];	
 }
 
--(void) processGeoDatAsync:(NSDictionary*)data 
-{	
+-(void) processGeoDatAsync:(NSDictionary*)data {	
     QBGeoData *answerGeoData = [data objectForKey:GEODATA_KEY];
 	CLLocation *location = [[SSLocationDataSource sharedDataSource] getCurrentLocation];
 		
@@ -151,17 +104,15 @@
 	Users *user = nil;
 	BOOL hasChanges = NO;
 	
-	if(answerGeoData)
-	{
+    /*
+	if(answerGeoData){
 		int userID = answerGeoData.user.ID;
 		user = [[UsersProvider sharedProvider] userByUID:[NSNumber numberWithInt:userID] context:context];
 		
-		if(nil == user)
-		{
+		if(nil == user){
 			QBUser* serverUser = [QBUser GetUser:userID].user;
 			NSString *userName = nil;
-			if (serverUser) 
-			{
+			if (serverUser) {
 				userName = serverUser.name;
 			}
 			
@@ -171,7 +122,7 @@
 														  context:context];
 			hasChanges = YES;
 		}
-	}
+	}*/
 	
 	NSString *msg = [NSString stringWithFormat:@"%@",[data objectForKey:MESSAGE_KEY]];	
 	NSString* Id = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]];
@@ -185,27 +136,22 @@
 	[nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
 	hasChanges &= [context save:&error];
 	[nc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
-	if(hasChanges)
-	{
+	if(hasChanges){
 		[nc postNotificationName:nRefreshAnnotationDetails object:nil userInfo:nil];			
 	}
 	
 	[chatDataSource performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
-- (void)mergeChanges:(NSNotification *)notification
-{	
+- (void)mergeChanges:(NSNotification *)notification{	
 	NSManagedObjectContext * sharedContext = [StorageProvider sharedInstance].managedObjectContext;
 	NSManagedObjectContext * currentContext = (NSManagedObjectContext *)[notification object];
-	if ( currentContext == sharedContext) 
-	{		
+	if(currentContext == sharedContext){		
 		[currentContext performSelector:@selector(mergeChangesFromContextDidSaveNotification:) 
 							   onThread:[NSThread currentThread] 
 							 withObject:notification 
 						  waitUntilDone:NO];		
-	}
-	else 
-	{
+	}else {
 		[sharedContext performSelectorOnMainThread:@selector(mergeChangesFromContextDidSaveNotification:)
 										withObject:notification 
 									 waitUntilDone:YES];	
@@ -215,26 +161,20 @@
 #pragma mark -
 #pragma mark ActionStatusDelegate
 
-- (void)completedWithResult:(Result*)result
-{
+- (void)completedWithResult:(Result*)result{
 	[self completedWithResult:result context:nil];
 }
 
-- (void)completedWithResult:(Result*)result context:(void*)contextInfo
-{
+- (void)completedWithResult:(Result*)result context:(void*)contextInfo{
 	NSString *message = (NSString*)contextInfo;
 	
-	if(result.success)
-	{
-		if([result isKindOfClass:[QBGeoDataResult class]])
-		{
+	if(result.success){
+		if([result isKindOfClass:[QBGeoDataResult class]]){
 			QBGeoDataResult *geoDataRes = (QBGeoDataResult*)result; 
 			NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:message, MESSAGE_KEY, geoDataRes.geoData, GEODATA_KEY, nil]; 
 			[self performSelectorInBackground:@selector(processGeoDatAsync:) withObject:data];
 		}
-	}
-	else 
-	{
+	}else {
 		[self performSelectorInBackground:@selector(processGeoDatAsync:) withObject:[NSDictionary dictionaryWithObject:message forKey:MESSAGE_KEY]];
 	}
 	
@@ -248,11 +188,10 @@
 }
 
 -(void) dealloc{
-    self.privateChatController=nil;
     [chatDataSource release];
     [textField release];
     [tabView release];
     [super dealloc];
-
 }
+
 @end

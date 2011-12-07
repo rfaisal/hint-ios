@@ -1,5 +1,0 @@
-@interface NSXMLElement (XMPPStreamAdditions)
-
-
-
-@end

@@ -12,9 +12,8 @@
 
 @interface SettingsViewController : SubscribedViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, ActionStatusDelegate> {
     UITextField *userName;
-    	UIImagePickerController *imagePicker;
+    UIImagePickerController *imagePicker;
     UIImageView *avatarView;
-
 }
 
 @property (retain, nonatomic) IBOutlet UITextView *aboutTextView;

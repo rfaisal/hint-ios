@@ -44,7 +44,6 @@
 		FA70CFB61487BBC000C21DAA /* BaseTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEC41487BBC000C21DAA /* BaseTableDataSource.m */; };
 		FA70CFB71487BBC000C21DAA /* CDTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEC71487BBC000C21DAA /* CDTableDataSource.m */; };
 		FA70CFB81487BBC000C21DAA /* LoadableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CECA1487BBC000C21DAA /* LoadableDataSource.m */; };
-		FA70CFB91487BBC000C21DAA /* Base.zip in Resources */ = {isa = PBXBuildFile; fileRef = FA70CECB1487BBC000C21DAA /* Base.zip */; };
 		FA70CFBA1487BBC000C21DAA /* ChatListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CECE1487BBC000C21DAA /* ChatListDataSource.m */; };
 		FA70CFBB1487BBC000C21DAA /* SSLocationDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CED11487BBC000C21DAA /* SSLocationDataSource.m */; };
 		FA70CFBC1487BBC000C21DAA /* PrivateChatListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CED41487BBC000C21DAA /* PrivateChatListDataSource.m */; };
@@ -135,10 +134,10 @@
 		FA70D03B1487BBDA00C21DAA /* PrivateChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0221487BBDA00C21DAA /* PrivateChatViewController.xib */; };
 		FA70D03C1487BBDA00C21DAA /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0231487BBDA00C21DAA /* RegistrationViewController.xib */; };
 		FA70D03D1487BBDA00C21DAA /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0241487BBDA00C21DAA /* SettingsViewController.xib */; };
-		FA70D0411487BD1800C21DAA /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA70D0401487BD1800C21DAA /* Quickblox.framework */; };
 		FA70D0431487BDB700C21DAA /* SuperSample-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0421487BDB700C21DAA /* SuperSample-Info.plist */; };
 		FA70D0451487BE7F00C21DAA /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA70D0441487BE7F00C21DAA /* libidn.a */; };
 		FA70D0471487BFCA00C21DAA /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA70D0461487BFCA00C21DAA /* libz.1.2.5.dylib */; };
+		FAF940CE148E8C7C00867E5C /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF940CD148E8C7C00867E5C /* Quickblox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,7 +205,6 @@
 		FA70CEC71487BBC000C21DAA /* CDTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDTableDataSource.m; sourceTree = "<group>"; };
 		FA70CEC91487BBC000C21DAA /* LoadableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadableDataSource.h; sourceTree = "<group>"; };
 		FA70CECA1487BBC000C21DAA /* LoadableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadableDataSource.m; sourceTree = "<group>"; };
-		FA70CECB1487BBC000C21DAA /* Base.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Base.zip; sourceTree = "<group>"; };
 		FA70CECD1487BBC000C21DAA /* ChatListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListDataSource.h; sourceTree = "<group>"; };
 		FA70CECE1487BBC000C21DAA /* ChatListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListDataSource.m; sourceTree = "<group>"; };
 		FA70CED01487BBC000C21DAA /* SSLocationDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLocationDataSource.h; sourceTree = "<group>"; };
@@ -380,10 +378,10 @@
 		FA70D0221487BBDA00C21DAA /* PrivateChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivateChatViewController.xib; sourceTree = "<group>"; };
 		FA70D0231487BBDA00C21DAA /* RegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistrationViewController.xib; sourceTree = "<group>"; };
 		FA70D0241487BBDA00C21DAA /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		FA70D0401487BD1800C21DAA /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quickblox.framework; sourceTree = "<group>"; };
 		FA70D0421487BDB700C21DAA /* SuperSample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SuperSample-Info.plist"; sourceTree = "<group>"; };
 		FA70D0441487BE7F00C21DAA /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
 		FA70D0461487BFCA00C21DAA /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		FAF940CD148E8C7C00867E5C /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quickblox.framework; path = "../SDK-ios/Framework/build/Framework/Quickblox.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -406,8 +404,8 @@
 				A7C3FF721402E7120039A28B /* CoreGraphics.framework in Frameworks */,
 				BDED890A1445F0B8000FDF62 /* libresolv.dylib in Frameworks */,
 				BDC7630F144EED820091EB17 /* AudioToolbox.framework in Frameworks */,
-				FA70D0411487BD1800C21DAA /* Quickblox.framework in Frameworks */,
 				FA70D0451487BE7F00C21DAA /* libidn.a in Frameworks */,
+				FAF940CE148E8C7C00867E5C /* Quickblox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,12 +451,12 @@
 				BDED89091445F0B8000FDF62 /* libresolv.dylib */,
 				FA70D0441487BE7F00C21DAA /* libidn.a */,
 				FA70D0461487BFCA00C21DAA /* libz.1.2.5.dylib */,
-				FA70D0401487BD1800C21DAA /* Quickblox.framework */,
 				A71E39341420B7F600810C66 /* CoreData.framework */,
 				A7C3FFB01402E9B10039A28B /* CFNetwork.framework */,
 				A7C3FFB11402E9B10039A28B /* CoreLocation.framework */,
 				A7C3FFB21402E9B10039A28B /* CoreMedia.framework */,
 				A7C3FFB31402E9B10039A28B /* libxml2.dylib */,
+				FAF940CD148E8C7C00867E5C /* Quickblox.framework */,
 				A7C3FFB51402E9B10039A28B /* MapKit.framework */,
 				A7C3FFB61402E9B10039A28B /* MobileCoreServices.framework */,
 				A7C3FFB71402E9B20039A28B /* QuartzCore.framework */,
@@ -659,7 +657,6 @@
 			children = (
 				FA70CEBE1487BBC000C21DAA /* AnnotationViewDataSource */,
 				FA70CEC11487BBC000C21DAA /* Base */,
-				FA70CECB1487BBC000C21DAA /* Base.zip */,
 				FA70CECC1487BBC000C21DAA /* ChatListDataSource */,
 				FA70CECF1487BBC000C21DAA /* LocationDataSource */,
 				FA70CED21487BBC000C21DAA /* PrivateChatListDataSource */,
@@ -1583,7 +1580,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA70CFB91487BBC000C21DAA /* Base.zip in Resources */,
 				FA70D0271487BBDA00C21DAA /* background.png in Resources */,
 				FA70D0281487BBDA00C21DAA /* user.png in Resources */,
 				FA70D0291487BBDA00C21DAA /* btn_close.png in Resources */,
@@ -1806,6 +1802,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../SDK-ios/Framework/build/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SuperSample-Prefix.pch";
@@ -1829,6 +1826,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../SDK-ios/Framework/build/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SuperSample-Prefix.pch";
@@ -1909,6 +1907,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../SDK-ios/Framework/build/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SuperSample-Prefix.pch";
