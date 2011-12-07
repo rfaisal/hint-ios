@@ -34,6 +34,7 @@
 																   img.size.width, img.size.height)];
 		imageView.image = img;
 		[self addSubview: imageView];
+        [imageView release];
 		
         
         // power
@@ -42,6 +43,7 @@
 		powerView.image = [UIImage imageNamed:@"img_power_line.png"];
 		powerView.layer.cornerRadius = (0 - 2) * 0.5;
 		[self addSubview: powerView];
+        [powerView release];
 		
         
         // last message view
@@ -53,6 +55,7 @@
 		lastMessage.textColor = [UIColor whiteColor];
 		lastMessage.font = [UIFont boldSystemFontOfSize: 10];
 		[self addSubview: lastMessage];
+        [lastMessage release];
 		
 		// correct frame, check it on infinite loop =)
 		CGRect r = self.frame;
@@ -60,17 +63,18 @@
 								r.origin.y - r.size.height,
 								r.size.width, r.size.height);
 
-        self.tapView = [[UIView alloc] initWithFrame:self.bounds];
+        tapView = [[UIView alloc] initWithFrame:self.bounds];
         UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
         [tapView addGestureRecognizer:tap];
-        [self addSubview:self.tapView];
+        [self addSubview:tapView];
+        [tapView release];
         [tap release];
     }
     
     return self;
 }
 
--(void)handleTap:(UITapGestureRecognizer*) gesture{
+-(void)handleTap:(UITapGestureRecognizer *) gesture{
     Users *model = self.annotationModel.userModel;
     
     NSLog(@"user uid from pinvew: %@", model.uid);
@@ -81,10 +85,6 @@
 }
 
 - (void)dealloc{
-    self.tapView=nil;
-    self.lastMessage=nil;
-    self.powerView=nil;
-    self.imageView=nil;
     self.detailedView=nil;
     self.annotationModel=nil;
     

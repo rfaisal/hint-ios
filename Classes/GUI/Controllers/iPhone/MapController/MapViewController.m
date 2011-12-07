@@ -26,6 +26,11 @@
 @synthesize pinDetailedController;
 @synthesize privateChatController;
 
+
+#pragma mark
+#pragma mark Init
+#pragma mark
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -34,9 +39,13 @@
     return self;
 }
 
+
+#pragma mark
+#pragma mark Controller's life
+#pragma mark
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
 
     [annotationDataSource reloadData];
@@ -73,54 +82,73 @@
     updateGeoDataTimer = nil;
 }
 
+- (void)viewDidUnload {
+    [self setPrivateChatController:nil];
+    
+    [super viewDidUnload];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+#pragma mark
+#pragma mark GeoData
+#pragma mark
+
 - (void) searchGeoData:(NSTimer *) timer{
 	QBGeoDataSearchRequest *searchRequest = [[QBGeoDataSearchRequest alloc] init];
 	searchRequest.last_only = YES;
-    searchRequest.status = YES;
     searchRequest.userAppID = appID;
 	[QBGeoposService findGeoData:searchRequest delegate:self];
 	[searchRequest release];
 }
 
--(void)startSearchGeoData{
+-(void) startSearchGeoData{
 	updateGeoDataTimer = [NSTimer scheduledTimerWithTimeInterval:kGeoposServiceGetGeoDatInterval
-									 target:self
-								   selector:@selector(searchGeoData:)
-								   userInfo:nil
-									repeats:YES];
+                                                          target:self
+                                                        selector:@selector(searchGeoData:)
+                                                        userInfo:nil
+                                                         repeats:YES];
 }
 
-
--(void) processGeoDatAsync:(NSArray*)geodatas{
+-(void) processGeoDatAsync:(NSArray *)geodatas{
     
-	NSManagedObjectContext * context = [StorageProvider threadSafeContext];
+	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
 	NSError *error = nil;
-	BOOL hasChanges = NO;
+	
+    BOOL hasChanges = NO;
+    
 	for (QBGeoData *geoData in geodatas) {
 		CLLocation *location = [[CLLocation alloc] initWithLatitude:geoData.latitude longitude:geoData.longitude];
         
-		hasChanges |= [[UsersProvider sharedProvider] updateOrCreateUser:[NSNumber numberWithInt:geoData.user.ID]																			location:location  
+		hasChanges |= [[UsersProvider sharedProvider] updateOrCreateUser:[NSNumber numberWithInt:geoData.user.ID]                                                                                       
+                                                                location:location  
 																 context:context
 																   error:&error];	
-        NSLog(@"geo data user: %@", geoData.user);
 		[location release];
 	}
 	
 	if(hasChanges){
 		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
 		[nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
+        
 		hasChanges = [context save:&error];
-		[nc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
+		
+        [nc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
+        
 		if(hasChanges){
 			[nc postNotificationName:nRefreshAnnotationDetails object:nil userInfo:nil];			
 		}		
 	}
 }
 
-- (void)mergeChanges:(NSNotification *)notification{	
-	NSManagedObjectContext * sharedContext = [StorageProvider sharedInstance].managedObjectContext;
-	NSManagedObjectContext * currentContext = (NSManagedObjectContext *)[notification object];
-	if ( currentContext == sharedContext) {		
+- (void) mergeChanges:(NSNotification *)notification{	
+	NSManagedObjectContext *sharedContext = [StorageProvider sharedInstance].managedObjectContext;
+	NSManagedObjectContext *currentContext = (NSManagedObjectContext *)[notification object];
+	if (currentContext == sharedContext) {		
 		[currentContext performSelector:@selector(mergeChangesFromContextDidSaveNotification:) 
 							   onThread:[NSThread currentThread] 
 							 withObject:notification 
@@ -131,7 +159,6 @@
 									 waitUntilDone:YES];	
 	}
 }
-
 
 - (void)subscribe {
     [[NSNotificationCenter defaultCenter] addObserver:self 
@@ -153,13 +180,21 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:nOpenChatView object:nil];
 }
 
+-(void) releaseProperties{
+    mapView = nil;
+    annotationDataSource = nil;
+    pinDetailedController = nil;
+    
+    [super releaseProperties];
+}
+
 
 #pragma mark
 #pragma mark Notifications
 #pragma mark
 
 // Show Users's info
--(void)openAnnotationDetails:(NSNotification*)notification{
+-(void)openAnnotationDetails:(NSNotification *)notification{
     if ([[notification userInfo] objectForKey:nkData]) {
         [self presentCustomModalViewController:self.pinDetailedController animated:YES];
         self.pinDetailedController.objectID = [[notification userInfo] objectForKey:nkData];
@@ -175,27 +210,9 @@
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
--(void) releaseProperties{
-    mapView=nil;
-    annotationDataSource=nil;
-    pinDetailedController=nil;
-    
-    [super releaseProperties];
-}
-
-- (void)dealloc {
-    [privateChatController release];
-    
-    [super dealloc];
-}
-
-#pragma mark -
+#pragma mark
 #pragma mark ActionStatusDelegate
+#pragma mark
 
 - (void)completedWithResult:(Result *)result{
 	if(result.success){
@@ -206,10 +223,15 @@
 	}
 }
 
-- (void)viewDidUnload {
-    [self setPrivateChatController:nil];
+
+#pragma mark
+#pragma mark Dealloc
+#pragma mark
+
+- (void)dealloc {
+    [privateChatController release];
     
-    [super viewDidUnload];
+    [super dealloc];
 }
 
 @end
