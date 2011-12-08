@@ -13,6 +13,8 @@
 
 @implementation UsersProvider
 
+@synthesize currentUser;
+
 static id instance = nil;
 
 + (id)sharedProvider {
@@ -82,17 +84,17 @@ static id instance = nil;
 	
 	Users *user = nil;
 	if(nil != results && [results count] > 0){
-		user = (Users*)[results objectAtIndex:0];
+		user = (Users *)[results objectAtIndex:0];
 	}
 	
 	return user;
 }
 
-- (BOOL)updateOrCreateUser:(QBUUser *)qbUser location:(CLLocation *)location error:(NSError **)error{
-	return [self updateOrCreateUser:qbUser location:location context:self.managedObjectContext error:error];
+- (BOOL)updateOrCreateUser:(QBUUser *)qbUser location:(CLLocation *)location status:(NSString *) status error:(NSError **)error{
+	return [self updateOrCreateUser:qbUser location:location status:status context:self.managedObjectContext error:error];
 }
 
-- (BOOL)updateOrCreateUser:(QBUUser *)qbUser location:(CLLocation*)location context:(NSManagedObjectContext*)context error:(NSError**)error{
+- (BOOL)updateOrCreateUser:(QBUUser *)qbUser location:(CLLocation*)location status:(NSString *) status context:(NSManagedObjectContext*)context error:(NSError**)error{
     NSNumber *uid = [NSNumber numberWithUnsignedInteger:qbUser.ID];
 
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -101,6 +103,7 @@ static id instance = nil;
 	[request setEntity:entity];
 	[request setPredicate:[NSPredicate predicateWithFormat:@"uid = %i",[uid intValue]]];
 	NSArray *results = [context executeFetchRequest:request error:error];
+    
     [request release];
 	
 	Users *user = nil;
@@ -126,26 +129,31 @@ static id instance = nil;
 		user.latitude = [NSNumber numberWithDouble: location.coordinate.latitude];
 		isChanged = YES;
 	}
+    
+    if(![user.status isEqualToString:status]){
+        isChanged = YES;
+    }
 	
 	return isChanged;
 }
 
-- (Users *)createEmptyUser{
-    return [self addUserWithUID:nil name:nil location:nil context:self.managedObjectContext];
+- (Users *)createCurrentUserWithQBUser:(QBUUser *) user{
+    Users *newUser = [self addUser:user location:nil context:self.managedObjectContext];
+    self.currentUser = newUser;
+    return newUser;
 }
 
-- (Users *)addUserWithUID:(NSNumber*)uid name:(NSString*)name location: (CLLocation*) location{
-	return [self addUserWithUID:uid name:name location:location context:self.managedObjectContext];
+- (Users *)addUser:(QBUUser *)user location: (CLLocation*) location{
+	return [self addUser:user location:location context:self.managedObjectContext];
 }
 
-- (Users *)addUserWithUID:(NSNumber*)uid name:(NSString*)name location: (CLLocation*) location context:(NSManagedObjectContext*)context{
+- (Users *)addUser:(QBUUser *) user location: (CLLocation *) location context:(NSManagedObjectContext *)context{
     Users *model = (Users *)[NSEntityDescription insertNewObjectForEntityForName:[self entityName]
                                                             inManagedObjectContext:context];
-	model.uid = uid;
-    //model.user_name = name;
-    NSLog(@"add user with name: %@", name);
-    model.longitude =[NSNumber numberWithDouble: location.coordinate.longitude];
-    model.latitude=[NSNumber numberWithDouble: location.coordinate.latitude];
+	model.uid = [NSNumber numberWithUnsignedChar:user.ID];
+    model.mbUser = user;
+    model.longitude = [NSNumber numberWithDouble: location.coordinate.longitude];
+    model.latitude = [NSNumber numberWithDouble: location.coordinate.latitude];
     
 	NSError **error=nil;
 	if (![context save:error]) {
@@ -155,10 +163,11 @@ static id instance = nil;
 	return model;
 }
 
-- (void) saveUser{
-    NSError **error=nil;
+- (BOOL) saveUser{
+    NSError **error = nil;
     
-	[self.managedObjectContext save:error];
+	BOOL isSaved = [self.managedObjectContext save:error];
+    return isSaved;
 }
 
 - (Users *)sourceUserWithID:(NSString*)uid 
@@ -198,22 +207,24 @@ static id instance = nil;
     [request setEntity:entity];
     
     NSArray* results = [self.managedObjectContext executeFetchRequest:request error:error];
-    if (!results) {
-    }
-    
+
     [request release];
 
     return results;
 }
 
+/*
 - (Users *)currentUser{
+
     NSArray *users = [self getAllUsersWithError:nil];
     
+    NSLog(@"users Count=%d", [users count]);
+
     if ([users count]){
         return [users objectAtIndex:0];
     }
     
     return nil;
-}
+}*/
 
 @end

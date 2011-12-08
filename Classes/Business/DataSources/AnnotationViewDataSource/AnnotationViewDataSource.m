@@ -23,52 +23,51 @@
 #pragma mark MKMapDelegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation{
-	userAnnotation * fa = (userAnnotation*) annotation;
-	PinView * p = [[PinView alloc]  initWithAnnotation: annotation 
-                                       reuseIdentifier: @"annka"];
-	p.annotationModel = fa;
-
-	return p;
+	userAnnotation *ua = (userAnnotation *) annotation;
+	PinView *pin = [[PinView alloc]  initWithAnnotation:annotation 
+                                        reuseIdentifier:@"UserAnnotationIdentifier"
+                                              ownMarker:NSClassFromString(@"MKUserLocation") == [annotation class] ? YES : NO];
+	pin.annotationModel = ua;
+    
+	return pin;
 }
 
--(void) reloadData
-{
+-(void) reloadData{
     NSArray *usersArray = [[UsersProvider sharedProvider] getAllUsersWithError:nil];
 
     BOOL needUpdate = NO;
-	if([mapView.annotations count] != 0)
-	{
+	if([mapView.annotations count] != 0){
 		[mapView removeAnnotations:mapView.annotations];
-		needUpdate = YES;
 	}
 	
 	CLLocationCoordinate2D coordinate;
-	for (NSManagedObject *model in usersArray) 
-	{
-        Users* user = (Users*)model; 		
+	for (NSManagedObject *model in usersArray) {
+        Users *user = (Users *)model; 	
+        
+        // skip own
+        //if(user.mbUser.ID == [[UsersProvider sharedProvider] currentUser].mbUser.ID){
+        //    continue;
+        //}
+        
         coordinate.latitude = [user.latitude doubleValue];
         coordinate.longitude = [user.longitude doubleValue];
-        userAnnotation* newAnnotation = [[userAnnotation alloc] initWithCoordinate:coordinate];
-        newAnnotation.title = user.mbUser.login;
+        userAnnotation *newAnnotation = [[userAnnotation alloc] initWithCoordinate:coordinate];
         newAnnotation.userModel = user;
         [mapView addAnnotation:newAnnotation];
 		[newAnnotation release];
+        
 		needUpdate = YES;
     }	
 	
-	if(needUpdate)
-	{
-		[mapView setRegion:MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(1, 1)) animated:YES];
+	if(needUpdate){
+		//[mapView setRegion:MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(1, 1)) animated:YES];
 	}
 }
 
 - (void)mapViewWillStartLoadingMap:(MKMapView *)mapView{
-
-    NSLog(@"mapViewWillStartLoadingMap");
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
-    NSLog(@"tap");
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
@@ -76,6 +75,8 @@
 
 - (void)dealloc {
     [mapView release];
+    
     [super dealloc];
 }
+
 @end

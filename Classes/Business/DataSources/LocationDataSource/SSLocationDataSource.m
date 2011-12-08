@@ -6,7 +6,6 @@
 
 @implementation SSLocationDataSource
 
-
 + (SSLocationDataSource *)sharedDataSource {
 	static id instance = nil;
 	@synchronized (self) {
@@ -34,6 +33,7 @@
 
 -(void)dealloc{
     [locationManager release];
+    
     [super dealloc];
 }
 
@@ -43,10 +43,8 @@
 	return dLat > 0.001 && dLon > 0.001;
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-	didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation{
-    NSLog(@"Location updated to %@", newLocation);
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    NSLog(@"Location updated from %@ to %@", oldLocation, newLocation);
 }
 
 @end

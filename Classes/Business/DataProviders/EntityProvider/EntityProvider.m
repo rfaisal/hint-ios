@@ -44,10 +44,10 @@
 - (NSManagedObject *)addNewObject {
     return [NSEntityDescription insertNewObjectForEntityForName:self.entityName inManagedObjectContext:self.managedObjectContext];
 }
+
 - (NSManagedObject *)addNewObjectInContext:(NSManagedObjectContext*)context {
     return [NSEntityDescription insertNewObjectForEntityForName:self.entityName inManagedObjectContext:context];
 }
-
 
 - (void)clearWithError:(NSError **)error {
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
@@ -71,6 +71,7 @@
         [self.managedObjectContext save:error];
     }
 }
+
 - (void)deleteObject:(NSManagedObject *)object {
     NSError *error = nil;
     
@@ -87,11 +88,7 @@
     return [self.managedObjectContext objectWithID:objectID];
 }
 
-
-
-
-- (NSManagedObject*)modelByID:(NSString*)uid context:(NSManagedObjectContext*)context 
-{	
+- (NSManagedObject*)modelByID:(NSString*)uid context:(NSManagedObjectContext*)context {	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:[NSEntityDescription entityForName:[self entityName] 
 								   inManagedObjectContext:context]];
@@ -102,27 +99,22 @@
 	NSArray *result = [context executeFetchRequest:request error:&error];
 	[request release];
 	
-	if (nil == result) 
-	{
+	if (nil == result) {
 		NSLog(@"Error getting %@:\n%@", [self entityName], [error localizedDescription]);
-	}
-	else if([result count] > 0)
-	{
+	
+    }else if([result count] > 0){
 		return (NSManagedObject*)[result objectAtIndex:0];
-	}
-	else 
-	{
+	
+    }else {
 		NSLog(@"%@ with uid=%@ does not exist!", [self entityName], uid);
 	}
 	
 	return nil;
 }
 
-- (BOOL)deleteModelByID:(NSString*)uid context:(NSManagedObjectContext*)context 
-{	
+- (BOOL)deleteModelByID:(NSString*)uid context:(NSManagedObjectContext*)context {	
 	NSManagedObject *model = [self modelByID:uid context:context];
-	if(model)
-	{
+	if(model){
 		[self deleteChild:model];
 		[context deleteObject:model];
 		return YES;
@@ -131,10 +123,8 @@
 	return NO;
 }
 
--(void)deleteChild:(NSManagedObject*)parent
-{
+-(void)deleteChild:(NSManagedObject*)parent{
 
 }
-
 
 @end

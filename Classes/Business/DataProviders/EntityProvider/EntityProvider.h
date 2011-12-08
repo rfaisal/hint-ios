@@ -25,6 +25,6 @@
 
 - (NSManagedObject*)modelByID:(NSString*)uid context:(NSManagedObjectContext*)context;
 - (BOOL)deleteModelByID:(NSString*)uid context:(NSManagedObjectContext*)context ;
--(void)deleteChild:(NSManagedObject*)parent;
+- (void)deleteChild:(NSManagedObject*)parent;
 
 @end

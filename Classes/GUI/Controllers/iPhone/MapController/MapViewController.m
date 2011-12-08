@@ -20,6 +20,8 @@
 #import "StorageProvider.h"
 #import "UsersProvider.h"
 
+#import "Users.h"
+
 @implementation MapViewController
 @synthesize mapView;
 @synthesize annotationDataSource;
@@ -47,9 +49,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad{
     [super viewDidLoad];
-
-    [annotationDataSource reloadData];
     
+    [annotationDataSource reloadData];
+        
 
 //	MKCoordinateRegion region;    
 //    MKCoordinateSpan span;
@@ -65,7 +67,7 @@
 //    [self setPinForLocation:location];
 
 //    [self loadAnnotation];
-
+     
 }
 
 - (void) viewDidAppear:(BOOL)animated{
@@ -120,14 +122,20 @@
 	NSError *error = nil;
 	
     BOOL hasChanges = NO;
-    
-    NSLog(@"geodatas count=%d", [geodatas count]);
+
 	for (QBGeoData *geoData in geodatas) {
+        
+        // skip own
+        if(geoData.user.ID == [[UsersProvider sharedProvider] currentUser].mbUser.ID){
+            continue;
+        }
+        
 		CLLocation *location = [[CLLocation alloc] initWithLatitude:geoData.latitude longitude:geoData.longitude];
         
 		hasChanges |= [[UsersProvider sharedProvider] updateOrCreateUser:geoData.user                                                                                      
                                                                 location:location  
-																 context:context
+                                                                  status:geoData.status
+                                                                 context:context
 																   error:&error];	
 		[location release];
 	}
@@ -202,11 +210,12 @@
     }
 }
 
--(void)refreshAnnotationDetails:(NSNotification*)notification{
+// refresh annotations on Map
+-(void)refreshAnnotationDetails:(NSNotification *)notification{
 	[annotationDataSource reloadData];
 }
 
--(void)openChatView:(NSNotification*)notification{
+-(void)openChatView:(NSNotification *)notification{
     [self.navigationController pushViewController:self.privateChatController animated:YES];
 }
 

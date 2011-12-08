@@ -9,16 +9,29 @@
 #import "PinView.h"
 #import "userAnnotation.h"
 #import "Users.h"
+#import "UsersProvider.h"
 
 @implementation PinView
 
 @synthesize imageView, lastMessage, detailedView, powerView, annotationModel,tapView;
+@synthesize user;
 
 
--(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier{
+-(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier ownMarker:(BOOL) isOwnMarker{
     if ((self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier])) {
+        
+        self.annotationModel = annotation;
+        
+        self.user = NSClassFromString(@"MKUserLocation") == [self.annotationModel class] ? 
+                [[UsersProvider sharedProvider] currentUser] 
+                : self.annotationModel.userModel;
 
-		UIImage *img = [UIImage imageNamed: @"marker_map.png"];
+        UIImage *img = nil;
+        if(isOwnMarker){
+            img = [UIImage imageNamed: @"marker_own_map.png"];
+        }else{
+            img = [UIImage imageNamed: @"marker_map.png"];
+        }
 		
 		self.backgroundColor = [UIColor clearColor];
 		
@@ -37,19 +50,16 @@
         [imageView release];
 		
         
-        /*
         // power
 		powerView = [[UIImageView alloc] init];
-		powerView.frame = CGRectMake(self.frame.size.width / 2 - img.size.width / 2 + 2, 26, 26, 3);
+		powerView.frame = CGRectMake(self.frame.size.width / 2 - img.size.width / 2 + 2, 20, 24, 3);
 		powerView.image = [UIImage imageNamed:@"img_power_line.png"];
 		powerView.layer.cornerRadius = (0 - 2) * 0.5;
 		[self addSubview: powerView];
         [powerView release];
-         */
 		
-        /*
         // last message view
-		lastMessage = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, labelWidth, labelHeight)];
+		lastMessage = [[UILabel alloc] initWithFrame: CGRectMake(5, 0, labelWidth-10, labelHeight-5)];
 		lastMessage.backgroundColor = [UIColor colorWithRed: .5 green: .5 blue: .5 alpha: .7];
 		lastMessage.textAlignment = UITextAlignmentCenter;
 		lastMessage.numberOfLines = 2;
@@ -57,7 +67,12 @@
 		lastMessage.textColor = [UIColor whiteColor];
 		lastMessage.font = [UIFont boldSystemFontOfSize: 10];
 		[self addSubview: lastMessage];
-        [lastMessage release];*/
+        [lastMessage release];
+        if(user.status){
+            lastMessage.text = user.status;
+        }else{
+            lastMessage.alpha = 0;
+        }
 		
 		// correct frame, check it on infinite loop =)
 		CGRect r = self.frame;
@@ -77,16 +92,15 @@
 }
 
 -(void)handleTap:(UITapGestureRecognizer *) gesture{
-    Users *model = self.annotationModel.userModel;
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:nOpenAnnotationDetails 
                                                         object:nil 
-                                                      userInfo:[NSDictionary dictionaryWithObject:[model objectID] forKey:nkData]];
+                                                      userInfo:[NSDictionary dictionaryWithObject:[user objectID] forKey:nkData]];
 }
 
 - (void)dealloc{
-    self.detailedView=nil;
-    self.annotationModel=nil;
+    self.detailedView = nil;
+    self.annotationModel = nil;
+    self.user = nil;
     
     [super dealloc];
 }

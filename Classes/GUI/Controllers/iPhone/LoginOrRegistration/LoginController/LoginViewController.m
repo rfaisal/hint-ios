@@ -102,14 +102,12 @@
 		if(res.success && 200 == status){
 			QBUUserIdentifyAnswer *answer = (QBUUserIdentifyAnswer *)res.answer;
             
+            
             // store current user
             Users *user = [[UsersProvider sharedProvider] currentUser];
             if(user == nil){
-                user = [[UsersProvider sharedProvider] createEmptyUser];
+                user = [[UsersProvider sharedProvider] createCurrentUserWithQBUser:answer.user];
             }
-            user.mbUser = answer.user;
-            [[UsersProvider sharedProvider] saveUser];
-            
 
 			[self showMessage:NSLocalizedString(@"Authentication successful", "") 
 					  message:[NSString stringWithFormat:NSLocalizedString(@"%@ was authenticated", ""), answer.user.fullName]];

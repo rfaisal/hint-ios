@@ -18,6 +18,7 @@
 @property (nonatomic, retain) QBUUser *mbUser;
 @property (nonatomic, assign) NSNumber *latitude;
 @property (nonatomic, assign) NSNumber *longitude;
+@property (nonatomic, retain) NSString *status;
 @property (nonatomic, retain) SourceImages *photo;
 @property (nonatomic, retain) NSNumber *uid;
 

@@ -4,14 +4,12 @@
 
 
 
-@interface SSLocationDataSource : NSObject <CLLocationManagerDelegate>
-{ 
+@interface SSLocationDataSource : NSObject <CLLocationManagerDelegate>{ 
     CLLocationManager *locationManager;
 } 
 
-
-+ (SSLocationDataSource*)sharedDataSource;
-- (CLLocation*) getCurrentLocation;
++ (SSLocationDataSource *)sharedDataSource;
+- (CLLocation *) getCurrentLocation;
 - (BOOL) isLocationValid;
 
 @end 
