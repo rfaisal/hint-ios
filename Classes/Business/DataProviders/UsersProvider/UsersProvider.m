@@ -95,6 +95,7 @@ static id instance = nil;
 }
 
 - (BOOL)updateOrCreateUser:(QBUUser *)qbUser location:(CLLocation*)location status:(NSString *) status context:(NSManagedObjectContext*)context error:(NSError**)error{
+    
     NSNumber *uid = [NSNumber numberWithUnsignedInteger:qbUser.ID];
 
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -131,6 +132,7 @@ static id instance = nil;
 	}
     
     if(![user.status isEqualToString:status]){
+        user.status = status;
         isChanged = YES;
     }
 	

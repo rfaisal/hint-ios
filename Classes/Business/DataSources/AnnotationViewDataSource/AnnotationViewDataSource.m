@@ -23,31 +23,34 @@
 #pragma mark MKMapDelegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation{
+
+    static NSString *annotationReuseIdentifier = @"UserAnnotationIdentifier";
+    
 	userAnnotation *ua = (userAnnotation *) annotation;
-	PinView *pin = [[PinView alloc]  initWithAnnotation:annotation 
-                                        reuseIdentifier:@"UserAnnotationIdentifier"
-                                              ownMarker:NSClassFromString(@"MKUserLocation") == [annotation class] ? YES : NO];
+    
+    PinView *pin = (PinView *)[_mapView dequeueReusableAnnotationViewWithIdentifier:annotationReuseIdentifier];
+    if(pin == nil){
+        pin = [[[PinView alloc]  initWithAnnotation:annotation 
+                                        reuseIdentifier:annotationReuseIdentifier] autorelease];
+    }
 	pin.annotationModel = ua;
+    
+    [pin updateStatusWithAnimation:YES];
     
 	return pin;
 }
 
 -(void) reloadData{
-    NSArray *usersArray = [[UsersProvider sharedProvider] getAllUsersWithError:nil];
 
-    BOOL needUpdate = NO;
-	if([mapView.annotations count] != 0){
-		[mapView removeAnnotations:mapView.annotations];
-	}
-	
+    NSArray *oldAnnotation = [NSArray arrayWithArray:[mapView.annotations 
+                                                      filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"!(self isKindOfClass: %@)", 
+                                                                                   [MKUserLocation class]]]];
+    // add new annotations
+    NSArray *usersArray = [[UsersProvider sharedProvider] getAllUsersWithError:nil];
+    
 	CLLocationCoordinate2D coordinate;
 	for (NSManagedObject *model in usersArray) {
         Users *user = (Users *)model; 	
-        
-        // skip own
-        //if(user.mbUser.ID == [[UsersProvider sharedProvider] currentUser].mbUser.ID){
-        //    continue;
-        //}
         
         coordinate.latitude = [user.latitude doubleValue];
         coordinate.longitude = [user.longitude doubleValue];
@@ -55,13 +58,10 @@
         newAnnotation.userModel = user;
         [mapView addAnnotation:newAnnotation];
 		[newAnnotation release];
-        
-		needUpdate = YES;
     }	
-	
-	if(needUpdate){
-		//[mapView setRegion:MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(1, 1)) animated:YES];
-	}
+    
+    // remove all annotations without own
+    [mapView performSelector:@selector(removeAnnotations:) withObject:oldAnnotation afterDelay:0.1];
 }
 
 - (void)mapViewWillStartLoadingMap:(MKMapView *)mapView{

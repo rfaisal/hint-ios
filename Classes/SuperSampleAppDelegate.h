@@ -10,7 +10,7 @@
 @class SuperSampleViewController;
 @class LoginOrRegistrationViewController;
 
-@interface SuperSampleAppDelegate : NSObject <UIApplicationDelegate>{		
+@interface SuperSampleAppDelegate : NSObject <UIApplicationDelegate, ActionStatusDelegate>{		
     LoginOrRegistrationViewController *_loginOrRegisterController;
 }
 
@@ -22,5 +22,8 @@
 
 - (void) signIn;
 - (IBAction) logout;
+
+- (void)startHadleOwnLocation;
+- (void)didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
 
 @end

@@ -47,4 +47,5 @@
     NSLog(@"Location updated from %@ to %@", oldLocation, newLocation);
 }
 
+
 @end

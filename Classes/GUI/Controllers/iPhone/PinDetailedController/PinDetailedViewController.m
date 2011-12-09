@@ -27,6 +27,7 @@
 @synthesize manPosition;
 @synthesize infoView;
 @synthesize photo;
+@synthesize status;
 
 - (void)releaseProperties {
     self.scrollView = nil;
@@ -82,8 +83,6 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     
-    NSLog(@"self.objectID=%@", self.objectID);
-    
     if ([@"objectID" isEqualToString:keyPath]) {
         NSError *error = nil;
         Users *user = [[UsersProvider sharedProvider] userByID:self.objectID error:&error];
@@ -92,11 +91,16 @@
             return;
         }
         
+        // login
         self.caption.text = user.mbUser.login;
         if(self.caption.text == nil || [self.caption.text isEqualToString:@""]){
             self.caption.text = @"anonymous";
         }
+        
+        // status
+        self.status.text = user.status ? user.status : @"";
             
+        // photo
         SourceImages *sourceImage = user.photo;    
         self.photo.image = [UIImage imageWithContentsOfFile:[Resources fullPathForFileWithName:sourceImage.local_url]];
         if(self.photo.image == nil){

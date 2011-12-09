@@ -9,13 +9,14 @@
 #ifndef SuperSample_Notifications_h
 #define SuperSample_Notifications_h
 
-static NSString* const nOpenAnnotationDetails = @"OpenAnnotationDetails";
-static NSString* const nRefreshAnnotationDetails = @"nRefreshAnnotationDetails";
-static NSString* const nOpenChatView = @"nOpenChatView";
+#define nOpenAnnotationDetails @"OpenAnnotationDetails"
+#define nRefreshAnnotationDetails @"nRefreshAnnotationDetails"
+#define nOpenChatView @"nOpenChatView"
+#define nLoginSuccessful @"nLoginSuccessful"
 
 #pragma mark -
 #pragma mark Keys for UserInfo
 
-static NSString* const nkData = @"Data";
+#define nkData @"Data"
 
 #endif

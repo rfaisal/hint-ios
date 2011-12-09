@@ -49,25 +49,6 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
-    [annotationDataSource reloadData];
-        
-
-//	MKCoordinateRegion region;    
-//    MKCoordinateSpan span;
-//	span.latitudeDelta = 50.65;
-//	span.longitudeDelta = 50.65;
-//	region.span = span;
-
-//    [[LocationDataSource instance] addObserver:self forKeyPath: @"currentLocation" options:NSKeyValueObservingOptionPrior context:nil];
-//    CLLocation* location= [[SSLocationDataSource sharedDataSource] getCurrentLocation];
-//	region.center = location.coordinate;
-
-//    [mapView setRegion: region animated: YES];
-//    [self setPinForLocation:location];
-
-//    [self loadAnnotation];
-     
 }
 
 - (void) viewDidAppear:(BOOL)animated{
@@ -127,6 +108,8 @@
         
         // skip own
         if(geoData.user.ID == [[UsersProvider sharedProvider] currentUser].mbUser.ID){
+            [[UsersProvider sharedProvider] currentUser].status = geoData.status;
+            
             continue;
         }
         
@@ -212,7 +195,7 @@
 
 // refresh annotations on Map
 -(void)refreshAnnotationDetails:(NSNotification *)notification{
-	[annotationDataSource reloadData];
+	[annotationDataSource performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 }
 
 -(void)openChatView:(NSNotification *)notification{

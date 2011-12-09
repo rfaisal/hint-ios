@@ -21,6 +21,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *manPosition;
 @property (nonatomic, retain) IBOutlet UITextView *infoView;
 @property (nonatomic, retain) IBOutlet UIImageView *photo;
+@property (nonatomic, retain) IBOutlet UILabel *status;
 
 -(IBAction) close:(id)sender;
 

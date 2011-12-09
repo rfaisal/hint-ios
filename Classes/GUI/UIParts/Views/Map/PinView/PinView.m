@@ -13,26 +13,17 @@
 
 @implementation PinView
 
-@synthesize imageView, lastMessage, detailedView, powerView, annotationModel,tapView;
-@synthesize user;
+@synthesize imageView, lastMessage, powerView, annotationModel,tapView;
 
-
--(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier ownMarker:(BOOL) isOwnMarker{
+-(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier{
     if ((self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier])) {
         
         self.annotationModel = annotation;
         
-        self.user = NSClassFromString(@"MKUserLocation") == [self.annotationModel class] ? 
-                [[UsersProvider sharedProvider] currentUser] 
-                : self.annotationModel.userModel;
+        UIImage *img = NSClassFromString(@"MKUserLocation") == [annotation class] ? 
+                [UIImage imageNamed: @"marker_own_map.png"] : 
+                [UIImage imageNamed: @"marker_map.png"];
 
-        UIImage *img = nil;
-        if(isOwnMarker){
-            img = [UIImage imageNamed: @"marker_own_map.png"];
-        }else{
-            img = [UIImage imageNamed: @"marker_map.png"];
-        }
-		
 		self.backgroundColor = [UIColor clearColor];
 		
 		const float labelWidth = 80;
@@ -52,7 +43,7 @@
         
         // power
 		powerView = [[UIImageView alloc] init];
-		powerView.frame = CGRectMake(self.frame.size.width / 2 - img.size.width / 2 + 2, 20, 24, 3);
+		powerView.frame = CGRectMake(self.frame.size.width / 2 - img.size.width / 2 + 2, 20, 26, 3);
 		powerView.image = [UIImage imageNamed:@"img_power_line.png"];
 		powerView.layer.cornerRadius = (0 - 2) * 0.5;
 		[self addSubview: powerView];
@@ -68,11 +59,6 @@
 		lastMessage.font = [UIFont boldSystemFontOfSize: 10];
 		[self addSubview: lastMessage];
         [lastMessage release];
-        if(user.status){
-            lastMessage.text = user.status;
-        }else{
-            lastMessage.alpha = 0;
-        }
 		
 		// correct frame, check it on infinite loop =)
 		CGRect r = self.frame;
@@ -92,15 +78,42 @@
 }
 
 -(void)handleTap:(UITapGestureRecognizer *) gesture{
+    
+    Users *annotationUser = NSClassFromString(@"MKUserLocation") == [annotationModel class] ? 
+        [[UsersProvider sharedProvider] currentUser] 
+        : self.annotationModel.userModel;
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:nOpenAnnotationDetails 
                                                         object:nil 
-                                                      userInfo:[NSDictionary dictionaryWithObject:[user objectID] forKey:nkData]];
+                                                      userInfo:[NSDictionary dictionaryWithObject:[annotationUser objectID] forKey:nkData]];
+}
+
+- (void)updateStatusWithAnimation:(BOOL)isAnimating{
+    Users *user = NSClassFromString(@"MKUserLocation") == [annotationModel class] ? 
+        [[UsersProvider sharedProvider] currentUser] 
+        : annotationModel.userModel;
+    
+    if(user.status){
+        lastMessage.text = user.status;
+        lastMessage.alpha = 1;
+
+        if(isAnimating){
+            [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionAllowUserInteraction  animations:^{
+                lastMessage.transform = CGAffineTransformMakeScale(1.22, 1.222);
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.25 animations:^{
+                    lastMessage.transform = CGAffineTransformIdentity;
+                }];
+            }];
+        }
+        
+    }else{
+        lastMessage.alpha = 0;
+    }
 }
 
 - (void)dealloc{
-    self.detailedView = nil;
     self.annotationModel = nil;
-    self.user = nil;
     
     [super dealloc];
 }

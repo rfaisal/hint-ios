@@ -11,6 +11,9 @@
 //Helpers
 #import "SSLocationDataSource.h"
 
+#import "UsersProvider.h"
+#import "Users.h"
+
 //UI
 #import "LoginOrRegistrationViewController.h"
 
@@ -22,7 +25,6 @@
 @synthesize loginOrRegisterController = _loginOrRegisterController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
-    [SSLocationDataSource sharedDataSource];            // initialization of SSLocationDataSource    
     
     // QB settings
 	[QBSettings setLogLevel:QBLogLevelDebug];
@@ -42,6 +44,11 @@
     [self.window makeKeyAndVisible];
     
     [self.viewController presentModalViewController:self.loginOrRegisterController animated:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(startHadleOwnLocation) 
+                                                 name:nLoginSuccessful 
+                                               object:nil];
     
     return YES;
 }
@@ -89,6 +96,46 @@
     [QBUsersService logoutUser:nil];
     
     [self.viewController presentModalViewController:self.loginOrRegisterController animated:YES];
+}
+
+- (void)startHadleOwnLocation{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:nLoginSuccessful object:nil];
+    
+    [QBLocationDataSource instance];
+    [[QBLocationDataSource instance] setCallbackSelectorForLocationUpdate:@selector(didUpdateToLocation:fromLocation:) forTarget:self];
+}
+
+- (void)didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    NSLog(@"Location didUpdate from %@ to %@", oldLocation, newLocation);
+    
+    Users *curUser = [[UsersProvider sharedProvider] currentUser];
+    if(curUser == nil){
+        return;
+    }
+    
+    QBGeoData *geoData = [[QBGeoData alloc] init];
+    geoData.appID = appID;
+    geoData.latitude = newLocation.coordinate.latitude;
+    geoData.longitude = newLocation.coordinate.longitude;
+    geoData.user = [curUser mbUser];
+    geoData.status = curUser.status;
+
+    // post own location
+    [QBGeoposService postGeoData:geoData delegate:self];
+    [geoData release];
+}
+
+
+#pragma mark
+#pragma mark ActionStatusDelegate
+#pragma mark
+
+- (void)completedWithResult:(Result *)result{
+	if(result.success){
+		if([result isKindOfClass:[QBGeoDataResult class]]){
+			//QBGeoDataResult *geoDataRes = (QBGeoDataResult *)result;
+		}
+	}
 }
 
 - (void)dealloc{
