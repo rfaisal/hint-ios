@@ -15,9 +15,6 @@
 #import "StorageProvider.h"
 #import "Users.h"
 
-//Helpers
-#import "SSLocationDataSource.h"
-
 //XMPP
 #import "XMPPService.h"
 
@@ -97,7 +94,9 @@
 
 -(void) processGeoDatAsync:(NSDictionary*)data {	
     QBGeoData *answerGeoData = [data objectForKey:GEODATA_KEY];
-	CLLocation *location = [[SSLocationDataSource sharedDataSource] getCurrentLocation];
+	CLLocation *location =  [[QBLocationDataSource instance] currentLocation];
+    
+   
 		
 	NSManagedObjectContext * context = [StorageProvider threadSafeContext];
 	NSError *error = nil;

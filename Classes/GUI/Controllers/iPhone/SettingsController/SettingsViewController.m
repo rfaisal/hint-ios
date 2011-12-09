@@ -16,7 +16,6 @@
 #import "SourceImagesProvider.h"
 
 //Helpers
-#import "SSLocationDataSource.h"
 #import "DeviceHardware.h"
 #import "Resources.h"
 #import "ImageResize.h"

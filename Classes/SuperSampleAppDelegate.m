@@ -9,7 +9,6 @@
 #import "SuperSampleAppDelegate.h"
 
 //Helpers
-#import "SSLocationDataSource.h"
 
 #import "UsersProvider.h"
 #import "Users.h"

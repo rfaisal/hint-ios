@@ -21,9 +21,6 @@
 //Engine
 #import "ChatEngine.h"
 
-//Data sources
-#import "SSLocationDataSource.h"
-
 //Helpers
 #import "Converter.h"
 #import "GDConnectionHelper.h"
@@ -236,7 +233,8 @@
     }
 }
 - (void) sendLocationTo:(NSString*)to login:(NSString*)login {
-	if ([[SSLocationDataSource sharedDataSource] isLocationValid]) {
+    
+	//if ([[SSLocationDataSource sharedDataSource] isLocationValid]) {
 		NSXMLElement *presence = [NSXMLElement elementWithName:@"message"];
 		[presence addAttributeWithName:@"to" stringValue:to];
 		
@@ -247,7 +245,7 @@
 		[info addAttributeWithName:@"from_login" stringValue:login];
 		[presence addChild:info];
 		
-		NSXMLElement *message_b = [NSXMLElement elementWithName:@"location" stringValue:[NSString stringWithFormat:@"%f,%f", [[SSLocationDataSource sharedDataSource] getCurrentLocation].coordinate.latitude, [[SSLocationDataSource sharedDataSource] getCurrentLocation].coordinate.longitude]];
+		NSXMLElement *message_b = [NSXMLElement elementWithName:@"location" stringValue:[NSString stringWithFormat:@"%f,%f",  [[QBLocationDataSource instance] currentLocation].coordinate.latitude,  [[QBLocationDataSource instance] currentLocation].coordinate.longitude]];
 		[presence addChild:message_b];
 		
 		[[self xmppStream] sendElement:presence];
@@ -257,7 +255,7 @@
 									  typeMessage:ChatMessageTypeLocation
 											 text:@"I'm here."
 											 file:nil
-										 location:[[SSLocationDataSource sharedDataSource] getCurrentLocation]
+										 location: [[QBLocationDataSource instance] currentLocation]
 											 date:nil] autorelease], @"message", nil]];
 		
 		NSString *toID = [[to componentsSeparatedByString:@"@"] objectAtIndex:0];
@@ -278,7 +276,7 @@
             
             [QBNotifierService TSendPush:message toExternalUser:[toID intValue] eventOwnerID:eventOwnerID delegate:nil];
         }
-	}
+	//}
 }
 
 - (void) sendImage:(FileModel*)file to:(NSString*)to login:(NSString*)login {

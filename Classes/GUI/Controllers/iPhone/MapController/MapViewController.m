@@ -9,7 +9,6 @@
 #import "MapViewController.h"
 
 //Data source
-#import "SSLocationDataSource.h"
 #import "AnnotationViewDataSource.h"
 
 //Controllers

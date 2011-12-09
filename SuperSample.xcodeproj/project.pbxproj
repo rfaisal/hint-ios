@@ -45,7 +45,6 @@
 		FA70CFB71487BBC000C21DAA /* CDTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEC71487BBC000C21DAA /* CDTableDataSource.m */; };
 		FA70CFB81487BBC000C21DAA /* LoadableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CECA1487BBC000C21DAA /* LoadableDataSource.m */; };
 		FA70CFBA1487BBC000C21DAA /* ChatListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CECE1487BBC000C21DAA /* ChatListDataSource.m */; };
-		FA70CFBB1487BBC000C21DAA /* SSLocationDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CED11487BBC000C21DAA /* SSLocationDataSource.m */; };
 		FA70CFBC1487BBC000C21DAA /* PrivateChatListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CED41487BBC000C21DAA /* PrivateChatListDataSource.m */; };
 		FA70CFBD1487BBC000C21DAA /* StorageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CED71487BBC000C21DAA /* StorageProvider.m */; };
 		FA70CFBE1487BBC000C21DAA /* AttachmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEDB1487BBC000C21DAA /* AttachmentModel.m */; };
@@ -208,8 +207,6 @@
 		FA70CECA1487BBC000C21DAA /* LoadableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadableDataSource.m; sourceTree = "<group>"; };
 		FA70CECD1487BBC000C21DAA /* ChatListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListDataSource.h; sourceTree = "<group>"; };
 		FA70CECE1487BBC000C21DAA /* ChatListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListDataSource.m; sourceTree = "<group>"; };
-		FA70CED01487BBC000C21DAA /* SSLocationDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLocationDataSource.h; sourceTree = "<group>"; };
-		FA70CED11487BBC000C21DAA /* SSLocationDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLocationDataSource.m; sourceTree = "<group>"; };
 		FA70CED31487BBC000C21DAA /* PrivateChatListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateChatListDataSource.h; sourceTree = "<group>"; };
 		FA70CED41487BBC000C21DAA /* PrivateChatListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateChatListDataSource.m; sourceTree = "<group>"; };
 		FA70CED61487BBC000C21DAA /* StorageProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageProvider.h; sourceTree = "<group>"; };
@@ -660,7 +657,6 @@
 				FA70CEBE1487BBC000C21DAA /* AnnotationViewDataSource */,
 				FA70CEC11487BBC000C21DAA /* Base */,
 				FA70CECC1487BBC000C21DAA /* ChatListDataSource */,
-				FA70CECF1487BBC000C21DAA /* LocationDataSource */,
 				FA70CED21487BBC000C21DAA /* PrivateChatListDataSource */,
 			);
 			path = DataSources;
@@ -719,15 +715,6 @@
 				FA70CECE1487BBC000C21DAA /* ChatListDataSource.m */,
 			);
 			path = ChatListDataSource;
-			sourceTree = "<group>";
-		};
-		FA70CECF1487BBC000C21DAA /* LocationDataSource */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CED01487BBC000C21DAA /* SSLocationDataSource.h */,
-				FA70CED11487BBC000C21DAA /* SSLocationDataSource.m */,
-			);
-			path = LocationDataSource;
 			sourceTree = "<group>";
 		};
 		FA70CED21487BBC000C21DAA /* PrivateChatListDataSource */ = {
@@ -1661,7 +1648,6 @@
 				FA70CFB71487BBC000C21DAA /* CDTableDataSource.m in Sources */,
 				FA70CFB81487BBC000C21DAA /* LoadableDataSource.m in Sources */,
 				FA70CFBA1487BBC000C21DAA /* ChatListDataSource.m in Sources */,
-				FA70CFBB1487BBC000C21DAA /* SSLocationDataSource.m in Sources */,
 				FA70CFBC1487BBC000C21DAA /* PrivateChatListDataSource.m in Sources */,
 				FA70CFBD1487BBC000C21DAA /* StorageProvider.m in Sources */,
 				FA70CFBE1487BBC000C21DAA /* AttachmentModel.m in Sources */,
