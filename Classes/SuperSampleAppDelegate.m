@@ -45,11 +45,6 @@
     
     [self.viewController presentModalViewController:self.loginOrRegisterController animated:NO];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(startHadleOwnLocation) 
-                                                 name:nLoginSuccessful 
-                                               object:nil];
-    
     return YES;
 }
 
@@ -89,20 +84,33 @@
 
 
 - (void) signIn{
+    // start handling own location
+    [self startHadleOwnLocation];
+    
+    // show main screen
     [self.viewController dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction) logout{
+    // logout
     [QBUsersService logoutUser:nil];
+    [[UsersProvider sharedProvider] setCurrentUser:nil];
     
+    // stop handling own location
+    [self stopHadleOwnLocation];
+    
+    // shoe start screen
     [self.viewController presentModalViewController:self.loginOrRegisterController animated:YES];
 }
 
 - (void)startHadleOwnLocation{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:nLoginSuccessful object:nil];
-    
-    [QBLocationDataSource instance];
     [[QBLocationDataSource instance] setCallbackSelectorForLocationUpdate:@selector(didUpdateToLocation:fromLocation:) forTarget:self];
+    [[[QBLocationDataSource instance] locationManager] startUpdatingLocation];
+}
+
+- (void)stopHadleOwnLocation{
+    [[QBLocationDataSource instance] setCallbackSelectorForLocationUpdate:nil forTarget:nil];
+    [[[QBLocationDataSource instance] locationManager] stopUpdatingLocation];
 }
 
 - (void)didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{

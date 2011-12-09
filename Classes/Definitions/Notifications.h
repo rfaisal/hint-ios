@@ -13,6 +13,7 @@
 #define nRefreshAnnotationDetails @"nRefreshAnnotationDetails"
 #define nOpenChatView @"nOpenChatView"
 #define nLoginSuccessful @"nLoginSuccessful"
+#define nLogoutSuccessful @"nLogoutSuccessful"
 
 #pragma mark -
 #pragma mark Keys for UserInfo

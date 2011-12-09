@@ -43,7 +43,7 @@
 }
 
 - (void) startInit{
-    Users* user = [[UsersProvider sharedProvider] currentUser];
+    Users *user = [[UsersProvider sharedProvider] currentUser];
     [self loadSettinsForUser:user];
 }
 

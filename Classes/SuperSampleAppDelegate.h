@@ -23,7 +23,8 @@
 - (void) signIn;
 - (IBAction) logout;
 
-- (void)startHadleOwnLocation;
-- (void)didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
+- (void) startHadleOwnLocation;
+- (void) stopHadleOwnLocation;
+- (void) didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
 
 @end

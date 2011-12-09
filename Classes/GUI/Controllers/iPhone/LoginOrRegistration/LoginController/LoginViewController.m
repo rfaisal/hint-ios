@@ -110,9 +110,7 @@
             }
             
             [[NSNotificationCenter defaultCenter] postNotificationName:nRefreshAnnotationDetails object:nil];
-            [[NSNotificationCenter defaultCenter] postNotificationName:nLoginSuccessful object:nil];
             
-
 			[self showMessage:NSLocalizedString(@"Authentication successful", "") 
 					  message:[NSString stringWithFormat:NSLocalizedString(@"%@ was authenticated", ""), answer.user.fullName]];
  
