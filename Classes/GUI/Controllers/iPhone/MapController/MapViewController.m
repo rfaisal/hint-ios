@@ -106,7 +106,7 @@
 	for (QBGeoData *geoData in geodatas) {
         
         // skip own
-        if(geoData.user.ID == [[UsersProvider sharedProvider] currentUser].mbUser.ID){
+        if(geoData.user.ID == [[UsersProvider sharedProvider] currentUserID]){
             [[UsersProvider sharedProvider] currentUser].status = geoData.status;
             
             continue;

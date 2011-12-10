@@ -13,7 +13,7 @@
     
 }
 
-@property (retain) Users *currentUser;
+@property (assign) NSInteger currentUserID;
 
 // Get user by mid
 - (Users *)userByID:(NSManagedObjectID *)mid error:(NSError **)error;
@@ -24,19 +24,8 @@
 - (Users *)userByUID:(NSNumber *)uid context:(NSManagedObjectContext*)context;
 
 // Add user
-- (Users *)addUser:(QBUUser *)user location:(CLLocation *)location;
-- (Users *)addUser:(QBUUser *)user location:(CLLocation *)location context:(NSManagedObjectContext *)context;
-
-- (Users *)sourceUserWithID:(NSString *)uid 
-						avatarID:(NSManagedObjectID *)avatarId 					   
-						  operation:(NSString *)operation
-							context:(NSManagedObjectContext *)context;
-
-- (BOOL) saveUser;
-         
-- (Users *)createCurrentUserWithQBUser:(QBUUser *) user;
-                                            
-- (NSArray *)getAllUsersWithError:(NSError **)error;
+- (Users *)addUser:(QBUUser *)user location:(CLLocation *)location status:(NSString *) status;
+- (Users *)addUser:(QBUUser *)user location:(CLLocation *)location status:(NSString *) status context:(NSManagedObjectContext *)context;
 
 // Update or create user
 - (BOOL)updateOrCreateUser:(QBUUser *)qbUser					  
@@ -49,5 +38,20 @@
                     status:(NSString *) status
 				   context:(NSManagedObjectContext *)context 
 					 error:(NSError **)error;
+
+
+- (Users *)sourceUserWithID:(NSString *)uid 
+                   avatarID:(NSManagedObjectID *)avatarId 					   
+                  operation:(NSString *)operation
+                    context:(NSManagedObjectContext *)context;
+
+- (BOOL) saveUser;
+
+// current user
+- (Users *)currentUserWithQBUser:(QBUUser *) user;
+- (Users *)currentUser;
+- (Users *)currentUserWithContext:(NSManagedObjectContext *)context;
+    
+- (NSArray *)getAllUsersWithError:(NSError **)error;
 
 @end

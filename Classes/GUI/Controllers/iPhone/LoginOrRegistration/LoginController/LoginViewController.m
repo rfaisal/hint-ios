@@ -102,12 +102,8 @@
 		if(res.success && 200 == status){
 			QBUUserIdentifyAnswer *answer = (QBUUserIdentifyAnswer *)res.answer;
             
-            
-            // store current user
-            Users *user = [[UsersProvider sharedProvider] currentUser];
-            if(user == nil){
-                user = [[UsersProvider sharedProvider] createCurrentUserWithQBUser:answer.user];
-            }
+            // current user
+            Users *user = [[UsersProvider sharedProvider] currentUserWithQBUser:answer.user];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:nRefreshAnnotationDetails object:nil];
             

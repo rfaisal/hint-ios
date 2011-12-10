@@ -144,16 +144,16 @@
 	Messages *message = [[ChatListProvider sharedProvider] addMessageWithUID:Id 
 																	   text:msg 
 																   location:[NSString stringWithFormat:@"%@", location] 
-                                                                       user:[[UsersProvider sharedProvider] currentUser]
+                                                                        user:[[UsersProvider sharedProvider] currentUserWithContext:context]
 																	context:context];
 
 		
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
 	[nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
-	hasChanges &= [context save:&error];
+	hasChanges = [context save:&error];
 	[nc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
 	if(hasChanges){
-		[nc postNotificationName:nRefreshChat object:nil userInfo:nil];			
+		[nc postNotificationName:nRefreshChat object:nil userInfo:nil];	
 	}
 }
 
@@ -167,21 +167,13 @@
 	for (QBGeoData *geoData in geodata) {
         
         // message already exist
-        if([[ChatListProvider sharedProvider] messageByUID:[NSNumber numberWithUnsignedInteger:geoData.ID]]){
+        if([[ChatListProvider sharedProvider] messageByUID:[NSNumber numberWithUnsignedInteger:geoData.ID] context:context]){
             continue;
         }
         
-        Users *user = [[UsersProvider sharedProvider] userByUID:[NSNumber numberWithUnsignedInteger:geoData.user.ID]];
+        Users *user = [[UsersProvider sharedProvider] userByUID:[NSNumber numberWithUnsignedInteger:geoData.user.ID] context:context];
         if(user == nil){
-            // create user
-            CLLocation *location = [[CLLocation alloc] initWithLatitude:geoData.latitude longitude:geoData.longitude];
-        
-            [[UsersProvider sharedProvider] updateOrCreateUser:geoData.user                                                                                      
-                                                      location:location  
-                                                        status:geoData.status
-                                                       context:context
-                                                         error:&error];	
-            [location release];
+            user = [[UsersProvider sharedProvider] addUser:geoData.user location:[geoData location] status:geoData.status context:context];
         }
         
         NSString *msg = [NSString stringWithFormat:@"%@", geoData.status];	
@@ -189,7 +181,8 @@
         Messages *message = [[ChatListProvider sharedProvider] addMessageWithUID:Id 
                                                                             text:msg 
                                                                         location:[NSString stringWithFormat:@"%@", [geoData location]] 
-                                                                            user:user];
+                                                                            user:user
+                                                                         context:context];
         hasChanges = YES;
 	}
 	
@@ -251,6 +244,7 @@
         if(result.success){
             QBGeoDataSearchResult *geoDataSearchRes = (QBGeoDataSearchResult *)result;
             [self performSelectorInBackground:@selector(processGeoDataAsync:) withObject:geoDataSearchRes.geodatas];
+            textField.text = @"";
         }
     }
 }

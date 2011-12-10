@@ -93,7 +93,7 @@
 - (IBAction) logout{
     // logout
     [QBUsersService logoutUser:nil];
-    [[UsersProvider sharedProvider] setCurrentUser:nil];
+    [[UsersProvider sharedProvider] setCurrentUserID:-1];
     
     // stop handling own location
     [self stopHadleOwnLocation];
@@ -116,14 +116,13 @@
     NSLog(@"Location didUpdate from %@ to %@", oldLocation, newLocation);
     
     Users *curUser = [[UsersProvider sharedProvider] currentUser];
-    if(curUser == nil){
-        return;
-    }
     
-    QBGeoData *geoData = [QBGeoData currentGeoData];
+    QBGeoData *geoData = [[QBGeoData alloc] init];
     geoData.appID = appID;
     geoData.user = [curUser mbUser];
     geoData.status = curUser.status;
+    geoData.latitude = newLocation.coordinate.latitude;
+    geoData.longitude = newLocation.coordinate.longitude;
 
     // post own location
     [QBGeoposService postGeoData:geoData delegate:self];

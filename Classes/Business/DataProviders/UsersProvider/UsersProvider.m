@@ -13,7 +13,7 @@
 
 @implementation UsersProvider
 
-@synthesize currentUser;
+@synthesize currentUserID;
 
 static id instance = nil;
 
@@ -139,21 +139,35 @@ static id instance = nil;
 	return isChanged;
 }
 
-- (Users *)createCurrentUserWithQBUser:(QBUUser *) user{
-    Users *newUser = [self addUser:user location:nil context:self.managedObjectContext];
-    self.currentUser = newUser;
-    return newUser;
+- (Users *)currentUserWithQBUser:(QBUUser *) user{
+    self.currentUserID = user.ID;
+    
+    Users *currentUser = [self userByUID:[NSNumber numberWithUnsignedInteger:currentUserID]];
+    if(currentUser == nil){
+        currentUser = [self addUser:user location:nil status:nil context:self.managedObjectContext];
+    }
+
+    return currentUser;
 }
 
-- (Users *)addUser:(QBUUser *)user location: (CLLocation*) location{
-	return [self addUser:user location:location context:self.managedObjectContext];
+- (Users *)currentUser{
+    return [self userByUID:[NSNumber numberWithInteger:currentUserID]];
 }
 
-- (Users *)addUser:(QBUUser *) user location: (CLLocation *) location context:(NSManagedObjectContext *)context{
+- (Users *)currentUserWithContext:(NSManagedObjectContext *)context{
+    return [self userByUID:[NSNumber numberWithInteger:currentUserID] context:context];
+}
+
+- (Users *)addUser:(QBUUser *)user location: (CLLocation*) location status:(NSString *) status{
+	return [self addUser:user location:location status:status context:self.managedObjectContext];
+}
+
+- (Users *)addUser:(QBUUser *) user location: (CLLocation *) location status:(NSString *) status context:(NSManagedObjectContext *)context{
     Users *model = (Users *)[NSEntityDescription insertNewObjectForEntityForName:[self entityName]
                                                             inManagedObjectContext:context];
 	model.uid = [NSNumber numberWithUnsignedChar:user.ID];
     model.mbUser = user;
+    model.status = status;
     model.longitude = [NSNumber numberWithDouble: location.coordinate.longitude];
     model.latitude = [NSNumber numberWithDouble: location.coordinate.latitude];
     
@@ -215,18 +229,6 @@ static id instance = nil;
     return results;
 }
 
-/*
-- (Users *)currentUser{
 
-    NSArray *users = [self getAllUsersWithError:nil];
-    
-    NSLog(@"users Count=%d", [users count]);
-
-    if ([users count]){
-        return [users objectAtIndex:0];
-    }
-    
-    return nil;
-}*/
 
 @end
