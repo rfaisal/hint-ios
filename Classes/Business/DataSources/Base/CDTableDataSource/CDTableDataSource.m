@@ -64,8 +64,11 @@
     
     return nil;
 }
-#pragma mark -
+
+
+#pragma mark
 #pragma mark Procedures
+#pragma mark
 
 - (void)reloadData {
     [super reloadData];
@@ -79,13 +82,13 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
     
-//    NSLog(@"[self featchedResultsController]: %@",[[self featchedResultsController] fetchedObjects]);
-    
     [self.tabView reloadData];
 }
 
-#pragma mark -
+
+#pragma mark
 #pragma mark Fetched Procedures
+#pragma mark
 
 - (NSFetchedResultsController *)featchedResultsController {
     if (featchedResultsController == nil) {
@@ -109,12 +112,15 @@
     return featchedResultsController;
 }
 
-#pragma mark -
+
+#pragma mark
 #pragma mark FetchedResult Controller Delegate
+#pragma mark
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
     [self.tabView beginUpdates];
 }
+
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     UITableView *tableView = self.tabView;
     
@@ -137,9 +143,9 @@
             break;
     }
 }
+
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-	switch(type) 
-	{
+	switch(type) {
         case NSFetchedResultsChangeInsert:
             [self.tabView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
@@ -149,6 +155,7 @@
             break;
     }
 }
+
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tabView endUpdates];
     [self loadFinished];

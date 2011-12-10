@@ -10,15 +10,12 @@
 
 @interface SubscribedViewController : UIViewController {
     UIInterfaceOrientation innerInterfaceOrientation;
-	//ActivityView *activityView;
-    
+
     SubscribedViewController *parentCustomModalController;
     SubscribedViewController *modalCustomViewController;
 }
 
 @property (nonatomic, assign) UIInterfaceOrientation innerInterfaceOrientation;
-
-//@property (nonatomic, retain) ActivityView *activityView;
 @property (nonatomic, retain) SubscribedViewController *parentCustomModalController;
 
 #pragma mark Subscription
@@ -33,11 +30,6 @@
 - (void) releaseAll;
 
 - (NSString*) controllerName;
-
-#pragma mark ActivityView
-
-//- (void) showActivityView;
-//- (void) hideActivityView;
 
 #pragma mark Custom Modal View
 

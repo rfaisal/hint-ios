@@ -7,18 +7,27 @@
 //
 
 #import "EntityProvider.h"
+#import "Users.h"
+
 @class Messages;
 
 @interface ChatListProvider : EntityProvider {
     
 }
 
-- (Messages*)addMessageWithUID:(NSString*)uid text:(NSString*)text location:(NSString*)location;
-- (Messages*)addMessageWithUID:(NSString*)uid 
-						  text:(NSString*)text 
-					  location:(NSString*)location 
-					   context:(NSManagedObjectContext*)context;
-- (Messages*)messageByID:(NSManagedObjectID*)mid error:(NSError**)error;
+// add a new one
+- (Messages *)addMessageWithUID:(NSString *)uid text:(NSString *)text location:(NSString*)location user:(Users *)user;
+- (Messages *)addMessageWithUID:(NSString *)uid 
+                           text:(NSString *)text 
+                       location:(NSString *)location
+                           user:(Users *)user
+                        context:(NSManagedObjectContext *)context;
 
+// search by id
+- (Messages *)messageByID:(NSManagedObjectID *)mid error:(NSError **)error;
+
+// serach by uid
+- (Messages *)messageByUID:(NSNumber *)uid;
+- (Messages *)messageByUID:(NSNumber *)uid context:(NSManagedObjectContext *)context;
 
 @end

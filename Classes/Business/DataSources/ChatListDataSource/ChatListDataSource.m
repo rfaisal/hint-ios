@@ -34,13 +34,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     return [super tableView:tabView numberOfRowsInSection:section];
 }
 
 - (Class)cellClass {
     return [MessageCell class];
 }
+
 - (NSString *)cellIdentifier {
     return @"MessageCell";
 }

@@ -93,7 +93,7 @@
     
     if(user.objectID == currentUser.objectID)
         return;
-    [[NSNotificationCenter defaultCenter] postNotificationName:nOpenChatView object:nil userInfo:[NSDictionary dictionaryWithObject:user.objectID forKey:nkData]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:nOpenPrivateChatView object:nil userInfo:[NSDictionary dictionaryWithObject:user.objectID forKey:nkData]];
 }
 
 - (void)reloadCellSateWithData:(NSObject*)newData {

@@ -73,7 +73,7 @@
 					<object class="IBUITextField" key="IBUITitleView" id="879884364">
 						<reference key="NSNextResponder"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{5, 7}, {252, 31}}</string>
+						<string key="NSFrame">{{5, 7}, {245, 31}}</string>
 						<reference key="NSSuperview"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -105,7 +105,7 @@
 						</object>
 					</object>
 					<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="611699723">
-						<string key="IBUITitle">Send</string>
+						<string key="IBUITitle">Send2</string>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIStyle">1</int>
 						<reference key="IBUINavigationItem" ref="416606127"/>
@@ -166,12 +166,12 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<bool key="IBUIHorizontal">NO</bool>
-				<object class="IBUINavigationController" key="IBUISelectedViewController" id="107979025">
-					<object class="IBUITabBarItem" key="IBUITabBarItem" id="1039884461">
-						<string key="IBUITitle">Map</string>
+				<object class="IBUINavigationController" key="IBUISelectedViewController" id="61606789">
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="685330347">
+						<string key="IBUITitle">Chat</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">tab_icon_map.png</string>
+							<string key="NSResourceName">tab_icon_chat.png</string>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
@@ -183,7 +183,7 @@
 					</object>
 					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					<bool key="IBUIHorizontal">NO</bool>
-					<object class="IBUINavigationBar" key="IBUINavigationBar" id="386234140">
+					<object class="IBUINavigationBar" key="IBUINavigationBar" id="296532256">
 						<nil key="NSNextResponder"/>
 						<int key="NSvFlags">256</int>
 						<string key="NSFrameSize">{0, 0}</string>
@@ -195,19 +195,42 @@
 					</object>
 					<object class="NSMutableArray" key="IBUIViewControllers">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="IBUIViewController" id="614795263">
-							<object class="IBUINavigationItem" key="IBUINavigationItem" id="486541687">
-								<string key="IBUITitle">Map</string>
-								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="69106412">
-									<string key="IBUITitle">Back</string>
+						<object class="IBUIViewController" id="463513652">
+							<object class="IBUINavigationItem" key="IBUINavigationItem" id="461883034">
+								<object class="IBUITextField" key="IBUITitleView" id="282695791">
+									<nil key="NSNextResponder"/>
+									<int key="NSvFlags">292</int>
+									<string key="NSFrame">{{5, 7}, {252, 31}}</string>
+									<bool key="IBUIOpaque">NO</bool>
+									<bool key="IBUIClipsSubviews">YES</bool>
+									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+									<int key="IBUIContentVerticalAlignment">0</int>
+									<string key="IBUIText"/>
+									<int key="IBUIBorderStyle">3</int>
+									<object class="NSColor" key="IBUITextColor">
+										<int key="NSColorSpace">3</int>
+										<bytes key="NSWhite">MAA</bytes>
+										<reference key="NSCustomColorSpace" ref="934843350"/>
+									</object>
+									<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
+									<float key="IBUIMinimumFontSize">17</float>
+									<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+										<int key="IBUIReturnKeyType">7</int>
+										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+									</object>
+									<reference key="IBUIFontDescription" ref="707792298"/>
+									<reference key="IBUIFont" ref="705383029"/>
+								</object>
+								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="257451866">
+									<string key="IBUITitle">Send</string>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 									<int key="IBUIStyle">1</int>
-									<reference key="IBUINavigationItem" ref="486541687"/>
+									<reference key="IBUINavigationItem" ref="461883034"/>
 								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<reference key="IBUIParentViewController" ref="107979025"/>
-							<string key="IBUINibName">MapViewController</string>
+							<reference key="IBUIParentViewController" ref="61606789"/>
+							<string key="IBUINibName">ChatViewController</string>
 							<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 								<int key="IBUIInterfaceOrientation">1</int>
 								<int key="interfaceOrientation">1</int>
@@ -216,17 +239,15 @@
 							<bool key="IBUIHorizontal">NO</bool>
 						</object>
 					</object>
-					<bool key="IBUINavigationBarHidden">YES</bool>
 				</object>
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<reference ref="107979025"/>
-					<object class="IBUINavigationController" id="61606789">
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="685330347">
-							<string key="IBUITitle">Chat</string>
+					<object class="IBUINavigationController" id="107979025">
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="1039884461">
+							<string key="IBUITitle">Map</string>
 							<object class="NSCustomResource" key="IBUIImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">tab_icon_chat.png</string>
+								<string key="NSResourceName">tab_icon_map.png</string>
 							</object>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
@@ -238,7 +259,7 @@
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIHorizontal">NO</bool>
-						<object class="IBUINavigationBar" key="IBUINavigationBar" id="296532256">
+						<object class="IBUINavigationBar" key="IBUINavigationBar" id="386234140">
 							<nil key="NSNextResponder"/>
 							<int key="NSvFlags">256</int>
 							<string key="NSFrameSize">{0, 0}</string>
@@ -250,42 +271,19 @@
 						</object>
 						<object class="NSMutableArray" key="IBUIViewControllers">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIViewController" id="463513652">
-								<object class="IBUINavigationItem" key="IBUINavigationItem" id="461883034">
-									<object class="IBUITextField" key="IBUITitleView" id="282695791">
-										<nil key="NSNextResponder"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{5, 7}, {252, 31}}</string>
-										<bool key="IBUIOpaque">NO</bool>
-										<bool key="IBUIClipsSubviews">YES</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<int key="IBUIContentVerticalAlignment">0</int>
-										<string key="IBUIText"/>
-										<int key="IBUIBorderStyle">3</int>
-										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">3</int>
-											<bytes key="NSWhite">MAA</bytes>
-											<reference key="NSCustomColorSpace" ref="934843350"/>
-										</object>
-										<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
-										<float key="IBUIMinimumFontSize">17</float>
-										<object class="IBUITextInputTraits" key="IBUITextInputTraits">
-											<int key="IBUIReturnKeyType">7</int>
-											<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										</object>
-										<reference key="IBUIFontDescription" ref="707792298"/>
-										<reference key="IBUIFont" ref="705383029"/>
-									</object>
-									<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="257451866">
-										<string key="IBUITitle">Send</string>
+							<object class="IBUIViewController" id="614795263">
+								<object class="IBUINavigationItem" key="IBUINavigationItem" id="486541687">
+									<string key="IBUITitle">Map</string>
+									<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="69106412">
+										<string key="IBUITitle">Back</string>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<int key="IBUIStyle">1</int>
-										<reference key="IBUINavigationItem" ref="461883034"/>
+										<reference key="IBUINavigationItem" ref="486541687"/>
 									</object>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
-								<reference key="IBUIParentViewController" ref="61606789"/>
-								<string key="IBUINibName">ChatViewController</string>
+								<reference key="IBUIParentViewController" ref="107979025"/>
+								<string key="IBUINibName">MapViewController</string>
 								<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 									<int key="IBUIInterfaceOrientation">1</int>
 									<int key="interfaceOrientation">1</int>
@@ -294,7 +292,9 @@
 								<bool key="IBUIHorizontal">NO</bool>
 							</object>
 						</object>
+						<bool key="IBUINavigationBarHidden">YES</bool>
 					</object>
+					<reference ref="61606789"/>
 					<object class="IBUINavigationController" id="998834950">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="894340474">
 							<string key="IBUITitle">Quiz</string>
@@ -936,7 +936,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">76</int>
+			<int key="maxID">78</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

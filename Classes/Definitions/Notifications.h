@@ -11,7 +11,8 @@
 
 #define nOpenAnnotationDetails @"OpenAnnotationDetails"
 #define nRefreshAnnotationDetails @"nRefreshAnnotationDetails"
-#define nOpenChatView @"nOpenChatView"
+#define nRefreshChat @"nRefreshChat"
+#define nOpenPrivateChatView @"nOpenPrivateChatView"
 #define nLoginSuccessful @"nLoginSuccessful"
 #define nLogoutSuccessful @"nLogoutSuccessful"
 

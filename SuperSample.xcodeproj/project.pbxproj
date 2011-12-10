@@ -587,12 +587,12 @@
 		FA70CEAA1487BBC000C21DAA /* DataProviders */ = {
 			isa = PBXGroup;
 			children = (
+				FA70CEBA1487BBC000C21DAA /* UsersProvider */,
 				FA70CEAB1487BBC000C21DAA /* ChatListProvider */,
 				FA70CEAE1487BBC000C21DAA /* EntityProvider */,
 				FA70CEB11487BBC000C21DAA /* PrivateChatListProvider */,
 				FA70CEB41487BBC000C21DAA /* SourceImagesProvider */,
 				FA70CEB71487BBC000C21DAA /* SourceThumbnails */,
-				FA70CEBA1487BBC000C21DAA /* UsersProvider */,
 			);
 			path = DataProviders;
 			sourceTree = "<group>";
@@ -655,8 +655,8 @@
 			isa = PBXGroup;
 			children = (
 				FA70CEBE1487BBC000C21DAA /* AnnotationViewDataSource */,
-				FA70CEC11487BBC000C21DAA /* Base */,
 				FA70CECC1487BBC000C21DAA /* ChatListDataSource */,
+				FA70CEC11487BBC000C21DAA /* Base */,
 				FA70CED21487BBC000C21DAA /* PrivateChatListDataSource */,
 			);
 			path = DataSources;

@@ -120,10 +120,8 @@
         return;
     }
     
-    QBGeoData *geoData = [[QBGeoData alloc] init];
+    QBGeoData *geoData = [QBGeoData currentGeoData];
     geoData.appID = appID;
-    geoData.latitude = newLocation.coordinate.latitude;
-    geoData.longitude = newLocation.coordinate.longitude;
     geoData.user = [curUser mbUser];
     geoData.status = curUser.status;
 

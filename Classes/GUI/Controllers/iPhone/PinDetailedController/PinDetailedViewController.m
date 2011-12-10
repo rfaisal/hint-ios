@@ -71,7 +71,7 @@
         return;
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:nOpenChatView 
+    [[NSNotificationCenter defaultCenter] postNotificationName:nOpenPrivateChatView 
                                                         object:nil 
                                                       userInfo:[NSDictionary dictionaryWithObject:objectID forKey:nkData]];
 }

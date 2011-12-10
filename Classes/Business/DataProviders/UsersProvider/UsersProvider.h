@@ -15,12 +15,15 @@
 
 @property (retain) Users *currentUser;
 
+// Get user by mid
 - (Users *)userByID:(NSManagedObjectID *)mid error:(NSError **)error;
 - (Users *)userByID:(NSManagedObjectID *)mid context:(NSManagedObjectContext *)context error:(NSError **)error;
 
+// Get user by uid
 - (Users *)userByUID:(NSNumber *)uid;
 - (Users *)userByUID:(NSNumber *)uid context:(NSManagedObjectContext*)context;
 
+// Add user
 - (Users *)addUser:(QBUUser *)user location:(CLLocation *)location;
 - (Users *)addUser:(QBUUser *)user location:(CLLocation *)location context:(NSManagedObjectContext *)context;
 
@@ -35,6 +38,7 @@
                                             
 - (NSArray *)getAllUsersWithError:(NSError **)error;
 
+// Update or create user
 - (BOOL)updateOrCreateUser:(QBUUser *)qbUser					  
 				  location:(CLLocation *)location
                     status:(NSString *) status

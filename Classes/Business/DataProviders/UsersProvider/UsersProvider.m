@@ -60,21 +60,21 @@ static id instance = nil;
     return @"Users";
 }
 
-- (Users*)userByID:(NSManagedObjectID *)mid error:(NSError **)error {	
+- (Users *)userByID:(NSManagedObjectID *)mid error:(NSError **)error {	
 	return [self userByID:mid context:self.managedObjectContext error:error];
 }
 
-- (Users*)userByID:(NSManagedObjectID*)mid context:(NSManagedObjectContext*)context error:(NSError**)error {
+- (Users *)userByID:(NSManagedObjectID*)mid context:(NSManagedObjectContext *)context error:(NSError **)error {
     Users *user = (Users *)[context existingObjectWithID:mid error:error];
     
 	return user;
 }
 
-- (Users*)userByUID:(NSNumber*)uid {
+- (Users *)userByUID:(NSNumber *)uid {
 	return [self userByUID:uid context:self.managedObjectContext];
 }
 
-- (Users*)userByUID:(NSNumber*)uid context:(NSManagedObjectContext*)context {
+- (Users *)userByUID:(NSNumber *)uid context:(NSManagedObjectContext *)context {
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:[self entityName] 
 											  inManagedObjectContext:context];

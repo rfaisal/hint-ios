@@ -15,11 +15,6 @@
 #import "StorageProvider.h"
 #import "Users.h"
 
-//XMPP
-#import "XMPPService.h"
-
-//Controllers
-#import "PrivateChatViewController.h"
 
 @implementation ChatViewController
 @synthesize chatDataSource;
@@ -36,10 +31,16 @@
 
 -(void)subscribe{
     [super subscribe];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(refreshChat:) 
+                                                 name:nRefreshChat object:nil];
 }
 
 -(void)unsubscribe{
     [super unsubscribe];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:nRefreshChat object:nil];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -53,8 +54,13 @@
     [tap setNumberOfTapsRequired:1];
     [tap setNumberOfTouchesRequired:1];
     [self.tabView addGestureRecognizer:tap];
+    
+    // progress wheel
+    wheel = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    wheel.center =  CGPointMake(textField.frame.size.width - 16, textField.center.y-7);
+    [textField addSubview:wheel];
+    [wheel release];
 }
-
 
 - (void)viewDidUnload{
     [self setTextField:nil];
@@ -62,17 +68,50 @@
     [self setTabView:nil];
     
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    [self searchGeoData:nil];
+    [self startSearchGeoData];
+}
+
+- (void) viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    [updateGeoDataTimer invalidate];
+    updateGeoDataTimer = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
-    // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark -
+#pragma mark
+#pragma mark GeoData
+#pragma mark
+
+- (void) searchGeoData:(NSTimer *) timer{
+	QBGeoDataSearchRequest *searchRequest = [[QBGeoDataSearchRequest alloc] init];
+	searchRequest.status = YES;
+    searchRequest.userAppID = appID;
+	[QBGeoposService findGeoData:searchRequest delegate:self];
+	[searchRequest release];
+}
+
+-(void) startSearchGeoData{
+	updateGeoDataTimer = [NSTimer scheduledTimerWithTimeInterval:kGeoposServiceGetGeoDatInterval
+                                                          target:self
+                                                        selector:@selector(searchGeoData:)
+                                                        userInfo:nil
+                                                         repeats:YES];
+}
+
+
+#pragma mark
 #pragma mark IBActions
+#pragma mark
 
 -(IBAction) sendAction:(id)sender{
     
@@ -81,65 +120,91 @@
     }    
     
     Users *user = [[UsersProvider sharedProvider] currentUser];
-    
-    
-    // Need use normal user belowe
 
 	QBGeoData *geoData = [QBGeoData currentGeoData];
 	geoData.user = user.mbUser;
+    geoData.appID = appID;
+    geoData.status = textField.text;
 
     // post geodata
-	[QBGeoposService postGeoData:geoData delegate:self context:[[NSString alloc] initWithString:textField.text]];	
+	[QBGeoposService postGeoData:geoData delegate:self];	
+    
+    [wheel startAnimating];
 }
 
--(void) processGeoDatAsync:(NSDictionary*)data {	
-    QBGeoData *answerGeoData = [data objectForKey:GEODATA_KEY];
+-(void) processGeoDatumAsync:(QBGeoData *)data {	
 	CLLocation *location =  [[QBLocationDataSource instance] currentLocation];
-    
-   
 		
-	NSManagedObjectContext * context = [StorageProvider threadSafeContext];
+	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
 	NSError *error = nil;
-	Users *user = nil;
 	BOOL hasChanges = NO;
 	
-    /*
-	if(answerGeoData){
-		int userID = answerGeoData.user.ID;
-		user = [[UsersProvider sharedProvider] userByUID:[NSNumber numberWithInt:userID] context:context];
-		
-		if(nil == user){
-			QBUser* serverUser = [QBUser GetUser:userID].user;
-			NSString *userName = nil;
-			if (serverUser) {
-				userName = serverUser.name;
-			}
-			
-			user = [[UsersProvider sharedProvider] addUserWithUID:[NSNumber numberWithInt:userID] 
-															 name:userName 
-														 location:location 
-														  context:context];
-			hasChanges = YES;
-		}
-	}*/
-	
-	NSString *msg = [NSString stringWithFormat:@"%@",[data objectForKey:MESSAGE_KEY]];	
-	NSString* Id = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]];
-	Messages* message= [[ChatListProvider sharedProvider] addMessageWithUID:Id 
+	NSString *msg = [NSString stringWithFormat:@"%@", data.status];	
+	NSString *Id = [NSString stringWithFormat:@"%f", data.ID];
+	Messages *message = [[ChatListProvider sharedProvider] addMessageWithUID:Id 
 																	   text:msg 
 																   location:[NSString stringWithFormat:@"%@", location] 
+                                                                       user:[[UsersProvider sharedProvider] currentUser]
 																	context:context];
-    message.user= user;
+
 		
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
 	[nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
 	hasChanges &= [context save:&error];
 	[nc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
 	if(hasChanges){
-		[nc postNotificationName:nRefreshAnnotationDetails object:nil userInfo:nil];			
+		[nc postNotificationName:nRefreshChat object:nil userInfo:nil];			
+	}
+}
+
+-(void) processGeoDataAsync:(NSArray *)geodata{
+    
+	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
+	NSError *error = nil;
+	
+    BOOL hasChanges = NO;
+    
+	for (QBGeoData *geoData in geodata) {
+        
+        // message already exist
+        if([[ChatListProvider sharedProvider] messageByUID:[NSNumber numberWithUnsignedInteger:geoData.ID]]){
+            continue;
+        }
+        
+        Users *user = [[UsersProvider sharedProvider] userByUID:[NSNumber numberWithUnsignedInteger:geoData.user.ID]];
+        if(user == nil){
+            // create user
+            CLLocation *location = [[CLLocation alloc] initWithLatitude:geoData.latitude longitude:geoData.longitude];
+        
+            [[UsersProvider sharedProvider] updateOrCreateUser:geoData.user                                                                                      
+                                                      location:location  
+                                                        status:geoData.status
+                                                       context:context
+                                                         error:&error];	
+            [location release];
+        }
+        
+        NSString *msg = [NSString stringWithFormat:@"%@", geoData.status];	
+        NSString *Id = [NSString stringWithFormat:@"%f", geoData.ID];
+        Messages *message = [[ChatListProvider sharedProvider] addMessageWithUID:Id 
+                                                                            text:msg 
+                                                                        location:[NSString stringWithFormat:@"%@", [geoData location]] 
+                                                                            user:user];
+        hasChanges = YES;
 	}
 	
-	[chatDataSource performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+	if(hasChanges){
+		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
+		[nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
+        
+		hasChanges = [context save:&error];
+		
+        [nc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
+        
+		if(hasChanges){
+			[nc postNotificationName:nRefreshChat object:nil userInfo:nil];			
+		}	
+	}
 }
 
 - (void)mergeChanges:(NSNotification *)notification{	
@@ -157,28 +222,39 @@
 	}
 }
 
-#pragma mark -
+
+#pragma mark
+#pragma mark Notifications
+#pragma mark
+
+// refresh Chat
+-(void)refreshChat:(NSNotification *)notification{
+	[chatDataSource performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+}
+
+
+#pragma mark
 #pragma mark ActionStatusDelegate
+#pragma mark
 
 - (void)completedWithResult:(Result*)result{
-	[self completedWithResult:result context:nil];
+    // create
+    if([result isKindOfClass:[QBGeoDataResult class]]){
+        if(result.success){
+            QBGeoDataResult *geoDataRes = (QBGeoDataResult*)result; 
+            [self performSelectorInBackground:@selector(processGeoDatumAsync:) withObject:geoDataRes.geoData];
+        }
+        [wheel stopAnimating];
+        
+    // search a new one
+    }else if([result isKindOfClass:[QBGeoDataSearchResult class]]){
+        if(result.success){
+            QBGeoDataSearchResult *geoDataSearchRes = (QBGeoDataSearchResult *)result;
+            [self performSelectorInBackground:@selector(processGeoDataAsync:) withObject:geoDataSearchRes.geodatas];
+        }
+    }
 }
 
-- (void)completedWithResult:(Result*)result context:(void*)contextInfo{
-	NSString *message = (NSString*)contextInfo;
-	
-	if(result.success){
-		if([result isKindOfClass:[QBGeoDataResult class]]){
-			QBGeoDataResult *geoDataRes = (QBGeoDataResult*)result; 
-			NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:message, MESSAGE_KEY, geoDataRes.geoData, GEODATA_KEY, nil]; 
-			[self performSelectorInBackground:@selector(processGeoDatAsync:) withObject:data];
-		}
-	}else {
-		[self performSelectorInBackground:@selector(processGeoDatAsync:) withObject:[NSDictionary dictionaryWithObject:message forKey:MESSAGE_KEY]];
-	}
-	
-	[message release];
-}
 
 #pragma mark -
 

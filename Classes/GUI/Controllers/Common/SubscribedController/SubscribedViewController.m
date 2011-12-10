@@ -21,7 +21,6 @@
 @implementation SubscribedViewController
 
 @synthesize innerInterfaceOrientation;
-//@synthesize activityView;
 @synthesize parentCustomModalController;
 @synthesize modalCustomViewController;
 
@@ -35,6 +34,7 @@
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
+
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
 	self.innerInterfaceOrientation = toInterfaceOrientation;
 }
@@ -45,35 +45,27 @@
 	[self subscribe];
 	[self startInit];
 }
+
 - (void) viewDidUnload {
     [super viewDidUnload];
-    
-    //    if ([RBSettings sharedRBSettings].logLevel == RBLogLevelInfo)
-    //        DL(@"Did Unload View Controller: %@", [[self class] description]);
     
     [self unsubscribe];
 	[self releaseProperties];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    //    if ([RBSettings sharedRBSettings].logLevel == RBLogLevelInfo)
-    //        DL(@"Did Appear View: %@", [[self class] description]);
     [super viewDidAppear:animated];
 }
+
 - (void) viewDidDisappear:(BOOL)animated {
-    //    if ([RBSettings sharedRBSettings].logLevel == RBLogLevelInfo)
-    //        DL(@"Did Disapear View: %@", [[self class] description]);
     [super viewDidDisappear:animated];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-    //    if ([RBSettings sharedRBSettings].logLevel == RBLogLevelInfo)
-    //        DL(@"View: %@ will Appear", [[self class] description]);
     [super viewWillAppear:animated];
 }
+
 - (void) viewWillDisappear:(BOOL)animated {
-    //    if ([RBSettings sharedRBSettings].logLevel == RBLogLevelInfo)
-    //        DL(@"View: %@ will Disappear", [[self class] description]);
     [super viewWillDisappear:animated];
 }
 
@@ -83,8 +75,8 @@
 - (void) startInit {
     self.innerInterfaceOrientation = UIInterfaceOrientationPortrait;
 }
+
 - (void) releaseProperties {
-    //	self.activityView = nil;
     self.parentCustomModalController = nil;
     self.modalCustomViewController = nil;
 }
@@ -94,28 +86,12 @@
 
 - (void) didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
-    
-    //    if ([RBSettings sharedRBSettings].logLevel == RBLogLevelInfo)
-    //        DL(@"Class: %@ did receive Memory Warning", [[self class] description]);
 }
 
 - (NSString*) controllerName{
 	return [NSString stringWithFormat:@"%@", [self class]];
 }
 
-#pragma mark -
-#pragma mark ActivityView
-
-/*- (void) showActivityView {
- [self hideActivityView];
- 
- self.activityView = [ActivityView showAtView:self.view];
- }
- - (void) hideActivityView {
- if (self.activityView)
- [self.activityView hide];
- self.activityView = nil;
- }*/
 
 #pragma mark -
 #pragma mark Custom Modal View
@@ -123,6 +99,7 @@
 - (void) presentCustomModalViewControllerDidEndAnimation {
     [self.modalCustomViewController viewDidAppear:YES];
 }
+
 - (void) dismissCustomModalViewControllerDidEndAnimation {
     [self.modalCustomViewController viewDidDisappear:YES];
     [self.modalCustomViewController.view removeFromSuperview];
@@ -157,6 +134,7 @@
         [self.modalCustomViewController viewDidAppear:animated];
     }
 }
+
 - (void) dismissCustomModalViewControllerAnimated:(BOOL)animated {
     [self.modalCustomViewController viewWillDisappear:animated];
     

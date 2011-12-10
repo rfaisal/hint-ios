@@ -152,6 +152,8 @@
 }
 
 - (void)subscribe {
+    [super subscribe];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(openAnnotationDetails:) 
                                                  name:nOpenAnnotationDetails object:nil];
@@ -161,14 +163,16 @@
                                                  name:nRefreshAnnotationDetails object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(openChatView:) 
-                                                 name:nOpenChatView object:nil];
+                                             selector:@selector(openPrivateChatView:) 
+                                                 name:nOpenPrivateChatView object:nil];
 }
 
 - (void)unsubscribe {
+    [super unsubscribe];
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:nOpenAnnotationDetails object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:nRefreshAnnotationDetails object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:nOpenChatView object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:nOpenPrivateChatView object:nil];
 }
 
 -(void) releaseProperties{
@@ -197,7 +201,7 @@
 	[annotationDataSource performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 }
 
--(void)openChatView:(NSNotification *)notification{
+-(void)openPrivateChatView:(NSNotification *)notification{
     [self.navigationController pushViewController:self.privateChatController animated:YES];
 }
 

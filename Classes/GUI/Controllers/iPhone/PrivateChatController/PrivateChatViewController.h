@@ -13,13 +13,11 @@
 @interface PrivateChatViewController : SubscribedViewController{
     NSManagedObjectID *objectID;
     UITableView *tabView;
-
 }
 
 @property (retain, nonatomic) IBOutlet PrivateChatListDataSource *privateChatDataSource;
 @property (retain, nonatomic) IBOutlet UITextField *textView;
 @property (nonatomic, retain) IBOutlet UITableView *tabView;
-
 
 @property (nonatomic, retain) NSManagedObjectID *objectID;
 

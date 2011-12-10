@@ -12,10 +12,10 @@
 @interface Messages : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSString * text;
-@property (nonatomic, retain) NSString * location;
-@property (nonatomic, retain) Users * user;
-@property (nonatomic, retain) NSNumber * uid;
+@property (nonatomic, retain) NSString *text;
+@property (nonatomic, retain) NSString *location;
+@property (nonatomic, retain) Users *user;
+@property (nonatomic, retain) NSNumber *uid;
 
 
 @end
