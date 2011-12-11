@@ -15,6 +15,6 @@
 @dynamic location;
 @dynamic user;
 @dynamic uid;
-
+@dynamic date;
 
 @end

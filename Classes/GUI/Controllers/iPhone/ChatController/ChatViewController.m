@@ -95,6 +95,7 @@
 - (void) searchGeoData:(NSTimer *) timer{
 	QBGeoDataSearchRequest *searchRequest = [[QBGeoDataSearchRequest alloc] init];
 	searchRequest.status = YES;
+    searchRequest.sort_by = GeoDataSortByKindCreatedAt;
     searchRequest.userAppID = appID;
 	[QBGeoposService findGeoData:searchRequest delegate:self];
 	[searchRequest release];
@@ -132,6 +133,7 @@
     [wheel startAnimating];
 }
 
+// process single message
 -(void) processGeoDatumAsync:(QBGeoData *)data {	
 	CLLocation *location =  [[QBLocationDataSource instance] currentLocation];
 		
@@ -140,12 +142,16 @@
 	BOOL hasChanges = NO;
 	
 	NSString *msg = [NSString stringWithFormat:@"%@", data.status];	
-	NSString *Id = [NSString stringWithFormat:@"%f", data.ID];
+	NSString *Id = [NSString stringWithFormat:@"%u", data.ID];
 	Messages *message = [[ChatListProvider sharedProvider] addMessageWithUID:Id 
 																	   text:msg 
 																   location:[NSString stringWithFormat:@"%@", location] 
                                                                         user:[[UsersProvider sharedProvider] currentUserWithContext:context]
+                                                                        date:data.created_at
 																	context:context];
+    
+    NSLog(@"data.created_at=%@", data.created_at);
+     NSLog(@"data.createdAt=%@", data.createdAt);
 
 		
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
@@ -157,6 +163,7 @@
 	}
 }
 
+// process array of messages
 -(void) processGeoDataAsync:(NSArray *)geodata{
     
 	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
@@ -171,17 +178,22 @@
             continue;
         }
         
+        // create if not exist
         Users *user = [[UsersProvider sharedProvider] userByUID:[NSNumber numberWithUnsignedInteger:geoData.user.ID] context:context];
         if(user == nil){
             user = [[UsersProvider sharedProvider] addUser:geoData.user location:[geoData location] status:geoData.status context:context];
         }
         
         NSString *msg = [NSString stringWithFormat:@"%@", geoData.status];	
-        NSString *Id = [NSString stringWithFormat:@"%f", geoData.ID];
+        NSString *Id = [NSString stringWithFormat:@"%u", geoData.ID];
+        
+        
+        // create 
         Messages *message = [[ChatListProvider sharedProvider] addMessageWithUID:Id 
                                                                             text:msg 
                                                                         location:[NSString stringWithFormat:@"%@", [geoData location]] 
                                                                             user:user
+                                                                            date:geoData.created_at
                                                                          context:context];
         hasChanges = YES;
 	}
@@ -236,6 +248,7 @@
         if(result.success){
             QBGeoDataResult *geoDataRes = (QBGeoDataResult*)result; 
             [self performSelectorInBackground:@selector(processGeoDatumAsync:) withObject:geoDataRes.geoData];
+            textField.text = @"";
         }
         [wheel stopAnimating];
         
@@ -244,7 +257,7 @@
         if(result.success){
             QBGeoDataSearchResult *geoDataSearchRes = (QBGeoDataSearchResult *)result;
             [self performSelectorInBackground:@selector(processGeoDataAsync:) withObject:geoDataSearchRes.geodatas];
-            textField.text = @"";
+
         }
     }
 }

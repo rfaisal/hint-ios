@@ -163,9 +163,7 @@
 #pragma mark
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-	if (alertView.tag == 1) {
-        [(SuperSampleAppDelegate*)[[UIApplication sharedApplication] delegate] signIn];
-	}
+
 }
 
 
@@ -184,7 +182,7 @@
 		QBUUserResult* res = (QBUUserResult*)result;
         
 		if(res.success && status == 201){
-			[self showMessage:NSLocalizedString(@"Registration successful", "") message:nil];
+			[self showMessage:NSLocalizedString(@"Registration successful. Please confirm registration by email and then sign in.", "") message:nil];
 		}else if(401 == status){
 			[self showMessage:NSLocalizedString(@"Registration failed", "") message:nil];
 		}else if(422 == status){

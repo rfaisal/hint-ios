@@ -116,7 +116,10 @@
     NSLog(@"Location didUpdate from %@ to %@", oldLocation, newLocation);
     
     Users *curUser = [[UsersProvider sharedProvider] currentUser];
-    
+    if(curUser == nil){
+        return;
+    }
+
     QBGeoData *geoData = [[QBGeoData alloc] init];
     geoData.appID = appID;
     geoData.user = [curUser mbUser];

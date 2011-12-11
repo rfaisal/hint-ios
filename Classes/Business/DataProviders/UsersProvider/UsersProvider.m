@@ -86,6 +86,8 @@ static id instance = nil;
 	if(nil != results && [results count] > 0){
 		user = (Users *)[results objectAtIndex:0];
 	}
+    
+    user.mbUser.ID = [uid intValue];
 	
 	return user;
 }
@@ -151,6 +153,9 @@ static id instance = nil;
 }
 
 - (Users *)currentUser{
+    if(currentUserID <= 0){
+        return nil;
+    }
     return [self userByUID:[NSNumber numberWithInteger:currentUserID]];
 }
 
@@ -175,7 +180,7 @@ static id instance = nil;
 	if (![context save:error]) {
 		return nil;
 	}
-	
+    
 	return model;
 }
 
@@ -216,11 +221,14 @@ static id instance = nil;
 	return user;
 }
 
-- (NSArray*)getAllUsersWithError:(NSError **)error {
+- (NSArray *)getAllUsersWithError:(NSError **)error withOwn:(BOOL)withOwn{
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:[self entityName] 
                                               inManagedObjectContext:self.managedObjectContext];
     [request setEntity:entity];
+    if(!withOwn){
+        [request setPredicate:[NSPredicate predicateWithFormat:@"uid != %i",currentUserID]];
+    }
     
     NSArray* results = [self.managedObjectContext executeFetchRequest:request error:error];
 
@@ -228,7 +236,5 @@ static id instance = nil;
 
     return results;
 }
-
-
 
 @end

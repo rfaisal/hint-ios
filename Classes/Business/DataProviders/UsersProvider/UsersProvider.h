@@ -52,6 +52,6 @@
 - (Users *)currentUser;
 - (Users *)currentUserWithContext:(NSManagedObjectContext *)context;
     
-- (NSArray *)getAllUsersWithError:(NSError **)error;
+- (NSArray *)getAllUsersWithError:(NSError **)error withOwn:(BOOL)withOwn;
 
 @end

@@ -56,15 +56,17 @@ static id instance = nil;
     return @"Messages";
 }
 
-- (Messages *)addMessageWithUID:(NSString *)uid text:(NSString *)text location:(NSString *)location user:(Users *)user{
-	return [self addMessageWithUID:uid text:text location:location user:user context:self.managedObjectContext];
+- (Messages *)addMessageWithUID:(NSString *)uid text:(NSString *)text location:(NSString *)location user:(Users *)user date:(NSDate *)date{
+	return [self addMessageWithUID:uid text:text location:location user:user date:date context:self.managedObjectContext];
 }
 
 - (Messages *)addMessageWithUID:(NSString *)uid 
 						  text:(NSString *)text 
 					  location:(NSString *)location 
                            user:(Users *)user
+                           date:(NSDate *)date
 					   context:(NSManagedObjectContext *)context{
+    
     Messages *model = (Messages *)[NSEntityDescription insertNewObjectForEntityForName:[self entityName]
                                                                         inManagedObjectContext:context];
                                                                         
@@ -72,6 +74,7 @@ static id instance = nil;
     model.text = text;
     model.location = location;
     model.user = user;
+    model.date = date;
     
 	NSError **error=nil;
 	if (![context save:error]){

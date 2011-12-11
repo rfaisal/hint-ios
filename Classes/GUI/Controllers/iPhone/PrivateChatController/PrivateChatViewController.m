@@ -13,9 +13,6 @@
 #import "Users.h"
 #import "UsersProvider.h"
 
-//Service
-#import "XMPPService.h"
-
 @implementation PrivateChatViewController
 @synthesize privateChatDataSource;
 @synthesize textView;
@@ -104,7 +101,7 @@
     } 
     NSString *to = [NSString stringWithFormat:emailUserName, [user.uid intValue]];		
     
-    [[XMPPService sharedService] sendMessage:textView.text to:to login:user.mbUser.login];
+   // [[XMPPService sharedService] sendMessage:textView.text to:to login:user.mbUser.login];
 }
 
 -(void)newMessageArrived:(NSNotification*)notification{

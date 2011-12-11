@@ -95,15 +95,24 @@
                                                       userInfo:[NSDictionary dictionaryWithObject:user.objectID forKey:nkData]];
 }
 
+// update cell
 - (void)reloadCellSateWithData:(NSObject*)newData {
     Messages *mess = (Messages *)newData;
-    self.user=mess.user;
-    [self setMessageText: mess.text ];
-    userName.text = [NSString stringWithFormat:@"%@ wrote:", mess.user.mbUser.login];
-    SourceImages* sourceImage=mess.user.photo;
-    self.avatarView.image=[UIImage imageWithData:sourceImage.thumbnail];
-    if(self.avatarView.image==nil)
-       self.avatarView.image=[UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"user" ofType:@"png"]];
+    self.user = mess.user;
+    
+    [self setMessageText: mess.text];
+    userName.text = [NSString stringWithFormat:@"At %@ %@ wrote:", 
+                     [[mess.date description] substringToIndex:[[mess.date description] length]-6] , 
+                     mess.user.mbUser.login];
+    
+    // avatar
+    SourceImages *sourceImage = mess.user.photo;
+    self.avatarView.image = [UIImage imageWithData:sourceImage.thumbnail];
+    if(self.avatarView.image == nil){
+       self.avatarView.image = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"user" ofType:@"png"]];
+    }
+    
+    // tap recognizer
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     [tap setNumberOfTapsRequired:1];
     [tap setNumberOfTouchesRequired:1];
@@ -113,7 +122,9 @@
 
 - (void) setMessageText: (NSString *) messageText {
 	CGSize ts = [messageText sizeWithFont: messageLabel.font constrainedToSize: CGSizeMake(kCellRoundWidth - 10, 480)];
-	if (ts.height < 20) ts.height = 20;
+	if (ts.height < 20) {
+        ts.height = 20;
+    }
 	roundView.frame = CGRectMake(10 + kCellImgSize, kCellStatusLabelHeight, kCellRoundWidth, ts.height + 10);
 	[messageLabel setFrame: CGRectMake(5, 5, kCellRoundWidth - 10, ts.height)];	
 	messageLabel.text = messageText;

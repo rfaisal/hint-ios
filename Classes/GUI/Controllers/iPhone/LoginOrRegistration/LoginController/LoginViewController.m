@@ -101,6 +101,12 @@
         
 		if(res.success && 200 == status){
 			QBUUserIdentifyAnswer *answer = (QBUUserIdentifyAnswer *)res.answer;
+                  
+            // fix issue with sign in
+            if(answer.user.ownerID != ownerID){
+                [self showMessage:NSLocalizedString(@"Not registered!", "") message:nil];
+                return;
+            }
             
             // current user
             Users *user = [[UsersProvider sharedProvider] currentUserWithQBUser:answer.user];

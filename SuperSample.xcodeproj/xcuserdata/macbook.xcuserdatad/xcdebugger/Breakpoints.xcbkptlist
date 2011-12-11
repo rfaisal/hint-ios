@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Classes/SuperSampleAppDelegate.m"
-         timestampString = "345221092.115532"
+         filePath = "Classes/GUI/Controllers/iPhone/ChatController/ChatViewController.m"
+         timestampString = "345308462.151989"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "120"
-         endingLineNumber = "120"
-         landmarkName = "-didUpdateToLocation:fromLocation:"
+         startingLineNumber = "157"
+         endingLineNumber = "157"
+         landmarkName = "-processGeoDatumAsync:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

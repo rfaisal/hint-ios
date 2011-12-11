@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString *location;
 @property (nonatomic, retain) Users *user;
 @property (nonatomic, retain) NSNumber *uid;
+@property (nonatomic, retain) NSDate *date;
 
 
 @end

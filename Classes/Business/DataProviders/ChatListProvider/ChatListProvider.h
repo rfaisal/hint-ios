@@ -16,11 +16,12 @@
 }
 
 // add a new one
-- (Messages *)addMessageWithUID:(NSString *)uid text:(NSString *)text location:(NSString*)location user:(Users *)user;
+- (Messages *)addMessageWithUID:(NSString *)uid text:(NSString *)text location:(NSString*)location user:(Users *)user date:(NSDate *)date;
 - (Messages *)addMessageWithUID:(NSString *)uid 
                            text:(NSString *)text 
                        location:(NSString *)location
                            user:(Users *)user
+                           date:(NSDate *)date
                         context:(NSManagedObjectContext *)context;
 
 // search by id

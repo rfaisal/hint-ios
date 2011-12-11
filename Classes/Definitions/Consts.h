@@ -9,40 +9,6 @@
 #ifndef SuperSample_Consts_h
 #define SuperSample_Consts_h
 
-//
-//http://test.admin.aws.mob1serv.com/
-//
-//Login: kozlov-andrey
-//Password: qb90Ru
-//
-
-//https://admin.quickblox.com
-//
-//Endpoint: quickblox.com
-//
-//Login: kozlov-andrey
-//Password: qwe123
-
-//-----------------
-// Accs for testing
-//
-// login: testt
-// pass: testpass
-//
-// login: tester
-// pass: testpass
-//
-//-----------------
-// Global user for chat
-//
-// e-mail: globaltest4@gmail.com pass: testpass4
-//
-// login: global
-// pass: testpass
-//
-// jid: 109@jabber.aws.mob1serv.com/quickblox
-//-----------------
-
 static CGFloat const kManagedObjectContextDelayedSaveInterval = 1.0;
 
 #pragma mark Operations
@@ -51,18 +17,18 @@ static NSString * const kNewOperation = @"new";
 static NSString * const kChangedOperation = @"changed";
 static NSString * const kDeletedOperation = @"deleted";
 
-#pragma mark Mob1serv
+
+#pragma mark QuickBlox
 static NSString* const endpoint = @"qbtest01.quickblox.com";
-static NSUInteger const appID = 9;
-static NSUInteger const ownerID = 210;
-static NSString* const appKey = @"X4qhaEBkXuc2mx7";
-static NSString* const appSecret = @"KRymutHJ5v-nP9d";
+static NSUInteger const appID = 56;
+static NSUInteger const ownerID = 247;
+static NSString* const appKey = @"X2TYsfGRBqh6Px3";
+static NSString* const appSecret = @"Qbxu9R3rjMdhu9Q";
+
 
 
 static NSString* const MESSAGE_KEY = @"MESSAGE_KEY";
 static NSString* const GEODATA_KEY  = @"GEODATA_KEY";
-
-//static NSString* const jabberEndpoint = @"jabber.aws.mob1serv.com";//@"quickblox.com";
 
 
 //Jabber
@@ -94,7 +60,6 @@ static NSString* const nShowNewMessage = @"ShowNewMessages";
 #pragma mark Dictionary Keys
 
 static NSString* const kUserModelInstanceKey = @"UserModelInstanceKey";
-
 
 
 #pragma mark -

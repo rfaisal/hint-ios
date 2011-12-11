@@ -46,12 +46,11 @@
                                                       filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"!(self isKindOfClass: %@)", 
                                                                                    [MKUserLocation class]]]];
     // add new annotations
-    NSArray *usersArray = [[UsersProvider sharedProvider] getAllUsersWithError:nil];
+    NSArray *usersArray = [[UsersProvider sharedProvider] getAllUsersWithError:nil withOwn:NO];
     
 	CLLocationCoordinate2D coordinate;
 	for (NSManagedObject *model in usersArray) {
         Users *user = (Users *)model; 	
-        
         coordinate.latitude = [user.latitude doubleValue];
         coordinate.longitude = [user.longitude doubleValue];
         userAnnotation *newAnnotation = [[userAnnotation alloc] initWithCoordinate:coordinate];
