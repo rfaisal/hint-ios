@@ -3,7 +3,7 @@
 //  SuperSample
 //
 //  Created by Andrey Kozlov on 8/23/11.
-//  Copyright 2011 YAS. All rights reserved.
+//  Copyright 2011 QuickBlox. All rights reserved.
 //
 
 #import "SettingsViewController.h"
@@ -21,17 +21,8 @@
 #import "ImageResize.h"
 
 @implementation SettingsViewController
-@synthesize aboutTextView;
-@synthesize avatarView;
-@synthesize userName, imagePicker;
-@synthesize canceler;
-
-- (void)dealloc {
-    [userName release];
-    [avatarView release];
-    [aboutTextView release];
-    [super dealloc];
-}
+@synthesize bioTextView, container, avatarView, fullName;
+@synthesize imagePicker, canceler;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -41,45 +32,78 @@
     return self;
 }
 
-- (void) startInit{
+
+#pragma mark 
+#pragma mark - View lifecycle
+#pragma mark 
+
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    
+    // container customization
+    container.layer.borderWidth = 1;
+    container.layer.borderColor = [[UIColor colorWithRed:173/255.0 green:190/255.0 blue:209/255.0 alpha:1] CGColor];
+    container.layer.cornerRadius = 8;
+    container.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1];
+    
+    // bio customization
+    bioTextView.layer.cornerRadius = 6;
+    bioTextView.layer.borderWidth = 1;
+    bioTextView.layer.borderColor = [[UIColor colorWithRed:173/255.0 green:190/255.0 blue:209/255.0 alpha:1] CGColor];
+    bioTextView.backgroundColor = [UIColor whiteColor];
+	
     Users *user = [[UsersProvider sharedProvider] currentUser];
-    [self loadSettinsForUser:user];
+    
+    // temporary fix. Use 'blob_id' instead 'website'
+	if(user.mbUser.website){
+		[QBBlobsService GetBlobAsync:user.mbUser.website delegate:self];
+	}
 }
 
-- (void)loadSettinsForUser:(Users*)user{
-    self.userName.text = user.mbUser.login;
+- (void)viewDidUnload {
+    self.bioTextView = nil;
+    self.container = nil;
+    self.avatarView = nil;
+    self.fullName = nil;
+    
+    self.imagePicker = nil;
+    
+    [canceler cancel];
+    self.canceler = nil;
+    
+    [super viewDidUnload];
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+#pragma mark
+#pragma mark IBAction
+#pragma mark
 
 - (IBAction)choosePicture:(id)sender {
 
+}
+
+- (IBAction)takePicture:(id)sender {
     self.imagePicker = [[[UIImagePickerController alloc] init] autorelease];
     imagePicker.delegate = self;
     imagePicker.allowsEditing = NO;
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]&&![DeviceHardware simulator]){
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//        imagePicker.showsCameraControls = NO;
-//        [self performSelector:@selector(timeToShot:) withObject:nil afterDelay:2];
+        //        imagePicker.showsCameraControls = NO;
+        //        [self performSelector:@selector(timeToShot:) withObject:nil afterDelay:2];
     }else if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]){
         imagePicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     }
     [self presentModalViewController:imagePicker animated:YES];
 }
 
-- (void) imagePickerControllerDidCancel:(UIImagePickerController *) picker {
-	[self dismissModalViewControllerAnimated:YES];
-}
-
-- (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info {
-	[self dismissModalViewControllerAnimated:NO];
-	[avatarView setImage:(UIImage *) [info valueForKey:UIImagePickerControllerOriginalImage]];
-}
-
-- (IBAction)takePicture:(id)sender {
-}
-
 -(IBAction) save: (id)sender{
-    [userName resignFirstResponder];
-    [aboutTextView resignFirstResponder];
+    [bioTextView resignFirstResponder];
 	if(nil == avatarView.image){
 		return;
 	}
@@ -94,43 +118,32 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 
-#pragma mark - View lifecycle
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad{
-    [super viewDidLoad];
-	
-    Users* user = [[UsersProvider sharedProvider] currentUser];
+- (IBAction)displayOfflineUserSwitchDidChangeState:(id)sender{
     
-    QBUUser *qbUser = user.mbUser;
-    
-	if(user.mbUser.website){
-		//[MBBBlob URLWithUID:element.[[CurrentUser curentUser].dbUser.photo global_url]]
-		[QBBlobsService GetBlobAsync:user.mbUser.website delegate:self];
-	}
 }
 
-- (void)releseProperties {
-    [self setUserName:nil];
-    [self setAvatarView:nil];
-    self.imagePicker=nil;
+- (IBAction)shareYourLocationSwitchDidChangeState:(id)sender{
     
-    [self.canceler cancel];
-    self.canceler = nil;
-    
-    [super releaseProperties];
 }
 
-- (void)releaseAll {    
-    [super releaseAll];
+
+#pragma mark
+#pragma mark UIImagePickerControllerDelegate
+#pragma mark
+
+- (void) imagePickerControllerDidCancel:(UIImagePickerController *) picker {
+	[self dismissModalViewControllerAnimated:YES];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info {
+	[self dismissModalViewControllerAnimated:NO];
+	[avatarView setImage:(UIImage *) [info valueForKey:UIImagePickerControllerOriginalImage]];
 }
 
-#pragma mark - ActionStatusDelegate
+
+#pragma mark
+#pragma mark ActionStatusDelegate
+#pragma mark
 
 - (void)completedWithResult:(Result*)result{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -202,9 +215,18 @@
 	}
 }
 
-- (void)viewDidUnload {
-    [self setAboutTextView:nil];
-    [super viewDidUnload];
+- (void) startInit{
+    Users *user = [[UsersProvider sharedProvider] currentUser];
+    [self loadSettinsForUser:user];
+}
+
+- (void)loadSettinsForUser:(Users*)user{
+    // self.userName.text = user.mbUser.login;
+}
+
+
+- (void)dealloc {
+    [super dealloc];
 }
 
 @end
