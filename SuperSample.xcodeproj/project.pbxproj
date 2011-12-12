@@ -52,7 +52,7 @@
 		FA70CFC01487BBC000C21DAA /* ChatEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEE11487BBC000C21DAA /* ChatEntry.m */; };
 		FA70CFC11487BBC000C21DAA /* ChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEE41487BBC000C21DAA /* ChatMessageModel.m */; };
 		FA70CFC21487BBC000C21DAA /* FileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEE81487BBC000C21DAA /* FileModel.m */; };
-		FA70CFC31487BBC000C21DAA /* userAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEEC1487BBC000C21DAA /* userAnnotation.m */; };
+		FA70CFC31487BBC000C21DAA /* MapPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEEC1487BBC000C21DAA /* MapPinAnnotation.m */; };
 		FA70CFC41487BBC000C21DAA /* SendMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEEF1487BBC000C21DAA /* SendMessageModel.m */; };
 		FA70CFC51487BBC000C21DAA /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEF21487BBC000C21DAA /* UserModel.m */; };
 		FA70CFE01487BBC000C21DAA /* SubscribedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF491487BBC000C21DAA /* SubscribedViewController.m */; };
@@ -68,7 +68,7 @@
 		FA70CFEA1487BBC000C21DAA /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF6C1487BBC000C21DAA /* MessageCell.m */; };
 		FA70CFEB1487BBC000C21DAA /* PrivateMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF6F1487BBC000C21DAA /* PrivateMessageCell.m */; };
 		FA70CFEC1487BBC000C21DAA /* SubscribedView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF751487BBC000C21DAA /* SubscribedView.m */; };
-		FA70CFED1487BBC000C21DAA /* PinView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF791487BBC000C21DAA /* PinView.m */; };
+		FA70CFED1487BBC000C21DAA /* MapPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF791487BBC000C21DAA /* MapPinView.m */; };
 		FA70CFEE1487BBC000C21DAA /* ImageThambnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF7D1487BBC000C21DAA /* ImageThambnailView.m */; };
 		FA70CFEF1487BBC000C21DAA /* Converter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF821487BBC000C21DAA /* Converter.m */; };
 		FA70CFF01487BBC000C21DAA /* DeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF851487BBC000C21DAA /* DeviceHardware.m */; };
@@ -195,8 +195,8 @@
 		FA70CEE41487BBC000C21DAA /* ChatMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageModel.m; sourceTree = "<group>"; };
 		FA70CEE71487BBC000C21DAA /* FileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileModel.h; sourceTree = "<group>"; };
 		FA70CEE81487BBC000C21DAA /* FileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileModel.m; sourceTree = "<group>"; };
-		FA70CEEB1487BBC000C21DAA /* userAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userAnnotation.h; sourceTree = "<group>"; };
-		FA70CEEC1487BBC000C21DAA /* userAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userAnnotation.m; sourceTree = "<group>"; };
+		FA70CEEB1487BBC000C21DAA /* MapPinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapPinAnnotation.h; path = FanAnnotation/MapPinAnnotation.h; sourceTree = "<group>"; };
+		FA70CEEC1487BBC000C21DAA /* MapPinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapPinAnnotation.m; path = FanAnnotation/MapPinAnnotation.m; sourceTree = "<group>"; };
 		FA70CEEE1487BBC000C21DAA /* SendMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendMessageModel.h; sourceTree = "<group>"; };
 		FA70CEEF1487BBC000C21DAA /* SendMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMessageModel.m; sourceTree = "<group>"; };
 		FA70CEF11487BBC000C21DAA /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
@@ -234,8 +234,8 @@
 		FA70CF721487BBC000C21DAA /* Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base.h; sourceTree = "<group>"; };
 		FA70CF741487BBC000C21DAA /* SubscribedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribedView.h; sourceTree = "<group>"; };
 		FA70CF751487BBC000C21DAA /* SubscribedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribedView.m; sourceTree = "<group>"; };
-		FA70CF781487BBC000C21DAA /* PinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinView.h; sourceTree = "<group>"; };
-		FA70CF791487BBC000C21DAA /* PinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinView.m; sourceTree = "<group>"; };
+		FA70CF781487BBC000C21DAA /* MapPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPinView.h; sourceTree = "<group>"; };
+		FA70CF791487BBC000C21DAA /* MapPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPinView.m; sourceTree = "<group>"; };
 		FA70CF7C1487BBC000C21DAA /* ImageThambnailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageThambnailView.h; sourceTree = "<group>"; };
 		FA70CF7D1487BBC000C21DAA /* ImageThambnailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageThambnailView.m; sourceTree = "<group>"; };
 		FA70CF7E1487BBC000C21DAA /* Thumbnails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thumbnails.h; sourceTree = "<group>"; };
@@ -719,18 +719,10 @@
 		FA70CEE91487BBC000C21DAA /* MapAnnotation */ = {
 			isa = PBXGroup;
 			children = (
-				FA70CEEA1487BBC000C21DAA /* FanAnnotation */,
+				FA70CEEB1487BBC000C21DAA /* MapPinAnnotation.h */,
+				FA70CEEC1487BBC000C21DAA /* MapPinAnnotation.m */,
 			);
 			path = MapAnnotation;
-			sourceTree = "<group>";
-		};
-		FA70CEEA1487BBC000C21DAA /* FanAnnotation */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CEEB1487BBC000C21DAA /* userAnnotation.h */,
-				FA70CEEC1487BBC000C21DAA /* userAnnotation.m */,
-			);
-			path = FanAnnotation;
 			sourceTree = "<group>";
 		};
 		FA70CEED1487BBC000C21DAA /* SendMessage */ = {
@@ -994,8 +986,8 @@
 		FA70CF771487BBC000C21DAA /* PinView */ = {
 			isa = PBXGroup;
 			children = (
-				FA70CF781487BBC000C21DAA /* PinView.h */,
-				FA70CF791487BBC000C21DAA /* PinView.m */,
+				FA70CF781487BBC000C21DAA /* MapPinView.h */,
+				FA70CF791487BBC000C21DAA /* MapPinView.m */,
 			);
 			path = PinView;
 			sourceTree = "<group>";
@@ -1429,7 +1421,7 @@
 				FA70CFC01487BBC000C21DAA /* ChatEntry.m in Sources */,
 				FA70CFC11487BBC000C21DAA /* ChatMessageModel.m in Sources */,
 				FA70CFC21487BBC000C21DAA /* FileModel.m in Sources */,
-				FA70CFC31487BBC000C21DAA /* userAnnotation.m in Sources */,
+				FA70CFC31487BBC000C21DAA /* MapPinAnnotation.m in Sources */,
 				FA70CFC41487BBC000C21DAA /* SendMessageModel.m in Sources */,
 				FA70CFC51487BBC000C21DAA /* UserModel.m in Sources */,
 				FA70CFE01487BBC000C21DAA /* SubscribedViewController.m in Sources */,
@@ -1445,7 +1437,7 @@
 				FA70CFEA1487BBC000C21DAA /* MessageCell.m in Sources */,
 				FA70CFEB1487BBC000C21DAA /* PrivateMessageCell.m in Sources */,
 				FA70CFEC1487BBC000C21DAA /* SubscribedView.m in Sources */,
-				FA70CFED1487BBC000C21DAA /* PinView.m in Sources */,
+				FA70CFED1487BBC000C21DAA /* MapPinView.m in Sources */,
 				FA70CFEE1487BBC000C21DAA /* ImageThambnailView.m in Sources */,
 				FA70CFEF1487BBC000C21DAA /* Converter.m in Sources */,
 				FA70CFF01487BBC000C21DAA /* DeviceHardware.m in Sources */,

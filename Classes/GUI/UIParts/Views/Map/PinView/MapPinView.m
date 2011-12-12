@@ -1,17 +1,17 @@
 //
-//  PinView.m
+//  MapPinView.m
 //  SuperSample
 //
 //  Created by Danil on 16.09.11.
 //  Copyright 2011 YAS. All rights reserved.
 //
 
-#import "PinView.h"
-#import "userAnnotation.h"
+#import "MapPinView.h"
+#import "MapPinAnnotation.h"
 #import "Users.h"
 #import "UsersProvider.h"
 
-@implementation PinView
+@implementation MapPinView
 
 @synthesize imageView, lastMessage, powerView, annotationModel,tapView;
 

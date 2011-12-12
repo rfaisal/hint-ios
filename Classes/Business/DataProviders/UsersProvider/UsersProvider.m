@@ -185,9 +185,13 @@ static id instance = nil;
 }
 
 - (BOOL) saveUser{
+    return [self saveUserWithContext:self.managedObjectContext];
+}
+
+- (BOOL) saveUserWithContext:(NSManagedObjectContext *) context{
     NSError **error = nil;
     
-	BOOL isSaved = [self.managedObjectContext save:error];
+	BOOL isSaved = [context save:error];
     return isSaved;
 }
 

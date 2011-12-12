@@ -45,7 +45,9 @@
                   operation:(NSString *)operation
                     context:(NSManagedObjectContext *)context;
 
+// Save User
 - (BOOL) saveUser;
+- (BOOL) saveUserWithContext:(NSManagedObjectContext *) context;
 
 // current user
 - (Users *)currentUserWithQBUser:(QBUUser *) user;

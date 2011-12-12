@@ -9,15 +9,15 @@
 #import "AnnotationViewDataSource.h"
 
 //UI
-#import "PinView.h"
-#import "userAnnotation.h"
+#import "MapPinView.h"
+#import "MapPinAnnotation.h"
 
 //Data
 #import "Users.h"
 #import "UsersProvider.h"
 
 @implementation AnnotationViewDataSource
-@synthesize mapView;
+@synthesize mapView, ownAnnotation;
 
 #pragma mark - 
 #pragma mark MKMapDelegate
@@ -26,16 +26,22 @@
 
     static NSString *annotationReuseIdentifier = @"UserAnnotationIdentifier";
     
-	userAnnotation *ua = (userAnnotation *) annotation;
+	MapPinAnnotation *mapPinAnnotation = (MapPinAnnotation *) annotation;
     
-    PinView *pin = (PinView *)[_mapView dequeueReusableAnnotationViewWithIdentifier:annotationReuseIdentifier];
+    MapPinView *pin = (MapPinView *)[_mapView dequeueReusableAnnotationViewWithIdentifier:annotationReuseIdentifier];
     if(pin == nil){
-        pin = [[[PinView alloc]  initWithAnnotation:annotation 
+        pin = [[[MapPinView alloc]  initWithAnnotation:annotation 
                                         reuseIdentifier:annotationReuseIdentifier] autorelease];
     }
-	pin.annotationModel = ua;
+	pin.annotationModel = mapPinAnnotation;
     
     [pin updateStatusWithAnimation:YES];
+    
+    
+    // save own annotation
+    if(NSClassFromString(@"MKUserLocation") == [annotation class]){
+        self.ownAnnotation = annotation;
+    }
     
 	return pin;
 }
@@ -53,10 +59,10 @@
         Users *user = (Users *)model; 	
         coordinate.latitude = [user.latitude doubleValue];
         coordinate.longitude = [user.longitude doubleValue];
-        userAnnotation *newAnnotation = [[userAnnotation alloc] initWithCoordinate:coordinate];
-        newAnnotation.userModel = user;
-        [mapView addAnnotation:newAnnotation];
-		[newAnnotation release];
+        MapPinAnnotation *newMapPinAnnotation = [[MapPinAnnotation alloc] initWithCoordinate:coordinate];
+        newMapPinAnnotation.userModel = user;
+        [mapView addAnnotation:newMapPinAnnotation];
+		[newMapPinAnnotation release];
     }	
     
     // remove all annotations without own
@@ -74,6 +80,7 @@
 
 - (void)dealloc {
     [mapView release];
+    self.ownAnnotation = nil;
     
     [super dealloc];
 }

@@ -1,10 +1,10 @@
 //
 
 
-#import "userAnnotation.h"
+#import "MapPinAnnotation.h"
 
 
-@implementation userAnnotation
+@implementation MapPinAnnotation
 @synthesize  coordinate, userModel;
 
 - (id)initWithCoordinate: (CLLocationCoordinate2D) c {

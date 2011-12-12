@@ -140,21 +140,28 @@
 	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
 	NSError *error = nil;
 	BOOL hasChanges = NO;
-	
-	NSString *msg = [NSString stringWithFormat:@"%@", data.status];	
-	NSString *Id = [NSString stringWithFormat:@"%u", data.ID];
-	Messages *message = [[ChatListProvider sharedProvider] addMessageWithUID:Id 
-																	   text:msg 
+    
+	NSString *chatMessage = [NSString stringWithFormat:@"%@", data.status];	
+	NSString *ID = [NSString stringWithFormat:@"%u", data.ID];
+    
+    // get & update user
+    Users *currentUser = [[UsersProvider sharedProvider] currentUserWithContext:context];
+    currentUser.status = chatMessage;
+    BOOL saveUserStatus = [[UsersProvider sharedProvider] saveUserWithContext:context];
+    
+    // save message
+	Messages *message = [[ChatListProvider sharedProvider] addMessageWithUID:ID 
+																	   text:chatMessage 
 																   location:[NSString stringWithFormat:@"%@", location] 
-                                                                        user:[[UsersProvider sharedProvider] currentUserWithContext:context]
+                                                                        user:currentUser
                                                                         date:data.created_at
 																	context:context];
-    
-    NSLog(@"data.created_at=%@", data.created_at);
-     NSLog(@"data.createdAt=%@", data.createdAt);
-
 		
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
+    
+    // update own status
+    [nc postNotificationName:nChangedOwnStatus object:nil userInfo:nil];	
+    
 	[nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
 	hasChanges = [context save:&error];
 	[nc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
@@ -195,6 +202,8 @@
                                                                             user:user
                                                                             date:geoData.created_at
                                                                          context:context];
+        
+
         hasChanges = YES;
 	}
 	

@@ -20,6 +20,7 @@
 #import "UsersProvider.h"
 
 #import "Users.h"
+#import "MapPinView.h"
 
 @implementation MapViewController
 @synthesize mapView;
@@ -165,6 +166,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(openPrivateChatView:) 
                                                  name:nOpenPrivateChatView object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(ownStatusDidChange:) 
+                                                 name:nChangedOwnStatus object:nil];
+    
+    
 }
 
 - (void)unsubscribe {
@@ -173,6 +180,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:nOpenAnnotationDetails object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:nRefreshAnnotationDetails object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:nOpenPrivateChatView object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:nChangedOwnStatus object:nil];
 }
 
 -(void) releaseProperties{
@@ -203,6 +211,11 @@
 
 -(void)openPrivateChatView:(NSNotification *)notification{
     [self.navigationController pushViewController:self.privateChatController animated:YES];
+}
+
+-(void)ownStatusDidChange:(NSNotification *)notification{
+    MapPinView *ownPinView = (MapPinView *)[mapView viewForAnnotation:annotationDataSource.ownAnnotation];
+    [ownPinView updateStatusWithAnimation:NO];
 }
 
 

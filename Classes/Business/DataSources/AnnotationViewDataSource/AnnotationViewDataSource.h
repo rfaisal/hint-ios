@@ -9,10 +9,10 @@
 #import "LoadableDataSource.h"
 
 @interface AnnotationViewDataSource : LoadableDataSource <MKMapViewDelegate> {
-    
     MKMapView *mapView;
 }
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
+@property (nonatomic, retain) MKUserLocation *ownAnnotation;
 
 -(void) reloadData;
 

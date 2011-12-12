@@ -1,9 +1,10 @@
 //
 
 
-@class PinView;
+@class MapPinView;
 @class Users;
-@interface userAnnotation : NSObject <MKAnnotation> {
+
+@interface MapPinAnnotation : NSObject <MKAnnotation> {
 	CLLocationCoordinate2D coordinate;	
     Users *userModel;
 }
