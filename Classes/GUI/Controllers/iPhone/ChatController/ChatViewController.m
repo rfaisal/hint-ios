@@ -179,20 +179,23 @@
     BOOL hasChanges = NO;
     
 	for (QBGeoData *geoData in geodata) {
+        NSString *msg = [NSString stringWithFormat:@"%@", geoData.status];	
+        NSString *Id = [NSString stringWithFormat:@"%u", geoData.ID];
         
         // message already exist
         if([[ChatListProvider sharedProvider] messageByUID:[NSNumber numberWithUnsignedInteger:geoData.ID] context:context]){
             continue;
         }
+        if([[ChatListProvider sharedProvider] messageByUser:geoData.user.ID message:msg context:context]){
+            continue;
+        }
+        
         
         // create if not exist
         Users *user = [[UsersProvider sharedProvider] userByUID:[NSNumber numberWithUnsignedInteger:geoData.user.ID] context:context];
         if(user == nil){
             user = [[UsersProvider sharedProvider] addUser:geoData.user location:[geoData location] status:geoData.status context:context];
         }
-        
-        NSString *msg = [NSString stringWithFormat:@"%@", geoData.status];	
-        NSString *Id = [NSString stringWithFormat:@"%u", geoData.ID];
         
         
         // create 

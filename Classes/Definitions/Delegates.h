@@ -26,12 +26,4 @@
 
 @end
 
-@class ChatEntry;
-@protocol ChatProtocolDelegate <NSObject>
-- (void) openConversationWith:(ChatEntry*)chat;
-- (void) setNewMessagesValue:(NSUInteger)mCount;
-- (void) refreshConversation;
-- (void) openConversations;
-@end
-
 #endif

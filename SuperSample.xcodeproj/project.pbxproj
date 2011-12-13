@@ -27,7 +27,6 @@
 		BDED890A1445F0B8000FDF62 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BDED89091445F0B8000FDF62 /* libresolv.dylib */; };
 		FA5D43EB1488E90D00BE9F9E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5D43EA1488E90D00BE9F9E /* logo.png */; };
 		FA5D43F014890C8400BE9F9E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5D43EF14890C8300BE9F9E /* Default.png */; };
-		FA70CFA81487BBC000C21DAA /* ChatEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CE961487BBC000C21DAA /* ChatEngine.m */; };
 		FA70CFA91487BBC000C21DAA /* Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CE9A1487BBC000C21DAA /* Messages.m */; };
 		FA70CFAA1487BBC000C21DAA /* PrivateMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CE9D1487BBC000C21DAA /* PrivateMessages.m */; };
 		FA70CFAB1487BBC000C21DAA /* SourceElement.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEA01487BBC000C21DAA /* SourceElement.m */; };
@@ -47,14 +46,7 @@
 		FA70CFBA1487BBC000C21DAA /* ChatListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CECE1487BBC000C21DAA /* ChatListDataSource.m */; };
 		FA70CFBC1487BBC000C21DAA /* PrivateChatListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CED41487BBC000C21DAA /* PrivateChatListDataSource.m */; };
 		FA70CFBD1487BBC000C21DAA /* StorageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CED71487BBC000C21DAA /* StorageProvider.m */; };
-		FA70CFBE1487BBC000C21DAA /* AttachmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEDB1487BBC000C21DAA /* AttachmentModel.m */; };
-		FA70CFBF1487BBC000C21DAA /* AttachmentDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEDE1487BBC000C21DAA /* AttachmentDataModel.m */; };
-		FA70CFC01487BBC000C21DAA /* ChatEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEE11487BBC000C21DAA /* ChatEntry.m */; };
-		FA70CFC11487BBC000C21DAA /* ChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEE41487BBC000C21DAA /* ChatMessageModel.m */; };
-		FA70CFC21487BBC000C21DAA /* FileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEE81487BBC000C21DAA /* FileModel.m */; };
 		FA70CFC31487BBC000C21DAA /* MapPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEEC1487BBC000C21DAA /* MapPinAnnotation.m */; };
-		FA70CFC41487BBC000C21DAA /* SendMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEEF1487BBC000C21DAA /* SendMessageModel.m */; };
-		FA70CFC51487BBC000C21DAA /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEF21487BBC000C21DAA /* UserModel.m */; };
 		FA70CFE01487BBC000C21DAA /* SubscribedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF491487BBC000C21DAA /* SubscribedViewController.m */; };
 		FA70CFE11487BBC000C21DAA /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF4D1487BBC000C21DAA /* ChatViewController.m */; };
 		FA70CFE21487BBC000C21DAA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF511487BBC000C21DAA /* LoginViewController.m */; };
@@ -145,8 +137,6 @@
 		FA5D43EA1488E90D00BE9F9E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FA5D43EF14890C8300BE9F9E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		FA70CE931487BBC000C21DAA /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
-		FA70CE951487BBC000C21DAA /* ChatEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatEngine.h; sourceTree = "<group>"; };
-		FA70CE961487BBC000C21DAA /* ChatEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatEngine.m; sourceTree = "<group>"; };
 		FA70CE991487BBC000C21DAA /* Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Messages.h; sourceTree = "<group>"; };
 		FA70CE9A1487BBC000C21DAA /* Messages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Messages.m; sourceTree = "<group>"; };
 		FA70CE9C1487BBC000C21DAA /* PrivateMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessages.h; sourceTree = "<group>"; };
@@ -185,22 +175,8 @@
 		FA70CED41487BBC000C21DAA /* PrivateChatListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateChatListDataSource.m; sourceTree = "<group>"; };
 		FA70CED61487BBC000C21DAA /* StorageProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageProvider.h; sourceTree = "<group>"; };
 		FA70CED71487BBC000C21DAA /* StorageProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageProvider.m; sourceTree = "<group>"; };
-		FA70CEDA1487BBC000C21DAA /* AttachmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachmentModel.h; sourceTree = "<group>"; };
-		FA70CEDB1487BBC000C21DAA /* AttachmentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachmentModel.m; sourceTree = "<group>"; };
-		FA70CEDD1487BBC000C21DAA /* AttachmentDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachmentDataModel.h; sourceTree = "<group>"; };
-		FA70CEDE1487BBC000C21DAA /* AttachmentDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachmentDataModel.m; sourceTree = "<group>"; };
-		FA70CEE01487BBC000C21DAA /* ChatEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatEntry.h; sourceTree = "<group>"; };
-		FA70CEE11487BBC000C21DAA /* ChatEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatEntry.m; sourceTree = "<group>"; };
-		FA70CEE31487BBC000C21DAA /* ChatMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageModel.h; sourceTree = "<group>"; };
-		FA70CEE41487BBC000C21DAA /* ChatMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageModel.m; sourceTree = "<group>"; };
-		FA70CEE71487BBC000C21DAA /* FileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileModel.h; sourceTree = "<group>"; };
-		FA70CEE81487BBC000C21DAA /* FileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileModel.m; sourceTree = "<group>"; };
 		FA70CEEB1487BBC000C21DAA /* MapPinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapPinAnnotation.h; path = FanAnnotation/MapPinAnnotation.h; sourceTree = "<group>"; };
 		FA70CEEC1487BBC000C21DAA /* MapPinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapPinAnnotation.m; path = FanAnnotation/MapPinAnnotation.m; sourceTree = "<group>"; };
-		FA70CEEE1487BBC000C21DAA /* SendMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendMessageModel.h; sourceTree = "<group>"; };
-		FA70CEEF1487BBC000C21DAA /* SendMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMessageModel.m; sourceTree = "<group>"; };
-		FA70CEF11487BBC000C21DAA /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
-		FA70CEF21487BBC000C21DAA /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		FA70CEFA1487BBC000C21DAA /* Consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Consts.h; sourceTree = "<group>"; };
 		FA70CEFB1487BBC000C21DAA /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
 		FA70CEFC1487BBC000C21DAA /* Delegates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Delegates.h; sourceTree = "<group>"; };
@@ -411,7 +387,6 @@
 			isa = PBXGroup;
 			children = (
 				FA70CE931487BBC000C21DAA /* Business.h */,
-				FA70CE941487BBC000C21DAA /* ChatEngine */,
 				FA70CE971487BBC000C21DAA /* DataModels */,
 				FA70CEAA1487BBC000C21DAA /* DataProviders */,
 				FA70CEBD1487BBC000C21DAA /* DataSources */,
@@ -419,15 +394,6 @@
 				FA70CED81487BBC000C21DAA /* Models */,
 			);
 			path = Business;
-			sourceTree = "<group>";
-		};
-		FA70CE941487BBC000C21DAA /* ChatEngine */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CE951487BBC000C21DAA /* ChatEngine.h */,
-				FA70CE961487BBC000C21DAA /* ChatEngine.m */,
-			);
-			path = ChatEngine;
 			sourceTree = "<group>";
 		};
 		FA70CE971487BBC000C21DAA /* DataModels */ = {
@@ -651,69 +617,9 @@
 		FA70CED81487BBC000C21DAA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FA70CED91487BBC000C21DAA /* Attachment */,
-				FA70CEDC1487BBC000C21DAA /* AttachmentData */,
-				FA70CEDF1487BBC000C21DAA /* ChatEntry */,
-				FA70CEE21487BBC000C21DAA /* ChatMessage */,
-				FA70CEE51487BBC000C21DAA /* CurrentUser */,
-				FA70CEE61487BBC000C21DAA /* FileModel */,
 				FA70CEE91487BBC000C21DAA /* MapAnnotation */,
-				FA70CEED1487BBC000C21DAA /* SendMessage */,
-				FA70CEF01487BBC000C21DAA /* User */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		FA70CED91487BBC000C21DAA /* Attachment */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CEDA1487BBC000C21DAA /* AttachmentModel.h */,
-				FA70CEDB1487BBC000C21DAA /* AttachmentModel.m */,
-			);
-			path = Attachment;
-			sourceTree = "<group>";
-		};
-		FA70CEDC1487BBC000C21DAA /* AttachmentData */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CEDD1487BBC000C21DAA /* AttachmentDataModel.h */,
-				FA70CEDE1487BBC000C21DAA /* AttachmentDataModel.m */,
-			);
-			path = AttachmentData;
-			sourceTree = "<group>";
-		};
-		FA70CEDF1487BBC000C21DAA /* ChatEntry */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CEE01487BBC000C21DAA /* ChatEntry.h */,
-				FA70CEE11487BBC000C21DAA /* ChatEntry.m */,
-			);
-			path = ChatEntry;
-			sourceTree = "<group>";
-		};
-		FA70CEE21487BBC000C21DAA /* ChatMessage */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CEE31487BBC000C21DAA /* ChatMessageModel.h */,
-				FA70CEE41487BBC000C21DAA /* ChatMessageModel.m */,
-			);
-			path = ChatMessage;
-			sourceTree = "<group>";
-		};
-		FA70CEE51487BBC000C21DAA /* CurrentUser */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CurrentUser;
-			sourceTree = "<group>";
-		};
-		FA70CEE61487BBC000C21DAA /* FileModel */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CEE71487BBC000C21DAA /* FileModel.h */,
-				FA70CEE81487BBC000C21DAA /* FileModel.m */,
-			);
-			path = FileModel;
 			sourceTree = "<group>";
 		};
 		FA70CEE91487BBC000C21DAA /* MapAnnotation */ = {
@@ -723,24 +629,6 @@
 				FA70CEEC1487BBC000C21DAA /* MapPinAnnotation.m */,
 			);
 			path = MapAnnotation;
-			sourceTree = "<group>";
-		};
-		FA70CEED1487BBC000C21DAA /* SendMessage */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CEEE1487BBC000C21DAA /* SendMessageModel.h */,
-				FA70CEEF1487BBC000C21DAA /* SendMessageModel.m */,
-			);
-			path = SendMessage;
-			sourceTree = "<group>";
-		};
-		FA70CEF01487BBC000C21DAA /* User */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CEF11487BBC000C21DAA /* UserModel.h */,
-				FA70CEF21487BBC000C21DAA /* UserModel.m */,
-			);
-			path = User;
 			sourceTree = "<group>";
 		};
 		FA70CEF91487BBC000C21DAA /* Definitions */ = {
@@ -1396,7 +1284,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA70CFA81487BBC000C21DAA /* ChatEngine.m in Sources */,
 				FA70CFA91487BBC000C21DAA /* Messages.m in Sources */,
 				FA70CFAA1487BBC000C21DAA /* PrivateMessages.m in Sources */,
 				FA70CFAB1487BBC000C21DAA /* SourceElement.m in Sources */,
@@ -1416,14 +1303,7 @@
 				FA70CFBA1487BBC000C21DAA /* ChatListDataSource.m in Sources */,
 				FA70CFBC1487BBC000C21DAA /* PrivateChatListDataSource.m in Sources */,
 				FA70CFBD1487BBC000C21DAA /* StorageProvider.m in Sources */,
-				FA70CFBE1487BBC000C21DAA /* AttachmentModel.m in Sources */,
-				FA70CFBF1487BBC000C21DAA /* AttachmentDataModel.m in Sources */,
-				FA70CFC01487BBC000C21DAA /* ChatEntry.m in Sources */,
-				FA70CFC11487BBC000C21DAA /* ChatMessageModel.m in Sources */,
-				FA70CFC21487BBC000C21DAA /* FileModel.m in Sources */,
 				FA70CFC31487BBC000C21DAA /* MapPinAnnotation.m in Sources */,
-				FA70CFC41487BBC000C21DAA /* SendMessageModel.m in Sources */,
-				FA70CFC51487BBC000C21DAA /* UserModel.m in Sources */,
 				FA70CFE01487BBC000C21DAA /* SubscribedViewController.m in Sources */,
 				FA70CFE11487BBC000C21DAA /* ChatViewController.m in Sources */,
 				FA70CFE21487BBC000C21DAA /* LoginViewController.m in Sources */,

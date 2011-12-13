@@ -31,4 +31,8 @@
 - (Messages *)messageByUID:(NSNumber *)uid;
 - (Messages *)messageByUID:(NSNumber *)uid context:(NSManagedObjectContext *)context;
 
+// serach by userLogin + message
+- (Messages *)messageByUser:(NSUInteger)userID message:(NSString *)text;
+- (Messages *)messageByUser:(NSUInteger)userID message:(NSString *)text context:(NSManagedObjectContext *)context;
+
 @end

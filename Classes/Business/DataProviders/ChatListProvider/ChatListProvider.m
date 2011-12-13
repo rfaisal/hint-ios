@@ -99,8 +99,31 @@ static id instance = nil;
 	NSEntityDescription *entity = [NSEntityDescription entityForName:[self entityName] 
 											  inManagedObjectContext:context];
 	[request setEntity:entity];
-	[request setPredicate:[NSPredicate predicateWithFormat:@"uid = %i",[uid intValue]]];
+	[request setPredicate:[NSPredicate predicateWithFormat:@"uid == %u",[uid intValue]]];
 	NSArray* results = [context executeFetchRequest:request error:nil];
+    [request release];
+	
+	Messages *message = nil;
+	if(nil != results && [results count] > 0){
+		message = (Messages *)[results objectAtIndex:0];
+	}
+	
+	return message;
+}
+
+// serach by userLogin + message
+- (Messages *)messageByUser:(NSUInteger)userID message:(NSString *)text{
+    return [self messageByUser:userID message:text context:self.managedObjectContext];
+}
+
+- (Messages *)messageByUser:(NSUInteger)userID message:(NSString *)text context:(NSManagedObjectContext *)context{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:[self entityName] 
+											  inManagedObjectContext:context];
+	[request setEntity:entity];
+	[request setPredicate:[NSPredicate predicateWithFormat:@"text == %@", text]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"user.uid == %u", userID]];
+	NSArray *results = [context executeFetchRequest:request error:nil];
 	
 	Messages *message = nil;
 	if(nil != results && [results count] > 0){
