@@ -9,14 +9,6 @@
 #ifndef SuperSample_Consts_h
 #define SuperSample_Consts_h
 
-static CGFloat const kManagedObjectContextDelayedSaveInterval = 1.0;
-
-#pragma mark Operations
-
-static NSString * const kNewOperation = @"new";
-static NSString * const kChangedOperation = @"changed";
-static NSString * const kDeletedOperation = @"deleted";
-
 
 #pragma mark QuickBlox
 static NSString* const endpoint = @"qbtest01.quickblox.com";
@@ -26,6 +18,14 @@ static NSString* const appKey = @"X2TYsfGRBqh6Px3";
 static NSString* const appSecret = @"Qbxu9R3rjMdhu9Q";
 
 
+
+static CGFloat const kManagedObjectContextDelayedSaveInterval = 1.0;
+
+#pragma mark Operations
+
+static NSString * const kNewOperation = @"new";
+static NSString * const kChangedOperation = @"changed";
+static NSString * const kDeletedOperation = @"deleted";
 
 static NSString* const MESSAGE_KEY = @"MESSAGE_KEY";
 static NSString* const GEODATA_KEY  = @"GEODATA_KEY";

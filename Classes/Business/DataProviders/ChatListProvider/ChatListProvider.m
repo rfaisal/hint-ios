@@ -121,8 +121,7 @@ static id instance = nil;
 	NSEntityDescription *entity = [NSEntityDescription entityForName:[self entityName] 
 											  inManagedObjectContext:context];
 	[request setEntity:entity];
-	[request setPredicate:[NSPredicate predicateWithFormat:@"text == %@", text]];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"user.uid == %u", userID]];
+	[request setPredicate:[NSPredicate predicateWithFormat:@"text == %@ AND user.uid == %u", text, userID]];
 	NSArray *results = [context executeFetchRequest:request error:nil];
 	
 	Messages *message = nil;
