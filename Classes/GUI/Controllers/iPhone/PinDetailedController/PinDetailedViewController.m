@@ -19,31 +19,8 @@
 
 @implementation PinDetailedViewController
 
-
 @synthesize objectID;
-@synthesize scrollView;
-@synthesize imageView;
-@synthesize caption;
-@synthesize manPosition;
-@synthesize infoView;
-@synthesize photo;
-@synthesize status;
-
-- (void)releaseProperties {
-    self.scrollView = nil;
-    self.imageView = nil;
-    self.caption = nil;
-    self.manPosition = nil;
-    self.infoView = nil;
-    
-    [super releaseProperties];
-}
-
-- (void)releaseAll {
-    self.objectID = nil;
-    
-    [super releaseAll];
-}
+@synthesize container, userLogin, userFullName, userBio, userAvatar, userStatus, userRating;
 
 - (void)subscribe {
     [super subscribe];
@@ -52,17 +29,37 @@
 }
 
 - (void)unsubscribe {
-    [self removeObserver:self forKeyPath:@"objectID"];
-    
     [super unsubscribe];
+    
+    [self removeObserver:self forKeyPath:@"objectID"];
 }
 
-- (void)startInit {
-    [super startInit];
-    
-    [self.infoView setBackgroundColor:[UIColor clearColor]];
-    self.infoView.opaque = NO;
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
 }
+
+- (void)viewDidUnload {
+    self.container = nil;
+    self.userLogin = nil;
+    self.userFullName = nil;
+    self.userBio = nil;
+    self.userAvatar = nil;
+    self.userStatus = nil;
+    self.userRating = nil;
+    
+    [super viewDidUnload];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // container customization
+    container.layer.borderWidth = 2;
+    container.layer.borderColor = [[UIColor colorWithRed:226/255.0 green:226/255.0 blue:226/255.0 alpha:1] CGColor];
+    container.layer.cornerRadius = 8;
+    container.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];
+}
+
 
 - (void)handleTap:(UITapGestureRecognizer *) gesture{
     Users *user = [[UsersProvider sharedProvider] currentUser];
@@ -76,11 +73,6 @@
                                                       userInfo:[NSDictionary dictionaryWithObject:objectID forKey:nkData]];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, 200);
-    [super viewDidDisappear:animated];
-}
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     
     if ([@"objectID" isEqualToString:keyPath]) {
@@ -92,25 +84,33 @@
         }
         
         // login
-        self.caption.text = user.mbUser.login;
-        if(self.caption.text == nil || [self.caption.text isEqualToString:@""]){
-            self.caption.text = @"anonymous";
+        userLogin.text = user.mbUser.login;
+        if(userLogin.text == nil || [userLogin.text isEqualToString:@""]){
+            userLogin.text = @"anonymous";
         }
         
+        // full name
+        userFullName.text = user.mbUser.fullName;
+        if(userFullName.text == nil || [userFullName.text isEqualToString:@""]){
+            userFullName.text = @"anonymous";
+        }
+            
+        
         // status
-        self.status.text = user.status ? user.status : @"";
+        userStatus.text = user.status;
             
         // photo
         SourceImages *sourceImage = user.photo;    
-        self.photo.image = [UIImage imageWithContentsOfFile:[Resources fullPathForFileWithName:sourceImage.local_url]];
-        if(self.photo.image == nil){
-            self.photo.image = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"user" ofType:@"png"]];
+        userAvatar.image = [UIImage imageWithContentsOfFile:[Resources fullPathForFileWithName:sourceImage.local_url]];
+        if(userAvatar.image == nil){
+            userAvatar.image = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"user" ofType:@"png"]];
         }
         
+        // tap on avatar GestureRecognizer
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
         [tap setNumberOfTapsRequired:1];
         [tap setNumberOfTouchesRequired:1];
-        [self.photo addGestureRecognizer:tap];
+        [userAvatar addGestureRecognizer:tap];
         [tap release];
         
     } else {
@@ -122,16 +122,10 @@
     [self.parentCustomModalController dismissCustomModalViewControllerAnimated:YES];
 }
 
-- (void)dealloc {
-    [photo release];
+- (void) dealloc {
+    [objectID release];
     
     [super dealloc];
-}
-
-- (void)viewDidUnload {
-    [self setPhoto:nil];
-    
-    [super viewDidUnload];
 }
 
 @end

@@ -4,24 +4,17 @@
 
 @class Users;
 @interface PinDetailedViewController : SubscribedViewController {
-    NSManagedObjectID *objectID;
-    UIScrollView *scrollView;
 
-    UIImageView *imageView;
-    UILabel *caption;
-    UILabel *manPosition;
-    UITextView *infoView;
-    UIImageView *photo;
 }
 
 @property (nonatomic, retain) NSManagedObjectID *objectID;
-@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, retain) IBOutlet UIImageView *imageView;
-@property (nonatomic, retain) IBOutlet UILabel *caption;
-@property (nonatomic, retain) IBOutlet UILabel *manPosition;
-@property (nonatomic, retain) IBOutlet UITextView *infoView;
-@property (nonatomic, retain) IBOutlet UIImageView *photo;
-@property (nonatomic, retain) IBOutlet UILabel *status;
+@property (nonatomic, retain) IBOutlet UIView *container;
+@property (nonatomic, retain) IBOutlet UILabel *userLogin;
+@property (nonatomic, retain) IBOutlet UILabel *userFullName;
+@property (nonatomic, retain) IBOutlet UIImageView *userAvatar;
+@property (nonatomic, retain) IBOutlet UILabel *userStatus;
+@property (nonatomic, retain) IBOutlet UITextView *userBio;
+@property (nonatomic, retain) IBOutlet UIProgressView *userRating;
 
 -(IBAction) close:(id)sender;
 
