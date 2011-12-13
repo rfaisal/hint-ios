@@ -115,8 +115,10 @@
 - (void)didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     NSLog(@"Location didUpdate from %@ to %@", oldLocation, newLocation);
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; 
+
     Users *curUser = [[UsersProvider sharedProvider] currentUser];
-    if(curUser == nil){
+    if(curUser == nil || ![defaults boolForKey:kShareYourLocation]){
         return;
     }
 

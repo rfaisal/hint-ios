@@ -63,6 +63,12 @@ static NSString* const kUserModelInstanceKey = @"UserModelInstanceKey";
 
 
 #pragma mark -
+#pragma mark UserDefaults Keys
+
+#define kShareYourLocation @"kShareYourLocation"
+#define kDisplayOfflineUser @"kDisplayOfflineUser"
+
+#pragma mark -
 #pragma mark XMPPService
 
 static NSString* const commonPassword = @"chatPasswordAllSame";

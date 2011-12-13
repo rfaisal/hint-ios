@@ -22,6 +22,7 @@
 
 @implementation SettingsViewController
 @synthesize bioTextView, container, avatarView, fullName;
+@synthesize displayOfflineUserSwitch, shareYourLocationSwitch;
 @synthesize imagePicker, canceler;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
@@ -55,10 +56,30 @@
 	
     Users *user = [[UsersProvider sharedProvider] currentUser];
     
+    // setup switchers
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; 
+    [displayOfflineUserSwitch setOn:[defaults boolForKey:kDisplayOfflineUser]];
+    [shareYourLocationSwitch setOn:[defaults boolForKey:kShareYourLocation]];
+    
+    
+    // set avatar
     // temporary fix. Use 'blob_id' instead 'website'
 	if(user.mbUser.website){
 		[QBBlobsService GetBlobAsync:user.mbUser.website delegate:self];
 	}
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    Users *user = [[UsersProvider sharedProvider] currentUser];
+    
+    
+    NSLog(@"user.mbUser.fullName=%@", user.mbUser.fullName);
+    
+    // populate fields
+    fullName.text = user.mbUser.fullName;
+    bioTextView.text = @"my bio";
 }
 
 - (void)viewDidUnload {
@@ -85,17 +106,19 @@
 #pragma mark
 
 - (IBAction)choosePicture:(id)sender {
-
+    imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+	[self.navigationController presentModalViewController:imagePicker animated:NO];
 }
 
 - (IBAction)takePicture:(id)sender {
-    self.imagePicker = [[[UIImagePickerController alloc] init] autorelease];
+    imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
     imagePicker.allowsEditing = NO;
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]&&![DeviceHardware simulator]){
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] && ![DeviceHardware simulator]){
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        //        imagePicker.showsCameraControls = NO;
-        //        [self performSelector:@selector(timeToShot:) withObject:nil afterDelay:2];
     }else if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]){
         imagePicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     }
@@ -104,26 +127,46 @@
 
 -(IBAction) save: (id)sender{
     [bioTextView resignFirstResponder];
+    [fullName resignFirstResponder];
+    
+    /*
 	if(nil == avatarView.image){
 		return;
 	}
-	
+
 	NSData *imageData = UIImagePNGRepresentation(avatarView.image);
 	[QBBlobsService TUploadDataAsync:imageData 
 							 ownerID:ownerID 
 							fileName:@"image.jpeg" 
 						 contentType:@"image/jpeg"
-							delegate:self];	
+							delegate:self];	*/
+    
+    // update user fields
+    QBUUser *user = [[QBUUser alloc] init];
+    user.ID = [[UsersProvider sharedProvider] currentUserID];
+    user.fullName = fullName.text;
+    
+    [QBUsersService editUser:user delegate:self];
+    
+    [user release];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 
 - (IBAction)displayOfflineUserSwitchDidChangeState:(id)sender{
+    UISwitch *switcher = (UISwitch *)sender;
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; 
+    [defaults setBool:switcher.on forKey:kDisplayOfflineUser];
+    [defaults synchronize];
 }
 
 - (IBAction)shareYourLocationSwitchDidChangeState:(id)sender{
+    UISwitch *switcher = (UISwitch *)sender;
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; 
+    [defaults setBool:switcher.on forKey:kShareYourLocation];
+    [defaults synchronize];
 }
 
 
@@ -133,11 +176,23 @@
 
 - (void) imagePickerControllerDidCancel:(UIImagePickerController *) picker {
 	[self dismissModalViewControllerAnimated:YES];
+    self.imagePicker = nil;
 }
 
 - (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info {
 	[self dismissModalViewControllerAnimated:NO];
-	[avatarView setImage:(UIImage *) [info valueForKey:UIImagePickerControllerOriginalImage]];
+    
+    // resize image
+    UIImage *image = (UIImage *) [info valueForKey:UIImagePickerControllerOriginalImage];
+    
+    UIGraphicsBeginImageContext(CGSizeMake(120, 120));
+    [image drawInRect:CGRectMake(0, 0, 120, 120)];
+    UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    [avatarView setImage:resizedImage];
+    
+    self.imagePicker = nil;
 }
 
 
@@ -148,13 +203,25 @@
 - (void)completedWithResult:(Result*)result{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
-	if([result isKindOfClass:[QBUploadFileTaskResult class]]){
+    if([result isKindOfClass:[QBUUserResult class]]){
+        QBUUserResult* res = (QBUUserResult*)result;
+        if(res.success){
+            // get & update user
+            Users *currentUser = [[UsersProvider sharedProvider] currentUser];
+            currentUser.mbUser.fullName = fullName.text;
+            BOOL saveUserStatus = [[UsersProvider sharedProvider] saveUser];
+            
+            [self showMessage:NSLocalizedString(@"Edit user successful", "") message:nil];
+        }else{
+            [self processErrors:result.answer.errors];
+        }
+	}else if([result isKindOfClass:[QBUploadFileTaskResult class]]){
 		QBUploadFileTaskResult* res = (QBUploadFileTaskResult*)result;
 		if(res.success){
 			NSString *blobID = res.uploadedFileBlob.UID;
 			[self performSelectorInBackground:@selector(saveAvatarAsync:) withObject:blobID];			
 		}else {
-			NSLog(@"Error: %@",result.errors);
+			NSLog(@"Error: %@", result.errors);
 		}
 	}else if([result isKindOfClass:[QBBlobFileResult class]]){
 		QBBlobFileResult* res = (QBBlobFileResult*)result;
@@ -164,10 +231,35 @@
 				avatarView.image = [UIImage imageWithData:avatarData];	
 			}						
 		}else {
-			NSLog(@"Error: %@",result.errors);
+			NSLog(@"Error: %@", result.errors);
 		}
 	}else {
 		NSLog(@"Unexpected result %@",result);
+	}
+}
+
+-(void)showMessage:(NSString*)title message:(NSString*)msg{
+
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title 
+													message:msg 
+												   delegate:self 
+										  cancelButtonTitle:NSLocalizedString(@"OK", "") 
+										  otherButtonTitles:nil];
+	
+	alert.tag = (title == NSLocalizedString(@"Registration successful", "") ? 1 : 0);
+	[alert show];
+	[alert release];	
+}
+
+-(void)processErrors:(NSMutableArray*)errors{
+	NSMutableString *errorsString = [NSMutableString stringWithCapacity:0];
+	
+	for(NSString *error in errors){
+		[errorsString appendFormat:@"%@\n", error];
+	}
+	
+	if ([errorsString length] > 0) {
+		[self showMessage:NSLocalizedString(@"Error", "") message:errorsString];
 	}
 }
 
@@ -215,15 +307,10 @@
 	}
 }
 
-- (void) startInit{
-    Users *user = [[UsersProvider sharedProvider] currentUser];
-    [self loadSettinsForUser:user];
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [bioTextView resignFirstResponder];
+    [fullName resignFirstResponder];
 }
-
-- (void)loadSettinsForUser:(Users*)user{
-    // self.userName.text = user.mbUser.login;
-}
-
 
 - (void)dealloc {
     [super dealloc];
