@@ -62,11 +62,17 @@ static NSString* const nShowNewMessage = @"ShowNewMessages";
 static NSString* const kUserModelInstanceKey = @"UserModelInstanceKey";
 
 
+
+static NSString *const RATINGS_GAME_MODE_TITLE = @"QB-SuperSample-iOS";
+static int const RATINGS_GAME_MODE_ID = 6;
+
+
 #pragma mark -
 #pragma mark UserDefaults Keys
 
 #define kShareYourLocation @"kShareYourLocation"
 #define kDisplayOfflineUser @"kDisplayOfflineUser"
+#define kUserRatingsFormat @"kUserRatings_%u"
 
 #pragma mark -
 #pragma mark XMPPService

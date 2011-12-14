@@ -9,6 +9,7 @@
 
 @class SuperSampleViewController;
 @class LoginOrRegistrationViewController;
+@class QuizRootViewController;
 
 @interface SuperSampleAppDelegate : NSObject <UIApplicationDelegate, ActionStatusDelegate>{		
     LoginOrRegistrationViewController *_loginOrRegisterController;
@@ -18,6 +19,8 @@
 
 @property (nonatomic, retain) IBOutlet UIViewController *viewController;
 @property (nonatomic, retain) IBOutlet LoginOrRegistrationViewController *loginOrRegisterController;
+@property (nonatomic, retain) IBOutlet QuizRootViewController *quizRootController;
+
 
 
 - (void) signIn;

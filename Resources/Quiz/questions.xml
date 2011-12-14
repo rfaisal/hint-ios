@@ -1,0 +1,53 @@
+<test>
+	<question>
+        <text>Which Chicago Red Stars Player was named England International Player of the Year 2010?</text>
+		<points>34</points>
+		<answers>
+            <answer>Anita Asante</answer>
+            <answer true = "YES">Katie Chapman</answer>
+            <answer>Karen Carney</answer>
+        </answers>
+    </question>
+	<question>
+        <text>Which NASL team did Franz Beckenbauer play for?</text>
+		<points>23</points>
+        <answers>
+            <answer true = "YES">New York Cosmos</answer>
+            <answer>Seattle Sounders</answer>
+			<answer>Minnesota Kicks</answer>
+			<answer>Los Angeles Aztecs</answer>
+        </answers>
+    </question>
+	<question>
+		<image>Camp Nou_Flickr_Will Palmer.png</image>
+		<text>Which team play at this stadium?</text>
+		<points>52</points>
+        <answers>
+            <answer>Real Madrid</answer>
+            <answer>Boca Juniors</answer>
+            <answer true = "YES">Barcelona</answer>
+            <answer>River Plate</answer>
+        </answers>
+    </question>
+	<question>
+		<image>Johnny Haynes_Flickr_adamr.stone.png</image>
+        <text>Outside which English Premier League stadium can this statue by found?</text>
+        <points>44</points>
+		<answers>
+            <answer>Anfield - Liverpool</answer>
+			<answer true = "YES">Craven Cottage - Fulham</answer>
+			<answer>Old Trafford - Manchester United</answer>
+			<answer>Villa Park - Aston Villa</answer>
+        </answers>
+    </question>
+	<question>
+        <text>Who won the World Cup in 1978</text>
+		<points>18</points>
+        <answers>
+            <answer>Brazil</answer>
+			<answer>Germany</answer>
+			<answer true = "YES">Argentina</answer>
+			<answer>Italy</answer>
+        </answers>
+    </question>
+</test>

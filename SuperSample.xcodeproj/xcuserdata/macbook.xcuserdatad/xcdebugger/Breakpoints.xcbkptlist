@@ -9,12 +9,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Classes/SuperSampleAppDelegate.m"
-         timestampString = "345403704.029324"
+         timestampString = "345552882.888792"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "127"
-         endingLineNumber = "127"
-         landmarkName = "-didUpdateToLocation:fromLocation:"
+         startingLineNumber = "62"
+         endingLineNumber = "62"
+         landmarkName = "-applicationDidEnterBackground:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

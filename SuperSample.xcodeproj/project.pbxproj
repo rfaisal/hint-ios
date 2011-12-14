@@ -25,6 +25,23 @@
 		A7C3FFC11402E9B20039A28B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB81402E9B20039A28B /* SystemConfiguration.framework */; };
 		BDC7630F144EED820091EB17 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC7630E144EED820091EB17 /* AudioToolbox.framework */; };
 		BDED890A1445F0B8000FDF62 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BDED89091445F0B8000FDF62 /* libresolv.dylib */; };
+		FA524EE61498A0EA009FD3E2 /* QuizQuestionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524ECB1498A0EA009FD3E2 /* QuizQuestionVC.m */; };
+		FA524EE81498A0EA009FD3E2 /* QuizRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524ECE1498A0EA009FD3E2 /* QuizRootViewController.m */; };
+		FA524EEA1498A0EA009FD3E2 /* QuizStatisticVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524ED11498A0EA009FD3E2 /* QuizStatisticVC.m */; };
+		FA524EF11498A173009FD3E2 /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = FA524EEE1498A173009FD3E2 /* checkbox.png */; };
+		FA524EF21498A173009FD3E2 /* checkedbox.png in Resources */ = {isa = PBXBuildFile; fileRef = FA524EEF1498A173009FD3E2 /* checkedbox.png */; };
+		FA524EF31498A173009FD3E2 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = FA524EF01498A173009FD3E2 /* line.png */; };
+		FA524EF81498A257009FD3E2 /* Camp Nou_Flickr_Will Palmer.png in Resources */ = {isa = PBXBuildFile; fileRef = FA524EF51498A257009FD3E2 /* Camp Nou_Flickr_Will Palmer.png */; };
+		FA524EF91498A257009FD3E2 /* Johnny Haynes_Flickr_adamr.stone.png in Resources */ = {isa = PBXBuildFile; fileRef = FA524EF61498A257009FD3E2 /* Johnny Haynes_Flickr_adamr.stone.png */; };
+		FA524EFA1498A257009FD3E2 /* questions.xml in Resources */ = {isa = PBXBuildFile; fileRef = FA524EF71498A257009FD3E2 /* questions.xml */; };
+		FA524F031498A297009FD3E2 /* QuizQuestionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA524EFE1498A297009FD3E2 /* QuizQuestionVC.xib */; };
+		FA524F041498A297009FD3E2 /* QuizRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA524EFF1498A297009FD3E2 /* QuizRootViewController.xib */; };
+		FA524F051498A297009FD3E2 /* QuizStatisticVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA524F001498A297009FD3E2 /* QuizStatisticVC.xib */; };
+		FA524F071498A5A3009FD3E2 /* btn_go.png in Resources */ = {isa = PBXBuildFile; fileRef = FA524F061498A5A3009FD3E2 /* btn_go.png */; };
+		FA524F0D1498AB8B009FD3E2 /* btn_answer.png in Resources */ = {isa = PBXBuildFile; fileRef = FA524F0C1498AB8B009FD3E2 /* btn_answer.png */; };
+		FA524F131498B18F009FD3E2 /* white_quiz_info_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FA524F121498B18F009FD3E2 /* white_quiz_info_bg.png */; };
+		FA524F151498B1EF009FD3E2 /* btn_view_leaderboard.png in Resources */ = {isa = PBXBuildFile; fileRef = FA524F141498B1EF009FD3E2 /* btn_view_leaderboard.png */; };
+		FA524F251498BEA8009FD3E2 /* QuizTestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524F241498BEA8009FD3E2 /* QuizTestEngine.m */; };
 		FA5D43EB1488E90D00BE9F9E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5D43EA1488E90D00BE9F9E /* logo.png */; };
 		FA5D43F014890C8400BE9F9E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5D43EF14890C8300BE9F9E /* Default.png */; };
 		FA70CFA91487BBC000C21DAA /* Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CE9A1487BBC000C21DAA /* Messages.m */; };
@@ -134,6 +151,27 @@
 		A7C3FFB81402E9B20039A28B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BDC7630E144EED820091EB17 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		BDED89091445F0B8000FDF62 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		FA524ECA1498A0EA009FD3E2 /* QuizQuestionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizQuestionVC.h; sourceTree = "<group>"; };
+		FA524ECB1498A0EA009FD3E2 /* QuizQuestionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizQuestionVC.m; sourceTree = "<group>"; };
+		FA524ECD1498A0EA009FD3E2 /* QuizRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizRootViewController.h; sourceTree = "<group>"; };
+		FA524ECE1498A0EA009FD3E2 /* QuizRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizRootViewController.m; sourceTree = "<group>"; };
+		FA524ED01498A0EA009FD3E2 /* QuizStatisticVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizStatisticVC.h; sourceTree = "<group>"; };
+		FA524ED11498A0EA009FD3E2 /* QuizStatisticVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizStatisticVC.m; sourceTree = "<group>"; };
+		FA524EEE1498A173009FD3E2 /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
+		FA524EEF1498A173009FD3E2 /* checkedbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkedbox.png; sourceTree = "<group>"; };
+		FA524EF01498A173009FD3E2 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
+		FA524EF51498A257009FD3E2 /* Camp Nou_Flickr_Will Palmer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Camp Nou_Flickr_Will Palmer.png"; sourceTree = "<group>"; };
+		FA524EF61498A257009FD3E2 /* Johnny Haynes_Flickr_adamr.stone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Johnny Haynes_Flickr_adamr.stone.png"; sourceTree = "<group>"; };
+		FA524EF71498A257009FD3E2 /* questions.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = questions.xml; sourceTree = "<group>"; };
+		FA524EFE1498A297009FD3E2 /* QuizQuestionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizQuestionVC.xib; sourceTree = "<group>"; };
+		FA524EFF1498A297009FD3E2 /* QuizRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizRootViewController.xib; sourceTree = "<group>"; };
+		FA524F001498A297009FD3E2 /* QuizStatisticVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizStatisticVC.xib; sourceTree = "<group>"; };
+		FA524F061498A5A3009FD3E2 /* btn_go.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_go.png; sourceTree = "<group>"; };
+		FA524F0C1498AB8B009FD3E2 /* btn_answer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_answer.png; sourceTree = "<group>"; };
+		FA524F121498B18F009FD3E2 /* white_quiz_info_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_quiz_info_bg.png; sourceTree = "<group>"; };
+		FA524F141498B1EF009FD3E2 /* btn_view_leaderboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_view_leaderboard.png; sourceTree = "<group>"; };
+		FA524F231498BEA8009FD3E2 /* QuizTestEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizTestEngine.h; sourceTree = "<group>"; };
+		FA524F241498BEA8009FD3E2 /* QuizTestEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizTestEngine.m; sourceTree = "<group>"; };
 		FA5D43EA1488E90D00BE9F9E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FA5D43EF14890C8300BE9F9E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		FA70CE931487BBC000C21DAA /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
@@ -368,6 +406,62 @@
 			path = SuperSample;
 			sourceTree = "<group>";
 		};
+		FA524EB51498A0EA009FD3E2 /* QuizController */ = {
+			isa = PBXGroup;
+			children = (
+				FA524ECD1498A0EA009FD3E2 /* QuizRootViewController.h */,
+				FA524ECE1498A0EA009FD3E2 /* QuizRootViewController.m */,
+				FA524ECA1498A0EA009FD3E2 /* QuizQuestionVC.h */,
+				FA524ECB1498A0EA009FD3E2 /* QuizQuestionVC.m */,
+				FA524ED01498A0EA009FD3E2 /* QuizStatisticVC.h */,
+				FA524ED11498A0EA009FD3E2 /* QuizStatisticVC.m */,
+			);
+			path = QuizController;
+			sourceTree = "<group>";
+		};
+		FA524EED1498A173009FD3E2 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				FA524EEE1498A173009FD3E2 /* checkbox.png */,
+				FA524EEF1498A173009FD3E2 /* checkedbox.png */,
+				FA524EF01498A173009FD3E2 /* line.png */,
+				FA524F061498A5A3009FD3E2 /* btn_go.png */,
+				FA524F121498B18F009FD3E2 /* white_quiz_info_bg.png */,
+				FA524F141498B1EF009FD3E2 /* btn_view_leaderboard.png */,
+				FA524F0C1498AB8B009FD3E2 /* btn_answer.png */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		FA524EF41498A257009FD3E2 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				FA524EF51498A257009FD3E2 /* Camp Nou_Flickr_Will Palmer.png */,
+				FA524EF61498A257009FD3E2 /* Johnny Haynes_Flickr_adamr.stone.png */,
+				FA524EF71498A257009FD3E2 /* questions.xml */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		FA524EFB1498A297009FD3E2 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				FA524EFF1498A297009FD3E2 /* QuizRootViewController.xib */,
+				FA524EFE1498A297009FD3E2 /* QuizQuestionVC.xib */,
+				FA524F001498A297009FD3E2 /* QuizStatisticVC.xib */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		FA524F221498BEA8009FD3E2 /* QuizTestEngine */ = {
+			isa = PBXGroup;
+			children = (
+				FA524F231498BEA8009FD3E2 /* QuizTestEngine.h */,
+				FA524F241498BEA8009FD3E2 /* QuizTestEngine.m */,
+			);
+			path = QuizTestEngine;
+			sourceTree = "<group>";
+		};
 		FA70CE911487BBC000C21DAA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,6 +565,7 @@
 				FA70CEAE1487BBC000C21DAA /* EntityProvider */,
 				FA70CEB11487BBC000C21DAA /* PrivateChatListProvider */,
 				FA70CEB41487BBC000C21DAA /* SourceImagesProvider */,
+				FA524F221498BEA8009FD3E2 /* QuizTestEngine */,
 				FA70CEB71487BBC000C21DAA /* SourceThumbnails */,
 			);
 			path = DataProviders;
@@ -689,6 +784,7 @@
 		FA70CF4A1487BBC000C21DAA /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				FA524EB51498A0EA009FD3E2 /* QuizController */,
 				FA70CF4B1487BBC000C21DAA /* ChatController */,
 				FA70CF4E1487BBC000C21DAA /* LoginOrRegistration */,
 				FA70CF581487BBC000C21DAA /* MapController */,
@@ -1043,6 +1139,7 @@
 			isa = PBXGroup;
 			children = (
 				FA70D0001487BBDA00C21DAA /* Common */,
+				FA524EF41498A257009FD3E2 /* Quiz */,
 				FA70D0071487BBDA00C21DAA /* iPhone */,
 			);
 			path = Resources;
@@ -1087,6 +1184,7 @@
 				FA70D0091487BBDA00C21DAA /* Common */,
 				FA70D00C1487BBDA00C21DAA /* Map */,
 				FA70D0111487BBDA00C21DAA /* Settings */,
+				FA524EED1498A173009FD3E2 /* Quiz */,
 				FA70D0161487BBDA00C21DAA /* TabBar */,
 			);
 			path = Images;
@@ -1149,6 +1247,7 @@
 				FA70D0221487BBDA00C21DAA /* PrivateChatViewController.xib */,
 				FA70D0231487BBDA00C21DAA /* RegistrationViewController.xib */,
 				FA70D0241487BBDA00C21DAA /* SettingsViewController.xib */,
+				FA524EFB1498A297009FD3E2 /* Quiz */,
 			);
 			path = XIB;
 			sourceTree = "<group>";
@@ -1251,6 +1350,19 @@
 				FA5D43F014890C8400BE9F9E /* Default.png in Resources */,
 				FACBCEB014911A6D00E876FC /* user.png in Resources */,
 				FACBCEB41491201000E876FC /* marker_own_map.png in Resources */,
+				FA524EF11498A173009FD3E2 /* checkbox.png in Resources */,
+				FA524EF21498A173009FD3E2 /* checkedbox.png in Resources */,
+				FA524EF31498A173009FD3E2 /* line.png in Resources */,
+				FA524EF81498A257009FD3E2 /* Camp Nou_Flickr_Will Palmer.png in Resources */,
+				FA524EF91498A257009FD3E2 /* Johnny Haynes_Flickr_adamr.stone.png in Resources */,
+				FA524EFA1498A257009FD3E2 /* questions.xml in Resources */,
+				FA524F031498A297009FD3E2 /* QuizQuestionVC.xib in Resources */,
+				FA524F041498A297009FD3E2 /* QuizRootViewController.xib in Resources */,
+				FA524F051498A297009FD3E2 /* QuizStatisticVC.xib in Resources */,
+				FA524F071498A5A3009FD3E2 /* btn_go.png in Resources */,
+				FA524F0D1498AB8B009FD3E2 /* btn_answer.png in Resources */,
+				FA524F131498B18F009FD3E2 /* white_quiz_info_bg.png in Resources */,
+				FA524F151498B1EF009FD3E2 /* btn_view_leaderboard.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1333,6 +1445,10 @@
 				FA70CFFA1487BBC000C21DAA /* SuperSampleAppDelegate.m in Sources */,
 				FA70CFFE1487BBCF00C21DAA /* main.m in Sources */,
 				FA70D0251487BBDA00C21DAA /* SuperSample.xcdatamodeld in Sources */,
+				FA524EE61498A0EA009FD3E2 /* QuizQuestionVC.m in Sources */,
+				FA524EE81498A0EA009FD3E2 /* QuizRootViewController.m in Sources */,
+				FA524EEA1498A0EA009FD3E2 /* QuizStatisticVC.m in Sources */,
+				FA524F251498BEA8009FD3E2 /* QuizTestEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

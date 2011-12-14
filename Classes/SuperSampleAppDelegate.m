@@ -22,6 +22,7 @@
 @synthesize window = _window;
 @synthesize viewController = _viewController;
 @synthesize loginOrRegisterController = _loginOrRegisterController;
+@synthesize quizRootController = _quizRootController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     
@@ -29,7 +30,6 @@
 	[QBSettings setLogLevel:QBLogLevelDebug];
 	[QBSettings setServerDomainTemplate:[NSString stringWithFormat:@"%@%@", @"%@.", endpoint]];	
     
-    [QBGeoposService setDomain:@"location.qbtest01.quickblox.com"];
 	[QBGeoposService AuthorizeAppId:appID key:appKey secret:appSecret];	
 	[QBGeoposService setServiceZone:ServiceZoneProduction];
 
@@ -151,6 +151,7 @@
     [_window release];
     [_viewController release];
     [_loginOrRegisterController release];
+    [_quizRootController release];
     
 	[super dealloc];
 }
