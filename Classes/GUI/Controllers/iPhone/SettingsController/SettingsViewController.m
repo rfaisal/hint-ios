@@ -129,28 +129,28 @@
     [bioTextView resignFirstResponder];
     [fullName resignFirstResponder];
     
-    /*
-	if(nil == avatarView.image){
-		return;
-	}
-
-	NSData *imageData = UIImagePNGRepresentation(avatarView.image);
-	[QBBlobsService TUploadDataAsync:imageData 
-							 ownerID:ownerID 
-							fileName:@"image.jpeg" 
-						 contentType:@"image/jpeg"
-							delegate:self];	*/
-    
     // update user fields
     QBUUser *user = [[QBUUser alloc] init];
     user.ID = [[UsersProvider sharedProvider] currentUserID];
     user.fullName = fullName.text;
     
-    [QBUsersService editUser:user delegate:self];
+    //[QBUsersService editUser:user delegate:self];
     
     [user release];
     
+    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    if(nil == avatarView.image){
+		return;
+	}
+    
+	NSData *imageData = UIImagePNGRepresentation(avatarView.image);
+	[QBBlobsService TUploadDataAsync:imageData 
+							 ownerID:ownerID 
+							fileName:@"image.jpeg" 
+						 contentType:@"image/jpeg"
+							delegate:self];	
 }
 
 - (IBAction)displayOfflineUserSwitchDidChangeState:(id)sender{
@@ -203,6 +203,7 @@
 - (void)completedWithResult:(Result*)result{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
+    // Edit User result
     if([result isKindOfClass:[QBUUserResult class]]){
         QBUUserResult* res = (QBUUserResult*)result;
         if(res.success){
@@ -215,14 +216,17 @@
         }else{
             [self processErrors:result.answer.errors];
         }
+        
+    // Upload image result
 	}else if([result isKindOfClass:[QBUploadFileTaskResult class]]){
-		QBUploadFileTaskResult* res = (QBUploadFileTaskResult*)result;
+		QBUploadFileTaskResult *res = (QBUploadFileTaskResult*)result;
 		if(res.success){
 			NSString *blobID = res.uploadedFileBlob.UID;
 			[self performSelectorInBackground:@selector(saveAvatarAsync:) withObject:blobID];			
 		}else {
-			NSLog(@"Error: %@", result.errors);
+			[self processErrors:res.answer.errors];
 		}
+        
 	}else if([result isKindOfClass:[QBBlobFileResult class]]){
 		QBBlobFileResult* res = (QBBlobFileResult*)result;
 		if(res.success){
@@ -231,10 +235,10 @@
 				avatarView.image = [UIImage imageWithData:avatarData];	
 			}						
 		}else {
-			NSLog(@"Error: %@", result.errors);
+			[self processErrors:res.answer.errors];
 		}
 	}else {
-		NSLog(@"Unexpected result %@",result);
+		[self processErrors:result.answer.errors];
 	}
 }
 
@@ -263,9 +267,9 @@
 	}
 }
 
--(void) saveAvatarAsync:(NSString*)blobID {	
+-(void) saveAvatarAsync:(NSString *)blobID {	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	NSManagedObjectContext * context = [StorageProvider threadSafeContext];
+	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
 	
 	NSError *error = nil;
 	Users* user = [[UsersProvider sharedProvider] currentUser];
