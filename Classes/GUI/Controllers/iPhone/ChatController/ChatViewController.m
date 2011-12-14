@@ -102,7 +102,7 @@
 }
 
 -(void) startSearchGeoData{
-	updateGeoDataTimer = [NSTimer scheduledTimerWithTimeInterval:kGeoposServiceGetGeoDatInterval
+	updateGeoDataTimer = [NSTimer scheduledTimerWithTimeInterval:kUpdateChatInterval
                                                           target:self
                                                         selector:@selector(searchGeoData:)
                                                         userInfo:nil

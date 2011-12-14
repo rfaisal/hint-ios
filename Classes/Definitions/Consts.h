@@ -49,14 +49,15 @@ static NSString *const GEODATA_KEY  = @"GEODATA_KEY";
 
 static CGFloat const kManagedObjectContextDelayedSaveInterval = 1.0;
 
-#define kGeoposServiceGetGeoDatInterval 60
+#define kUpdateMapInterval 60 //s
+#define kUpdateChatInterval 30 //s
 
 
 #pragma mark -
 #pragma mark XMPPService
 
-static NSString* const commonPassword = @"chatPasswordAllSame";
-static NSString* const emailUserName = @"%i@jabber.quickblox.com";
+static NSString *const commonPassword = @"chatPasswordAllSame";
+static NSString *const emailUserName = @"%i@jabber.quickblox.com";
 
 
 #pragma mark -

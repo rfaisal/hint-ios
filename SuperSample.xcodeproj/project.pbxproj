@@ -79,12 +79,10 @@
 		FA70CFEC1487BBC000C21DAA /* SubscribedView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF751487BBC000C21DAA /* SubscribedView.m */; };
 		FA70CFED1487BBC000C21DAA /* MapPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF791487BBC000C21DAA /* MapPinView.m */; };
 		FA70CFEE1487BBC000C21DAA /* ImageThambnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF7D1487BBC000C21DAA /* ImageThambnailView.m */; };
-		FA70CFEF1487BBC000C21DAA /* Converter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF821487BBC000C21DAA /* Converter.m */; };
 		FA70CFF01487BBC000C21DAA /* DeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF851487BBC000C21DAA /* DeviceHardware.m */; };
 		FA70CFF11487BBC000C21DAA /* Entity+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF881487BBC000C21DAA /* Entity+NSCoding.m */; };
 		FA70CFF21487BBC000C21DAA /* QBUUser+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF8A1487BBC000C21DAA /* QBUUser+NSCoding.m */; };
 		FA70CFF31487BBC000C21DAA /* FileSystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF8D1487BBC000C21DAA /* FileSystemHelper.m */; };
-		FA70CFF41487BBC000C21DAA /* GDConnectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF901487BBC000C21DAA /* GDConnectionHelper.m */; };
 		FA70CFF51487BBC000C21DAA /* ImageResize.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF941487BBC000C21DAA /* ImageResize.m */; };
 		FA70CFF61487BBC000C21DAA /* Resources.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF971487BBC000C21DAA /* Resources.m */; };
 		FA70CFF71487BBC000C21DAA /* LoadBinaryAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF9C1487BBC000C21DAA /* LoadBinaryAnswer.m */; };
@@ -253,8 +251,6 @@
 		FA70CF7C1487BBC000C21DAA /* ImageThambnailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageThambnailView.h; sourceTree = "<group>"; };
 		FA70CF7D1487BBC000C21DAA /* ImageThambnailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageThambnailView.m; sourceTree = "<group>"; };
 		FA70CF7E1487BBC000C21DAA /* Thumbnails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thumbnails.h; sourceTree = "<group>"; };
-		FA70CF811487BBC000C21DAA /* Converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Converter.h; sourceTree = "<group>"; };
-		FA70CF821487BBC000C21DAA /* Converter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Converter.m; sourceTree = "<group>"; };
 		FA70CF841487BBC000C21DAA /* DeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceHardware.h; sourceTree = "<group>"; };
 		FA70CF851487BBC000C21DAA /* DeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceHardware.m; sourceTree = "<group>"; };
 		FA70CF871487BBC000C21DAA /* Entity+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Entity+NSCoding.h"; sourceTree = "<group>"; };
@@ -263,8 +259,6 @@
 		FA70CF8A1487BBC000C21DAA /* QBUUser+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "QBUUser+NSCoding.m"; sourceTree = "<group>"; };
 		FA70CF8C1487BBC000C21DAA /* FileSystemHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSystemHelper.h; sourceTree = "<group>"; };
 		FA70CF8D1487BBC000C21DAA /* FileSystemHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSystemHelper.m; sourceTree = "<group>"; };
-		FA70CF8F1487BBC000C21DAA /* GDConnectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDConnectionHelper.h; sourceTree = "<group>"; };
-		FA70CF901487BBC000C21DAA /* GDConnectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDConnectionHelper.m; sourceTree = "<group>"; };
 		FA70CF911487BBC000C21DAA /* Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helpers.h; sourceTree = "<group>"; };
 		FA70CF931487BBC000C21DAA /* ImageResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageResize.h; sourceTree = "<group>"; };
 		FA70CF941487BBC000C21DAA /* ImageResize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageResize.m; sourceTree = "<group>"; };
@@ -997,25 +991,14 @@
 		FA70CF7F1487BBC000C21DAA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				FA70CF801487BBC000C21DAA /* Converter */,
 				FA70CF831487BBC000C21DAA /* DeviceHardware */,
 				FA70CF861487BBC000C21DAA /* Extensions */,
 				FA70CF8B1487BBC000C21DAA /* FileSystemHelper */,
-				FA70CF8E1487BBC000C21DAA /* GDConnection */,
 				FA70CF911487BBC000C21DAA /* Helpers.h */,
 				FA70CF921487BBC000C21DAA /* ImageResize */,
 				FA70CF951487BBC000C21DAA /* Resources */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		FA70CF801487BBC000C21DAA /* Converter */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF811487BBC000C21DAA /* Converter.h */,
-				FA70CF821487BBC000C21DAA /* Converter.m */,
-			);
-			path = Converter;
 			sourceTree = "<group>";
 		};
 		FA70CF831487BBC000C21DAA /* DeviceHardware */ = {
@@ -1045,15 +1028,6 @@
 				FA70CF8D1487BBC000C21DAA /* FileSystemHelper.m */,
 			);
 			path = FileSystemHelper;
-			sourceTree = "<group>";
-		};
-		FA70CF8E1487BBC000C21DAA /* GDConnection */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF8F1487BBC000C21DAA /* GDConnectionHelper.h */,
-				FA70CF901487BBC000C21DAA /* GDConnectionHelper.m */,
-			);
-			path = GDConnection;
 			sourceTree = "<group>";
 		};
 		FA70CF921487BBC000C21DAA /* ImageResize */ = {
@@ -1431,12 +1405,10 @@
 				FA70CFEC1487BBC000C21DAA /* SubscribedView.m in Sources */,
 				FA70CFED1487BBC000C21DAA /* MapPinView.m in Sources */,
 				FA70CFEE1487BBC000C21DAA /* ImageThambnailView.m in Sources */,
-				FA70CFEF1487BBC000C21DAA /* Converter.m in Sources */,
 				FA70CFF01487BBC000C21DAA /* DeviceHardware.m in Sources */,
 				FA70CFF11487BBC000C21DAA /* Entity+NSCoding.m in Sources */,
 				FA70CFF21487BBC000C21DAA /* QBUUser+NSCoding.m in Sources */,
 				FA70CFF31487BBC000C21DAA /* FileSystemHelper.m in Sources */,
-				FA70CFF41487BBC000C21DAA /* GDConnectionHelper.m in Sources */,
 				FA70CFF51487BBC000C21DAA /* ImageResize.m in Sources */,
 				FA70CFF61487BBC000C21DAA /* Resources.m in Sources */,
 				FA70CFF71487BBC000C21DAA /* LoadBinaryAnswer.m in Sources */,

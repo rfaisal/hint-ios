@@ -14,6 +14,7 @@
     free(machine);
     return platform;
 }
+
 + (NSString *) platformString{
     NSString *platform = [self platform];
     if ([platform isEqualToString:@"iPhone1,1"]) return @"iPhone 1G";
@@ -26,10 +27,11 @@
     if ([platform isEqualToString:@"i386"])   return @"iPhone Simulator";
     return platform;
 }
+
 + (BOOL)iPhone4{
-	//return YES;
 	return [[self platformString] isEqualToString:@"iPhone 4"];
 }
+
 + (BOOL)simulator{
 	return [[self platformString] isEqualToString:@"iPhone Simulator"];
 }
