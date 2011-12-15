@@ -11,7 +11,7 @@
 @class Users;
 
 @interface SettingsViewController : SubscribedViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, ActionStatusDelegate> {
-
+    BOOL isAvatarChanged;
 }
 
 @property (nonatomic, retain) IBOutlet UIView *container;

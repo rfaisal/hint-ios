@@ -107,7 +107,7 @@
     
     // avatar
     SourceImages *sourceImage = mess.user.photo;
-    self.avatarView.image = [UIImage imageWithData:sourceImage.thumbnail];
+    self.avatarView.image = [UIImage imageWithData:sourceImage.image];
     if(self.avatarView.image == nil){
        self.avatarView.image = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"user" ofType:@"png"]];
     }

@@ -14,6 +14,8 @@
 #pragma mark
 
 static NSString *const endpoint = @"qbtest01.quickblox.com";
+//static NSUInteger const appID = 90;
+//static NSUInteger const ownerID = 4335;
 static NSUInteger const appID = 56;
 static NSUInteger const ownerID = 247;
 static NSString *const appKey = @"X2TYsfGRBqh6Px3";

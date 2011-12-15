@@ -16,7 +16,7 @@
     #import <SystemConfiguration/SCNetworkReachability.h>
     #import <CoreLocation/CoreLocation.h>
     #import <CoreData/CoreData.h>
-    #import <Quickblox/MobservFramework.h>
+    #import <Quickblox/Quickblox.h>
     #import <MapKit/MapKit.h>
     #import <AudioToolbox/AudioToolbox.h>
 

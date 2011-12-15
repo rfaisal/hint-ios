@@ -8,17 +8,15 @@
 
 #import "SourceElement.h"
 
-@class Messages;
 @class Users;
 
 @interface SourceImages : SourceElement {
 @private
 }
-@property (nonatomic, retain) NSNumber * height;
-@property (nonatomic, retain) NSNumber * width;
-@property (nonatomic, retain) NSData* image;
-@property (nonatomic, retain) NSData* thumbnail;
-@property (nonatomic, retain) Messages * avatar;
-@property (nonatomic, retain) Users * photo;
+
+@property (nonatomic, retain) NSNumber *height;
+@property (nonatomic, retain) NSNumber *width;
+@property (nonatomic, retain) NSData *image;
+@property (nonatomic, retain) Users *user;
 
 @end

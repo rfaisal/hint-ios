@@ -63,9 +63,10 @@
     
     
     // set avatar
-    // temporary fix. Use 'blob_id' instead 'website'
-	if(user.mbUser.website){
-		[QBBlobsService GetBlobAsync:user.mbUser.website delegate:self];
+    if(user.photo){
+        [avatarView setImage:[UIImage imageWithData:user.photo.image]];
+    }else if(user.mbUser.externalUserID){ // temporary fix. Use 'blob_id' instead 'externalUserID'
+       [QBBlobsService GetBlobInfoAsync:user.mbUser.externalUserID delegate:self];
 	}
 }
 
@@ -73,9 +74,6 @@
     [super viewWillAppear:animated];
     
     Users *user = [[UsersProvider sharedProvider] currentUser];
-    
-    
-    NSLog(@"user.mbUser.fullName=%@", user.mbUser.fullName);
     
     // populate fields
     fullName.text = user.mbUser.fullName;
@@ -129,28 +127,28 @@
     [bioTextView resignFirstResponder];
     [fullName resignFirstResponder];
     
-    // update user fields
-    QBUUser *user = [[QBUUser alloc] init];
-    user.ID = [[UsersProvider sharedProvider] currentUserID];
-    user.fullName = fullName.text;
-    
-    //[QBUsersService editUser:user delegate:self];
-    
-    [user release];
-    
-    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-    if(nil == avatarView.image){
-		return;
-	}
     
-	NSData *imageData = UIImagePNGRepresentation(avatarView.image);
-	[QBBlobsService TUploadDataAsync:imageData 
-							 ownerID:ownerID 
-							fileName:@"image.jpeg" 
-						 contentType:@"image/jpeg"
-							delegate:self];	
+    // if avatar not changed
+    if(isAvatarChanged){
+        isAvatarChanged = NO;
+        
+        // update avatar
+        NSData *imageData = UIImagePNGRepresentation(avatarView.image);
+        [QBBlobsService TUploadDataAsync:imageData 
+                                 ownerID:ownerID 
+                                fileName:@"image.jpeg" 
+                             contentType:@"image/jpeg"
+                                delegate:self];	
+	}else{
+        // update user fields
+        QBUUser *user = [[QBUUser alloc] init];
+        user.ID = [[UsersProvider sharedProvider] currentUserID];
+        user.fullName = fullName.text;
+        [QBUsersService editUser:user delegate:self];
+        [user release];
+    }
 }
 
 - (IBAction)displayOfflineUserSwitchDidChangeState:(id)sender{
@@ -182,15 +180,15 @@
 - (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info {
 	[self dismissModalViewControllerAnimated:NO];
     
-    // resize image
+    // origin image
     UIImage *image = (UIImage *) [info valueForKey:UIImagePickerControllerOriginalImage];
     
-    UIGraphicsBeginImageContext(CGSizeMake(120, 120));
-    [image drawInRect:CGRectMake(0, 0, 120, 120)];
-    UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    // resized image
+    UIImage *resizedImage = [ImageResize resizedImage:image withRect:CGRectMake(0, 0, 50, 50)];
     
     [avatarView setImage:resizedImage];
+    
+    isAvatarChanged = YES;
     
     self.imagePicker = nil;
 }
@@ -203,8 +201,19 @@
 - (void)completedWithResult:(Result*)result{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
+    
+    // Get Blob Info
+    if([result isKindOfClass:[QBBlobResult class]]){
+        QBBlobResult *res = (QBBlobResult *)result;
+        if(res.success){
+            NSString *blobUID = res.blob.UID;
+            [QBBlobsService GetBlobAsync:blobUID delegate:self];
+        }else{
+            [self processErrors:result.answer.errors];
+        }
+        
     // Edit User result
-    if([result isKindOfClass:[QBUUserResult class]]){
+    }else if([result isKindOfClass:[QBUUserResult class]]){
         QBUUserResult* res = (QBUUserResult*)result;
         if(res.success){
             // get & update user
@@ -221,8 +230,24 @@
 	}else if([result isKindOfClass:[QBUploadFileTaskResult class]]){
 		QBUploadFileTaskResult *res = (QBUploadFileTaskResult*)result;
 		if(res.success){
-			NSString *blobID = res.uploadedFileBlob.UID;
-			[self performSelectorInBackground:@selector(saveAvatarAsync:) withObject:blobID];			
+            
+			NSString *blobUID = res.uploadedFileBlob.UID;
+            int blobID = res.uploadedFileBlob.ID;
+            
+            // update current user
+            QBUUser *user = [[QBUUser alloc] init];
+            user.ID = [[UsersProvider sharedProvider] currentUserID];
+            user.fullName = fullName.text;
+            user.externalUserID = blobID; // temporary fix. Use 'blob_id' instead 'externalUserID'
+            [QBUsersService editUser:user delegate:self];
+            [user release];
+            
+            // save blob_id
+            Users *currentUser = [[UsersProvider sharedProvider] currentUser];
+            currentUser.mbUser.externalUserID = blobID; // temporary fix. Use 'blob_id' instead 'externalUserID'
+            BOOL saveUserStatus = [[UsersProvider sharedProvider] saveUser];
+            
+			[self performSelectorInBackground:@selector(saveAvatarAsync:) withObject:blobUID];			
 		}else {
 			[self processErrors:res.answer.errors];
 		}
@@ -267,25 +292,24 @@
 	}
 }
 
--(void) saveAvatarAsync:(NSString *)blobID {	
+-(void) saveAvatarAsync:(NSString *)blobUID {	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
 	
 	NSError *error = nil;
-	Users* user = [[UsersProvider sharedProvider] currentUser];
-    QBUUser *qbUser = user.mbUser;
-	NSString* Id = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]];
-    SourceImages* sourceImage = [[SourceImagesProvider sharedProvider] addImageWithUID:Id globalURL:blobID localURL:nil context:context];
-    
-    qbUser.website = blobID;
-    
-    user.mbUser = qbUser;
-    
-    [[UsersProvider sharedProvider] saveUser];
+	
+    // save image
+    SourceImages *sourceImage = [[SourceImagesProvider sharedProvider] addImage:avatarView.image
+                                                                        withUID:blobUID 
+                                                                      globalURL:blobUID 
+                                                                       localURL:nil 
+                                                                        context:context];
     
 	if(sourceImage){
-		//sourceImage.thumbnail = UIImagePNGRepresentation([ImageResize resizedImage:avatarView.image withRect:CGRectMake(0, 0, 50, 50)]);
-		//user.photo = sourceImage;
+        // update user
+        Users *user = [[UsersProvider sharedProvider] currentUserWithContext:context];
+		user.photo = sourceImage;
+        [[UsersProvider sharedProvider] saveUserWithContext:context];
 		
 		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
 		[nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
@@ -297,8 +321,8 @@
 }
 
 - (void)mergeChanges:(NSNotification *)notification{	
-	NSManagedObjectContext * sharedContext = [StorageProvider sharedInstance].managedObjectContext;
-	NSManagedObjectContext * currentContext = (NSManagedObjectContext *)[notification object];
+	NSManagedObjectContext *sharedContext = [StorageProvider sharedInstance].managedObjectContext;
+	NSManagedObjectContext *currentContext = (NSManagedObjectContext *)[notification object];
 	if ( currentContext == sharedContext) {		
 		[currentContext performSelector:@selector(mergeChangesFromContextDidSaveNotification:) 
 							   onThread:[NSThread currentThread] 

@@ -14,10 +14,7 @@
 @implementation SourceImages
 @dynamic height;
 @dynamic width;
-@dynamic avatar;
-@dynamic photo;
+@dynamic user;
 @dynamic image;
-@dynamic thumbnail;
-
 
 @end

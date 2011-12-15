@@ -48,13 +48,11 @@
 		FA70CFAA1487BBC000C21DAA /* PrivateMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CE9D1487BBC000C21DAA /* PrivateMessages.m */; };
 		FA70CFAB1487BBC000C21DAA /* SourceElement.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEA01487BBC000C21DAA /* SourceElement.m */; };
 		FA70CFAC1487BBC000C21DAA /* SourceImages.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEA31487BBC000C21DAA /* SourceImages.m */; };
-		FA70CFAD1487BBC000C21DAA /* SourceThumbnails.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEA61487BBC000C21DAA /* SourceThumbnails.m */; };
 		FA70CFAE1487BBC000C21DAA /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEA91487BBC000C21DAA /* Users.m */; };
 		FA70CFAF1487BBC000C21DAA /* ChatListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEAD1487BBC000C21DAA /* ChatListProvider.m */; };
 		FA70CFB01487BBC000C21DAA /* EntityProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEB01487BBC000C21DAA /* EntityProvider.m */; };
 		FA70CFB11487BBC000C21DAA /* PrivateChatListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEB31487BBC000C21DAA /* PrivateChatListProvider.m */; };
 		FA70CFB21487BBC000C21DAA /* SourceImagesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEB61487BBC000C21DAA /* SourceImagesProvider.m */; };
-		FA70CFB31487BBC000C21DAA /* SourceThumbnailsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEB91487BBC000C21DAA /* SourceThumbnailsProvider.m */; };
 		FA70CFB41487BBC000C21DAA /* UsersProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEBC1487BBC000C21DAA /* UsersProvider.m */; };
 		FA70CFB51487BBC000C21DAA /* AnnotationViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEC01487BBC000C21DAA /* AnnotationViewDataSource.m */; };
 		FA70CFB61487BBC000C21DAA /* BaseTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEC41487BBC000C21DAA /* BaseTableDataSource.m */; };
@@ -181,8 +179,6 @@
 		FA70CEA01487BBC000C21DAA /* SourceElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceElement.m; sourceTree = "<group>"; };
 		FA70CEA21487BBC000C21DAA /* SourceImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceImages.h; sourceTree = "<group>"; };
 		FA70CEA31487BBC000C21DAA /* SourceImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceImages.m; sourceTree = "<group>"; };
-		FA70CEA51487BBC000C21DAA /* SourceThumbnails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceThumbnails.h; sourceTree = "<group>"; };
-		FA70CEA61487BBC000C21DAA /* SourceThumbnails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceThumbnails.m; sourceTree = "<group>"; };
 		FA70CEA81487BBC000C21DAA /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
 		FA70CEA91487BBC000C21DAA /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
 		FA70CEAC1487BBC000C21DAA /* ChatListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListProvider.h; sourceTree = "<group>"; };
@@ -193,8 +189,6 @@
 		FA70CEB31487BBC000C21DAA /* PrivateChatListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateChatListProvider.m; sourceTree = "<group>"; };
 		FA70CEB51487BBC000C21DAA /* SourceImagesProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceImagesProvider.h; sourceTree = "<group>"; };
 		FA70CEB61487BBC000C21DAA /* SourceImagesProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceImagesProvider.m; sourceTree = "<group>"; };
-		FA70CEB81487BBC000C21DAA /* SourceThumbnailsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceThumbnailsProvider.h; sourceTree = "<group>"; };
-		FA70CEB91487BBC000C21DAA /* SourceThumbnailsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceThumbnailsProvider.m; sourceTree = "<group>"; };
 		FA70CEBB1487BBC000C21DAA /* UsersProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersProvider.h; sourceTree = "<group>"; };
 		FA70CEBC1487BBC000C21DAA /* UsersProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersProvider.m; sourceTree = "<group>"; };
 		FA70CEBF1487BBC000C21DAA /* AnnotationViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationViewDataSource.h; sourceTree = "<group>"; };
@@ -491,7 +485,6 @@
 				FA70CE9B1487BBC000C21DAA /* PrivateMessages */,
 				FA70CE9E1487BBC000C21DAA /* SourceElement */,
 				FA70CEA11487BBC000C21DAA /* SourceImages */,
-				FA70CEA41487BBC000C21DAA /* SourceThumbnails */,
 				FA70CEA71487BBC000C21DAA /* Users */,
 			);
 			path = DataModels;
@@ -533,15 +526,6 @@
 			path = SourceImages;
 			sourceTree = "<group>";
 		};
-		FA70CEA41487BBC000C21DAA /* SourceThumbnails */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CEA51487BBC000C21DAA /* SourceThumbnails.h */,
-				FA70CEA61487BBC000C21DAA /* SourceThumbnails.m */,
-			);
-			path = SourceThumbnails;
-			sourceTree = "<group>";
-		};
 		FA70CEA71487BBC000C21DAA /* Users */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,7 +544,6 @@
 				FA70CEB11487BBC000C21DAA /* PrivateChatListProvider */,
 				FA70CEB41487BBC000C21DAA /* SourceImagesProvider */,
 				FA524F221498BEA8009FD3E2 /* QuizTestEngine */,
-				FA70CEB71487BBC000C21DAA /* SourceThumbnails */,
 			);
 			path = DataProviders;
 			sourceTree = "<group>";
@@ -599,15 +582,6 @@
 				FA70CEB61487BBC000C21DAA /* SourceImagesProvider.m */,
 			);
 			path = SourceImagesProvider;
-			sourceTree = "<group>";
-		};
-		FA70CEB71487BBC000C21DAA /* SourceThumbnails */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CEB81487BBC000C21DAA /* SourceThumbnailsProvider.h */,
-				FA70CEB91487BBC000C21DAA /* SourceThumbnailsProvider.m */,
-			);
-			path = SourceThumbnails;
 			sourceTree = "<group>";
 		};
 		FA70CEBA1487BBC000C21DAA /* UsersProvider */ = {
@@ -1374,13 +1348,11 @@
 				FA70CFAA1487BBC000C21DAA /* PrivateMessages.m in Sources */,
 				FA70CFAB1487BBC000C21DAA /* SourceElement.m in Sources */,
 				FA70CFAC1487BBC000C21DAA /* SourceImages.m in Sources */,
-				FA70CFAD1487BBC000C21DAA /* SourceThumbnails.m in Sources */,
 				FA70CFAE1487BBC000C21DAA /* Users.m in Sources */,
 				FA70CFAF1487BBC000C21DAA /* ChatListProvider.m in Sources */,
 				FA70CFB01487BBC000C21DAA /* EntityProvider.m in Sources */,
 				FA70CFB11487BBC000C21DAA /* PrivateChatListProvider.m in Sources */,
 				FA70CFB21487BBC000C21DAA /* SourceImagesProvider.m in Sources */,
-				FA70CFB31487BBC000C21DAA /* SourceThumbnailsProvider.m in Sources */,
 				FA70CFB41487BBC000C21DAA /* UsersProvider.m in Sources */,
 				FA70CFB51487BBC000C21DAA /* AnnotationViewDataSource.m in Sources */,
 				FA70CFB61487BBC000C21DAA /* BaseTableDataSource.m in Sources */,

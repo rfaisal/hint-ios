@@ -195,36 +195,6 @@ static id instance = nil;
     return isSaved;
 }
 
-- (Users *)sourceUserWithID:(NSString*)uid 
-						avatarID:(NSManagedObjectID*)avatarId 					   
-						  operation:(NSString *)operation
-							context:(NSManagedObjectContext*)context {
-	Users *user = nil;
-		
-	if(nil == uid){
-		return nil;
-	}
-	
-	if([operation isEqualToString:kNewOperation]){
-		user = (Users *)[NSEntityDescription insertNewObjectForEntityForName:[self entityName]
-																	inManagedObjectContext:context];
-		
-		user.uid = [NSNumber numberWithLong:[uid integerValue]];
-		
-		SourceImages *sourceImage = [[SourceImagesProvider sharedProvider] imageByID:avatarId error:nil];
-		[user setPhoto:sourceImage];
-		
-		//[StorageProvider saveContext:context];
-	
-    }else if([operation isEqualToString:kChangedOperation]){
-		user = (Users*)[self modelByID:uid context:context];							
-	}else {
-		[super deleteModelByID:uid context:context];		
-	}
-	
-	return user;
-}
-
 - (NSArray *)getAllUsersWithError:(NSError **)error withOwn:(BOOL)withOwn{
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:[self entityName] 
