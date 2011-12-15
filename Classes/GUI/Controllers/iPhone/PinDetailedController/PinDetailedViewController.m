@@ -101,7 +101,7 @@
             
         // photo
         SourceImages *sourceImage = user.photo;    
-        userAvatar.image = [UIImage imageWithContentsOfFile:[Resources fullPathForFileWithName:sourceImage.local_url]];
+        userAvatar.image = [UIImage imageWithData:sourceImage.image];
         if(userAvatar.image == nil){
             userAvatar.image = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"user" ofType:@"png"]];
         }

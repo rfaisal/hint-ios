@@ -10,12 +10,15 @@
 }
 
 // Get
-- (SourceImages *)imageByID:(NSManagedObjectID*)mid error:(NSError**)error;
+- (SourceImages *)imageByObjectID:(NSManagedObjectID*)mid error:(NSError**)error;
+
+- (SourceImages *)imageByUID:(NSUInteger)uid error:(NSError**)error;
+- (SourceImages *)imageByUID:(NSUInteger)uid error:(NSError**)error context:(NSManagedObjectContext*)context;
 
 // Add
-- (SourceImages *)addImage:(UIImage *) image withUID:(NSString*)uid globalURL:(NSString*)gURL localURL:(NSString*)lURL;
+- (SourceImages *)addImage:(UIImage *) image withUID:(NSUInteger)uid globalURL:(NSString*)gURL localURL:(NSString*)lURL;
 - (SourceImages *)addImage:(UIImage *) image
-                   withUID:(NSString*)uid 
+                   withUID:(NSUInteger)uid 
                  globalURL:(NSString*)gURL 
                   localURL:(NSString*)lURL 
                    context:(NSManagedObjectContext*)context;

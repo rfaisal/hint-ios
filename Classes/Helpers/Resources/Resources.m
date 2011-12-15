@@ -113,7 +113,7 @@ static id instance = nil;
 
 + (NSObject<Cancelable>*)loadImageFromSource:(NSManagedObjectID*)object withDelegate:(NSObject<ActionStatusDelegate>*)delegate {
     NSError *error = nil;
-    SourceImages *image = [[SourceImagesProvider sharedProvider] imageByID:object error:&error];
+    SourceImages *image = [[SourceImagesProvider sharedProvider] imageByObjectID:object error:&error];
     
     BOOL useLocalURL = (image.local_url && [[NSFileManager defaultManager] fileExistsAtPath:[Resources fullPathForFileWithName:image.local_url]]); 
     
@@ -129,7 +129,7 @@ static id instance = nil;
     startLoad();
     
     NSError *error = nil;
-    SourceImages *image = [[SourceImagesProvider sharedProvider] imageByID:object error:&error];
+    SourceImages *image = [[SourceImagesProvider sharedProvider] imageByObjectID:object error:&error];
     
     [Resources loadAndSaveResourceFromSource:image commonPath:@"Cach" withStartBlock:startLoad complection:endLoad];
 }

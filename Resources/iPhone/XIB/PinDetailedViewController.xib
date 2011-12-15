@@ -225,8 +225,10 @@
 								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:677</string>
 								<bool key="IBUIOpaque">NO</bool>
+								<float key="IBUIAlpha">0.40000000596046448</float>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<float key="IBUIProgress">0.69999998807907104</float>
+								<float key="IBUIProgress">0.5</float>
 							</object>
 							<object class="IBUILabel" id="715680620">
 								<reference key="NSNextResponder" ref="686683249"/>

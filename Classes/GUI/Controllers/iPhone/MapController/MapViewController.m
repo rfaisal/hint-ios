@@ -18,6 +18,7 @@
 // Data
 #import "StorageProvider.h"
 #import "UsersProvider.h"
+#import "SourceImagesProvider.h"
 
 #import "Users.h"
 #import "MapPinView.h"
@@ -113,14 +114,19 @@
             continue;
         }
         
+        // save user
 		CLLocation *location = [[CLLocation alloc] initWithLatitude:geoData.latitude longitude:geoData.longitude];
-        
 		hasChanges |= [[UsersProvider sharedProvider] updateOrCreateUser:geoData.user                                                                                      
                                                                 location:location  
                                                                   status:geoData.status
                                                                  context:context
 																   error:&error];	
 		[location release];
+        
+        // if user has avatar
+        if(geoData.user.externalUserID){ // temporary fix. Use 'blob_id' instead 'externalUserID'
+            [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:geoData.user];
+        }
 	}
 	
 	if(hasChanges){
@@ -135,6 +141,59 @@
 			[nc postNotificationName:nRefreshAnnotationDetails object:nil userInfo:nil];			
 		}		
 	}
+}
+
+- (void) getAvatarAndStoreForQBUserAsync:(QBUUser *)qbUser{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    NSManagedObjectContext *context = [StorageProvider threadSafeContext];
+    NSError *error;
+    
+    // already exist
+    // temporary fix. Use 'blob_id' instead 'externalUserID'
+    if([[SourceImagesProvider sharedProvider] imageByUID:qbUser.externalUserID error:nil context:context]){
+        [pool drain];
+        return;
+    }
+    
+    // get blob
+    QBBlobResult *blobResul = [QBBlobsService GetBlobInfo:qbUser.externalUserID];
+    if(!blobResul.success){
+        [self performSelectorOnMainThread:@selector(processErrors:) withObject:blobResul.answer.errors waitUntilDone:YES];
+        [pool drain];
+        return;
+    }
+    
+    QBBlob *blob = blobResul.blob;
+    
+    
+    // get file
+    QBBlobFileResult *blobFileResult = [QBBlobsService GetBlob:blob.UID];
+    if(!blobFileResult.success){
+        [self performSelectorOnMainThread:@selector(processErrors:) withObject:blobResul.answer.errors waitUntilDone:YES];
+        [pool drain];
+        return;
+    }
+    
+    // save image
+    SourceImages *sourceImage = [[SourceImagesProvider sharedProvider] addImage:[UIImage imageWithData:blobFileResult.data]
+                                                                        withUID:blob.ID 
+                                                                      globalURL:blob.UID 
+                                                                       localURL:nil 
+                                                                        context:context];
+    
+	if(sourceImage){
+        // update user
+        Users *user = [[UsersProvider sharedProvider] userByUID:[NSNumber numberWithUnsignedInt:qbUser.ID] context:context];
+		user.photo = sourceImage;
+		
+		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
+		[nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
+		[context save:&error];
+		[nc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];	
+	} 
+    
+    [pool drain];
 }
 
 - (void) mergeChanges:(NSNotification *)notification{	
@@ -191,6 +250,31 @@
     [super releaseProperties];
 }
 
+-(void)showMessage:(NSString*)title message:(NSString*)msg{
+    
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title 
+													message:msg 
+												   delegate:self 
+										  cancelButtonTitle:NSLocalizedString(@"OK", "") 
+										  otherButtonTitles:nil];
+	
+	alert.tag = (title == NSLocalizedString(@"Registration successful", "") ? 1 : 0);
+	[alert show];
+	[alert release];	
+}
+
+-(void)processErrors:(NSMutableArray*)errors{
+	NSMutableString *errorsString = [NSMutableString stringWithCapacity:0];
+	
+	for(NSString *error in errors){
+		[errorsString appendFormat:@"%@\n", error];
+	}
+	
+	if ([errorsString length] > 0) {
+		[self showMessage:NSLocalizedString(@"Error", "") message:errorsString];
+	}
+}
+
 
 #pragma mark
 #pragma mark Notifications
@@ -225,11 +309,31 @@
 
 - (void)completedWithResult:(Result *)result{
 	if(result.success){
+        // Search GeoData
 		if([result isKindOfClass:[QBGeoDataSearchResult class]]){
 			QBGeoDataSearchResult *geoDataSearchRes = (QBGeoDataSearchResult *)result;
 			[self performSelectorInBackground:@selector(processGeoDatAsync:) withObject:geoDataSearchRes.geodatas];
 		}
-	}
+        
+        // Get Blob Info
+        else if([result isKindOfClass:[QBBlobResult class]]){
+            QBBlobResult *res = (QBBlobResult *)result;
+            NSString *blobUID = res.blob.UID;
+            [QBBlobsService GetBlobAsync:blobUID delegate:self];
+        
+        // Get Blob File
+        }else if([result isKindOfClass:[QBBlobFileResult class]]){
+            QBBlobFileResult* res = (QBBlobFileResult*)result;
+            NSData *avatarData = res.data;
+            if(avatarData){
+                    
+            }						
+        }
+
+    // errors
+	}else{
+        [self processErrors:result.answer.errors];
+    }
 }
 
 

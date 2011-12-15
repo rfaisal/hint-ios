@@ -60,13 +60,33 @@ static id instance = nil;
 #pragma mark Get image
 #pragma mark
 
-- (SourceImages *)imageByID:(NSManagedObjectID *)mid error:(NSError**)error {
+- (SourceImages *)imageByObjectID:(NSManagedObjectID *)mid error:(NSError**)error {
     SourceImages *image = (SourceImages *)[self.managedObjectContext existingObjectWithID:mid error:error];
 	
     if(error){
-        NSLog(@"[SourceImages imageByID], error=%@", error);
+        NSLog(@"[SourceImages imageByObjectID], error=%@", error);
 	}
 
+	return image;
+}
+
+- (SourceImages *)imageByUID:(NSUInteger)uid error:(NSError **)error {
+    return  [self imageByUID:uid error:error context:self.managedObjectContext];
+}
+
+- (SourceImages *)imageByUID:(NSUInteger)uid error:(NSError **)error context:(NSManagedObjectContext *)context{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:[self entityName] 
+											  inManagedObjectContext:context];
+	[request setEntity:entity];
+	[request setPredicate:[NSPredicate predicateWithFormat:@"uid = %u", uid]];
+	NSArray* results = [context executeFetchRequest:request error:nil];
+	
+	SourceImages *image = nil;
+	if(nil != results && [results count] > 0){
+		image = (SourceImages *)[results objectAtIndex:0];
+	}
+	
 	return image;
 }
 
@@ -75,7 +95,7 @@ static id instance = nil;
 #pragma mark Add image
 #pragma mark
 
-- (SourceImages *)addImage:(UIImage *) image withUID:(NSString*)uid globalURL:(NSString*)gURL localURL:(NSString*)lURL{
+- (SourceImages *)addImage:(UIImage *) image withUID:(NSUInteger)uid globalURL:(NSString*)gURL localURL:(NSString*)lURL{
 	return [self addImage:image
                   withUID:uid 
                 globalURL:gURL 
@@ -84,7 +104,7 @@ static id instance = nil;
 }
 
 - (SourceImages *)addImage:(UIImage *) image
-                   withUID:(NSString*)uid 
+                   withUID:(NSUInteger)uid 
                  globalURL:(NSString*)gURL 
                   localURL:(NSString*)lURL 
                    context:(NSManagedObjectContext*)context{
@@ -94,7 +114,7 @@ static id instance = nil;
     
     model.image = UIImagePNGRepresentation(image);
     model.user = [[UsersProvider sharedProvider] currentUserWithContext:context];
-	model.uid = [NSNumber numberWithLong:[uid integerValue]];
+	model.uid = [NSNumber numberWithUnsignedInt:uid];
     model.global_url = gURL;
     model.local_url = lURL;
     

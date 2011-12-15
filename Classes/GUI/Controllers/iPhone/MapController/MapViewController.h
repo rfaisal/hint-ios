@@ -30,4 +30,9 @@
 - (void) startSearchGeoData;
 - (void) searchGeoData:(NSTimer *) timer;
 
+- (void) getAvatarAndStoreForQBUserAsync:(QBUUser *)user;
+
+-(void)processErrors:(NSMutableArray*)errors;
+-(void)showMessage:(NSString*)title message:(NSString*)msg;
+
 @end
