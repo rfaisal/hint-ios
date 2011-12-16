@@ -110,7 +110,6 @@
             
             // current user
             Users *user = [[UsersProvider sharedProvider] currentUserWithQBUser:answer.user];
-            
 
             [[NSNotificationCenter defaultCenter] postNotificationName:nRefreshAnnotationDetails object:nil];
             

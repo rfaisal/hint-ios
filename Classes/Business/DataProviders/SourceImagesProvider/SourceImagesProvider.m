@@ -81,6 +81,7 @@ static id instance = nil;
 	[request setEntity:entity];
 	[request setPredicate:[NSPredicate predicateWithFormat:@"uid = %u", uid]];
 	NSArray* results = [context executeFetchRequest:request error:nil];
+    [request release];
 	
 	SourceImages *image = nil;
 	if(nil != results && [results count] > 0){

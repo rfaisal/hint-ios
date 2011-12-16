@@ -123,6 +123,7 @@ static id instance = nil;
 	[request setEntity:entity];
 	[request setPredicate:[NSPredicate predicateWithFormat:@"text == %@ AND user.uid == %u", text, userID]];
 	NSArray *results = [context executeFetchRequest:request error:nil];
+    [request release];
 	
 	Messages *message = nil;
 	if(nil != results && [results count] > 0){

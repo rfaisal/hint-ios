@@ -54,6 +54,7 @@
     [tap setNumberOfTapsRequired:1];
     [tap setNumberOfTouchesRequired:1];
     [self.tabView addGestureRecognizer:tap];
+    [tap release];
     
     // progress wheel
     wheel = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -97,6 +98,7 @@
 	searchRequest.status = YES;
     searchRequest.sort_by = GeoDataSortByKindCreatedAt;
     searchRequest.userAppID = appID;
+    searchRequest.pageSize = 15;
 	[QBGeoposService findGeoData:searchRequest delegate:self];
 	[searchRequest release];
 }
@@ -134,7 +136,9 @@
 }
 
 // process single message
--(void) processGeoDatumAsync:(QBGeoData *)data {	
+-(void) processGeoDatumAsync:(QBGeoData *)data {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
 	CLLocation *location =  [[QBLocationDataSource instance] currentLocation];
 		
 	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
@@ -168,10 +172,13 @@
 	if(hasChanges){
 		[nc postNotificationName:nRefreshChat object:nil userInfo:nil];	
 	}
+    
+    [pool drain];
 }
 
 // process array of messages
 -(void) processGeoDataAsync:(NSArray *)geodata{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
 	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
 	NSError *error = nil;
@@ -222,6 +229,8 @@
 			[nc postNotificationName:nRefreshChat object:nil userInfo:nil];			
 		}	
 	}
+    
+     [pool drain];
 }
 
 - (void)mergeChanges:(NSNotification *)notification{	

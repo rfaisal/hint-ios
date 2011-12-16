@@ -13,7 +13,7 @@
     
 }
 
-@property (assign) NSInteger currentUserID;
+@property (assign) NSUInteger currentUserID;
 
 // Get user by mid
 - (Users *)userByID:(NSManagedObjectID *)mid error:(NSError **)error;

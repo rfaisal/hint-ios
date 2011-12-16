@@ -79,8 +79,10 @@ static id instance = nil;
 	NSEntityDescription *entity = [NSEntityDescription entityForName:[self entityName] 
 											  inManagedObjectContext:context];
 	[request setEntity:entity];
-	[request setPredicate:[NSPredicate predicateWithFormat:@"uid = %i",[uid intValue]]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uid == %u",[uid intValue]];
+	[request setPredicate:predicate];
 	NSArray* results = [context executeFetchRequest:request error:nil];
+    [request release];
 	
 	Users *user = nil;
 	if(nil != results && [results count] > 0){
@@ -104,7 +106,7 @@ static id instance = nil;
 	NSEntityDescription *entity = [NSEntityDescription entityForName:[self entityName] 
 											  inManagedObjectContext:context];
 	[request setEntity:entity];
-	[request setPredicate:[NSPredicate predicateWithFormat:@"uid = %i",[uid intValue]]];
+	[request setPredicate:[NSPredicate predicateWithFormat:@"uid == %i",[uid intValue]]];
 	NSArray *results = [context executeFetchRequest:request error:error];
     
     [request release];
@@ -146,7 +148,7 @@ static id instance = nil;
     
     Users *currentUser = [self userByUID:[NSNumber numberWithUnsignedInteger:currentUserID]];
     if(currentUser == nil){
-        currentUser = [self addUser:user location:nil status:nil context:self.managedObjectContext];
+        currentUser = [self addUser:user location:nil status:nil];
     }
 
     return currentUser;
@@ -170,13 +172,14 @@ static id instance = nil;
 - (Users *)addUser:(QBUUser *) user location: (CLLocation *) location status:(NSString *) status context:(NSManagedObjectContext *)context{
     Users *model = (Users *)[NSEntityDescription insertNewObjectForEntityForName:[self entityName]
                                                             inManagedObjectContext:context];
-	model.uid = [NSNumber numberWithUnsignedChar:user.ID];
+    
+	model.uid = [NSNumber numberWithUnsignedInt:user.ID];
     model.mbUser = user;
     model.status = status;
     model.longitude = [NSNumber numberWithDouble: location.coordinate.longitude];
     model.latitude = [NSNumber numberWithDouble: location.coordinate.latitude];
     
-	NSError **error=nil;
+	NSError **error = nil;
 	if (![context save:error]) {
 		return nil;
 	}

@@ -13,11 +13,13 @@
 #pragma mark QuickBlox
 #pragma mark
 
-static NSString *const endpoint = @"qbtest01.quickblox.com";
-//static NSUInteger const appID = 90;
-//static NSUInteger const ownerID = 4335;
-static NSUInteger const appID = 56;
-static NSUInteger const ownerID = 247;
+
+
+static NSString *const endpoint = @"quickblox.com";
+static NSUInteger const appID = 90;
+static NSUInteger const ownerID = 4335;
+//static NSUInteger const appID = 56;
+//static NSUInteger const ownerID = 247;
 static NSString *const appKey = @"X2TYsfGRBqh6Px3";
 static NSString *const appSecret = @"Qbxu9R3rjMdhu9Q";
 
@@ -51,8 +53,8 @@ static NSString *const GEODATA_KEY  = @"GEODATA_KEY";
 
 static CGFloat const kManagedObjectContextDelayedSaveInterval = 1.0;
 
-#define kUpdateMapInterval 60 //s
-#define kUpdateChatInterval 30 //s
+#define kUpdateMapInterval 180 //s
+#define kUpdateChatInterval 20 //s
 
 
 #pragma mark -

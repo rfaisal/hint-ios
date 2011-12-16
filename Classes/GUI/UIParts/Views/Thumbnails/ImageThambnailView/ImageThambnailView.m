@@ -50,10 +50,7 @@
 - (void)startInit {
     [super startInit];
     
-    CGRect baseFrame = self.bounds;
-    
-
-    baseFrame = CGRectMake(-4, -1, 148, 115);
+    CGRect baseFrame = CGRectMake(-4, -1, 148, 115);
     
     CGRect frame = baseFrame;
     

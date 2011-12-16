@@ -58,6 +58,9 @@
     container.layer.borderColor = [[UIColor colorWithRed:226/255.0 green:226/255.0 blue:226/255.0 alpha:1] CGColor];
     container.layer.cornerRadius = 8;
     container.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];
+    
+    userAvatar.layer.masksToBounds = YES;
+    userAvatar.layer.cornerRadius = 7;
 }
 
 

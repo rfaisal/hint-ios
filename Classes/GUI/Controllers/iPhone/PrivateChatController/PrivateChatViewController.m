@@ -65,6 +65,7 @@
     [tap setNumberOfTapsRequired:1];
     [tap setNumberOfTouchesRequired:1];
     [self.tabView addGestureRecognizer:tap];
+    [tap release];
     // Do any additional setup after loading the view from its nib.
 }
 

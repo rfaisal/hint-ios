@@ -86,6 +86,7 @@
 	QBGeoDataSearchRequest *searchRequest = [[QBGeoDataSearchRequest alloc] init];
 	searchRequest.last_only = YES;
     searchRequest.userAppID = appID;
+    searchRequest.pageSize = 15;
 	[QBGeoposService findGeoData:searchRequest delegate:self];
 	[searchRequest release];
 }
@@ -99,6 +100,7 @@
 }
 
 -(void) processGeoDatAsync:(NSArray *)geodatas{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
 	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
 	NSError *error = nil;
@@ -141,6 +143,8 @@
 			[nc postNotificationName:nRefreshAnnotationDetails object:nil userInfo:nil];			
 		}		
 	}
+    
+    [pool drain];
 }
 
 - (void) getAvatarAndStoreForQBUserAsync:(QBUUser *)qbUser{

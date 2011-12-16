@@ -54,6 +54,7 @@
 	avatarView.layer.cornerRadius = 8;
 	avatarView.backgroundColor = [UIColor clearColor];
 	[self.contentView addSubview: avatarView];
+    [avatarView release];
     
     self.tapView=[[UIView alloc] initWithFrame:self.avatarView.frame];
     [self addSubview:tapView];
