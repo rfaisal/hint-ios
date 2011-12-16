@@ -100,6 +100,8 @@
     
     // shoe start screen
     [self.viewController presentModalViewController:self.loginOrRegisterController animated:YES];
+    
+    [[NSNotificationCenter defaultCenter]  postNotificationName:nLogoutSuccessful object:nil];
 }
 
 - (void)startHadleOwnLocation{

@@ -9,6 +9,7 @@
 #ifndef SuperSample_Definitions_h
 #define SuperSample_Definitions_h
 
+#import "QBConsts.h"
 #import "Consts.h"
 #import "Delegates.h"
 #import "Enums.h"

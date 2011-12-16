@@ -13,7 +13,6 @@
 
 //Controllers
 #import "PinDetailedViewController.h"
-#import "PrivateChatViewController.h"
 
 // Data
 #import "StorageProvider.h"
@@ -27,7 +26,6 @@
 @synthesize mapView;
 @synthesize annotationDataSource;
 @synthesize pinDetailedController;
-@synthesize privateChatController;
 
 
 #pragma mark
@@ -67,8 +65,6 @@
 }
 
 - (void)viewDidUnload {
-    [self setPrivateChatController:nil];
-    
     [super viewDidUnload];
 }
 
@@ -300,7 +296,8 @@
 }
 
 -(void)openPrivateChatView:(NSNotification *)notification{
-    [self.navigationController pushViewController:self.privateChatController animated:YES];
+    // open Private Chat
+    // TODO: need implement Private Chat using Chat module
 }
 
 -(void)ownStatusDidChange:(NSNotification *)notification{
@@ -348,8 +345,6 @@
 #pragma mark
 
 - (void)dealloc {
-    [privateChatController release];
-    
     [super dealloc];
 }
 

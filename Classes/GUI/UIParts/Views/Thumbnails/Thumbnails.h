@@ -1,4 +1,0 @@
-
-//
-
-#import "ImageThambnailView/ImageThambnailView.h"

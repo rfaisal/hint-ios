@@ -7,7 +7,6 @@
 //
 
 #import "MessageCell.h"
-#import "ImageThambnailView.h"
 
 // Data
 #import "Messages.h"
@@ -15,14 +14,11 @@
 #import "SourceImages.h"
 #import "UsersProvider.h"
 
-//Helpers
-#import "Resources.h"
-
 
 @implementation MessageCell
 
 @synthesize messageLabel, userName, avatarView, roundView;
-@synthesize avatarsArray, thambnailClass;
+@synthesize avatarsArray;
 @synthesize user,tapView;
 
 - (void)releaseObjects {
@@ -30,10 +26,6 @@
     self.avatarsArray = nil;
     
     [super releaseObjects];
-}
-
-- (Class)thambnailClass {
-	return [ImageThambnailView class];
 }
 
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

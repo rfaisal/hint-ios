@@ -45,13 +45,11 @@
 		FA5D43EB1488E90D00BE9F9E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5D43EA1488E90D00BE9F9E /* logo.png */; };
 		FA5D43F014890C8400BE9F9E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5D43EF14890C8300BE9F9E /* Default.png */; };
 		FA70CFA91487BBC000C21DAA /* Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CE9A1487BBC000C21DAA /* Messages.m */; };
-		FA70CFAA1487BBC000C21DAA /* PrivateMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CE9D1487BBC000C21DAA /* PrivateMessages.m */; };
 		FA70CFAB1487BBC000C21DAA /* SourceElement.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEA01487BBC000C21DAA /* SourceElement.m */; };
 		FA70CFAC1487BBC000C21DAA /* SourceImages.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEA31487BBC000C21DAA /* SourceImages.m */; };
 		FA70CFAE1487BBC000C21DAA /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEA91487BBC000C21DAA /* Users.m */; };
 		FA70CFAF1487BBC000C21DAA /* ChatListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEAD1487BBC000C21DAA /* ChatListProvider.m */; };
 		FA70CFB01487BBC000C21DAA /* EntityProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEB01487BBC000C21DAA /* EntityProvider.m */; };
-		FA70CFB11487BBC000C21DAA /* PrivateChatListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEB31487BBC000C21DAA /* PrivateChatListProvider.m */; };
 		FA70CFB21487BBC000C21DAA /* SourceImagesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEB61487BBC000C21DAA /* SourceImagesProvider.m */; };
 		FA70CFB41487BBC000C21DAA /* UsersProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEBC1487BBC000C21DAA /* UsersProvider.m */; };
 		FA70CFB51487BBC000C21DAA /* AnnotationViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEC01487BBC000C21DAA /* AnnotationViewDataSource.m */; };
@@ -59,7 +57,6 @@
 		FA70CFB71487BBC000C21DAA /* CDTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEC71487BBC000C21DAA /* CDTableDataSource.m */; };
 		FA70CFB81487BBC000C21DAA /* LoadableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CECA1487BBC000C21DAA /* LoadableDataSource.m */; };
 		FA70CFBA1487BBC000C21DAA /* ChatListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CECE1487BBC000C21DAA /* ChatListDataSource.m */; };
-		FA70CFBC1487BBC000C21DAA /* PrivateChatListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CED41487BBC000C21DAA /* PrivateChatListDataSource.m */; };
 		FA70CFBD1487BBC000C21DAA /* StorageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CED71487BBC000C21DAA /* StorageProvider.m */; };
 		FA70CFC31487BBC000C21DAA /* MapPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEEC1487BBC000C21DAA /* MapPinAnnotation.m */; };
 		FA70CFE01487BBC000C21DAA /* SubscribedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF491487BBC000C21DAA /* SubscribedViewController.m */; };
@@ -69,23 +66,16 @@
 		FA70CFE41487BBC000C21DAA /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF571487BBC000C21DAA /* RegistrationViewController.m */; };
 		FA70CFE51487BBC000C21DAA /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF5A1487BBC000C21DAA /* MapViewController.m */; };
 		FA70CFE61487BBC000C21DAA /* PinDetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF5D1487BBC000C21DAA /* PinDetailedViewController.m */; };
-		FA70CFE71487BBC000C21DAA /* PrivateChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF601487BBC000C21DAA /* PrivateChatViewController.m */; };
 		FA70CFE81487BBC000C21DAA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF631487BBC000C21DAA /* SettingsViewController.m */; };
 		FA70CFE91487BBC000C21DAA /* BaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF691487BBC000C21DAA /* BaseTableCell.m */; };
 		FA70CFEA1487BBC000C21DAA /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF6C1487BBC000C21DAA /* MessageCell.m */; };
-		FA70CFEB1487BBC000C21DAA /* PrivateMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF6F1487BBC000C21DAA /* PrivateMessageCell.m */; };
 		FA70CFEC1487BBC000C21DAA /* SubscribedView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF751487BBC000C21DAA /* SubscribedView.m */; };
 		FA70CFED1487BBC000C21DAA /* MapPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF791487BBC000C21DAA /* MapPinView.m */; };
-		FA70CFEE1487BBC000C21DAA /* ImageThambnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF7D1487BBC000C21DAA /* ImageThambnailView.m */; };
 		FA70CFF01487BBC000C21DAA /* DeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF851487BBC000C21DAA /* DeviceHardware.m */; };
 		FA70CFF11487BBC000C21DAA /* Entity+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF881487BBC000C21DAA /* Entity+NSCoding.m */; };
 		FA70CFF21487BBC000C21DAA /* QBUUser+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF8A1487BBC000C21DAA /* QBUUser+NSCoding.m */; };
 		FA70CFF31487BBC000C21DAA /* FileSystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF8D1487BBC000C21DAA /* FileSystemHelper.m */; };
 		FA70CFF51487BBC000C21DAA /* ImageResize.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF941487BBC000C21DAA /* ImageResize.m */; };
-		FA70CFF61487BBC000C21DAA /* Resources.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF971487BBC000C21DAA /* Resources.m */; };
-		FA70CFF71487BBC000C21DAA /* LoadBinaryAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF9C1487BBC000C21DAA /* LoadBinaryAnswer.m */; };
-		FA70CFF81487BBC000C21DAA /* LoadBinaryQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CFA01487BBC000C21DAA /* LoadBinaryQuery.m */; };
-		FA70CFF91487BBC000C21DAA /* LoadBinaryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CFA41487BBC000C21DAA /* LoadBinaryResult.m */; };
 		FA70CFFA1487BBC000C21DAA /* SuperSampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CFA61487BBC000C21DAA /* SuperSampleAppDelegate.m */; };
 		FA70CFFE1487BBCF00C21DAA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CFFC1487BBCF00C21DAA /* main.m */; };
 		FA70D0251487BBDA00C21DAA /* SuperSample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA70D0021487BBDA00C21DAA /* SuperSample.xcdatamodeld */; };
@@ -108,7 +98,6 @@
 		FA70D0381487BBDA00C21DAA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D01F1487BBDA00C21DAA /* MainWindow.xib */; };
 		FA70D0391487BBDA00C21DAA /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0201487BBDA00C21DAA /* MapViewController.xib */; };
 		FA70D03A1487BBDA00C21DAA /* PinDetailedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0211487BBDA00C21DAA /* PinDetailedViewController.xib */; };
-		FA70D03B1487BBDA00C21DAA /* PrivateChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0221487BBDA00C21DAA /* PrivateChatViewController.xib */; };
 		FA70D03C1487BBDA00C21DAA /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0231487BBDA00C21DAA /* RegistrationViewController.xib */; };
 		FA70D03D1487BBDA00C21DAA /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0241487BBDA00C21DAA /* SettingsViewController.xib */; };
 		FA70D0431487BDB700C21DAA /* SuperSample-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0421487BDB700C21DAA /* SuperSample-Info.plist */; };
@@ -147,6 +136,7 @@
 		A7C3FFB81402E9B20039A28B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BDC7630E144EED820091EB17 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		BDED89091445F0B8000FDF62 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		FA4579E8149B95B300BD0560 /* QBConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBConsts.h; sourceTree = "<group>"; };
 		FA524ECA1498A0EA009FD3E2 /* QuizQuestionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizQuestionVC.h; sourceTree = "<group>"; };
 		FA524ECB1498A0EA009FD3E2 /* QuizQuestionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizQuestionVC.m; sourceTree = "<group>"; };
 		FA524ECD1498A0EA009FD3E2 /* QuizRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizRootViewController.h; sourceTree = "<group>"; };
@@ -173,8 +163,6 @@
 		FA70CE931487BBC000C21DAA /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
 		FA70CE991487BBC000C21DAA /* Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Messages.h; sourceTree = "<group>"; };
 		FA70CE9A1487BBC000C21DAA /* Messages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Messages.m; sourceTree = "<group>"; };
-		FA70CE9C1487BBC000C21DAA /* PrivateMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessages.h; sourceTree = "<group>"; };
-		FA70CE9D1487BBC000C21DAA /* PrivateMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessages.m; sourceTree = "<group>"; };
 		FA70CE9F1487BBC000C21DAA /* SourceElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceElement.h; sourceTree = "<group>"; };
 		FA70CEA01487BBC000C21DAA /* SourceElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceElement.m; sourceTree = "<group>"; };
 		FA70CEA21487BBC000C21DAA /* SourceImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceImages.h; sourceTree = "<group>"; };
@@ -185,8 +173,6 @@
 		FA70CEAD1487BBC000C21DAA /* ChatListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListProvider.m; sourceTree = "<group>"; };
 		FA70CEAF1487BBC000C21DAA /* EntityProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityProvider.h; sourceTree = "<group>"; };
 		FA70CEB01487BBC000C21DAA /* EntityProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityProvider.m; sourceTree = "<group>"; };
-		FA70CEB21487BBC000C21DAA /* PrivateChatListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateChatListProvider.h; sourceTree = "<group>"; };
-		FA70CEB31487BBC000C21DAA /* PrivateChatListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateChatListProvider.m; sourceTree = "<group>"; };
 		FA70CEB51487BBC000C21DAA /* SourceImagesProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceImagesProvider.h; sourceTree = "<group>"; };
 		FA70CEB61487BBC000C21DAA /* SourceImagesProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceImagesProvider.m; sourceTree = "<group>"; };
 		FA70CEBB1487BBC000C21DAA /* UsersProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersProvider.h; sourceTree = "<group>"; };
@@ -201,8 +187,6 @@
 		FA70CECA1487BBC000C21DAA /* LoadableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadableDataSource.m; sourceTree = "<group>"; };
 		FA70CECD1487BBC000C21DAA /* ChatListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListDataSource.h; sourceTree = "<group>"; };
 		FA70CECE1487BBC000C21DAA /* ChatListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListDataSource.m; sourceTree = "<group>"; };
-		FA70CED31487BBC000C21DAA /* PrivateChatListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateChatListDataSource.h; sourceTree = "<group>"; };
-		FA70CED41487BBC000C21DAA /* PrivateChatListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateChatListDataSource.m; sourceTree = "<group>"; };
 		FA70CED61487BBC000C21DAA /* StorageProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageProvider.h; sourceTree = "<group>"; };
 		FA70CED71487BBC000C21DAA /* StorageProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageProvider.m; sourceTree = "<group>"; };
 		FA70CEEB1487BBC000C21DAA /* MapPinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapPinAnnotation.h; path = FanAnnotation/MapPinAnnotation.h; sourceTree = "<group>"; };
@@ -227,24 +211,17 @@
 		FA70CF5A1487BBC000C21DAA /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		FA70CF5C1487BBC000C21DAA /* PinDetailedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinDetailedViewController.h; sourceTree = "<group>"; };
 		FA70CF5D1487BBC000C21DAA /* PinDetailedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinDetailedViewController.m; sourceTree = "<group>"; };
-		FA70CF5F1487BBC000C21DAA /* PrivateChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateChatViewController.h; sourceTree = "<group>"; };
-		FA70CF601487BBC000C21DAA /* PrivateChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateChatViewController.m; sourceTree = "<group>"; };
 		FA70CF621487BBC000C21DAA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		FA70CF631487BBC000C21DAA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FA70CF681487BBC000C21DAA /* BaseTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableCell.h; sourceTree = "<group>"; };
 		FA70CF691487BBC000C21DAA /* BaseTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableCell.m; sourceTree = "<group>"; };
 		FA70CF6B1487BBC000C21DAA /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		FA70CF6C1487BBC000C21DAA /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
-		FA70CF6E1487BBC000C21DAA /* PrivateMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageCell.h; sourceTree = "<group>"; };
-		FA70CF6F1487BBC000C21DAA /* PrivateMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageCell.m; sourceTree = "<group>"; };
 		FA70CF721487BBC000C21DAA /* Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base.h; sourceTree = "<group>"; };
 		FA70CF741487BBC000C21DAA /* SubscribedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribedView.h; sourceTree = "<group>"; };
 		FA70CF751487BBC000C21DAA /* SubscribedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribedView.m; sourceTree = "<group>"; };
 		FA70CF781487BBC000C21DAA /* MapPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPinView.h; sourceTree = "<group>"; };
 		FA70CF791487BBC000C21DAA /* MapPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPinView.m; sourceTree = "<group>"; };
-		FA70CF7C1487BBC000C21DAA /* ImageThambnailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageThambnailView.h; sourceTree = "<group>"; };
-		FA70CF7D1487BBC000C21DAA /* ImageThambnailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageThambnailView.m; sourceTree = "<group>"; };
-		FA70CF7E1487BBC000C21DAA /* Thumbnails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thumbnails.h; sourceTree = "<group>"; };
 		FA70CF841487BBC000C21DAA /* DeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceHardware.h; sourceTree = "<group>"; };
 		FA70CF851487BBC000C21DAA /* DeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceHardware.m; sourceTree = "<group>"; };
 		FA70CF871487BBC000C21DAA /* Entity+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Entity+NSCoding.h"; sourceTree = "<group>"; };
@@ -256,14 +233,6 @@
 		FA70CF911487BBC000C21DAA /* Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helpers.h; sourceTree = "<group>"; };
 		FA70CF931487BBC000C21DAA /* ImageResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageResize.h; sourceTree = "<group>"; };
 		FA70CF941487BBC000C21DAA /* ImageResize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageResize.m; sourceTree = "<group>"; };
-		FA70CF961487BBC000C21DAA /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resources.h; sourceTree = "<group>"; };
-		FA70CF971487BBC000C21DAA /* Resources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resources.m; sourceTree = "<group>"; };
-		FA70CF9B1487BBC000C21DAA /* LoadBinaryAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadBinaryAnswer.h; sourceTree = "<group>"; };
-		FA70CF9C1487BBC000C21DAA /* LoadBinaryAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadBinaryAnswer.m; sourceTree = "<group>"; };
-		FA70CF9F1487BBC000C21DAA /* LoadBinaryQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadBinaryQuery.h; sourceTree = "<group>"; };
-		FA70CFA01487BBC000C21DAA /* LoadBinaryQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadBinaryQuery.m; sourceTree = "<group>"; };
-		FA70CFA31487BBC000C21DAA /* LoadBinaryResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadBinaryResult.h; sourceTree = "<group>"; };
-		FA70CFA41487BBC000C21DAA /* LoadBinaryResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadBinaryResult.m; sourceTree = "<group>"; };
 		FA70CFA51487BBC000C21DAA /* SuperSampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperSampleAppDelegate.h; sourceTree = "<group>"; };
 		FA70CFA61487BBC000C21DAA /* SuperSampleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperSampleAppDelegate.m; sourceTree = "<group>"; };
 		FA70CFFC1487BBCF00C21DAA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
@@ -288,7 +257,6 @@
 		FA70D01F1487BBDA00C21DAA /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		FA70D0201487BBDA00C21DAA /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		FA70D0211487BBDA00C21DAA /* PinDetailedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinDetailedViewController.xib; sourceTree = "<group>"; };
-		FA70D0221487BBDA00C21DAA /* PrivateChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivateChatViewController.xib; sourceTree = "<group>"; };
 		FA70D0231487BBDA00C21DAA /* RegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistrationViewController.xib; sourceTree = "<group>"; };
 		FA70D0241487BBDA00C21DAA /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		FA70D0421487BDB700C21DAA /* SuperSample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SuperSample-Info.plist"; sourceTree = "<group>"; };
@@ -455,10 +423,8 @@
 			children = (
 				FA70CE921487BBC000C21DAA /* Business */,
 				FA70CEF91487BBC000C21DAA /* Definitions */,
-				FA70CF001487BBC000C21DAA /* External */,
 				FA70CF441487BBC000C21DAA /* GUI */,
 				FA70CF7F1487BBC000C21DAA /* Helpers */,
-				FA70CF981487BBC000C21DAA /* Net */,
 				FA70CFA51487BBC000C21DAA /* SuperSampleAppDelegate.h */,
 				FA70CFA61487BBC000C21DAA /* SuperSampleAppDelegate.m */,
 			);
@@ -482,7 +448,6 @@
 			isa = PBXGroup;
 			children = (
 				FA70CE981487BBC000C21DAA /* Messages */,
-				FA70CE9B1487BBC000C21DAA /* PrivateMessages */,
 				FA70CE9E1487BBC000C21DAA /* SourceElement */,
 				FA70CEA11487BBC000C21DAA /* SourceImages */,
 				FA70CEA71487BBC000C21DAA /* Users */,
@@ -497,15 +462,6 @@
 				FA70CE9A1487BBC000C21DAA /* Messages.m */,
 			);
 			path = Messages;
-			sourceTree = "<group>";
-		};
-		FA70CE9B1487BBC000C21DAA /* PrivateMessages */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CE9C1487BBC000C21DAA /* PrivateMessages.h */,
-				FA70CE9D1487BBC000C21DAA /* PrivateMessages.m */,
-			);
-			path = PrivateMessages;
 			sourceTree = "<group>";
 		};
 		FA70CE9E1487BBC000C21DAA /* SourceElement */ = {
@@ -541,7 +497,6 @@
 				FA70CEBA1487BBC000C21DAA /* UsersProvider */,
 				FA70CEAB1487BBC000C21DAA /* ChatListProvider */,
 				FA70CEAE1487BBC000C21DAA /* EntityProvider */,
-				FA70CEB11487BBC000C21DAA /* PrivateChatListProvider */,
 				FA70CEB41487BBC000C21DAA /* SourceImagesProvider */,
 				FA524F221498BEA8009FD3E2 /* QuizTestEngine */,
 			);
@@ -564,15 +519,6 @@
 				FA70CEB01487BBC000C21DAA /* EntityProvider.m */,
 			);
 			path = EntityProvider;
-			sourceTree = "<group>";
-		};
-		FA70CEB11487BBC000C21DAA /* PrivateChatListProvider */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CEB21487BBC000C21DAA /* PrivateChatListProvider.h */,
-				FA70CEB31487BBC000C21DAA /* PrivateChatListProvider.m */,
-			);
-			path = PrivateChatListProvider;
 			sourceTree = "<group>";
 		};
 		FA70CEB41487BBC000C21DAA /* SourceImagesProvider */ = {
@@ -599,7 +545,6 @@
 				FA70CEBE1487BBC000C21DAA /* AnnotationViewDataSource */,
 				FA70CECC1487BBC000C21DAA /* ChatListDataSource */,
 				FA70CEC11487BBC000C21DAA /* Base */,
-				FA70CED21487BBC000C21DAA /* PrivateChatListDataSource */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -659,15 +604,6 @@
 			path = ChatListDataSource;
 			sourceTree = "<group>";
 		};
-		FA70CED21487BBC000C21DAA /* PrivateChatListDataSource */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CED31487BBC000C21DAA /* PrivateChatListDataSource.h */,
-				FA70CED41487BBC000C21DAA /* PrivateChatListDataSource.m */,
-			);
-			path = PrivateChatListDataSource;
-			sourceTree = "<group>";
-		};
 		FA70CED51487BBC000C21DAA /* DataStorage */ = {
 			isa = PBXGroup;
 			children = (
@@ -697,6 +633,7 @@
 		FA70CEF91487BBC000C21DAA /* Definitions */ = {
 			isa = PBXGroup;
 			children = (
+				FA4579E8149B95B300BD0560 /* QBConsts.h */,
 				FA70CEFA1487BBC000C21DAA /* Consts.h */,
 				FA70CEFB1487BBC000C21DAA /* Definitions.h */,
 				FA70CEFC1487BBC000C21DAA /* Delegates.h */,
@@ -705,13 +642,6 @@
 				FA70CEFF1487BBC000C21DAA /* Notifications.h */,
 			);
 			path = Definitions;
-			sourceTree = "<group>";
-		};
-		FA70CF001487BBC000C21DAA /* External */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = External;
 			sourceTree = "<group>";
 		};
 		FA70CF441487BBC000C21DAA /* GUI */ = {
@@ -757,7 +687,6 @@
 				FA70CF4E1487BBC000C21DAA /* LoginOrRegistration */,
 				FA70CF581487BBC000C21DAA /* MapController */,
 				FA70CF5B1487BBC000C21DAA /* PinDetailedController */,
-				FA70CF5E1487BBC000C21DAA /* PrivateChatController */,
 				FA70CF611487BBC000C21DAA /* SettingsController */,
 			);
 			path = iPhone;
@@ -827,15 +756,6 @@
 			path = PinDetailedController;
 			sourceTree = "<group>";
 		};
-		FA70CF5E1487BBC000C21DAA /* PrivateChatController */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF5F1487BBC000C21DAA /* PrivateChatViewController.h */,
-				FA70CF601487BBC000C21DAA /* PrivateChatViewController.m */,
-			);
-			path = PrivateChatController;
-			sourceTree = "<group>";
-		};
 		FA70CF611487BBC000C21DAA /* SettingsController */ = {
 			isa = PBXGroup;
 			children = (
@@ -859,7 +779,6 @@
 			children = (
 				FA70CF661487BBC000C21DAA /* BaseCells */,
 				FA70CF6A1487BBC000C21DAA /* MessageCell */,
-				FA70CF6D1487BBC000C21DAA /* PrivateMessageCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -890,21 +809,11 @@
 			path = MessageCell;
 			sourceTree = "<group>";
 		};
-		FA70CF6D1487BBC000C21DAA /* PrivateMessageCell */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF6E1487BBC000C21DAA /* PrivateMessageCell.h */,
-				FA70CF6F1487BBC000C21DAA /* PrivateMessageCell.m */,
-			);
-			path = PrivateMessageCell;
-			sourceTree = "<group>";
-		};
 		FA70CF701487BBC000C21DAA /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				FA70CF711487BBC000C21DAA /* Base */,
 				FA70CF761487BBC000C21DAA /* Map */,
-				FA70CF7A1487BBC000C21DAA /* Thumbnails */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -944,24 +853,6 @@
 			path = PinView;
 			sourceTree = "<group>";
 		};
-		FA70CF7A1487BBC000C21DAA /* Thumbnails */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF7B1487BBC000C21DAA /* ImageThambnailView */,
-				FA70CF7E1487BBC000C21DAA /* Thumbnails.h */,
-			);
-			path = Thumbnails;
-			sourceTree = "<group>";
-		};
-		FA70CF7B1487BBC000C21DAA /* ImageThambnailView */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF7C1487BBC000C21DAA /* ImageThambnailView.h */,
-				FA70CF7D1487BBC000C21DAA /* ImageThambnailView.m */,
-			);
-			path = ImageThambnailView;
-			sourceTree = "<group>";
-		};
 		FA70CF7F1487BBC000C21DAA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -970,7 +861,6 @@
 				FA70CF8B1487BBC000C21DAA /* FileSystemHelper */,
 				FA70CF911487BBC000C21DAA /* Helpers.h */,
 				FA70CF921487BBC000C21DAA /* ImageResize */,
-				FA70CF951487BBC000C21DAA /* Resources */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1011,76 +901,6 @@
 				FA70CF941487BBC000C21DAA /* ImageResize.m */,
 			);
 			path = ImageResize;
-			sourceTree = "<group>";
-		};
-		FA70CF951487BBC000C21DAA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF961487BBC000C21DAA /* Resources.h */,
-				FA70CF971487BBC000C21DAA /* Resources.m */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		FA70CF981487BBC000C21DAA /* Net */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF991487BBC000C21DAA /* Answers */,
-				FA70CF9D1487BBC000C21DAA /* Queries */,
-				FA70CFA11487BBC000C21DAA /* Results */,
-			);
-			path = Net;
-			sourceTree = "<group>";
-		};
-		FA70CF991487BBC000C21DAA /* Answers */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF9A1487BBC000C21DAA /* LoadBinaryAnswer */,
-			);
-			path = Answers;
-			sourceTree = "<group>";
-		};
-		FA70CF9A1487BBC000C21DAA /* LoadBinaryAnswer */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF9B1487BBC000C21DAA /* LoadBinaryAnswer.h */,
-				FA70CF9C1487BBC000C21DAA /* LoadBinaryAnswer.m */,
-			);
-			path = LoadBinaryAnswer;
-			sourceTree = "<group>";
-		};
-		FA70CF9D1487BBC000C21DAA /* Queries */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF9E1487BBC000C21DAA /* LoadBinaryQuery */,
-			);
-			path = Queries;
-			sourceTree = "<group>";
-		};
-		FA70CF9E1487BBC000C21DAA /* LoadBinaryQuery */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF9F1487BBC000C21DAA /* LoadBinaryQuery.h */,
-				FA70CFA01487BBC000C21DAA /* LoadBinaryQuery.m */,
-			);
-			path = LoadBinaryQuery;
-			sourceTree = "<group>";
-		};
-		FA70CFA11487BBC000C21DAA /* Results */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CFA21487BBC000C21DAA /* LoadBinaryResult */,
-			);
-			path = Results;
-			sourceTree = "<group>";
-		};
-		FA70CFA21487BBC000C21DAA /* LoadBinaryResult */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CFA31487BBC000C21DAA /* LoadBinaryResult.h */,
-				FA70CFA41487BBC000C21DAA /* LoadBinaryResult.m */,
-			);
-			path = LoadBinaryResult;
 			sourceTree = "<group>";
 		};
 		FA70CFFF1487BBDA00C21DAA /* Resources */ = {
@@ -1192,7 +1012,6 @@
 				FA70D01F1487BBDA00C21DAA /* MainWindow.xib */,
 				FA70D0201487BBDA00C21DAA /* MapViewController.xib */,
 				FA70D0211487BBDA00C21DAA /* PinDetailedViewController.xib */,
-				FA70D0221487BBDA00C21DAA /* PrivateChatViewController.xib */,
 				FA70D0231487BBDA00C21DAA /* RegistrationViewController.xib */,
 				FA70D0241487BBDA00C21DAA /* SettingsViewController.xib */,
 				FA524EFB1498A297009FD3E2 /* Quiz */,
@@ -1290,7 +1109,6 @@
 				FA70D0381487BBDA00C21DAA /* MainWindow.xib in Resources */,
 				FA70D0391487BBDA00C21DAA /* MapViewController.xib in Resources */,
 				FA70D03A1487BBDA00C21DAA /* PinDetailedViewController.xib in Resources */,
-				FA70D03B1487BBDA00C21DAA /* PrivateChatViewController.xib in Resources */,
 				FA70D03C1487BBDA00C21DAA /* RegistrationViewController.xib in Resources */,
 				FA70D03D1487BBDA00C21DAA /* SettingsViewController.xib in Resources */,
 				FA70D0431487BDB700C21DAA /* SuperSample-Info.plist in Resources */,
@@ -1345,13 +1163,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA70CFA91487BBC000C21DAA /* Messages.m in Sources */,
-				FA70CFAA1487BBC000C21DAA /* PrivateMessages.m in Sources */,
 				FA70CFAB1487BBC000C21DAA /* SourceElement.m in Sources */,
 				FA70CFAC1487BBC000C21DAA /* SourceImages.m in Sources */,
 				FA70CFAE1487BBC000C21DAA /* Users.m in Sources */,
 				FA70CFAF1487BBC000C21DAA /* ChatListProvider.m in Sources */,
 				FA70CFB01487BBC000C21DAA /* EntityProvider.m in Sources */,
-				FA70CFB11487BBC000C21DAA /* PrivateChatListProvider.m in Sources */,
 				FA70CFB21487BBC000C21DAA /* SourceImagesProvider.m in Sources */,
 				FA70CFB41487BBC000C21DAA /* UsersProvider.m in Sources */,
 				FA70CFB51487BBC000C21DAA /* AnnotationViewDataSource.m in Sources */,
@@ -1359,7 +1175,6 @@
 				FA70CFB71487BBC000C21DAA /* CDTableDataSource.m in Sources */,
 				FA70CFB81487BBC000C21DAA /* LoadableDataSource.m in Sources */,
 				FA70CFBA1487BBC000C21DAA /* ChatListDataSource.m in Sources */,
-				FA70CFBC1487BBC000C21DAA /* PrivateChatListDataSource.m in Sources */,
 				FA70CFBD1487BBC000C21DAA /* StorageProvider.m in Sources */,
 				FA70CFC31487BBC000C21DAA /* MapPinAnnotation.m in Sources */,
 				FA70CFE01487BBC000C21DAA /* SubscribedViewController.m in Sources */,
@@ -1369,23 +1184,16 @@
 				FA70CFE41487BBC000C21DAA /* RegistrationViewController.m in Sources */,
 				FA70CFE51487BBC000C21DAA /* MapViewController.m in Sources */,
 				FA70CFE61487BBC000C21DAA /* PinDetailedViewController.m in Sources */,
-				FA70CFE71487BBC000C21DAA /* PrivateChatViewController.m in Sources */,
 				FA70CFE81487BBC000C21DAA /* SettingsViewController.m in Sources */,
 				FA70CFE91487BBC000C21DAA /* BaseTableCell.m in Sources */,
 				FA70CFEA1487BBC000C21DAA /* MessageCell.m in Sources */,
-				FA70CFEB1487BBC000C21DAA /* PrivateMessageCell.m in Sources */,
 				FA70CFEC1487BBC000C21DAA /* SubscribedView.m in Sources */,
 				FA70CFED1487BBC000C21DAA /* MapPinView.m in Sources */,
-				FA70CFEE1487BBC000C21DAA /* ImageThambnailView.m in Sources */,
 				FA70CFF01487BBC000C21DAA /* DeviceHardware.m in Sources */,
 				FA70CFF11487BBC000C21DAA /* Entity+NSCoding.m in Sources */,
 				FA70CFF21487BBC000C21DAA /* QBUUser+NSCoding.m in Sources */,
 				FA70CFF31487BBC000C21DAA /* FileSystemHelper.m in Sources */,
 				FA70CFF51487BBC000C21DAA /* ImageResize.m in Sources */,
-				FA70CFF61487BBC000C21DAA /* Resources.m in Sources */,
-				FA70CFF71487BBC000C21DAA /* LoadBinaryAnswer.m in Sources */,
-				FA70CFF81487BBC000C21DAA /* LoadBinaryQuery.m in Sources */,
-				FA70CFF91487BBC000C21DAA /* LoadBinaryResult.m in Sources */,
 				FA70CFFA1487BBC000C21DAA /* SuperSampleAppDelegate.m in Sources */,
 				FA70CFFE1487BBCF00C21DAA /* main.m in Sources */,
 				FA70D0251487BBDA00C21DAA /* SuperSample.xcdatamodeld in Sources */,

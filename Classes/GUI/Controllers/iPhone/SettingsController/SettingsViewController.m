@@ -17,7 +17,6 @@
 
 //Helpers
 #import "DeviceHardware.h"
-#import "Resources.h"
 #import "ImageResize.h"
 
 @implementation SettingsViewController
@@ -78,6 +77,15 @@
     // populate fields
     fullName.text = user.mbUser.fullName;
     bioTextView.text = @"my bio";
+    
+    // set avatar
+    if(avatarView.image == nil){
+        if(user.photo){
+            [avatarView setImage:[UIImage imageWithData:user.photo.image]];
+        }else if(user.mbUser.externalUserID){
+            [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:user.mbUser];
+        }
+    }
 }
 
 - (void)viewDidUnload {
@@ -149,6 +157,10 @@
         [QBUsersService editUser:user delegate:self];
         [user release];
     }
+}
+
+- (IBAction) logout: (id)sender{
+    [avatarView setImage:nil];
 }
 
 - (IBAction)displayOfflineUserSwitchDidChangeState:(id)sender{
@@ -364,9 +376,26 @@
 	}
 }
 
+- (void)subscribe {
+    [super subscribe];
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(resetAvatar) 
+                                                 name:nLogoutSuccessful object:nil];
+    
+}
+
+- (void)unsubscribe {
+    [super unsubscribe];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:nLogoutSuccessful object:nil];
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [bioTextView resignFirstResponder];
     [fullName resignFirstResponder];
+}
+
+- (void)resetAvatar{
+    [avatarView setImage:nil];
 }
 
 - (void)dealloc {

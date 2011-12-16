@@ -13,9 +13,6 @@
 #import "UsersProvider.h"
 #import "SourceImages.h"
 
-//Helpers
-#import "Resources.h"
-
 
 @implementation PinDetailedViewController
 

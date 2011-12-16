@@ -29,6 +29,7 @@
 - (IBAction) takePicture:(id)sender;
 
 - (IBAction) save: (id)sender;
+- (IBAction) logout: (id)sender;
 
 - (IBAction) displayOfflineUserSwitchDidChangeState:(id)sender;
 - (IBAction) shareYourLocationSwitchDidChangeState:(id)sender;

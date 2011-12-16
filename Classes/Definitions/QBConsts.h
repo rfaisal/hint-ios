@@ -1,0 +1,16 @@
+//
+//  QBConsts.h
+//  SuperSample
+//
+//  Created by Macbook Injoit on 12/16/11.
+//  Copyright (c) 2011 QuickBlox. All rights reserved.
+//
+
+#pragma mark QuickBlox
+#pragma mark
+
+static NSString *const endpoint = @"quickblox.com"; //qbtest01.quickblox.com
+static NSUInteger const appID = 90;
+static NSUInteger const ownerID = 4335;
+static NSString *const appKey = @"X2TYsfGRBqh6Px3";
+static NSString *const appSecret = @"Qbxu9R3rjMdhu9Q";

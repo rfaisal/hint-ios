@@ -10,7 +10,6 @@
 
 @class AnnotationViewDataSource;
 @class PinDetailedViewController;
-@class PrivateChatViewController;
 
 @interface MapViewController : SubscribedViewController <ActionStatusDelegate> {
     MKMapView *mapView;
@@ -22,7 +21,6 @@
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 @property (nonatomic, retain) IBOutlet AnnotationViewDataSource *annotationDataSource;
 @property (nonatomic, retain) IBOutlet PinDetailedViewController *pinDetailedController;
-@property (retain, nonatomic) IBOutlet PrivateChatViewController *privateChatController;
 
 - (void) openAnnotationDetails:(id) object;
 - (void) subscribe;

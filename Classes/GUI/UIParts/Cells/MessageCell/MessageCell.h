@@ -18,7 +18,6 @@
 }
 
 @property (nonatomic, retain) NSMutableArray *avatarsArray;
-@property (nonatomic, readonly) Class thambnailClass;
 @property (nonatomic, retain) UIImageView *avatarView;
 @property (nonatomic, retain) UILabel *messageLabel, *userName;
 @property (nonatomic, retain) UIView *roundView;

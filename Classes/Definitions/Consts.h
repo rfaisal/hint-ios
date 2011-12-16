@@ -9,28 +9,11 @@
 #ifndef SuperSample_Consts_h
 #define SuperSample_Consts_h
 
-
-#pragma mark QuickBlox
-#pragma mark
-
-
-
-static NSString *const endpoint = @"quickblox.com";
-static NSUInteger const appID = 90;
-static NSUInteger const ownerID = 4335;
-//static NSUInteger const appID = 56;
-//static NSUInteger const ownerID = 247;
-static NSString *const appKey = @"X2TYsfGRBqh6Px3";
-static NSString *const appSecret = @"Qbxu9R3rjMdhu9Q";
-
-
-
-
 #pragma mark -
 #pragma mark Ratings module
 
-static NSString *const RATINGS_GAME_MODE_TITLE = @"QB-SuperSample-iOS";
-static int const RATINGS_GAME_MODE_ID = 6;
+//static NSString *const RATINGS_GAME_MODE_TITLE = @"QB-SuperSample-iOS";
+//static int const RATINGS_GAME_MODE_ID = 6;
 
 
 #pragma mark -
@@ -44,10 +27,6 @@ static int const RATINGS_GAME_MODE_ID = 6;
 #pragma mark -
 #pragma mark  Values
 
-static NSString *const kNewOperation = @"new";
-static NSString *const kChangedOperation = @"changed";
-static NSString *const nMessageArrived = @"MessageArrived";
-
 static NSString *const MESSAGE_KEY = @"MESSAGE_KEY";
 static NSString *const GEODATA_KEY  = @"GEODATA_KEY";
 
@@ -60,8 +39,7 @@ static CGFloat const kManagedObjectContextDelayedSaveInterval = 1.0;
 #pragma mark -
 #pragma mark XMPPService
 
-static NSString *const commonPassword = @"chatPasswordAllSame";
-static NSString *const emailUserName = @"%i@jabber.quickblox.com";
+//static NSString *const emailUserName = @"%i@jabber.quickblox.com";
 
 
 #pragma mark -
