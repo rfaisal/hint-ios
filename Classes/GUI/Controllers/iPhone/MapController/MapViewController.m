@@ -153,6 +153,8 @@
     NSManagedObjectContext *context = [StorageProvider threadSafeContext];
     NSError *error;
     
+    NSLog(@"UID=%d", qbUser.externalUserID);
+    
     // already exist
     // temporary fix. Use 'blob_id' instead 'externalUserID'
     if([[SourceImagesProvider sharedProvider] imageByUID:qbUser.externalUserID error:nil context:context]){

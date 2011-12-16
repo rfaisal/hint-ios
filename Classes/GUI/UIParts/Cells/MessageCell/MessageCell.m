@@ -96,17 +96,17 @@
 }
 
 // update cell
-- (void)reloadCellSateWithData:(NSObject*)newData {
+- (void)reloadCellSateWithData:(NSObject *)newData {
     Messages *mess = (Messages *)newData;
     self.user = mess.user;
     
     [self setMessageText: mess.text];
     userName.text = [NSString stringWithFormat:@"At %@ %@ wrote:", 
                      [[mess.date description] substringToIndex:[[mess.date description] length]-6] , 
-                     mess.user.mbUser.login];
+                     user.mbUser.login];
     
     // avatar
-    SourceImages *sourceImage = mess.user.photo;
+    SourceImages *sourceImage = user.photo;
     self.avatarView.image = [UIImage imageWithData:sourceImage.image];
     if(self.avatarView.image == nil){
        self.avatarView.image = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"user" ofType:@"png"]];

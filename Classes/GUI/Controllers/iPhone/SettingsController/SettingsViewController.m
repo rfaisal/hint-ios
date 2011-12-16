@@ -330,20 +330,16 @@
 	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
 	
 	NSError *error = nil;
-	
+    Users *user = [[UsersProvider sharedProvider] currentUserWithContext:context];
+
     // save image
     SourceImages *sourceImage = [[SourceImagesProvider sharedProvider] addImage:avatarView.image
                                                                         withUID:blob.ID 
                                                                       globalURL:blob.UID 
                                                                        localURL:nil 
                                                                         context:context];
-    
+	
 	if(sourceImage){
-        // update user
-        Users *user = [[UsersProvider sharedProvider] currentUserWithContext:context];
-		user.photo = sourceImage;
-        [[UsersProvider sharedProvider] saveUserWithContext:context];
-		
 		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
 		[nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
 		[context save:&error];

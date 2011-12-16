@@ -59,8 +59,7 @@
 #pragma mark Observer
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-	if([@"data" isEqualToString:keyPath])
-	{
+	if([@"data" isEqualToString:keyPath]){
 		[self reloadCellSateWithData:self.data];
 	} else if([super respondsToSelector:@selector(observeValueForKeyPath:ofObject:change:context:)])
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

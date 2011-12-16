@@ -15,6 +15,8 @@
 #import "StorageProvider.h"
 #import "Users.h"
 
+#import "SourceImages.h"
+
 
 @implementation ChatViewController
 @synthesize chatDataSource;
