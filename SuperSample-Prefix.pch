@@ -21,5 +21,6 @@
     #import <AudioToolbox/AudioToolbox.h>
 
     #import "Definitions.h"
+    #import "FlurryAPI.h"
 
 #endif

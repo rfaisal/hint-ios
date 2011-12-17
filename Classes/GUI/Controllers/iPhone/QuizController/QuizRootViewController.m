@@ -9,8 +9,6 @@
 #import "QuizRootViewController.h"
 #import "QuizQuestionVC.h"
 
-
-
 @implementation QuizRootViewController
 
 @synthesize btn_go;
@@ -37,6 +35,12 @@
     self.btn_go = nil;
     
     [super viewDidUnload];
+}
+
+- (void) viewDidLoad{
+    [super viewDidLoad];
+    
+    [FlurryAPI logEvent:@"QuizRootViewController, viewDidLoad"];
 }
 
 - (void)dealloc {

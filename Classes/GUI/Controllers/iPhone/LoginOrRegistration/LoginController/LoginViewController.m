@@ -34,6 +34,11 @@
 
 #pragma mark - View lifecycle
 
+- (void) viewDidLoad{
+    [super viewDidLoad];
+    [FlurryAPI logEvent:@"LoginViewController, viewDidLoad"];
+}
+
 - (void)viewDidUnload{
     [self setLogin:nil];
     [self setPassword:nil];

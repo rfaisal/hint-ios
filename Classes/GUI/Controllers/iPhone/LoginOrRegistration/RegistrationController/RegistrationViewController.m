@@ -37,6 +37,11 @@
     [super dealloc];
 }
 
+- (void) viewDidLoad{
+    [super viewDidLoad];
+    [FlurryAPI logEvent:@"RegistrationViewController, viewDidLoad"];
+}
+
 - (void)viewDidUnload{
     [self setUserName:nil];
     [self setEmail:nil];

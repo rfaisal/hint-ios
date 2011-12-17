@@ -40,6 +40,11 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void) viewDidLoad{
+    [super viewDidLoad];
+    [FlurryAPI logEvent:@"LoginOrRegistrationViewController(start), viewDidLoad"];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     
     // Return YES for supported orientations

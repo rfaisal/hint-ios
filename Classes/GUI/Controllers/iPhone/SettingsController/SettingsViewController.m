@@ -40,6 +40,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad{
     [super viewDidLoad];
+    [FlurryAPI logEvent:@"SettingsViewController, viewDidLoad"];
     
     // container customization
     container.layer.borderWidth = 1;
@@ -76,7 +77,7 @@
     
     // populate fields
     fullName.text = user.mbUser.fullName;
-    bioTextView.text = @"my bio";
+    //bioTextView.text = @"my bio";
     
     // set avatar
     if(avatarView.image == nil){

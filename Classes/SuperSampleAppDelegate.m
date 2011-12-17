@@ -16,7 +16,6 @@
 //UI
 #import "LoginOrRegistrationViewController.h"
 
-
 @implementation SuperSampleAppDelegate
 
 @synthesize window = _window;
@@ -25,6 +24,7 @@
 @synthesize quizRootController = _quizRootController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    [FlurryAPI startSession:FLURRY_API_KEY];
     
     // QB settings
 	[QBSettings setLogLevel:QBLogLevelDebug];

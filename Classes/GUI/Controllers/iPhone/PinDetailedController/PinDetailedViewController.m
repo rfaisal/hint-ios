@@ -49,6 +49,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [FlurryAPI logEvent:@"PinDetailedViewController, viewDidLoad"];
+    
     
     // container customization
     container.layer.borderWidth = 2;

@@ -25,6 +25,7 @@
 		A7C3FFC11402E9B20039A28B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB81402E9B20039A28B /* SystemConfiguration.framework */; };
 		BDC7630F144EED820091EB17 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC7630E144EED820091EB17 /* AudioToolbox.framework */; };
 		BDED890A1445F0B8000FDF62 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BDED89091445F0B8000FDF62 /* libresolv.dylib */; };
+		FA2F173D149CDD5C00758338 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2F173C149CDD5C00758338 /* libFlurry.a */; };
 		FA524EE61498A0EA009FD3E2 /* QuizQuestionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524ECB1498A0EA009FD3E2 /* QuizQuestionVC.m */; };
 		FA524EE81498A0EA009FD3E2 /* QuizRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524ECE1498A0EA009FD3E2 /* QuizRootViewController.m */; };
 		FA524EEA1498A0EA009FD3E2 /* QuizStatisticVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524ED11498A0EA009FD3E2 /* QuizStatisticVC.m */; };
@@ -136,6 +137,11 @@
 		A7C3FFB81402E9B20039A28B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BDC7630E144EED820091EB17 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		BDED89091445F0B8000FDF62 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		FA2F1738149CDD5C00758338 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
+		FA2F1739149CDD5C00758338 /* FlurryAPI+AppCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FlurryAPI+AppCircle.h"; sourceTree = "<group>"; };
+		FA2F173A149CDD5C00758338 /* FlurryOffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryOffer.h; sourceTree = "<group>"; };
+		FA2F173B149CDD5C00758338 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
+		FA2F173C149CDD5C00758338 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		FA4579E8149B95B300BD0560 /* QBConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBConsts.h; sourceTree = "<group>"; };
 		FA524ECA1498A0EA009FD3E2 /* QuizQuestionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizQuestionVC.h; sourceTree = "<group>"; };
 		FA524ECB1498A0EA009FD3E2 /* QuizQuestionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizQuestionVC.m; sourceTree = "<group>"; };
@@ -289,6 +295,7 @@
 				BDC7630F144EED820091EB17 /* AudioToolbox.framework in Frameworks */,
 				FA70D0451487BE7F00C21DAA /* libidn.a in Frameworks */,
 				FAF940CE148E8C7C00867E5C /* Quickblox.framework in Frameworks */,
+				FA2F173D149CDD5C00758338 /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				FA70CE911487BBC000C21DAA /* Classes */,
+				FA2F1734149CDD4700758338 /* External */,
 				A7C3FF741402E7120039A28B /* Supporting Files */,
 				FA70CFFF1487BBDA00C21DAA /* Resources */,
 				FA70D0421487BDB700C21DAA /* SuperSample-Info.plist */,
@@ -360,6 +368,35 @@
 			);
 			name = "Supporting Files";
 			path = SuperSample;
+			sourceTree = "<group>";
+		};
+		FA2F1734149CDD4700758338 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				FA2F1736149CDD5C00758338 /* Flurry */,
+			);
+			name = External;
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		FA2F1736149CDD5C00758338 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				FA2F1737149CDD5C00758338 /* AppCircle */,
+				FA2F173B149CDD5C00758338 /* FlurryAPI.h */,
+				FA2F173C149CDD5C00758338 /* libFlurry.a */,
+			);
+			path = Flurry;
+			sourceTree = SOURCE_ROOT;
+		};
+		FA2F1737149CDD5C00758338 /* AppCircle */ = {
+			isa = PBXGroup;
+			children = (
+				FA2F1738149CDD5C00758338 /* FlurryAdDelegate.h */,
+				FA2F1739149CDD5C00758338 /* FlurryAPI+AppCircle.h */,
+				FA2F173A149CDD5C00758338 /* FlurryOffer.h */,
+			);
+			path = AppCircle;
 			sourceTree = "<group>";
 		};
 		FA524EB51498A0EA009FD3E2 /* QuizController */ = {
@@ -1289,6 +1326,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E255B0AB-07FF-44D9-856C-C45EE242B069";
@@ -1313,6 +1351,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E255B0AB-07FF-44D9-856C-C45EE242B069";
@@ -1394,6 +1433,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E255B0AB-07FF-44D9-856C-C45EE242B069";

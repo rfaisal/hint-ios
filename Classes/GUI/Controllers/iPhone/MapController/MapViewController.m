@@ -46,8 +46,9 @@
 #pragma mark
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad{
+- (void) viewDidLoad{
     [super viewDidLoad];
+    [FlurryAPI logEvent:@"MapViewController, viewDidLoad"];
 }
 
 - (void) viewDidAppear:(BOOL)animated{
