@@ -26,8 +26,8 @@
 - (void) signIn;
 - (IBAction) logout;
 
-- (void) startHadleOwnLocation;
-- (void) stopHadleOwnLocation;
+- (void) startTrackOwnLocation;
+- (void) stopTrackOwnLocation;
 - (void) didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
 
 @end

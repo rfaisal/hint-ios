@@ -84,7 +84,7 @@
 
 - (void) signIn{
     // start handling own location
-    [self startHadleOwnLocation];
+    [self startTrackOwnLocation];
     
     // show main screen
     [self.viewController dismissModalViewControllerAnimated:YES];
@@ -96,7 +96,7 @@
     [[UsersProvider sharedProvider] setCurrentUserID:-1];
     
     // stop handling own location
-    [self stopHadleOwnLocation];
+    [self stopTrackOwnLocation];
     
     // shoe start screen
     [self.viewController presentModalViewController:self.loginOrRegisterController animated:YES];
@@ -104,12 +104,12 @@
     [[NSNotificationCenter defaultCenter]  postNotificationName:nLogoutSuccessful object:nil];
 }
 
-- (void)startHadleOwnLocation{
+- (void)startTrackOwnLocation{
     [[QBLocationDataSource instance] setCallbackSelectorForLocationUpdate:@selector(didUpdateToLocation:fromLocation:) forTarget:self];
     [[[QBLocationDataSource instance] locationManager] startUpdatingLocation];
 }
 
-- (void)stopHadleOwnLocation{
+- (void)stopTrackOwnLocation{
     [[QBLocationDataSource instance] setCallbackSelectorForLocationUpdate:nil forTarget:nil];
     [[[QBLocationDataSource instance] locationManager] stopUpdatingLocation];
 }

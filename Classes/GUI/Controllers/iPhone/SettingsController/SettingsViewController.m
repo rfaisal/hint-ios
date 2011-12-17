@@ -275,7 +275,6 @@
     
     QBBlob *blob = blobResul.blob;
     
-    
     // get file
     QBBlobFileResult *blobFileResult = [QBBlobsService GetBlob:blob.UID];
     if(!blobFileResult.success){

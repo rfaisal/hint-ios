@@ -57,7 +57,6 @@
     qbUser.ownerID = ownerID;        
     qbUser.login = login.text;
 	qbUser.password = password.text;
-    qbUser.fullName = login.text;
     
     // authenticate
     [QBUsersService authenticateUser:qbUser delegate:self context:nil];

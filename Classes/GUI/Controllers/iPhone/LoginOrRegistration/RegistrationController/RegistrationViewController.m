@@ -81,7 +81,6 @@
         [self showMessage:@"Error" message:@"Please use alpha or numeric characters with no spaces"];
 		return;
     }
-
 	 
     // Register user
     QBUUser* user = [[QBUUser alloc] init];
@@ -90,7 +89,6 @@
 	user.password = password.text;
     user.login = userName.text;
 	user.fullName = fullName.text;
-	user.deviceID = QBBlobOwnerTypeApplication;
 	
 	[self busy:YES];
     

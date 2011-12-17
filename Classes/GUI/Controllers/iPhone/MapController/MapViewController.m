@@ -80,7 +80,7 @@
 
 - (void) searchGeoData:(NSTimer *) timer{
 	QBGeoDataSearchRequest *searchRequest = [[QBGeoDataSearchRequest alloc] init];
-	searchRequest.last_only = YES;
+	searchRequest.last_only = YES; // only last location
     searchRequest.userAppID = appID;
     searchRequest.pageSize = 15;
 	[QBGeoposService findGeoData:searchRequest delegate:self];
