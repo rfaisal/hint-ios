@@ -3,7 +3,7 @@
 //  FansNet
 //
 //  Created by Andrew Kopanev on 7/12/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 QuickBlox. All rights reserved.
 //
 
 #import "MessageCell.h"

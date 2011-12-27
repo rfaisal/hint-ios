@@ -3,7 +3,7 @@
 //  SuperSample
 //
 //  Created by Andrey Kozlov on 8/22/11.
-//  Copyright 2011 YAS. All rights reserved.
+//  Copyright 2011 QuickBlox. All rights reserved.
 //
 
 #import "SuperSampleAppDelegate.h"
@@ -153,6 +153,8 @@
     }else if([result isKindOfClass:[TokenResult class]]){
         if(result.success){
             TokenResult *tokenResult = (TokenResult *)result;
+            
+            // save auth token
             [[BaseService sharedService] setToken:[tokenResult token]];
         }else{
            [self processErrors:result.errors];

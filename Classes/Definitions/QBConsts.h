@@ -9,7 +9,7 @@
 #pragma mark QuickBlox
 #pragma mark
 
-static NSString *const endpoint = @"quickblox.com"; //qbtest01.quickblox.com
+static NSString *const endpoint = @"quickblox.com";
 
 static NSUInteger const appID = 92;
 static NSUInteger const ownerID = 4335;

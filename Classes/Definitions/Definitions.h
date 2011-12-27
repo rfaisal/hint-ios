@@ -3,7 +3,7 @@
 //  SuperSample
 //
 //  Created by Andrey Kozlov on 9/14/11.
-//  Copyright (c) 2011 YAS. All rights reserved.
+//  Copyright (c) 2011 QuickBlox. All rights reserved.
 //
 
 #ifndef SuperSample_Definitions_h
