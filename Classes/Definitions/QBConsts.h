@@ -10,7 +10,9 @@
 #pragma mark
 
 static NSString *const endpoint = @"quickblox.com"; //qbtest01.quickblox.com
+
 static NSUInteger const appID = 92;
 static NSUInteger const ownerID = 4335;
-static NSString *const appKey = @"X2TYsfGRBqh6Px3";
-static NSString *const appSecret = @"Qbxu9R3rjMdhu9Q";
+
+static NSString *const authKey = @"wJHdOcQSxXQGWx5";
+static NSString *const authSecret = @"BTFsj7Rtt27DAmT";

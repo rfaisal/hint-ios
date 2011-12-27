@@ -3,7 +3,7 @@
 //  SuperSample
 //
 //  Created by Andrey Kozlov on 8/23/11.
-//  Copyright 2011 YAS. All rights reserved.
+//  Copyright 2011 QuickBlox. All rights reserved.
 //
 
 #import "MapViewController.h"
@@ -66,6 +66,10 @@
 }
 
 - (void)viewDidUnload {
+    self.mapView = nil;
+    self.annotationDataSource = nil;
+    self.pinDetailedController = nil;
+    
     [super viewDidUnload];
 }
 
@@ -80,9 +84,10 @@
 #pragma mark
 
 - (void) searchGeoData:(NSTimer *) timer{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
 	QBGeoDataSearchRequest *searchRequest = [[QBGeoDataSearchRequest alloc] init];
 	searchRequest.last_only = YES; // only last location
-    searchRequest.userAppID = appID;
     searchRequest.pageSize = 15;
 	[QBGeoposService findGeoData:searchRequest delegate:self];
 	[searchRequest release];
@@ -149,8 +154,6 @@
     
     NSManagedObjectContext *context = [StorageProvider threadSafeContext];
     NSError *error;
-    
-    NSLog(@"UID=%d", qbUser.externalUserID);
     
     // already exist
     // temporary fix. Use 'blob_id' instead 'externalUserID'
@@ -232,8 +235,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(ownStatusDidChange:) 
                                                  name:nChangedOwnStatus object:nil];
-    
-    
 }
 
 - (void)unsubscribe {
@@ -243,39 +244,6 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:nRefreshAnnotationDetails object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:nOpenPrivateChatView object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:nChangedOwnStatus object:nil];
-}
-
--(void) releaseProperties{
-    mapView = nil;
-    annotationDataSource = nil;
-    pinDetailedController = nil;
-    
-    [super releaseProperties];
-}
-
--(void)showMessage:(NSString*)title message:(NSString*)msg{
-    
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title 
-													message:msg 
-												   delegate:self 
-										  cancelButtonTitle:NSLocalizedString(@"OK", "") 
-										  otherButtonTitles:nil];
-	
-	alert.tag = (title == NSLocalizedString(@"Registration successful", "") ? 1 : 0);
-	[alert show];
-	[alert release];	
-}
-
--(void)processErrors:(NSMutableArray*)errors{
-	NSMutableString *errorsString = [NSMutableString stringWithCapacity:0];
-	
-	for(NSString *error in errors){
-		[errorsString appendFormat:@"%@\n", error];
-	}
-	
-	if ([errorsString length] > 0) {
-		[self showMessage:NSLocalizedString(@"Error", "") message:errorsString];
-	}
 }
 
 
@@ -333,11 +301,9 @@
                     
             }						
         }
-
-    // errors
-	}else{
-        [self processErrors:result.answer.errors];
-    }
+	}
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 

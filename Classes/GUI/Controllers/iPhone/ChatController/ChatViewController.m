@@ -3,7 +3,7 @@
 //  SuperSample
 //
 //  Created by Andrey Kozlov on 8/23/11.
-//  Copyright 2011 YAS. All rights reserved.
+//  Copyright 2011 QuickBlox. All rights reserved.
 //
 
 #import "ChatViewController.h"
@@ -92,15 +92,17 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+
 #pragma mark
 #pragma mark GeoData
 #pragma mark
 
 - (void) searchGeoData:(NSTimer *) timer{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
 	QBGeoDataSearchRequest *searchRequest = [[QBGeoDataSearchRequest alloc] init];
 	searchRequest.status = YES;
     searchRequest.sort_by = GeoDataSortByKindCreatedAt;
-    searchRequest.userAppID = appID;
     searchRequest.pageSize = 15;
 	[QBGeoposService findGeoData:searchRequest delegate:self];
 	[searchRequest release];
@@ -121,7 +123,7 @@
 
 -(IBAction) sendAction:(id)sender{
     
-    if ([textField.text isEqualToString:@""]) {
+    if ([[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0) {
         return;
     }    
     
@@ -154,15 +156,15 @@
     // get & update user
     Users *currentUser = [[UsersProvider sharedProvider] currentUserWithContext:context];
     currentUser.status = chatMessage;
-    BOOL saveUserStatus = [[UsersProvider sharedProvider] saveUserWithContext:context];
+    [[UsersProvider sharedProvider] saveUserWithContext:context];
     
     // save message
-	Messages *message = [[ChatListProvider sharedProvider] addMessageWithUID:ID 
-																	   text:chatMessage 
-																   location:[NSString stringWithFormat:@"%@", location] 
-                                                                        user:currentUser
-                                                                        date:data.created_at
-																	context:context];
+	[[ChatListProvider sharedProvider] addMessageWithUID:ID 
+                                                    text:chatMessage 
+                                                location:[NSString stringWithFormat:@"%@", location] 
+                                                    user:currentUser
+                                                    date:data.created_at
+                                                 context:context];
 		
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
     
@@ -209,12 +211,12 @@
         
         
         // create 
-        Messages *message = [[ChatListProvider sharedProvider] addMessageWithUID:Id 
-                                                                            text:msg 
-                                                                        location:[NSString stringWithFormat:@"%@", [geoData location]] 
-                                                                            user:user
-                                                                            date:geoData.created_at
-                                                                         context:context];
+        [[ChatListProvider sharedProvider] addMessageWithUID:Id 
+                                                        text:msg 
+                                                    location:[NSString stringWithFormat:@"%@", [geoData location]] 
+                                                        user:user
+                                                        date:geoData.created_at
+                                                     context:context];
         
 
         hasChanges = YES;
@@ -281,9 +283,10 @@
         if(result.success){
             QBGeoDataSearchResult *geoDataSearchRes = (QBGeoDataSearchResult *)result;
             [self performSelectorInBackground:@selector(processGeoDataAsync:) withObject:geoDataSearchRes.geodatas];
-
         }
     }
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 

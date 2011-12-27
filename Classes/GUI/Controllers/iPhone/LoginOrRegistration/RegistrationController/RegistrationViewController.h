@@ -2,15 +2,14 @@
 //  RegistrationViewController.h
 //  SuperSample
 //
-//  Created by Danil on 04.10.11.
-//  Copyright 2011 YAS. All rights reserved.
+//  Created by Igor Khomenko on 04.10.11.
+//  Copyright 2011 QuickBlox. All rights reserved.
 //
 
 #import "SubscribedViewController.h"
 
 
-@interface RegistrationViewController : SubscribedViewController <ActionStatusDelegate> {
-    
+@interface RegistrationViewController : SubscribedViewController <ActionStatusDelegate, UIAlertViewDelegate> {
     UITextField *userName;
     UITextField *email;
     UITextField *password;
@@ -29,9 +28,6 @@
 - (IBAction)next:(id)sender;
 - (IBAction)back:(id)sender;
 
--(void)processErrors:(NSMutableArray*)errors;
--(void)showMessage:(NSString*)title message:(NSString*)msg;
 -(void)busy:(BOOL) isBusy;
-
 
 @end

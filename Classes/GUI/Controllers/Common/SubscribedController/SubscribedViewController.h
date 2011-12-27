@@ -3,7 +3,7 @@
 //  SuperSample
 //
 //  Created by Andrey Kozlov on 8/23/11.
-//  Copyright 2011 YAS. All rights reserved.
+//  Copyright 2011 QuickBlox. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -35,5 +35,10 @@
 
 - (void) presentCustomModalViewController:(SubscribedViewController*)controller animated:(BOOL)animated;
 - (void) dismissCustomModalViewControllerAnimated:(BOOL)animated;
+
+
+#pragma Alert
+-(void)processErrors:(NSArray *)errors;
+-(void)showMessage:(NSString *)title message:(NSString *)msg delegate:(id)delegate;
 
 @end

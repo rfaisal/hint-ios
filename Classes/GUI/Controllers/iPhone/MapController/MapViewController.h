@@ -3,7 +3,7 @@
 //  SuperSample
 //
 //  Created by Andrey Kozlov on 8/23/11.
-//  Copyright 2011 YAS. All rights reserved.
+//  Copyright 2011 QuickBlox. All rights reserved.
 //
 
 #import "SubscribedViewController.h"
@@ -29,8 +29,5 @@
 - (void) searchGeoData:(NSTimer *) timer;
 
 - (void) getAvatarAndStoreForQBUserAsync:(QBUUser *)user;
-
--(void)processErrors:(NSMutableArray*)errors;
--(void)showMessage:(NSString*)title message:(NSString*)msg;
 
 @end

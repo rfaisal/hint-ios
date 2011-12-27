@@ -30,13 +30,13 @@
 	[QBSettings setLogLevel:QBLogLevelDebug];
 	[QBSettings setServerDomainTemplate:[NSString stringWithFormat:@"%@%@", @"%@.", endpoint]];	
     
-	[QBGeoposService AuthorizeAppId:appID key:appKey secret:appSecret];	
+    
+    // App Authorization
+    [BaseService AuthorizeAppId:appID key:authKey secret:authSecret delegate:self];
+    
+    
 	[QBGeoposService setServiceZone:ServiceZoneProduction];
-
-	[QBUsersService AuthorizeAppId:appID key:appKey secret:appSecret];
     [QBUsersService setServiceZone:ServiceZoneProduction];
-		
-	[QBBlobsService AuthorizeAppId:appID key:appKey secret:appSecret];	
 	[QBBlobsService setServiceZone:ServiceZoneProduction];
 	
     self.window.rootViewController = self.viewController;
@@ -125,8 +125,6 @@
     }
 
     QBGeoData *geoData = [[QBGeoData alloc] init];
-    geoData.appID = appID;
-    geoData.user = [curUser mbUser];
     geoData.status = curUser.status;
     geoData.latitude = newLocation.coordinate.latitude;
     geoData.longitude = newLocation.coordinate.longitude;
@@ -142,10 +140,43 @@
 #pragma mark
 
 - (void)completedWithResult:(Result *)result{
-	if(result.success){
-		if([result isKindOfClass:[QBGeoDataResult class]]){
+
+    if([result isKindOfClass:[QBGeoDataResult class]]){
+        if(result.success){
 			//QBGeoDataResult *geoDataRes = (QBGeoDataResult *)result;
 		}
+	
+    // TokenRequestQuery
+    }else if([result isKindOfClass:[TokenResult class]]){
+        if(result.success){
+            TokenResult *tokenResult = (TokenResult *)result;
+            [[BaseService sharedService] setToken:[tokenResult token]];
+        }else{
+           [self processErrors:result.errors];
+        }
+    }
+}
+
+-(void)showMessage:(NSString*)title message:(NSString*)msg{
+    
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title 
+													message:msg 
+												   delegate:self 
+										  cancelButtonTitle:NSLocalizedString(@"OK", "") 
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];	
+}
+
+-(void)processErrors:(NSArray *)errors{
+	NSMutableString *errorsString = [NSMutableString stringWithCapacity:0];
+	
+	for(NSString *error in errors){
+		[errorsString appendFormat:@"%@\n", error];
+	}
+	
+	if ([errorsString length] > 0) {
+		[self showMessage:NSLocalizedString(@"Error", "") message:errorsString];
 	}
 }
 

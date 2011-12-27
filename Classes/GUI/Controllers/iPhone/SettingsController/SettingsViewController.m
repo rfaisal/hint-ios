@@ -221,11 +221,11 @@
             // get & update user
             Users *currentUser = [[UsersProvider sharedProvider] currentUser];
             currentUser.mbUser.fullName = fullName.text;
-            BOOL saveUserStatus = [[UsersProvider sharedProvider] saveUser];
+            [[UsersProvider sharedProvider] saveUser];
             
-            [self showMessage:NSLocalizedString(@"Edit user successful", "") message:nil];
+            [self showMessage:NSLocalizedString(@"Edit user successful", "") message:nil delegate:self];
         }else{
-            [self processErrors:result.answer.errors];
+            [self processErrors:res.errors];
         }
         
     // Upload image result
@@ -233,7 +233,6 @@
 		QBUploadFileTaskResult *res = (QBUploadFileTaskResult*)result;
 		if(res.success){
             
-			NSString *blobUID = res.uploadedFileBlob.UID;
             int blobID = res.uploadedFileBlob.ID;
             
             // update current user
@@ -247,17 +246,16 @@
             // save blob_id
             Users *currentUser = [[UsersProvider sharedProvider] currentUser];
             currentUser.mbUser.externalUserID = blobID; // temporary fix. Use 'blob_id' instead 'externalUserID'
-            BOOL saveUserStatus = [[UsersProvider sharedProvider] saveUser];
+            [[UsersProvider sharedProvider] saveUser];
             
 			[self performSelectorInBackground:@selector(saveAvatarAsync:) withObject:res.uploadedFileBlob];		
-
 		}else {
-			[self processErrors:res.answer.errors];
+			[self processErrors:res.errors];
 		}
         
-	}else {
-		[self processErrors:result.answer.errors];
-	}
+	}else if(!result.success){
+        [self processErrors:result.errors];
+    }
 }
 
 - (void) getAvatarAndStoreForQBUserAsync:(QBUUser *)qbUser{
@@ -267,24 +265,25 @@
     NSError *error;
     
     // get blob
-    QBBlobResult *blobResul = [QBBlobsService GetBlobInfo:qbUser.externalUserID];
-    if(!blobResul.success){
-        [self performSelectorOnMainThread:@selector(processErrors:) withObject:blobResul.answer.errors waitUntilDone:YES];
+    QBBlobResult *blobResult = [QBBlobsService GetBlobInfo:qbUser.externalUserID];
+    if(!blobResult.success){
+        [self performSelectorOnMainThread:@selector(processErrors:) withObject:blobResult.errors waitUntilDone:YES];
         [pool drain];
         return;
     }
     
-    QBBlob *blob = blobResul.blob;
+    QBBlob *blob = blobResult.blob;
     
     // get file
     QBBlobFileResult *blobFileResult = [QBBlobsService GetBlob:blob.UID];
     if(!blobFileResult.success){
-        [self performSelectorOnMainThread:@selector(processErrors:) withObject:blobResul.answer.errors waitUntilDone:YES];
+        [self performSelectorOnMainThread:@selector(processErrors:) withObject:blobResult.errors waitUntilDone:YES];
         [pool drain];
         return;
     }
     
     if(blobFileResult.data == nil){
+        [pool drain];
         return;
     }
     
@@ -311,38 +310,12 @@
     [pool drain];
 }
 
-
--(void)showMessage:(NSString*)title message:(NSString*)msg{
-
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title 
-													message:msg 
-												   delegate:self 
-										  cancelButtonTitle:NSLocalizedString(@"OK", "") 
-										  otherButtonTitles:nil];
-	
-	alert.tag = (title == NSLocalizedString(@"Registration successful", "") ? 1 : 0);
-	[alert show];
-	[alert release];	
-}
-
--(void)processErrors:(NSMutableArray*)errors{
-	NSMutableString *errorsString = [NSMutableString stringWithCapacity:0];
-	
-	for(NSString *error in errors){
-		[errorsString appendFormat:@"%@\n", error];
-	}
-	
-	if ([errorsString length] > 0) {
-		[self showMessage:NSLocalizedString(@"Error", "") message:errorsString];
-	}
-}
-
 -(void) saveAvatarAsync:(QBBlob *)blob {	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
 	
 	NSError *error = nil;
-    Users *user = [[UsersProvider sharedProvider] currentUserWithContext:context];
+    [[UsersProvider sharedProvider] currentUserWithContext:context];
 
     // save image
     SourceImages *sourceImage = [[SourceImagesProvider sharedProvider] addImage:avatarView.image

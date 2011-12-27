@@ -2,8 +2,8 @@
 //  LoginViewController.m
 //  SuperSample
 //
-//  Created by Danil on 04.10.11.
-//  Copyright 2011 YAS. All rights reserved.
+//  Created by Igor Khomenko on 04.10.11.
+//  Copyright 2011 QuickBlox. All rights reserved.
 //
 
 #import "LoginViewController.h"
@@ -32,7 +32,9 @@
 }
 
 
+#pragma mark
 #pragma mark - View lifecycle
+#pragma mark
 
 - (void) viewDidLoad{
     [super viewDidLoad];
@@ -79,107 +81,51 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-#pragma mark -
-#pragma mark ActionStatusDelegate
 
--(void)completedWithResult:(Result*)result{
+#pragma mark
+#pragma mark ActionStatusDelegate
+#pragma mark
+
+-(void)completedWithResult:(Result *)result{
 	[self completedWithResult:result context:nil];
 }
 
--(void)completedWithResult:(Result*)result context:(void*)contextInfo{
-	int status = ((RestAnswer*)result.answer).response.status;
-    
+-(void)completedWithResult:(Result *)result context:(void*)contextInfo{
+
 	if([result isKindOfClass:[QBUUserAuthenticateResult class]]){
-		QBUUserAuthenticateResult* res = (QBUUserAuthenticateResult *)result;
+		QBUUserAuthenticateResult *res = (QBUUserAuthenticateResult *)result;
 		if(res.success){
-            // identify User
-			[QBUsersService identifyUser:self context:nil];
-		}else if(401 == status){
-			[self showMessage:NSLocalizedString(@"Not registered!", "") message:nil];
-		}else if(422 == status){
-			[self processErrors:result.answer.errors];
-		}
-        
-	}else if([result isKindOfClass:[QBUUserIdentifyResult class]]){
-		QBUUserIdentifyResult* res = (QBUUserIdentifyResult *)result;
-        
-		if(res.success && 200 == status){
-			QBUUserIdentifyAnswer *answer = (QBUUserIdentifyAnswer *)res.answer;
-                  
+
+			QBUUserAuthenticateAnswer *answer = (QBUUserAuthenticateAnswer *)res.answer;
+            
             // fix issue with sign in
             if(answer.user.ownerID != ownerID){
-                [self showMessage:NSLocalizedString(@"Not registered!", "") message:nil];
+                [self showMessage:NSLocalizedString(@"Not registered!", "") message:nil delegate:nil];
                 return;
             }
             
             // current user
-            Users *user = [[UsersProvider sharedProvider] currentUserWithQBUser:answer.user];
-
+            [[UsersProvider sharedProvider] currentUserWithQBUser:answer.user];
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:nRefreshAnnotationDetails object:nil];
             
 			[self showMessage:NSLocalizedString(@"Authentication successful", "") 
-					  message:[NSString stringWithFormat:NSLocalizedString(@"%@ was authenticated", ""), answer.user.fullName]];
- 
-		}else if(401 == status){			
-			[self showMessage:NSLocalizedString(@"Identification failed", "") message:nil];
-		}	else if(422 == status){
-			[self processErrors:result.answer.errors];
-		}
-	
-    }else if([result isKindOfClass:[QBUUserBaseWebAuthResult class]]){
-		QBUUserBaseWebAuthResult* res = (QBUUserBaseWebAuthResult *)result;
-        
-		if(res.success && 202 == status){
-			[QBUsersService identifyUser:self context:nil];
-		}else if(401 == status){			
-			[self showMessage:NSLocalizedString(@"Identification failed", "") message:nil];
-		}	else if(422 == status){
-			[self processErrors:result.answer.errors];
-		}
-        
-	}else if([result isKindOfClass:[QBUUserResetPasswordByEmailResult class]]){
-		QBUUserResetPasswordByEmailResult* res = (QBUUserResetPasswordByEmailResult*)result;
-		if(res.success && 200 == status){
-			[self showMessage:NSLocalizedString(@"Your new password or resetting instructions has been mailed", "") message:nil];
-			//You will receive an email with instructions about how to reset your password in a few minutes. 
-		}else if(404 == status){			
-			[self showMessage:NSLocalizedString(@"Email not found", "") message:nil];
-		}else if(422 == status){
-			[self processErrors:result.answer.errors];
-		}
-	}
+					  message:[NSString stringWithFormat:NSLocalizedString(@"%@ was authenticated", ""), answer.user.login] delegate:self];
+
+		}else if(401 == result.status){
+			[self showMessage:NSLocalizedString(@"Not registered!", "") message:nil delegate:nil];
+		}else{
+            [self processErrors:result.errors];
+        }
+    }
+    
+    [self busy:NO];
 }
 
 
 #pragma mark -
 #pragma mark Private
-
--(void)showMessage:(NSString*)title message:(NSString*)msg{
-	[self busy:NO];
-	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title 
-													message:msg 
-												   delegate:self 
-										  cancelButtonTitle:NSLocalizedString(@"OK", "") 
-										  otherButtonTitles:nil];
-	alert.tag = (title == NSLocalizedString(@"Authentication successful", "") ? 1 : 0);
-	[alert show];
-	[alert release];	
-}
-
--(void)processErrors:(NSMutableArray*)errors{
-	NSMutableString *errorsString = [NSMutableString stringWithCapacity:0];
-	
-	for(NSString *error in errors){
-		[errorsString appendFormat:@"%@\n", error];
-	}
-	
-	if ([errorsString length] > 0) {
-		[self showMessage:NSLocalizedString(@"Error", "") message:errorsString];
-	}else {
-		[self busy:NO];
-	}	
-}
+#pragma mark
 
 -(void)busy:(BOOL) _isBusy{	
 	isBusy = _isBusy;
@@ -197,9 +143,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-	if (alertView.tag == 1) {
-        [(SuperSampleAppDelegate*)[[UIApplication sharedApplication] delegate] signIn];
-	}
+    [(SuperSampleAppDelegate *)[[UIApplication sharedApplication] delegate] signIn];
 }
 
 @end

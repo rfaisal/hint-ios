@@ -3,7 +3,7 @@
 //  Quiz
 //
 //  Created by You on 05.07.10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 QuickBlox. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

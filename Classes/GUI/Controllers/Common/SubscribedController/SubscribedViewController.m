@@ -3,7 +3,7 @@
 //  SuperSample
 //
 //  Created by Andrey Kozlov on 8/23/11.
-//  Copyright 2011 YAS. All rights reserved.
+//  Copyright 2011 QuickBlox. All rights reserved.
 //
 
 #import "SubscribedViewController.h"
@@ -156,6 +156,28 @@
         self.modalCustomViewController.parentCustomModalController = nil;
         self.modalCustomViewController = nil;
     }
+}
+
+-(void)showMessage:(NSString*)title message:(NSString*)msg delegate:(id)delegate{
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title 
+													message:msg 
+												   delegate:delegate 
+										  cancelButtonTitle:NSLocalizedString(@"OK", "") 
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];	
+}
+
+-(void)processErrors:(NSArray *)errors{
+	NSMutableString *errorsString = [NSMutableString stringWithCapacity:0];
+	
+	for(NSString *error in errors){
+		[errorsString appendFormat:@"%@\n", error];
+	}
+	
+	if ([errorsString length] > 0) {
+		[self showMessage:NSLocalizedString(@"Error", "") message:errorsString delegate:nil];
+	}
 }
 
 @end

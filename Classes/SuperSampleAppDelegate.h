@@ -21,13 +21,14 @@
 @property (nonatomic, retain) IBOutlet LoginOrRegistrationViewController *loginOrRegisterController;
 @property (nonatomic, retain) IBOutlet QuizRootViewController *quizRootController;
 
-
-
 - (void) signIn;
 - (IBAction) logout;
 
 - (void) startTrackOwnLocation;
 - (void) stopTrackOwnLocation;
 - (void) didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
+
+-(void)showMessage:(NSString*)title message:(NSString*)msg;
+-(void)processErrors:(NSArray*)errors;
 
 @end

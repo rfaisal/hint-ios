@@ -34,7 +34,4 @@
 - (IBAction) displayOfflineUserSwitchDidChangeState:(id)sender;
 - (IBAction) shareYourLocationSwitchDidChangeState:(id)sender;
 
--(void)processErrors:(NSMutableArray*)errors;
--(void)showMessage:(NSString*)title message:(NSString*)msg;
-
 @end

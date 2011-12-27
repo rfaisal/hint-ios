@@ -1,9 +1,9 @@
 //
-//  PinDetailedView.m
-//  FansNet
+//  PinDetailedViewController.m
+//  SuperSample
 //
-//  Created by Andrew Kopanev on 6/2/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Created by Igor Khomenko on 8/23/11.
+//  Copyright 2011 QuickBlox. All rights reserved.
 //
 
 #import "PinDetailedViewController.h"

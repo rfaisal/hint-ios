@@ -3,7 +3,7 @@
 //  SuperSample
 //
 //  Created by Danil on 04.10.11.
-//  Copyright 2011 YAS. All rights reserved.
+//  Copyright 2011 QuickBlox. All rights reserved.
 //
 
 #import "LoginOrRegistrationViewController.h"

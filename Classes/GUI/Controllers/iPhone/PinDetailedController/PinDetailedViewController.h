@@ -1,4 +1,10 @@
 //
+//  PinDetailedViewController.h
+//  SuperSample
+//
+//  Created by Igor Khomenko on 8/23/11.
+//  Copyright 2011 QuickBlox. All rights reserved.
+//
 
 #import "SubscribedViewController.h"
 

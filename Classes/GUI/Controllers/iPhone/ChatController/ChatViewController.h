@@ -3,7 +3,7 @@
 //  SuperSample
 //
 //  Created by Andrey Kozlov on 8/23/11.
-//  Copyright 2011 YAS. All rights reserved.
+//  Copyright 2011 QuickBlox. All rights reserved.
 //
 
 #import "SubscribedViewController.h"
@@ -20,7 +20,7 @@
 
 @property (nonatomic, retain) IBOutlet ChatListDataSource *chatDataSource;
 @property (nonatomic, retain) IBOutlet UITableView *tabView;
-@property (nonatomic, retain) IBOutlet UITextField* textField;
+@property (nonatomic, retain) IBOutlet UITextField *textField;
 
 - (IBAction) sendAction:(id)sender;
 - (void) searchGeoData:(NSTimer *) timer;
