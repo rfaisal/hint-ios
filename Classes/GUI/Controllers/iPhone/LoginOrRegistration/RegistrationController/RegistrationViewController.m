@@ -85,13 +85,13 @@
 	}
     
     if ([password.text length] < 3) {
-		[self showMessage:@"Error" message:@"Please ensure your password is a minimum of 6 characters" delegate:nil];
+		[self showMessage:@"Error" message:@"Please ensure your password is a minimum of 3 characters" delegate:nil];
 		return;
     }
     
     NSCharacterSet *nonNumericCharacters = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     if([password.text rangeOfCharacterFromSet:nonNumericCharacters].location != NSNotFound){
-        [self showMessage:@"Error" message:@"Please use alpha or numeric characters with no spaces" delegate:nil];
+        [self showMessage:@"Error" message:@"Please use alpha or numeric characters with no spaces in password field" delegate:nil];
         return;
     }
 
@@ -101,7 +101,7 @@
     
     NSCharacterSet * inValidCharacters= [[NSCharacterSet characterSetWithRange:rangeValidCharacters] invertedSet];
     if([password.text rangeOfCharacterFromSet:inValidCharacters].location != NSNotFound){
-        [self showMessage:@"Error" message:@"Please use alpha or numeric characters with no spaces" delegate:nil];
+        [self showMessage:@"Error" message:@"Please use alpha or numeric characters with no spaces in password field" delegate:nil];
 		return;
     }
 	 
@@ -154,6 +154,17 @@
 	}	
     
     [self busy:NO];
+}
+
+
+#pragma mark
+#pragma mark UITextFieldDelegate
+#pragma mark
+
+- (BOOL)textFieldShouldReturn:(UITextField *)_textField{
+    [_textField resignFirstResponder];
+    [self next:nil];
+    return YES;
 }
 
 

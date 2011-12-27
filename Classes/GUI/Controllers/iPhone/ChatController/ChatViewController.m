@@ -149,7 +149,6 @@
 	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
 	NSError *error = nil;
 	BOOL hasChanges = NO;
-    
 	NSString *chatMessage = [NSString stringWithFormat:@"%@", data.status];	
 	NSString *ID = [NSString stringWithFormat:@"%u", data.ID];
     
@@ -287,6 +286,17 @@
     }
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+}
+
+
+#pragma mark
+#pragma mark UITextFieldDelegate
+#pragma mark
+
+- (BOOL)textFieldShouldReturn:(UITextField *)_textField{
+    [_textField resignFirstResponder];
+    [self sendAction:_textField];
+    return YES;
 }
 
 

@@ -42,10 +42,6 @@
 	avatarView.backgroundColor = [UIColor clearColor];
 	[self.contentView addSubview: avatarView];
     [avatarView release];
-    
-    tapView = [[UIView alloc] initWithFrame:avatarView.frame];
-    [self addSubview:tapView];
-    [tapView release];
 	
     // message bg
 	roundView = [[UIView alloc] initWithFrame: CGRectZero];
@@ -57,7 +53,7 @@
 	// message
 	messageLabel = [[UILabel alloc] initWithFrame: CGRectZero];
 	messageLabel.backgroundColor = [UIColor clearColor];
-	messageLabel.numberOfLines = 999;
+	messageLabel.numberOfLines = 0;
 	messageLabel.font = [UIFont fontWithName: @"HelveticaNeue" size: 12];
 	messageLabel.textColor = [UIColor blackColor];
 	[roundView addSubview: messageLabel];
@@ -72,6 +68,12 @@
 	[self.contentView addSubview: userName];
     [userName release];
 
+    
+    // tap view
+    tapView = [[UIView alloc] initWithFrame:avatarView.frame];
+    [self addSubview:tapView];
+    [tapView release];
+    
 	return self;
 }
 
@@ -92,7 +94,10 @@
     Messages *mess = (Messages *)newData;
     self.user = mess.user;
     
+    // message
     [self setMessageText: mess.text];
+    
+    // user name
     userName.text = [NSString stringWithFormat:@"At %@ %@ wrote:", 
                      [[mess.date description] substringToIndex:[[mess.date description] length]-6] , 
                      user.mbUser.login];
@@ -113,23 +118,20 @@
 }
 
 - (void) setMessageText: (NSString *) messageText {
-	CGSize ts = [messageText sizeWithFont: messageLabel.font constrainedToSize: CGSizeMake(kCellRoundWidth - 10, 480)];
+	CGSize ts = [messageText sizeWithFont: messageLabel.font constrainedToSize: CGSizeMake(kCellRoundWidth-10, 1000000)];
 	if (ts.height < 20) {
         ts.height = 20;
     }
 	roundView.frame = CGRectMake(10 + kCellImgSize, kCellStatusLabelHeight, kCellRoundWidth, ts.height + 10);
 	[messageLabel setFrame: CGRectMake(5, 5, kCellRoundWidth - 10, ts.height)];	
-	messageLabel.text = messageText;
+	
+    messageLabel.text = messageText;
 }
 
 - (CGFloat)getCellHeight {
-	CGSize ts = [messageLabel.text sizeWithFont: [UIFont fontWithName: @"HelveticaNeue" size: 12]
-						constrainedToSize: CGSizeMake(kCellRoundWidth, 480)];
+    CGFloat cellHeight = messageLabel.frame.size.height + kCellStatusLabelHeight;
 	
-	ts.height += kCellStatusLabelHeight;
-	
-	float rv = (ts.height < kCellImgSize + 5) ? kCellImgSize + 15 : ts.height + 15;
-	return rv;
+	return (cellHeight < kCellImgSize + 5) ? kCellImgSize + 17 : cellHeight + 17;
 }
 
 - (CGFloat) cellHeight{

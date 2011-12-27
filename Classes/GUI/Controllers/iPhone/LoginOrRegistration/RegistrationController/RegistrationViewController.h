@@ -9,7 +9,7 @@
 #import "SubscribedViewController.h"
 
 
-@interface RegistrationViewController : SubscribedViewController <ActionStatusDelegate, UIAlertViewDelegate> {
+@interface RegistrationViewController : SubscribedViewController <ActionStatusDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
     UITextField *userName;
     UITextField *email;
     UITextField *password;

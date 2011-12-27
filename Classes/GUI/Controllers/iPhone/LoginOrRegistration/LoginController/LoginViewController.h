@@ -8,7 +8,7 @@
 
 #import "SubscribedViewController.h"
 
-@interface LoginViewController : SubscribedViewController <ActionStatusDelegate, UIAlertViewDelegate> {    
+@interface LoginViewController : SubscribedViewController <ActionStatusDelegate, UIAlertViewDelegate, UITextFieldDelegate> {    
     UITextField *login;
     UITextField *password;
     UIActivityIndicatorView *activityIndicator;

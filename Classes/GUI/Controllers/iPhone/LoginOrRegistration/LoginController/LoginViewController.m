@@ -123,6 +123,17 @@
 }
 
 
+#pragma mark
+#pragma mark UITextFieldDelegate
+#pragma mark
+
+- (BOOL)textFieldShouldReturn:(UITextField *)_textField{
+    [_textField resignFirstResponder];
+    [self next:nil];
+    return YES;
+}
+
+
 #pragma mark -
 #pragma mark Private
 #pragma mark

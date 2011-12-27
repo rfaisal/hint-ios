@@ -223,7 +223,7 @@
             currentUser.mbUser.fullName = fullName.text;
             [[UsersProvider sharedProvider] saveUser];
             
-            [self showMessage:NSLocalizedString(@"Edit user successful", "") message:nil delegate:self];
+            [self showMessage:NSLocalizedString(@"User edited successfully", "") message:nil delegate:self];
         }else{
             [self processErrors:res.errors];
         }

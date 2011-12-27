@@ -86,6 +86,9 @@
     // start handling own location
     [self startTrackOwnLocation];
     
+    // select Map
+    [_viewController setSelectedIndex:0];
+    
     // show main screen
     [self.viewController dismissModalViewControllerAnimated:YES];
 }
