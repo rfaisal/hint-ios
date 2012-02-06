@@ -61,12 +61,17 @@
     [displayOfflineUserSwitch setOn:[defaults boolForKey:kDisplayOfflineUser]];
     [shareYourLocationSwitch setOn:[defaults boolForKey:kShareYourLocation]];
     
+    NSLog(@"user.mbUser.externalUserID=%d", user.mbUser.externalUserID);
+    
+
+    [QBUsersService deleteUserWithExternalID:161 delegate:self];
+
     
     // set avatar
     if(user.photo){
         [avatarView setImage:[UIImage imageWithData:user.photo.image]];
     }else if(user.mbUser.externalUserID){
-        [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:user.mbUser];
+        //[self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:user.mbUser];
 	}
 }
 
@@ -84,7 +89,7 @@
         if(user.photo){
             [avatarView setImage:[UIImage imageWithData:user.photo.image]];
         }else if(user.mbUser.externalUserID){
-            [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:user.mbUser];
+         //   [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:user.mbUser];
         }
     }
 }
@@ -213,10 +218,11 @@
 
 - (void)completedWithResult:(Result*)result{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-
+    
     // Edit User result
     if([result isKindOfClass:[QBUUserResult class]]){
         QBUUserResult* res = (QBUUserResult*)result;
+        NSLog(@"res=%@", res.user);
         if(res.success){
             // get & update user
             Users *currentUser = [[UsersProvider sharedProvider] currentUser];
@@ -266,6 +272,8 @@
     
     // get blob
     QBBlobResult *blobResult = [QBBlobsService GetBlobInfo:qbUser.externalUserID];
+    
+    NSLog(@"ST=%d", blobResult.status);
     if(!blobResult.success){
         [self performSelectorOnMainThread:@selector(processErrors:) withObject:blobResult.errors waitUntilDone:YES];
         [pool drain];

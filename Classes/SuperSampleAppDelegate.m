@@ -14,35 +14,31 @@
 #import "Users.h"
 
 //UI
-#import "LoginOrRegistrationViewController.h"
+#import "SplashController.h"
 
 @implementation SuperSampleAppDelegate
 
 @synthesize window = _window;
 @synthesize viewController = _viewController;
-@synthesize loginOrRegisterController = _loginOrRegisterController;
+@synthesize splashController = _splashController;
 @synthesize quizRootController = _quizRootController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     [FlurryAPI startSession:FLURRY_API_KEY];
     
     // QB settings
-	[QBSettings setLogLevel:QBLogLevelDebug];
 	[QBSettings setServerDomainTemplate:[NSString stringWithFormat:@"%@%@", @"%@.", endpoint]];	
     
-    
-    // App Authorization
-    [BaseService AuthorizeAppId:appID key:authKey secret:authSecret delegate:self];
-    
-    
-	[QBGeoposService setServiceZone:ServiceZoneProduction];
+    [QBLocationService setServiceZone:ServiceZoneProduction];
     [QBUsersService setServiceZone:ServiceZoneProduction];
 	[QBBlobsService setServiceZone:ServiceZoneProduction];
-	
+    
+    [QBSettings setLogLevel:QBLogLevelDebug];
+    
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
-    [self.viewController presentModalViewController:self.loginOrRegisterController animated:NO];
+    [self.viewController presentModalViewController:self.splashController animated:NO];
     
     return YES;
 }
@@ -101,20 +97,17 @@
     // stop handling own location
     [self stopTrackOwnLocation];
     
-    // shoe start screen
-    [self.viewController presentModalViewController:self.loginOrRegisterController animated:YES];
-    
     [[NSNotificationCenter defaultCenter]  postNotificationName:nLogoutSuccessful object:nil];
 }
 
 - (void)startTrackOwnLocation{
-    [[QBLocationDataSource instance] setCallbackSelectorForLocationUpdate:@selector(didUpdateToLocation:fromLocation:) forTarget:self];
-    [[[QBLocationDataSource instance] locationManager] startUpdatingLocation];
+    [[QBLLocationDataSource instance] setCallbackSelectorForLocationUpdate:@selector(didUpdateToLocation:fromLocation:) forTarget:self];
+    [[[QBLLocationDataSource instance] locationManager] startUpdatingLocation];
 }
 
 - (void)stopTrackOwnLocation{
-    [[QBLocationDataSource instance] setCallbackSelectorForLocationUpdate:nil forTarget:nil];
-    [[[QBLocationDataSource instance] locationManager] stopUpdatingLocation];
+    [[QBLLocationDataSource instance] setCallbackSelectorForLocationUpdate:nil forTarget:nil];
+    [[[QBLLocationDataSource instance] locationManager] stopUpdatingLocation];
 }
 
 - (void)didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
@@ -127,39 +120,22 @@
         return;
     }
 
-    QBGeoData *geoData = [[QBGeoData alloc] init];
+    QBLGeoData *geoData = [[QBLGeoData alloc] init];
     geoData.status = curUser.status;
     geoData.latitude = newLocation.coordinate.latitude;
     geoData.longitude = newLocation.coordinate.longitude;
 
     // post own location
-    [QBGeoposService postGeoData:geoData delegate:self];
+    [QBLocationService postGeoData:geoData delegate:self];
     [geoData release];
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark ActionStatusDelegate
-#pragma mark
 
 - (void)completedWithResult:(Result *)result{
 
-    if([result isKindOfClass:[QBGeoDataResult class]]){
-        if(result.success){
-			//QBGeoDataResult *geoDataRes = (QBGeoDataResult *)result;
-		}
-	
-    // TokenRequestQuery
-    }else if([result isKindOfClass:[TokenResult class]]){
-        if(result.success){
-            TokenResult *tokenResult = (TokenResult *)result;
-            
-            // save auth token
-            [[BaseService sharedService] setToken:[tokenResult token]];
-        }else{
-           [self processErrors:result.errors];
-        }
-    }
 }
 
 -(void)showMessage:(NSString*)title message:(NSString*)msg{
@@ -188,7 +164,7 @@
 - (void)dealloc{
     [_window release];
     [_viewController release];
-    [_loginOrRegisterController release];
+    [_splashController release];
     [_quizRootController release];
     
 	[super dealloc];

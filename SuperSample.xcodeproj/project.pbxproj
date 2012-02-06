@@ -11,10 +11,6 @@
 		A7C3FF6E1402E7120039A28B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FF6D1402E7120039A28B /* UIKit.framework */; };
 		A7C3FF701402E7120039A28B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FF6F1402E7120039A28B /* Foundation.framework */; };
 		A7C3FF721402E7120039A28B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FF711402E7120039A28B /* CoreGraphics.framework */; };
-		A7C3FF8F1402E7130039A28B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FF8E1402E7130039A28B /* SenTestingKit.framework */; };
-		A7C3FF901402E7130039A28B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FF6D1402E7120039A28B /* UIKit.framework */; };
-		A7C3FF911402E7130039A28B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FF6F1402E7120039A28B /* Foundation.framework */; };
-		A7C3FF921402E7130039A28B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FF711402E7120039A28B /* CoreGraphics.framework */; };
 		A7C3FFB91402E9B20039A28B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB01402E9B10039A28B /* CFNetwork.framework */; };
 		A7C3FFBA1402E9B20039A28B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB11402E9B10039A28B /* CoreLocation.framework */; };
 		A7C3FFBB1402E9B20039A28B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB21402E9B10039A28B /* CoreMedia.framework */; };
@@ -25,6 +21,7 @@
 		A7C3FFC11402E9B20039A28B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB81402E9B20039A28B /* SystemConfiguration.framework */; };
 		BDC7630F144EED820091EB17 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC7630E144EED820091EB17 /* AudioToolbox.framework */; };
 		BDED890A1445F0B8000FDF62 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BDED89091445F0B8000FDF62 /* libresolv.dylib */; };
+		FA0B4FCF14DD3526008E4C25 /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0B4FCE14DD3526008E4C25 /* Quickblox.framework */; };
 		FA2F173D149CDD5C00758338 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2F173C149CDD5C00758338 /* libFlurry.a */; };
 		FA32FE2914A32B7E00BFD18D /* NSData+XMPP.m in Sources */ = {isa = PBXBuildFile; fileRef = FA32FD6814A32B7E00BFD18D /* NSData+XMPP.m */; };
 		FA32FE2A14A32B7E00BFD18D /* NSNumber+XMPP.m in Sources */ = {isa = PBXBuildFile; fileRef = FA32FD6A14A32B7E00BFD18D /* NSNumber+XMPP.m */; };
@@ -139,9 +136,6 @@
 		FA70CFC31487BBC000C21DAA /* MapPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEEC1487BBC000C21DAA /* MapPinAnnotation.m */; };
 		FA70CFE01487BBC000C21DAA /* SubscribedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF491487BBC000C21DAA /* SubscribedViewController.m */; };
 		FA70CFE11487BBC000C21DAA /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF4D1487BBC000C21DAA /* ChatViewController.m */; };
-		FA70CFE21487BBC000C21DAA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF511487BBC000C21DAA /* LoginViewController.m */; };
-		FA70CFE31487BBC000C21DAA /* LoginOrRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF541487BBC000C21DAA /* LoginOrRegistrationViewController.m */; };
-		FA70CFE41487BBC000C21DAA /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF571487BBC000C21DAA /* RegistrationViewController.m */; };
 		FA70CFE51487BBC000C21DAA /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF5A1487BBC000C21DAA /* MapViewController.m */; };
 		FA70CFE61487BBC000C21DAA /* PinDetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF5D1487BBC000C21DAA /* PinDetailedViewController.m */; };
 		FA70CFE81487BBC000C21DAA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF631487BBC000C21DAA /* SettingsViewController.m */; };
@@ -171,7 +165,6 @@
 		FA70D0331487BBDA00C21DAA /* tab_icon_quiz.png in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0191487BBDA00C21DAA /* tab_icon_quiz.png */; };
 		FA70D0341487BBDA00C21DAA /* tab_icon_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = FA70D01A1487BBDA00C21DAA /* tab_icon_settings.png */; };
 		FA70D0351487BBDA00C21DAA /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D01C1487BBDA00C21DAA /* ChatViewController.xib */; };
-		FA70D0361487BBDA00C21DAA /* LoginOrRegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D01D1487BBDA00C21DAA /* LoginOrRegistrationViewController.xib */; };
 		FA70D0371487BBDA00C21DAA /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D01E1487BBDA00C21DAA /* LoginViewController.xib */; };
 		FA70D0381487BBDA00C21DAA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D01F1487BBDA00C21DAA /* MainWindow.xib */; };
 		FA70D0391487BBDA00C21DAA /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0201487BBDA00C21DAA /* MapViewController.xib */; };
@@ -181,20 +174,13 @@
 		FA70D0431487BDB700C21DAA /* SuperSample-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0421487BDB700C21DAA /* SuperSample-Info.plist */; };
 		FA70D0451487BE7F00C21DAA /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA70D0441487BE7F00C21DAA /* libidn.a */; };
 		FA70D0471487BFCA00C21DAA /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA70D0461487BFCA00C21DAA /* libz.1.2.5.dylib */; };
+		FA8EF00714DFE89500472642 /* SplashController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8EF00614DFE89500472642 /* SplashController.m */; };
+		FA8EF00E14DFF2E600472642 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8EF00A14DFF2E600472642 /* LoginViewController.m */; };
+		FA8EF00F14DFF2E600472642 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8EF00D14DFF2E600472642 /* RegistrationViewController.m */; };
+		FA8EF01314E0173600472642 /* SplashController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA8EF01214E0173600472642 /* SplashController.xib */; };
 		FACBCEB014911A6D00E876FC /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = FACBCEAF14911A6D00E876FC /* user.png */; };
 		FACBCEB41491201000E876FC /* marker_own_map.png in Resources */ = {isa = PBXBuildFile; fileRef = FACBCEB31491201000E876FC /* marker_own_map.png */; };
-		FAF940CE148E8C7C00867E5C /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF940CD148E8C7C00867E5C /* Quickblox.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A7C3FF931402E7130039A28B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7C3FF601402E7120039A28B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A7C3FF681402E7120039A28B;
-			remoteInfo = SuperSample;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A71E39341420B7F600810C66 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -202,7 +188,6 @@
 		A7C3FF6D1402E7120039A28B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A7C3FF6F1402E7120039A28B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A7C3FF711402E7120039A28B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		A7C3FF8D1402E7130039A28B /* SuperSampleTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperSampleTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C3FF8E1402E7130039A28B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		A7C3FFB01402E9B10039A28B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A7C3FFB11402E9B10039A28B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -214,6 +199,7 @@
 		A7C3FFB81402E9B20039A28B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BDC7630E144EED820091EB17 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		BDED89091445F0B8000FDF62 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		FA0B4FCE14DD3526008E4C25 /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quickblox.framework; path = "../SDK-ios/Framework/build/Framework/Quickblox.framework"; sourceTree = "<group>"; };
 		FA2F1738149CDD5C00758338 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
 		FA2F1739149CDD5C00758338 /* FlurryAPI+AppCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FlurryAPI+AppCircle.h"; sourceTree = "<group>"; };
 		FA2F173A149CDD5C00758338 /* FlurryOffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryOffer.h; sourceTree = "<group>"; };
@@ -447,12 +433,6 @@
 		FA70CF491487BBC000C21DAA /* SubscribedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribedViewController.m; sourceTree = "<group>"; };
 		FA70CF4C1487BBC000C21DAA /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		FA70CF4D1487BBC000C21DAA /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
-		FA70CF501487BBC000C21DAA /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		FA70CF511487BBC000C21DAA /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		FA70CF531487BBC000C21DAA /* LoginOrRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginOrRegistrationViewController.h; sourceTree = "<group>"; };
-		FA70CF541487BBC000C21DAA /* LoginOrRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginOrRegistrationViewController.m; sourceTree = "<group>"; };
-		FA70CF561487BBC000C21DAA /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
-		FA70CF571487BBC000C21DAA /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
 		FA70CF591487BBC000C21DAA /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		FA70CF5A1487BBC000C21DAA /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		FA70CF5C1487BBC000C21DAA /* PinDetailedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinDetailedViewController.h; sourceTree = "<group>"; };
@@ -498,7 +478,6 @@
 		FA70D0191487BBDA00C21DAA /* tab_icon_quiz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_icon_quiz.png; sourceTree = "<group>"; };
 		FA70D01A1487BBDA00C21DAA /* tab_icon_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_icon_settings.png; sourceTree = "<group>"; };
 		FA70D01C1487BBDA00C21DAA /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
-		FA70D01D1487BBDA00C21DAA /* LoginOrRegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginOrRegistrationViewController.xib; sourceTree = "<group>"; };
 		FA70D01E1487BBDA00C21DAA /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		FA70D01F1487BBDA00C21DAA /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		FA70D0201487BBDA00C21DAA /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
@@ -508,9 +487,15 @@
 		FA70D0421487BDB700C21DAA /* SuperSample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SuperSample-Info.plist"; sourceTree = "<group>"; };
 		FA70D0441487BE7F00C21DAA /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
 		FA70D0461487BFCA00C21DAA /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		FA8EF00514DFE89500472642 /* SplashController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashController.h; sourceTree = "<group>"; };
+		FA8EF00614DFE89500472642 /* SplashController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashController.m; sourceTree = "<group>"; };
+		FA8EF00914DFF2E600472642 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		FA8EF00A14DFF2E600472642 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		FA8EF00C14DFF2E600472642 /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
+		FA8EF00D14DFF2E600472642 /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
+		FA8EF01214E0173600472642 /* SplashController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashController.xib; sourceTree = "<group>"; };
 		FACBCEAF14911A6D00E876FC /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		FACBCEB31491201000E876FC /* marker_own_map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_own_map.png; sourceTree = "<group>"; };
-		FAF940CD148E8C7C00867E5C /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quickblox.framework; path = "../SDK-ios/Framework/build/Framework/Quickblox.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -534,20 +519,9 @@
 				BDED890A1445F0B8000FDF62 /* libresolv.dylib in Frameworks */,
 				BDC7630F144EED820091EB17 /* AudioToolbox.framework in Frameworks */,
 				FA70D0451487BE7F00C21DAA /* libidn.a in Frameworks */,
-				FAF940CE148E8C7C00867E5C /* Quickblox.framework in Frameworks */,
 				FA2F173D149CDD5C00758338 /* libFlurry.a in Frameworks */,
 				FA32FE7514A32B7E00BFD18D /* libidn.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7C3FF891402E7130039A28B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A7C3FF8F1402E7130039A28B /* SenTestingKit.framework in Frameworks */,
-				A7C3FF901402E7130039A28B /* UIKit.framework in Frameworks */,
-				A7C3FF911402E7130039A28B /* Foundation.framework in Frameworks */,
-				A7C3FF921402E7130039A28B /* CoreGraphics.framework in Frameworks */,
+				FA0B4FCF14DD3526008E4C25 /* Quickblox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,7 +545,6 @@
 			isa = PBXGroup;
 			children = (
 				A7C3FF691402E7120039A28B /* SuperSample.app */,
-				A7C3FF8D1402E7130039A28B /* SuperSampleTests.octest */,
 			);
 			name = Products;
 			sourceTree = SOURCE_ROOT;
@@ -580,6 +553,7 @@
 			isa = PBXGroup;
 			children = (
 				BDC7630E144EED820091EB17 /* AudioToolbox.framework */,
+				FA0B4FCE14DD3526008E4C25 /* Quickblox.framework */,
 				BDED89091445F0B8000FDF62 /* libresolv.dylib */,
 				FA70D0441487BE7F00C21DAA /* libidn.a */,
 				FA70D0461487BFCA00C21DAA /* libz.1.2.5.dylib */,
@@ -588,7 +562,6 @@
 				A7C3FFB11402E9B10039A28B /* CoreLocation.framework */,
 				A7C3FFB21402E9B10039A28B /* CoreMedia.framework */,
 				A7C3FFB31402E9B10039A28B /* libxml2.dylib */,
-				FAF940CD148E8C7C00867E5C /* Quickblox.framework */,
 				A7C3FFB51402E9B10039A28B /* MapKit.framework */,
 				A7C3FFB61402E9B10039A28B /* MobileCoreServices.framework */,
 				A7C3FFB71402E9B20039A28B /* QuartzCore.framework */,
@@ -1387,12 +1360,14 @@
 		FA70CF4A1487BBC000C21DAA /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				FA524EB51498A0EA009FD3E2 /* QuizController */,
-				FA70CF4B1487BBC000C21DAA /* ChatController */,
-				FA70CF4E1487BBC000C21DAA /* LoginOrRegistration */,
+				FA8EF00414DFE89500472642 /* SplashController */,
+				FA8EF00814DFF2E500472642 /* LoginController */,
+				FA8EF00B14DFF2E600472642 /* RegistrationController */,
 				FA70CF581487BBC000C21DAA /* MapController */,
-				FA70CF5B1487BBC000C21DAA /* PinDetailedController */,
+				FA70CF4B1487BBC000C21DAA /* ChatController */,
+				FA524EB51498A0EA009FD3E2 /* QuizController */,
 				FA70CF611487BBC000C21DAA /* SettingsController */,
+				FA70CF5B1487BBC000C21DAA /* PinDetailedController */,
 			);
 			path = iPhone;
 			sourceTree = "<group>";
@@ -1404,43 +1379,6 @@
 				FA70CF4D1487BBC000C21DAA /* ChatViewController.m */,
 			);
 			path = ChatController;
-			sourceTree = "<group>";
-		};
-		FA70CF4E1487BBC000C21DAA /* LoginOrRegistration */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF4F1487BBC000C21DAA /* LoginController */,
-				FA70CF521487BBC000C21DAA /* LoginOrRegistrationController */,
-				FA70CF551487BBC000C21DAA /* RegistrationController */,
-			);
-			path = LoginOrRegistration;
-			sourceTree = "<group>";
-		};
-		FA70CF4F1487BBC000C21DAA /* LoginController */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF501487BBC000C21DAA /* LoginViewController.h */,
-				FA70CF511487BBC000C21DAA /* LoginViewController.m */,
-			);
-			path = LoginController;
-			sourceTree = "<group>";
-		};
-		FA70CF521487BBC000C21DAA /* LoginOrRegistrationController */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF531487BBC000C21DAA /* LoginOrRegistrationViewController.h */,
-				FA70CF541487BBC000C21DAA /* LoginOrRegistrationViewController.m */,
-			);
-			path = LoginOrRegistrationController;
-			sourceTree = "<group>";
-		};
-		FA70CF551487BBC000C21DAA /* RegistrationController */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF561487BBC000C21DAA /* RegistrationViewController.h */,
-				FA70CF571487BBC000C21DAA /* RegistrationViewController.m */,
-			);
-			path = RegistrationController;
 			sourceTree = "<group>";
 		};
 		FA70CF581487BBC000C21DAA /* MapController */ = {
@@ -1711,8 +1649,8 @@
 		FA70D01B1487BBDA00C21DAA /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				FA8EF01214E0173600472642 /* SplashController.xib */,
 				FA70D01C1487BBDA00C21DAA /* ChatViewController.xib */,
-				FA70D01D1487BBDA00C21DAA /* LoginOrRegistrationViewController.xib */,
 				FA70D01E1487BBDA00C21DAA /* LoginViewController.xib */,
 				FA70D01F1487BBDA00C21DAA /* MainWindow.xib */,
 				FA70D0201487BBDA00C21DAA /* MapViewController.xib */,
@@ -1722,6 +1660,33 @@
 				FA524EFB1498A297009FD3E2 /* Quiz */,
 			);
 			path = XIB;
+			sourceTree = "<group>";
+		};
+		FA8EF00414DFE89500472642 /* SplashController */ = {
+			isa = PBXGroup;
+			children = (
+				FA8EF00514DFE89500472642 /* SplashController.h */,
+				FA8EF00614DFE89500472642 /* SplashController.m */,
+			);
+			path = SplashController;
+			sourceTree = "<group>";
+		};
+		FA8EF00814DFF2E500472642 /* LoginController */ = {
+			isa = PBXGroup;
+			children = (
+				FA8EF00914DFF2E600472642 /* LoginViewController.h */,
+				FA8EF00A14DFF2E600472642 /* LoginViewController.m */,
+			);
+			path = LoginController;
+			sourceTree = "<group>";
+		};
+		FA8EF00B14DFF2E600472642 /* RegistrationController */ = {
+			isa = PBXGroup;
+			children = (
+				FA8EF00C14DFF2E600472642 /* RegistrationViewController.h */,
+				FA8EF00D14DFF2E600472642 /* RegistrationViewController.m */,
+			);
+			path = RegistrationController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1743,25 +1708,6 @@
 			productName = SuperSample;
 			productReference = A7C3FF691402E7120039A28B /* SuperSample.app */;
 			productType = "com.apple.product-type.application";
-		};
-		A7C3FF8C1402E7130039A28B /* SuperSampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A7C3FFA41402E7130039A28B /* Build configuration list for PBXNativeTarget "SuperSampleTests" */;
-			buildPhases = (
-				A7C3FF881402E7130039A28B /* Sources */,
-				A7C3FF891402E7130039A28B /* Frameworks */,
-				A7C3FF8A1402E7130039A28B /* Resources */,
-				A7C3FF8B1402E7130039A28B /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A7C3FF941402E7130039A28B /* PBXTargetDependency */,
-			);
-			name = SuperSampleTests;
-			productName = SuperSampleTests;
-			productReference = A7C3FF8D1402E7130039A28B /* SuperSampleTests.octest */;
-			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -1785,7 +1731,6 @@
 			projectRoot = "";
 			targets = (
 				A7C3FF681402E7120039A28B /* SuperSample */,
-				A7C3FF8C1402E7130039A28B /* SuperSampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1809,7 +1754,6 @@
 				FA70D0331487BBDA00C21DAA /* tab_icon_quiz.png in Resources */,
 				FA70D0341487BBDA00C21DAA /* tab_icon_settings.png in Resources */,
 				FA70D0351487BBDA00C21DAA /* ChatViewController.xib in Resources */,
-				FA70D0361487BBDA00C21DAA /* LoginOrRegistrationViewController.xib in Resources */,
 				FA70D0371487BBDA00C21DAA /* LoginViewController.xib in Resources */,
 				FA70D0381487BBDA00C21DAA /* MainWindow.xib in Resources */,
 				FA70D0391487BBDA00C21DAA /* MapViewController.xib in Resources */,
@@ -1835,33 +1779,11 @@
 				FA524F131498B18F009FD3E2 /* white_quiz_info_bg.png in Resources */,
 				FA524F151498B1EF009FD3E2 /* btn_view_leaderboard.png in Resources */,
 				FA32FE7414A32B7E00BFD18D /* libidn-1.15.tar.gz in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7C3FF8A1402E7130039A28B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				FA8EF01314E0173600472642 /* SplashController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		A7C3FF8B1402E7130039A28B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A7C3FF651402E7120039A28B /* Sources */ = {
@@ -1885,9 +1807,6 @@
 				FA70CFC31487BBC000C21DAA /* MapPinAnnotation.m in Sources */,
 				FA70CFE01487BBC000C21DAA /* SubscribedViewController.m in Sources */,
 				FA70CFE11487BBC000C21DAA /* ChatViewController.m in Sources */,
-				FA70CFE21487BBC000C21DAA /* LoginViewController.m in Sources */,
-				FA70CFE31487BBC000C21DAA /* LoginOrRegistrationViewController.m in Sources */,
-				FA70CFE41487BBC000C21DAA /* RegistrationViewController.m in Sources */,
 				FA70CFE51487BBC000C21DAA /* MapViewController.m in Sources */,
 				FA70CFE61487BBC000C21DAA /* PinDetailedViewController.m in Sources */,
 				FA70CFE81487BBC000C21DAA /* SettingsViewController.m in Sources */,
@@ -1982,25 +1901,13 @@
 				FA32FE7114A32B7E00BFD18D /* DDXMLDocument.m in Sources */,
 				FA32FE7214A32B7E00BFD18D /* DDXMLElement.m in Sources */,
 				FA32FE7314A32B7E00BFD18D /* DDXMLNode.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7C3FF881402E7130039A28B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				FA8EF00714DFE89500472642 /* SplashController.m in Sources */,
+				FA8EF00E14DFF2E600472642 /* LoginViewController.m in Sources */,
+				FA8EF00F14DFF2E600472642 /* RegistrationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A7C3FF941402E7130039A28B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A7C3FF681402E7120039A28B /* SuperSample */;
-			targetProxy = A7C3FF931402E7130039A28B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A7C3FF9F1402E7130039A28B /* Debug */ = {
@@ -2058,7 +1965,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Taras Filatov (6AVH4TA956)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Injoit LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Taras Filatov (6AVH4TA956)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2072,11 +1979,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Flurry\"",
-					"\"$(SRCROOT)/Classes/External/XMPP/Vendor/libidn\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E255B0AB-07FF-44D9-856C-C45EE242B069";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9E26C7D3-F53C-42C7-B938-0696FEA452D5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3EE8B1BD-439D-4500-AC0F-B74B1CF059FF";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) \"$(SRCROOT)\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2100,47 +2006,12 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Flurry\"",
-					"\"$(SRCROOT)/Classes/External/XMPP/Vendor/libidn\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "9E26C7D3-F53C-42C7-B938-0696FEA452D5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9E26C7D3-F53C-42C7-B938-0696FEA452D5";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) \"$(SRCROOT)\"";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		A7C3FFA51402E7130039A28B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SuperSample.app/SuperSample";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SuperSample/SuperSample-Prefix.pch";
-				INFOPLIST_FILE = "SuperSampleTests/SuperSampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		A7C3FFA61402E7130039A28B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SuperSample.app/SuperSample";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SuperSample/SuperSample-Prefix.pch";
-				INFOPLIST_FILE = "SuperSampleTests/SuperSampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -2185,30 +2056,12 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Flurry\"",
-					"\"$(SRCROOT)/Classes/External/XMPP/Vendor/libidn\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "9E26C7D3-F53C-42C7-B938-0696FEA452D5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9E26C7D3-F53C-42C7-B938-0696FEA452D5";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) \"$(SRCROOT)\"";
 				WRAPPER_EXTENSION = app;
-			};
-			name = AdHoc;
-		};
-		A7C3FFC81402EA400039A28B /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SuperSample.app/SuperSample";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SuperSample/SuperSample-Prefix.pch";
-				INFOPLIST_FILE = "SuperSampleTests/SuperSampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = AdHoc;
 		};
@@ -2231,16 +2084,6 @@
 				A7C3FFA21402E7130039A28B /* Debug */,
 				A7C3FFA31402E7130039A28B /* Release */,
 				A7C3FFC71402EA400039A28B /* AdHoc */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A7C3FFA41402E7130039A28B /* Build configuration list for PBXNativeTarget "SuperSampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A7C3FFA51402E7130039A28B /* Debug */,
-				A7C3FFA61402E7130039A28B /* Release */,
-				A7C3FFC81402EA400039A28B /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

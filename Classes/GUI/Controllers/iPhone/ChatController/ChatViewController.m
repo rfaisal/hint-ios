@@ -100,11 +100,11 @@
 - (void) searchGeoData:(NSTimer *) timer{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-	QBGeoDataSearchRequest *searchRequest = [[QBGeoDataSearchRequest alloc] init];
+	QBLGeoDataSearchRequest *searchRequest = [[QBLGeoDataSearchRequest alloc] init];
 	searchRequest.status = YES;
     searchRequest.sort_by = GeoDataSortByKindCreatedAt;
-    searchRequest.pageSize = 15;
-	[QBGeoposService findGeoData:searchRequest delegate:self];
+    searchRequest.perPage = 15;
+	[QBLocationService findGeoData:searchRequest delegate:self];
 	[searchRequest release];
 }
 
@@ -129,22 +129,22 @@
     
     Users *user = [[UsersProvider sharedProvider] currentUser];
 
-	QBGeoData *geoData = [QBGeoData currentGeoData];
+	QBLGeoData *geoData = [QBLGeoData currentGeoData];
 	geoData.user = user.mbUser;
     geoData.appID = appID;
     geoData.status = textField.text;
 
     // post geodata
-	[QBGeoposService postGeoData:geoData delegate:self];	
+	[QBLocationService postGeoData:geoData delegate:self];	
     
     [wheel startAnimating];
 }
 
 // process single message
--(void) processGeoDatumAsync:(QBGeoData *)data {
+-(void) processGeoDatumAsync:(QBLGeoData *)data {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
-	CLLocation *location =  [[QBLocationDataSource instance] currentLocation];
+	CLLocation *location =  [[QBLLocationDataSource instance] currentLocation];
 		
 	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
 	NSError *error = nil;
@@ -189,7 +189,7 @@
 	
     BOOL hasChanges = NO;
     
-	for (QBGeoData *geoData in geodata) {
+	for (QBLGeoData *geoData in geodata) {
         NSString *msg = [NSString stringWithFormat:@"%@", geoData.status];	
         NSString *Id = [NSString stringWithFormat:@"%u", geoData.ID];
         
@@ -269,18 +269,18 @@
 
 - (void)completedWithResult:(Result*)result{
     // create
-    if([result isKindOfClass:[QBGeoDataResult class]]){
+    if([result isKindOfClass:[QBLGeoDataResult class]]){
         if(result.success){
-            QBGeoDataResult *geoDataRes = (QBGeoDataResult*)result; 
+            QBLGeoDataResult *geoDataRes = (QBLGeoDataResult*)result; 
             [self performSelectorInBackground:@selector(processGeoDatumAsync:) withObject:geoDataRes.geoData];
             textField.text = @"";
         }
         [wheel stopAnimating];
         
     // search a new one
-    }else if([result isKindOfClass:[QBGeoDataSearchResult class]]){
+    }else if([result isKindOfClass:[QBLGeoDataPagedResult class]]){
         if(result.success){
-            QBGeoDataSearchResult *geoDataSearchRes = (QBGeoDataSearchResult *)result;
+            QBLGeoDataPagedResult *geoDataSearchRes = (QBLGeoDataPagedResult *)result;
             [self performSelectorInBackground:@selector(processGeoDataAsync:) withObject:geoDataSearchRes.geodatas];
         }
     }

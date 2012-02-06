@@ -8,14 +8,14 @@
 
 
 @class SuperSampleViewController;
-@class LoginOrRegistrationViewController;
+@class SplashController;
 @class QuizRootViewController;
 
 @interface SuperSampleAppDelegate : NSObject <UIApplicationDelegate, ActionStatusDelegate>{		
 }
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *viewController;
-@property (nonatomic, retain) IBOutlet LoginOrRegistrationViewController *loginOrRegisterController;
+@property (nonatomic, retain) IBOutlet SplashController *splashController;
 @property (nonatomic, retain) IBOutlet QuizRootViewController *quizRootController;
 
 - (void) signIn;

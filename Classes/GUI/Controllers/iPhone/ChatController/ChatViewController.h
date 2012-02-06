@@ -26,7 +26,7 @@
 - (void) searchGeoData:(NSTimer *) timer;
 - (void) startSearchGeoData;
 
--(void) processGeoDatumAsync:(QBGeoData *)data;
+-(void) processGeoDatumAsync:(QBLGeoData *)data;
 -(void) processGeoDataAsync:(NSArray *)geodata;
 
 @end

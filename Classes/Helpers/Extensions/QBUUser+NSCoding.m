@@ -26,10 +26,6 @@
         DESERIALIZE_OBJECT(password, aDecoder);
         DESERIALIZE_OBJECT(phone, aDecoder);
         DESERIALIZE_OBJECT(website, aDecoder);
-        DESERIALIZE_OBJECT(customParameters, aDecoder);
-        DESERIALIZE_OBJECT(facebookAuthCode, aDecoder);
-        DESERIALIZE_OBJECT(twitterAauthToken, aDecoder);
-        DESERIALIZE_OBJECT(twitterAuthVerifier, aDecoder);
 	}
 	
 	return self;
@@ -47,10 +43,6 @@
     SERIALIZE_OBJECT(password, aCoder);
     SERIALIZE_OBJECT(phone, aCoder);
     SERIALIZE_OBJECT(website, aCoder);
-    SERIALIZE_OBJECT(customParameters, aCoder);
-    SERIALIZE_OBJECT(facebookAuthCode, aCoder);
-    SERIALIZE_OBJECT(twitterAauthToken, aCoder);
-    SERIALIZE_OBJECT(twitterAuthVerifier, aCoder);
 }
 
 @end

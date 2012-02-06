@@ -94,6 +94,7 @@
 
 	if([result isKindOfClass:[QBUUserAuthenticateResult class]]){
 		QBUUserAuthenticateResult *res = (QBUUserAuthenticateResult *)result;
+        [res user];
 		if(res.success){
 
 			QBUUserAuthenticateAnswer *answer = (QBUUserAuthenticateAnswer *)res.answer;

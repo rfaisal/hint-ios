@@ -86,10 +86,10 @@
 - (void) searchGeoData:(NSTimer *) timer{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-	QBGeoDataSearchRequest *searchRequest = [[QBGeoDataSearchRequest alloc] init];
+	QBLGeoDataSearchRequest *searchRequest = [[QBLGeoDataSearchRequest alloc] init];
 	searchRequest.last_only = YES; // only last location
-    searchRequest.pageSize = 15;
-	[QBGeoposService findGeoData:searchRequest delegate:self];
+    searchRequest.perPage = 15;
+	[QBLocationService findGeoData:searchRequest delegate:self];
 	[searchRequest release];
 }
 
@@ -109,7 +109,7 @@
 	
     BOOL hasChanges = NO;
 
-	for (QBGeoData *geoData in geodatas) {
+	for (QBLGeoData *geoData in geodatas) {
         
         // skip own
         if(geoData.user.ID == [[UsersProvider sharedProvider] currentUserID]){
@@ -247,9 +247,8 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark Notifications
-#pragma mark
 
 // Show Users's info
 -(void)openAnnotationDetails:(NSNotification *)notification{
@@ -275,15 +274,14 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark ActionStatusDelegate
-#pragma mark
 
 - (void)completedWithResult:(Result *)result{
 	if(result.success){
         // Search GeoData
-		if([result isKindOfClass:[QBGeoDataSearchResult class]]){
-			QBGeoDataSearchResult *geoDataSearchRes = (QBGeoDataSearchResult *)result;
+		if([result isKindOfClass:[QBLGeoDataPagedResult class]]){
+			QBLGeoDataPagedResult *geoDataSearchRes = (QBLGeoDataPagedResult *)result;
 			[self performSelectorInBackground:@selector(processGeoDatAsync:) withObject:geoDataSearchRes.geodatas];
 		}
         
@@ -307,9 +305,8 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark Dealloc
-#pragma mark
 
 - (void)dealloc {
     [super dealloc];
