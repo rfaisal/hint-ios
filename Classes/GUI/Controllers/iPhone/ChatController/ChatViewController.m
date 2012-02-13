@@ -93,9 +93,8 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark GeoData
-#pragma mark
 
 - (void) searchGeoData:(NSTimer *) timer{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -117,9 +116,8 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark IBActions
-#pragma mark
 
 -(IBAction) sendAction:(id)sender{
     
@@ -128,6 +126,10 @@
     }    
     
     Users *user = [[UsersProvider sharedProvider] currentUser];
+    if(user == nil){
+        [self showMessage:NSLocalizedString(@"You must authorize first. Go to Settings tab", "") message:nil delegate:nil];
+        return;
+    }
 
 	QBLGeoData *geoData = [QBLGeoData currentGeoData];
 	geoData.user = user.mbUser;
@@ -289,9 +291,8 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark UITextFieldDelegate
-#pragma mark
 
 - (BOOL)textFieldShouldReturn:(UITextField *)_textField{
     [_textField resignFirstResponder];

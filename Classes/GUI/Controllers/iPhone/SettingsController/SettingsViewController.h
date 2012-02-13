@@ -9,6 +9,8 @@
 #import "SubscribedViewController.h"
 
 @class Users;
+@class LoginViewController;
+@class RegistrationViewController;
 
 @interface SettingsViewController : SubscribedViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, ActionStatusDelegate> {
     BOOL isAvatarChanged;
@@ -21,15 +23,23 @@
 @property (nonatomic, retain) IBOutlet UISwitch *displayOfflineUserSwitch;
 @property (nonatomic, retain) IBOutlet UISwitch *shareYourLocationSwitch;
 
+@property (nonatomic, retain) IBOutlet UIButton *chooseFromGalleryButton;
+@property (nonatomic, retain) IBOutlet UIButton *takeAPictureButton;
+
 @property (nonatomic, retain) UIImagePickerController *imagePicker;
-@property (nonatomic, retain) NSObject <Cancelable> *canceler;
+
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *leftBarButtonItem;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *rightBarButtonItem;
+
+@property (nonatomic, retain) IBOutlet LoginViewController *loginController;
+@property (nonatomic, retain) IBOutlet RegistrationViewController *registrationController;
 
 
 - (IBAction) choosePicture:(id)sender;
 - (IBAction) takePicture:(id)sender;
 
-- (IBAction) save: (id)sender;
-- (IBAction) logout: (id)sender;
+- (IBAction) leftNavButtonDidPress: (id)sender;
+- (IBAction) rightNavButtonDidPress: (id)sender;
 
 - (IBAction) displayOfflineUserSwitchDidChangeState:(id)sender;
 - (IBAction) shareYourLocationSwitchDidChangeState:(id)sender;

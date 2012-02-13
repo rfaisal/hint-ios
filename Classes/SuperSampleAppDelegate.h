@@ -18,9 +18,6 @@
 @property (nonatomic, retain) IBOutlet SplashController *splashController;
 @property (nonatomic, retain) IBOutlet QuizRootViewController *quizRootController;
 
-- (void) signIn;
-- (IBAction) logout;
-
 - (void) startTrackOwnLocation;
 - (void) stopTrackOwnLocation;
 - (void) didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;

@@ -15,6 +15,8 @@
 #import "SourceImages.h"
 #import "SourceImagesProvider.h"
 
+#import "SuperSampleAppDelegate.h"
+
 //Helpers
 #import "DeviceHardware.h"
 #import "ImageResize.h"
@@ -22,7 +24,10 @@
 @implementation SettingsViewController
 @synthesize bioTextView, container, avatarView, fullName;
 @synthesize displayOfflineUserSwitch, shareYourLocationSwitch;
-@synthesize imagePicker, canceler;
+@synthesize imagePicker;
+@synthesize leftBarButtonItem, rightBarButtonItem;
+@synthesize chooseFromGalleryButton, takeAPictureButton;
+@synthesize loginController, registrationController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -53,44 +58,44 @@
     bioTextView.layer.borderWidth = 1;
     bioTextView.layer.borderColor = [[UIColor colorWithRed:173/255.0 green:190/255.0 blue:209/255.0 alpha:1] CGColor];
     bioTextView.backgroundColor = [UIColor whiteColor];
-	
-    Users *user = [[UsersProvider sharedProvider] currentUser];
     
     // setup switchers
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; 
     [displayOfflineUserSwitch setOn:[defaults boolForKey:kDisplayOfflineUser]];
     [shareYourLocationSwitch setOn:[defaults boolForKey:kShareYourLocation]];
-    
-    NSLog(@"user.mbUser.externalUserID=%d", user.mbUser.externalUserID);
-    
-
-    [QBUsersService deleteUserWithExternalID:161 delegate:self];
-
-    
-    // set avatar
-    if(user.photo){
-        [avatarView setImage:[UIImage imageWithData:user.photo.image]];
-    }else if(user.mbUser.externalUserID){
-        //[self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:user.mbUser];
-	}
 }
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
     Users *user = [[UsersProvider sharedProvider] currentUser];
-    
-    // populate fields
-    fullName.text = user.mbUser.fullName;
-    //bioTextView.text = @"my bio";
-    
-    // set avatar
-    if(avatarView.image == nil){
-        if(user.photo){
-            [avatarView setImage:[UIImage imageWithData:user.photo.image]];
-        }else if(user.mbUser.externalUserID){
-         //   [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:user.mbUser];
+    if(user != nil){
+        
+        [leftBarButtonItem setTitle:@"Save"];
+        [rightBarButtonItem setTitle:@"Logout"];
+        
+        [fullName setEnabled:YES];
+        [chooseFromGalleryButton setEnabled:YES];
+        [takeAPictureButton setEnabled:YES];
+        
+        // populate fields
+        fullName.text = user.mbUser.fullName;
+        
+        // set avatar
+        if(avatarView.image == nil){
+            if(user.photo){
+                [avatarView setImage:[UIImage imageWithData:user.photo.image]];
+            }else if(user.mbUser.externalUserID){
+                [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:user.mbUser];
+            }
         }
+    }else{
+        [leftBarButtonItem setTitle:@"Sign in"];
+        [rightBarButtonItem setTitle:@"Sign up"];
+        
+        [fullName setEnabled:NO];
+        [chooseFromGalleryButton setEnabled:NO];
+        [takeAPictureButton setEnabled:NO];
     }
 }
 
@@ -99,11 +104,15 @@
     self.container = nil;
     self.avatarView = nil;
     self.fullName = nil;
+    self.chooseFromGalleryButton = nil;
+    self.takeAPictureButton = nil;
+    
+    self.leftBarButtonItem = nil;
+    self.rightBarButtonItem = nil;
     
     self.imagePicker = nil;
     
-    [canceler cancel];
-    self.canceler = nil;
+    self.loginController = nil;
     
     [super viewDidUnload];
 }
@@ -113,9 +122,8 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark IBAction
-#pragma mark
 
 - (IBAction)choosePicture:(id)sender {
     imagePicker = [[UIImagePickerController alloc] init];
@@ -137,36 +145,61 @@
     [self presentModalViewController:imagePicker animated:YES];
 }
 
--(IBAction) save: (id)sender{
-    [bioTextView resignFirstResponder];
-    [fullName resignFirstResponder];
-    
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    
-    
-    // if avatar not changed
-    if(isAvatarChanged){
-        isAvatarChanged = NO;
+- (IBAction) leftNavButtonDidPress: (id)sender{
+    // Save
+    if([[leftBarButtonItem title] isEqualToString:@"Save"]){
+        [bioTextView resignFirstResponder];
+        [fullName resignFirstResponder];
         
-        // update avatar
-        NSData *imageData = UIImagePNGRepresentation(avatarView.image);
-        [QBBlobsService TUploadDataAsync:imageData 
-                                 ownerID:ownerID 
-                                fileName:@"image.jpeg" 
-                             contentType:@"image/jpeg"
-                                delegate:self];	
-	}else{
-        // update user fields
-        QBUUser *user = [[QBUUser alloc] init];
-        user.ID = [[UsersProvider sharedProvider] currentUserID];
-        user.fullName = fullName.text;
-        [QBUsersService editUser:user delegate:self];
-        [user release];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        
+        
+        // if avatar not changed
+        if(isAvatarChanged){
+            isAvatarChanged = NO;
+            
+            // update avatar
+            NSData *imageData = UIImagePNGRepresentation(avatarView.image);
+            [QBBlobsService TUploadDataAsync:imageData 
+                                     ownerID:ownerID 
+                                    fileName:@"image.jpeg" 
+                                 contentType:@"image/jpeg"
+                                    delegate:self];	
+        }else{
+            // update user fields
+            QBUUser *user = [[QBUUser alloc] init];
+            user.ID = [[UsersProvider sharedProvider] currentUserID];
+            user.fullName = fullName.text;
+            [QBUsersService editUser:user delegate:self];
+            [user release];
+        }
+    
+    // Sign In
+    }else{
+         [self presentModalViewController:loginController animated:YES];
     }
 }
 
-- (IBAction) logout: (id)sender{
-    [avatarView setImage:nil];
+- (IBAction) rightNavButtonDidPress: (id)sender{
+    // Logout
+    if([[rightBarButtonItem title] isEqualToString:@"Logout"]){
+        // logout
+        [QBUsersService logoutUser:nil];
+        
+        [[UsersProvider sharedProvider] setCurrentUserID:-1];
+        
+        [avatarView setImage:[UIImage imageNamed:@"user.png"]];
+        [fullName setText:@""];
+        [fullName setEnabled:NO];
+        [chooseFromGalleryButton setEnabled:NO];
+        [takeAPictureButton setEnabled:NO];
+        
+        [(SuperSampleAppDelegate *)[[UIApplication sharedApplication] delegate] stopTrackOwnLocation];
+        
+    // Sign Up
+    }else{
+       [self presentModalViewController:registrationController animated:YES];
+    }
 }
 
 - (IBAction)displayOfflineUserSwitchDidChangeState:(id)sender{
@@ -245,7 +278,7 @@
             QBUUser *user = [[QBUUser alloc] init];
             user.ID = [[UsersProvider sharedProvider] currentUserID];
             user.fullName = fullName.text;
-            user.externalUserID = blobID; // temporary fix. Use 'blob_id' instead 'externalUserID'
+            user.blobID = blobID;
             [QBUsersService editUser:user delegate:self];
             [user release];
             
@@ -357,26 +390,9 @@
 	}
 }
 
-- (void)subscribe {
-    [super subscribe];
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(resetAvatar) 
-                                                 name:nLogoutSuccessful object:nil];
-    
-}
-
-- (void)unsubscribe {
-    [super unsubscribe];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:nLogoutSuccessful object:nil];
-}
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [bioTextView resignFirstResponder];
     [fullName resignFirstResponder];
-}
-
-- (void)resetAvatar{
-    [avatarView setImage:nil];
 }
 
 - (void)dealloc {

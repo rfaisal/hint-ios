@@ -77,29 +77,6 @@
      */
 }
 
-
-- (void) signIn{
-    // start handling own location
-    [self startTrackOwnLocation];
-    
-    // select Map
-    [_viewController setSelectedIndex:0];
-    
-    // show main screen
-    [self.viewController dismissModalViewControllerAnimated:YES];
-}
-
-- (IBAction) logout{
-    // logout
-    [QBUsersService logoutUser:nil];
-    [[UsersProvider sharedProvider] setCurrentUserID:-1];
-    
-    // stop handling own location
-    [self stopTrackOwnLocation];
-    
-    [[NSNotificationCenter defaultCenter]  postNotificationName:nLogoutSuccessful object:nil];
-}
-
 - (void)startTrackOwnLocation{
     [[QBLLocationDataSource instance] setCallbackSelectorForLocationUpdate:@selector(didUpdateToLocation:fromLocation:) forTarget:self];
     [[[QBLLocationDataSource instance] locationManager] startUpdatingLocation];

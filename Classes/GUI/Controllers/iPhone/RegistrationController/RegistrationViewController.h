@@ -11,7 +11,6 @@
 
 @interface RegistrationViewController : SubscribedViewController <ActionStatusDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
     UITextField *userName;
-    UITextField *email;
     UITextField *password;
     UITextField *retypePassword;
     UIActivityIndicatorView *activityIndicator;
@@ -19,10 +18,8 @@
     BOOL isBusy;
 }
 @property (nonatomic, retain) IBOutlet UITextField *userName;
-@property (nonatomic, retain) IBOutlet UITextField *email;
 @property (nonatomic, retain) IBOutlet UITextField *password;
 @property (nonatomic, retain) IBOutlet UITextField *retypePassword;
-@property (nonatomic, retain) IBOutlet UITextField *fullName;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 - (IBAction)next:(id)sender;

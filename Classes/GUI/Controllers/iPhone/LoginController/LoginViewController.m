@@ -155,7 +155,8 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    [(SuperSampleAppDelegate *)[[UIApplication sharedApplication] delegate] signIn];
+    [(SuperSampleAppDelegate *)[[UIApplication sharedApplication] delegate] startTrackOwnLocation];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

@@ -10,7 +10,6 @@
 
 @interface SplashController : SubscribedViewController <ActionStatusDelegate>{
     UIActivityIndicatorView *wheel;
-    NSTimer *timer;
 }
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *wheel;
 

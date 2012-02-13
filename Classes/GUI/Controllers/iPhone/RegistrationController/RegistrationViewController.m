@@ -13,10 +13,8 @@
 
 @implementation RegistrationViewController
 @synthesize userName;
-@synthesize email;
 @synthesize password;
 @synthesize retypePassword;
-@synthesize fullName;
 @synthesize activityIndicator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
@@ -29,11 +27,9 @@
 
 - (void)dealloc{
     [userName release];
-    [email release];
     [password release];
     [retypePassword release];
     [activityIndicator release];
-    [fullName release];
     [super dealloc];
 }
 
@@ -44,11 +40,9 @@
 
 - (void)viewDidUnload{
     [self setUserName:nil];
-    [self setEmail:nil];
     [self setPassword:nil];
     [self setRetypePassword:nil];
     [self setActivityIndicator:nil];
-    [self setFullName:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -66,16 +60,8 @@
         [self showMessage:@"Error" message:@"Please enter your login!" delegate:nil];
 		return;
     }
-    if([[email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
-        [self showMessage:@"Error" message:@"Please enter your email!" delegate:nil];
-		return;
-    }
     if([[password.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
         [self showMessage:@"Error" message:@"Please enter your password!" delegate:nil];
-		return;
-    }
-    if([[fullName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
-        [self showMessage:@"Error" message:@"Please enter your full name!" delegate:nil];
 		return;
     }
     
@@ -108,10 +94,8 @@
     // Register user
     QBUUser* user = [[QBUUser alloc] init];
     user.ownerID = ownerID;        
-    user.email = email.text;
 	user.password = password.text;
     user.login = userName.text;
-	user.fullName = fullName.text;
 	
 	[self busy:YES];
     
@@ -177,9 +161,7 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [fullName resignFirstResponder];
     [password resignFirstResponder];
-    [email resignFirstResponder];
     [retypePassword resignFirstResponder];
     [userName resignFirstResponder];
 }

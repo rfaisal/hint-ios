@@ -41,9 +41,8 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark Controller's life
-#pragma mark
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void) viewDidLoad{
@@ -79,9 +78,8 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark GeoData
-#pragma mark
 
 - (void) searchGeoData:(NSTimer *) timer{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -128,7 +126,7 @@
 		[location release];
         
         // if user has avatar
-        if(geoData.user.externalUserID){ // temporary fix. Use 'blob_id' instead 'externalUserID'
+        if(geoData.user.blobID){
             [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:geoData.user];
         }
 	}
@@ -156,14 +154,13 @@
     NSError *error;
     
     // already exist
-    // temporary fix. Use 'blob_id' instead 'externalUserID'
-    if([[SourceImagesProvider sharedProvider] imageByUID:qbUser.externalUserID error:nil context:context]){
+    if([[SourceImagesProvider sharedProvider] imageByUID:qbUser.blobID error:nil context:context]){
         [pool drain];
         return;
     }
     
     // get blob
-    QBBlobResult *blobResul = [QBBlobsService GetBlobInfo:qbUser.externalUserID];
+    QBBlobResult *blobResul = [QBBlobsService GetBlobInfo:qbUser.blobID];
     if(!blobResul.success){
         [self performSelectorOnMainThread:@selector(processErrors:) withObject:blobResul.answer.errors waitUntilDone:YES];
         [pool drain];
@@ -172,6 +169,7 @@
     
     QBBlob *blob = blobResul.blob;
     
+
     
     // get file
     QBBlobFileResult *blobFileResult = [QBBlobsService GetBlob:blob.UID];
@@ -180,6 +178,10 @@
         [pool drain];
         return;
     }
+    
+    return;
+    
+
     
     // save image
     SourceImages *sourceImage = [[SourceImagesProvider sharedProvider] addImage:[UIImage imageWithData:blobFileResult.data]

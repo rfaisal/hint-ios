@@ -28,9 +28,6 @@
 
 - (void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if(timer == nil){
-        timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerSelector:) userInfo:nil repeats:NO];
-    }
 }
 
 - (void) viewDidLoad{
@@ -39,14 +36,6 @@
     
     // Auth App
     [QBAuthService authorizeAppId:appID key:authKey secret:authSecret delegate:self];
-}
-
-- (void)timerSelector:(NSTimer*)theTimer{
-    timer = nil;
-    
-    if([BaseService sharedService].token){
-        [self hideSplash];
-    }
 }
 
 - (void)hideSplash{
@@ -67,9 +56,7 @@
     
     if([result isKindOfClass:[QBAAuthSessionCreationResult class]]){
         if(result.success){
-            if(timer == nil){
-                [self hideSplash];
-            }
+            [self performSelector:@selector(hideSplash) withObject:nil afterDelay:2];
         }else{
             [self processErrors:result.errors];
         }
