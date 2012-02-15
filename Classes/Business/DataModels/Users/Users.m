@@ -12,7 +12,7 @@
 
 @implementation Users
 
-@dynamic mbUser;
+@dynamic qbUser;
 @dynamic photo;
 @dynamic latitude;
 @dynamic longitude;

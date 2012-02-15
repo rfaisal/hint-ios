@@ -155,6 +155,12 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    // register subscriber
+    QBUUser *user = [[UsersProvider sharedProvider] currentUser].qbUser;
+    QBCDevice *device = [[QBCDevice alloc] initWithCurrentDevice];
+    [QBMessagesService TRegisterSubscriberForUser:user device:device testToken:nil delegate:self];
+
     [(SuperSampleAppDelegate *)[[UIApplication sharedApplication] delegate] startTrackOwnLocation];
     [self dismissModalViewControllerAnimated:YES];
 }

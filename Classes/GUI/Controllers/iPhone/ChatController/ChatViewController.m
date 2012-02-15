@@ -127,12 +127,12 @@
     
     Users *user = [[UsersProvider sharedProvider] currentUser];
     if(user == nil){
-        [self showMessage:NSLocalizedString(@"You must authorize first. Go to Settings tab", "") message:nil delegate:nil];
+        [self showMessage:NSLocalizedString(@"You must first be authorized. Go to Settings tab", "") message:nil delegate:nil];
         return;
     }
 
 	QBLGeoData *geoData = [QBLGeoData currentGeoData];
-	geoData.user = user.mbUser;
+	geoData.user = user.qbUser;
     geoData.appID = appID;
     geoData.status = textField.text;
 

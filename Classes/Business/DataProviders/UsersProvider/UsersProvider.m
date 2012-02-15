@@ -89,7 +89,7 @@ static id instance = nil;
 		user = (Users *)[results objectAtIndex:0];
 	}
     
-    user.mbUser.ID = [uid intValue];
+    user.qbUser.ID = [uid intValue];
 	
 	return user;
 }
@@ -120,7 +120,7 @@ static id instance = nil;
 		user = (Users *)[NSEntityDescription insertNewObjectForEntityForName:[self entityName]
 													 inManagedObjectContext:context];
 		user.uid = uid;
-        user.mbUser = qbUser;
+        user.qbUser = qbUser;
 		
 		isChanged = YES;
 	}
@@ -174,7 +174,7 @@ static id instance = nil;
                                                             inManagedObjectContext:context];
     
 	model.uid = [NSNumber numberWithUnsignedInt:user.ID];
-    model.mbUser = user;
+    model.qbUser = user;
     model.status = status;
     model.longitude = [NSNumber numberWithDouble: location.coordinate.longitude];
     model.latitude = [NSNumber numberWithDouble: location.coordinate.latitude];

@@ -68,6 +68,11 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    for(Users *user in [[UsersProvider sharedProvider] getAllUsersWithError:nil withOwn:YES]){
+        NSLog(@"user=%@", user.qbUser);
+    }
+    
+    
     Users *user = [[UsersProvider sharedProvider] currentUser];
     if(user != nil){
         
@@ -79,14 +84,14 @@
         [takeAPictureButton setEnabled:YES];
         
         // populate fields
-        fullName.text = user.mbUser.fullName;
+        fullName.text = user.qbUser.fullName;
         
         // set avatar
         if(avatarView.image == nil){
             if(user.photo){
                 [avatarView setImage:[UIImage imageWithData:user.photo.image]];
-            }else if(user.mbUser.externalUserID){
-                [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:user.mbUser];
+            }else if(user.qbUser.externalUserID){
+                [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:user.qbUser];
             }
         }
     }else{
@@ -194,6 +199,9 @@
         [chooseFromGalleryButton setEnabled:NO];
         [takeAPictureButton setEnabled:NO];
         
+        [leftBarButtonItem setTitle:@"Sign in"];
+        [rightBarButtonItem setTitle:@"Sign up"];
+        
         [(SuperSampleAppDelegate *)[[UIApplication sharedApplication] delegate] stopTrackOwnLocation];
         
     // Sign Up
@@ -259,7 +267,7 @@
         if(res.success){
             // get & update user
             Users *currentUser = [[UsersProvider sharedProvider] currentUser];
-            currentUser.mbUser.fullName = fullName.text;
+            currentUser.qbUser.fullName = fullName.text;
             [[UsersProvider sharedProvider] saveUser];
             
             [self showMessage:NSLocalizedString(@"User edited successfully", "") message:nil delegate:self];
@@ -284,7 +292,7 @@
             
             // save blob_id
             Users *currentUser = [[UsersProvider sharedProvider] currentUser];
-            currentUser.mbUser.externalUserID = blobID; // temporary fix. Use 'blob_id' instead 'externalUserID'
+            currentUser.qbUser.externalUserID = blobID; // temporary fix. Use 'blob_id' instead 'externalUserID'
             [[UsersProvider sharedProvider] saveUser];
             
 			[self performSelectorInBackground:@selector(saveAvatarAsync:) withObject:res.uploadedFileBlob];		

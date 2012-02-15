@@ -9,8 +9,8 @@
 #import "SubscribedViewController.h"
 
 @class Users;
-@interface PinDetailedViewController : SubscribedViewController {
-
+@interface PinDetailedViewController : SubscribedViewController <ActionStatusDelegate>{
+    UIView *messageContainer;
 }
 
 @property (nonatomic, retain) NSManagedObjectID *objectID;
@@ -23,5 +23,6 @@
 @property (nonatomic, retain) IBOutlet UIProgressView *userRating;
 
 -(IBAction) close:(id)sender;
+-(IBAction) openPushMessageView:(id)sender;
 
 @end

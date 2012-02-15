@@ -10,12 +10,11 @@
 
 @class QBUUser;
 
-@interface Users : NSManagedObject 
-{
-@private
+@interface Users : NSManagedObject {
+
 }
 
-@property (nonatomic, retain) QBUUser *mbUser;
+@property (nonatomic, retain) QBUUser *qbUser;
 @property (nonatomic, assign) NSNumber *latitude;
 @property (nonatomic, assign) NSNumber *longitude;
 @property (nonatomic, retain) NSString *status;

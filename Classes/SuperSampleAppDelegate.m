@@ -29,10 +29,6 @@
     // QB settings
 	[QBSettings setServerDomainTemplate:[NSString stringWithFormat:@"%@%@", @"%@.", endpoint]];	
     
-    [QBLocationService setServiceZone:ServiceZoneProduction];
-    [QBUsersService setServiceZone:ServiceZoneProduction];
-	[QBBlobsService setServiceZone:ServiceZoneProduction];
-    
     [QBSettings setLogLevel:QBLogLevelDebug];
     
     self.window.rootViewController = self.viewController;
@@ -75,6 +71,11 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    NSLog(@"didReceiveRemoteNotification userInfo=%@", userInfo);
+    [self showMessage:[[userInfo objectForKey:QBMPushMessageApsKey] objectForKey:QBMPushMessageAlertKey] message:nil];
 }
 
 - (void)startTrackOwnLocation{

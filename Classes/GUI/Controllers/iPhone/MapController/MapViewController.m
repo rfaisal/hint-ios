@@ -116,18 +116,20 @@
             continue;
         }
         
+
         // save user
 		CLLocation *location = [[CLLocation alloc] initWithLatitude:geoData.latitude longitude:geoData.longitude];
-		hasChanges |= [[UsersProvider sharedProvider] updateOrCreateUser:geoData.user                                                                                      
+		hasChanges = [[UsersProvider sharedProvider] updateOrCreateUser:geoData.user                                                                                      
                                                                 location:location  
                                                                   status:geoData.status
                                                                  context:context
-																   error:&error];	
+																   error:&error];
+        
 		[location release];
         
         // if user has avatar
         if(geoData.user.blobID){
-            [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:geoData.user];
+           // [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:geoData.user];
         }
 	}
 	

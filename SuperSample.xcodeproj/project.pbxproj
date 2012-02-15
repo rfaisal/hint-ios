@@ -180,6 +180,7 @@
 		FA8EF01314E0173600472642 /* SplashController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA8EF01214E0173600472642 /* SplashController.xib */; };
 		FACBCEB014911A6D00E876FC /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = FACBCEAF14911A6D00E876FC /* user.png */; };
 		FACBCEB41491201000E876FC /* marker_own_map.png in Resources */ = {isa = PBXBuildFile; fileRef = FACBCEB31491201000E876FC /* marker_own_map.png */; };
+		FAE3CAD514EBC52300182FA5 /* EnvelopeBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE3CAD414EBC52300182FA5 /* EnvelopeBlue.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -496,6 +497,7 @@
 		FA8EF01214E0173600472642 /* SplashController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashController.xib; sourceTree = "<group>"; };
 		FACBCEAF14911A6D00E876FC /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		FACBCEB31491201000E876FC /* marker_own_map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_own_map.png; sourceTree = "<group>"; };
+		FAE3CAD414EBC52300182FA5 /* EnvelopeBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EnvelopeBlue.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1605,6 +1607,7 @@
 			isa = PBXGroup;
 			children = (
 				FA5D43EA1488E90D00BE9F9E /* logo.png */,
+				FAE3CAD414EBC52300182FA5 /* EnvelopeBlue.png */,
 				FA70D00A1487BBDA00C21DAA /* background.png */,
 				FA5D43EF14890C8300BE9F9E /* Default.png */,
 				FACBCEAF14911A6D00E876FC /* user.png */,
@@ -1780,6 +1783,7 @@
 				FA524F151498B1EF009FD3E2 /* btn_view_leaderboard.png in Resources */,
 				FA32FE7414A32B7E00BFD18D /* libidn-1.15.tar.gz in Resources */,
 				FA8EF01314E0173600472642 /* SplashController.xib in Resources */,
+				FAE3CAD514EBC52300182FA5 /* EnvelopeBlue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1981,7 +1985,7 @@
 					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E255B0AB-07FF-44D9-856C-C45EE242B069";
+				PROVISIONING_PROFILE = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3EE8B1BD-439D-4500-AC0F-B74B1CF059FF";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) \"$(SRCROOT)\"";
 				WRAPPER_EXTENSION = app;
@@ -1991,8 +1995,8 @@
 		A7C3FFA31402E7130039A28B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Injoit LTD";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Injoit LTD";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Taras Filatov (6AVH4TA956)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Taras Filatov (6AVH4TA956)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2008,8 +2012,8 @@
 					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9E26C7D3-F53C-42C7-B938-0696FEA452D5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9E26C7D3-F53C-42C7-B938-0696FEA452D5";
+				PROVISIONING_PROFILE = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) \"$(SRCROOT)\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2041,8 +2045,8 @@
 		A7C3FFC71402EA400039A28B /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Injoit LTD";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Injoit LTD";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Taras Filatov (6AVH4TA956)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Taras Filatov (6AVH4TA956)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2058,8 +2062,8 @@
 					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9E26C7D3-F53C-42C7-B938-0696FEA452D5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9E26C7D3-F53C-42C7-B938-0696FEA452D5";
+				PROVISIONING_PROFILE = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) \"$(SRCROOT)\"";
 				WRAPPER_EXTENSION = app;
 			};

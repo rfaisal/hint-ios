@@ -87,13 +87,13 @@
         }
         
         // login
-        userLogin.text = user.mbUser.login;
+        userLogin.text = user.qbUser.login;
         if(userLogin.text == nil || [userLogin.text isEqualToString:@""]){
             userLogin.text = @"anonymous";
         }
         
         // full name
-        userFullName.text = user.mbUser.fullName;
+        userFullName.text = user.qbUser.fullName;
         if(userFullName.text == nil || [userFullName.text isEqualToString:@""]){
             userFullName.text = @"anonymous";
         }
@@ -123,6 +123,96 @@
 
 -(IBAction) close:(id)sender{
     [self.parentCustomModalController dismissCustomModalViewControllerAnimated:YES];
+}
+
+-(IBAction) openPushMessageView:(id)sender{
+    
+    Users *user = [[UsersProvider sharedProvider] currentUser];
+    if(user == nil){
+        [self showMessage:NSLocalizedString(@"You must first be authorized. Go to Settings tab", "") message:nil delegate:nil];
+        return;
+    }
+    
+    // container
+    messageContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 245)];
+    messageContainer.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    messageContainer.alpha = 0;
+    [self.view addSubview:messageContainer];
+    [messageContainer release];
+    
+    // text view
+    UITextView *messageBody = [[UITextView alloc] initWithFrame:CGRectMake(8, 8, 304, 165)];
+    messageBody.layer.cornerRadius = 7;
+    [messageBody setTag:101];
+    [messageContainer addSubview:messageBody];
+    [messageBody release];
+    
+    // Send button
+    UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [sendButton setTitle:@"Send" forState:UIControlStateNormal];
+    [sendButton setFrame:CGRectMake(235, 193, 70, 30)];
+    [messageContainer addSubview:sendButton];
+    [sendButton addTarget:self action:@selector(sendPushMessage:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // Cancel button
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    [cancelButton setFrame:CGRectMake(155, 193, 70, 30)];
+    [messageContainer addSubview:cancelButton];
+    [cancelButton addTarget:self action:@selector(cancelPushMessage:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [messageBody becomeFirstResponder];
+    [UIView animateWithDuration:0.3 animations:^{
+        messageContainer.alpha = 1;
+    }];
+}
+
+-(void) sendPushMessage:(id)sender{
+    
+    NSNumber *userID = [[UsersProvider sharedProvider] userByID:self.objectID error:nil].uid;
+    
+    NSString *mesage = [NSString stringWithFormat:@"Message from %@: %@", 
+                        [[UsersProvider sharedProvider] currentUser].qbUser.login,  
+                        ((UITextView *)[messageContainer viewWithTag:101]).text];
+
+    NSMutableDictionary *payload = [NSMutableDictionary dictionary];
+    NSMutableDictionary *aps = [NSMutableDictionary dictionary];
+    [aps setObject:@"default" forKey:QBMPushMessageSoundKey];
+    [aps setObject:mesage forKey:QBMPushMessageAlertKey];
+    [payload setObject:aps forKey:QBMPushMessageApsKey];
+     
+    QBMPushMessage *message = [[QBMPushMessage alloc] initWithPayload:payload];
+     
+    // Send push
+    [QBMessagesService TSendPush:message toUser:[userID intValue]  delegate:self];
+
+    [message release];
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+}
+
+-(void) cancelPushMessage:(id)sender{
+    [messageContainer removeFromSuperview];
+    messageContainer = nil;
+}
+
+- (void)completedWithResult:(Result*)result{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+    // Edit User result
+    if([result isKindOfClass:[QBMSendPushTaskResult class]]){
+        if(result.success){
+            
+            // hide message view
+            [messageContainer removeFromSuperview];
+            messageContainer = nil;
+            
+            [self showMessage:NSLocalizedString(@"Message sent successfully", "") message:nil delegate:nil];
+        }else{
+            [self processErrors:result.errors];
+        }
+    }
 }
 
 - (void) dealloc {
