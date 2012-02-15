@@ -129,7 +129,7 @@
         
         // if user has avatar
         if(geoData.user.blobID){
-           // [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:geoData.user];
+            [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:geoData.user];
         }
 	}
 	
@@ -164,7 +164,7 @@
     // get blob
     QBBlobResult *blobResul = [QBBlobsService GetBlobInfo:qbUser.blobID];
     if(!blobResul.success){
-        [self performSelectorOnMainThread:@selector(processErrors:) withObject:blobResul.answer.errors waitUntilDone:YES];
+        NSLog(@"blobResul.errors=%@", blobResul.errors);
         [pool drain];
         return;
     }
@@ -172,18 +172,13 @@
     QBBlob *blob = blobResul.blob;
     
 
-    
     // get file
     QBBlobFileResult *blobFileResult = [QBBlobsService GetBlob:blob.UID];
     if(!blobFileResult.success){
-        [self performSelectorOnMainThread:@selector(processErrors:) withObject:blobResul.answer.errors waitUntilDone:YES];
+        NSLog(@"blobResul.errors=%@", blobResul.errors);
         [pool drain];
         return;
     }
-    
-    return;
-    
-
     
     // save image
     SourceImages *sourceImage = [[SourceImagesProvider sharedProvider] addImage:[UIImage imageWithData:blobFileResult.data]

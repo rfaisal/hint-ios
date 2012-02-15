@@ -26,10 +26,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     [FlurryAPI startSession:FLURRY_API_KEY];
     
-    // QB settings
-	[QBSettings setServerDomainTemplate:[NSString stringWithFormat:@"%@%@", @"%@.", endpoint]];	
-    
-    [QBSettings setLogLevel:QBLogLevelDebug];
+    // set log level
+    //[QBSettings setLogLevel:QBLogLevelNothing];
     
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];

@@ -68,11 +68,6 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    for(Users *user in [[UsersProvider sharedProvider] getAllUsersWithError:nil withOwn:YES]){
-        NSLog(@"user=%@", user.qbUser);
-    }
-    
-    
     Users *user = [[UsersProvider sharedProvider] currentUser];
     if(user != nil){
         
@@ -87,13 +82,12 @@
         fullName.text = user.qbUser.fullName;
         
         // set avatar
-        if(avatarView.image == nil){
-            if(user.photo){
-                [avatarView setImage:[UIImage imageWithData:user.photo.image]];
-            }else if(user.qbUser.externalUserID){
-                [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:user.qbUser];
-            }
+        if(user.photo){
+            [avatarView setImage:[UIImage imageWithData:user.photo.image]];
+        }else if(user.qbUser.externalUserID){
+            [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:user.qbUser];
         }
+        
     }else{
         [leftBarButtonItem setTitle:@"Sign in"];
         [rightBarButtonItem setTitle:@"Sign up"];
@@ -186,6 +180,8 @@
 }
 
 - (IBAction) rightNavButtonDidPress: (id)sender{
+    NSLog(@"[rightBarButtonItem title]=%@", [rightBarButtonItem title]);
+    
     // Logout
     if([[rightBarButtonItem title] isEqualToString:@"Logout"]){
         // logout
@@ -262,8 +258,7 @@
     
     // Edit User result
     if([result isKindOfClass:[QBUUserResult class]]){
-        QBUUserResult* res = (QBUUserResult*)result;
-        NSLog(@"res=%@", res.user);
+        QBUUserResult *res = (QBUUserResult *)result;
         if(res.success){
             // get & update user
             Users *currentUser = [[UsersProvider sharedProvider] currentUser];
@@ -314,7 +309,6 @@
     // get blob
     QBBlobResult *blobResult = [QBBlobsService GetBlobInfo:qbUser.externalUserID];
     
-    NSLog(@"ST=%d", blobResult.status);
     if(!blobResult.success){
         [self performSelectorOnMainThread:@selector(processErrors:) withObject:blobResult.errors waitUntilDone:YES];
         [pool drain];
