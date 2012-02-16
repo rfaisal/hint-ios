@@ -27,7 +27,7 @@
     [FlurryAPI startSession:FLURRY_API_KEY];
     
     // set log level
-    //[QBSettings setLogLevel:QBLogLevelNothing];
+    [QBSettings setLogLevel:QBLogLevelNothing];
     
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];

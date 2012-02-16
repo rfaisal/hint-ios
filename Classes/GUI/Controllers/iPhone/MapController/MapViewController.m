@@ -119,7 +119,7 @@
 
         // save user
 		CLLocation *location = [[CLLocation alloc] initWithLatitude:geoData.latitude longitude:geoData.longitude];
-		hasChanges = [[UsersProvider sharedProvider] updateOrCreateUser:geoData.user                                                                                      
+		hasChanges |= [[UsersProvider sharedProvider] updateOrCreateUser:geoData.user                                                                                      
                                                                 location:location  
                                                                   status:geoData.status
                                                                  context:context

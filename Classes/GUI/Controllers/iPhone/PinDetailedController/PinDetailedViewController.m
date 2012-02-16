@@ -172,7 +172,7 @@
     
     NSNumber *userID = [[UsersProvider sharedProvider] userByID:self.objectID error:nil].uid;
     
-    NSString *mesage = [NSString stringWithFormat:@"Message from %@: %@", 
+    NSString *mesage = [NSString stringWithFormat:@"QB SuperSample. Message from %@: %@", 
                         [[UsersProvider sharedProvider] currentUser].qbUser.login,  
                         ((UITextView *)[messageContainer viewWithTag:101]).text];
 
