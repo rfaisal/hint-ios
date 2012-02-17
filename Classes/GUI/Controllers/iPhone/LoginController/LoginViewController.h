@@ -7,8 +7,9 @@
 //
 
 #import "SubscribedViewController.h"
+#import "FBConnect.h"
 
-@interface LoginViewController : SubscribedViewController <ActionStatusDelegate, UIAlertViewDelegate, UITextFieldDelegate> {    
+@interface LoginViewController : SubscribedViewController <ActionStatusDelegate, UIAlertViewDelegate, UITextFieldDelegate, FBRequestDelegate> {    
     UITextField *login;
     UITextField *password;
     UIActivityIndicatorView *activityIndicator;
@@ -17,9 +18,11 @@
 @property (nonatomic, retain) IBOutlet UITextField *login;
 @property (nonatomic, retain) IBOutlet UITextField *password;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, retain) IBOutlet UIButton *fbLoginButton;
 
 - (IBAction)next:(id)sender;
 - (IBAction)back:(id)sender;
+- (IBAction)authViaFacebook:(id)sender;
 
 -(void)busy:(BOOL) isBusy;
 

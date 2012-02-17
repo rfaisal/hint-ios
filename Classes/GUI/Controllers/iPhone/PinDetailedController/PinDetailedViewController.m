@@ -200,7 +200,7 @@
 - (void)completedWithResult:(Result*)result{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
-    // Edit User result
+    // Send Push result
     if([result isKindOfClass:[QBMSendPushTaskResult class]]){
         if(result.success){
             

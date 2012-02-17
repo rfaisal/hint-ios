@@ -22,6 +22,7 @@
 #import "Users.h"
 #import "MapPinView.h"
 
+
 @implementation MapViewController
 @synthesize mapView;
 @synthesize annotationDataSource;
@@ -104,7 +105,7 @@
     
 	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
 	NSError *error = nil;
-	
+    
     BOOL hasChanges = NO;
 
 	for (QBLGeoData *geoData in geodatas) {
@@ -112,7 +113,6 @@
         // skip own
         if(geoData.user.ID == [[UsersProvider sharedProvider] currentUserID]){
             [[UsersProvider sharedProvider] currentUser].status = geoData.status;
-            
             continue;
         }
         

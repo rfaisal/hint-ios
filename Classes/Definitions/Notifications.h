@@ -15,6 +15,7 @@
 #define nOpenPrivateChatView @"nOpenPrivateChatView"
 #define nLoginSuccessful @"nLoginSuccessful"
 #define nChangedOwnStatus @"nChangedOwnStatus"
+#define nFBDidLogin @"nFBDidLogin"
 
 #pragma mark -
 #pragma mark Keys for UserInfo

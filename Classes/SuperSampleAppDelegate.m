@@ -22,6 +22,7 @@
 @synthesize viewController = _viewController;
 @synthesize splashController = _splashController;
 @synthesize quizRootController = _quizRootController;
+@synthesize facebook;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     [FlurryAPI startSession:FLURRY_API_KEY];
@@ -33,6 +34,8 @@
     [self.window makeKeyAndVisible];
     
     [self.viewController presentModalViewController:self.splashController animated:NO];
+    
+    facebook = [[Facebook alloc] initWithAppId:FACEBOOK_APP_ID andDelegate:self];
     
     return YES;
 }
@@ -69,6 +72,17 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+}
+
+// Pre 4.2 support
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [facebook handleOpenURL:url]; 
+}
+
+// For 4.2+ support
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [facebook handleOpenURL:url]; 
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
@@ -108,6 +122,14 @@
 
 
 #pragma mark -
+#pragma mark FBSessionDelegate
+
+- (void)fbDidLogin {
+    [[NSNotificationCenter defaultCenter] postNotificationName:nFBDidLogin object:nil];
+}
+
+
+#pragma mark -
 #pragma mark ActionStatusDelegate
 
 - (void)completedWithResult:(Result *)result{
@@ -142,6 +164,7 @@
     [_viewController release];
     [_splashController release];
     [_quizRootController release];
+        [facebook release];
     
 	[super dealloc];
 }

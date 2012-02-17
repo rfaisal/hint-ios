@@ -15,6 +15,7 @@
 @synthesize login;
 @synthesize password;
 @synthesize activityIndicator;
+@synthesize fbLoginButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -39,12 +40,28 @@
 - (void) viewDidLoad{
     [super viewDidLoad];
     [FlurryAPI logEvent:@"LoginViewController, viewDidLoad"];
+    
+    // Login Button
+    [fbLoginButton setImage:[UIImage imageNamed:@"FBConnect.bundle/images/LoginNormal@2x.png"]
+                 forState:UIControlStateNormal];
+    [fbLoginButton setImage:[UIImage imageNamed:@"FBConnect.bundle/images/LoginPressed@2x.png"]
+                 forState:UIControlStateHighlighted];
+    [fbLoginButton sizeToFit];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(fbDidLogin:) 
+                                                 name:nFBDidLogin object:nil];
 }
 
 - (void)viewDidUnload{
     [self setLogin:nil];
     [self setPassword:nil];
     [self setActivityIndicator:nil];
+    self.fbLoginButton = nil;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:nFBDidLogin object:nil];
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -81,10 +98,33 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+- (IBAction)authViaFacebook:(id)sender{
+    
+    SuperSampleAppDelegate *delegate = ((SuperSampleAppDelegate *)[[UIApplication sharedApplication] delegate]);
+    
+    if (![[delegate facebook] isSessionValid]) {
+        [[delegate facebook] authorize:nil];
+    } 
+}
 
-#pragma mark
+- (void)fbDidLogin:(NSNotification *)notification{
+    SuperSampleAppDelegate *delegate = ((SuperSampleAppDelegate *)[[UIApplication sharedApplication] delegate]);
+    NSLog(@"fbDidLogin, %@", [delegate facebook]);
+    
+    // get information about the currently logged in user
+    [[delegate facebook] requestWithGraphPath:@"me" andDelegate:self];
+}
+
+
+#pragma mark -
+#pragma mark FBRequestDelegate
+
+- (void)request:(FBRequest *)request didLoad:(id)result{
+    NSLog(@"result=%@", result);
+}
+
+#pragma mark -
 #pragma mark ActionStatusDelegate
-#pragma mark
 
 -(void)completedWithResult:(Result *)result{
 	[self completedWithResult:result context:nil];
@@ -124,9 +164,8 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark UITextFieldDelegate
-#pragma mark
 
 - (BOOL)textFieldShouldReturn:(UITextField *)_textField{
     [_textField resignFirstResponder];
@@ -137,7 +176,6 @@
 
 #pragma mark -
 #pragma mark Private
-#pragma mark
 
 -(void)busy:(BOOL) _isBusy{	
 	isBusy = _isBusy;

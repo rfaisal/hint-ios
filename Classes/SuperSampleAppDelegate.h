@@ -6,17 +6,20 @@
 //  Copyright 2011 QuickBlox. All rights reserved.
 //
 
+#import "FBConnect.h"
 
 @class SuperSampleViewController;
 @class SplashController;
 @class QuizRootViewController;
 
-@interface SuperSampleAppDelegate : NSObject <UIApplicationDelegate, ActionStatusDelegate>{		
+@interface SuperSampleAppDelegate : NSObject <UIApplicationDelegate, ActionStatusDelegate, FBSessionDelegate>{	
+    Facebook *facebook;
 }
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *viewController;
 @property (nonatomic, retain) IBOutlet SplashController *splashController;
 @property (nonatomic, retain) IBOutlet QuizRootViewController *quizRootController;
+@property (nonatomic, retain) Facebook *facebook;
 
 - (void) startTrackOwnLocation;
 - (void) stopTrackOwnLocation;

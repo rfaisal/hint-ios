@@ -15,9 +15,9 @@
 
 @synthesize currentUserID;
 
-static id instance = nil;
+static UsersProvider *instance = nil;
 
-+ (id)sharedProvider {
++ (UsersProvider *)sharedProvider {
 	@synchronized (self){
 		if (instance == nil){
 			instance = [[self alloc] init];

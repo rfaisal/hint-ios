@@ -15,6 +15,8 @@
 
 @property (assign) NSUInteger currentUserID;
 
++ (UsersProvider *)sharedProvider;
+
 // Get user by mid
 - (Users *)userByID:(NSManagedObjectID *)mid error:(NSError **)error;
 - (Users *)userByID:(NSManagedObjectID *)mid context:(NSManagedObjectContext *)context error:(NSError **)error;
