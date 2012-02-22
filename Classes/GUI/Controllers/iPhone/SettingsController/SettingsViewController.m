@@ -198,7 +198,9 @@
         [leftBarButtonItem setTitle:@"Sign in"];
         [rightBarButtonItem setTitle:@"Sign up"];
         
-        [(SuperSampleAppDelegate *)[[UIApplication sharedApplication] delegate] stopTrackOwnLocation];
+        SuperSampleAppDelegate *delegate = ((SuperSampleAppDelegate *)[[UIApplication sharedApplication] delegate]);
+        [delegate stopTrackOwnLocation];
+        [[delegate facebook] logout];
         
     // Sign Up
     }else{

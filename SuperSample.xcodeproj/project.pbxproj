@@ -116,6 +116,7 @@
 		FAEA319414EE8B110081EF44 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA318214EE8B110081EF44 /* SBJsonWriter.m */; };
 		FAEA319514EE8B110081EF44 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEA318914EE8B110081EF44 /* libFlurry.a */; };
 		FAEA319E14EE984E0081EF44 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FAEA319D14EE984E0081EF44 /* FBConnect.bundle */; };
+		FAF086AE14F3B291005B2399 /* NumberToLetterConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF086AD14F3B291005B2399 /* NumberToLetterConverter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -294,6 +295,8 @@
 		FAEA318814EE8B110081EF44 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
 		FAEA318914EE8B110081EF44 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		FAEA319D14EE984E0081EF44 /* FBConnect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBConnect.bundle; sourceTree = "<group>"; };
+		FAF086AC14F3B291005B2399 /* NumberToLetterConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberToLetterConverter.h; sourceTree = "<group>"; };
+		FAF086AD14F3B291005B2399 /* NumberToLetterConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberToLetterConverter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -854,6 +857,7 @@
 				FA70CF861487BBC000C21DAA /* Extensions */,
 				FA70CF8B1487BBC000C21DAA /* FileSystemHelper */,
 				FA70CF911487BBC000C21DAA /* Helpers.h */,
+				FAF086AA14F3B269005B2399 /* Converters */,
 				FA70CF921487BBC000C21DAA /* ImageResize */,
 			);
 			path = Helpers;
@@ -1102,6 +1106,15 @@
 			path = AppCircle;
 			sourceTree = "<group>";
 		};
+		FAF086AA14F3B269005B2399 /* Converters */ = {
+			isa = PBXGroup;
+			children = (
+				FAF086AC14F3B291005B2399 /* NumberToLetterConverter.h */,
+				FAF086AD14F3B291005B2399 /* NumberToLetterConverter.m */,
+			);
+			path = Converters;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1254,6 +1267,7 @@
 				FAEA319214EE8B110081EF44 /* SBJsonBase.m in Sources */,
 				FAEA319314EE8B110081EF44 /* SBJsonParser.m in Sources */,
 				FAEA319414EE8B110081EF44 /* SBJsonWriter.m in Sources */,
+				FAF086AE14F3B291005B2399 /* NumberToLetterConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

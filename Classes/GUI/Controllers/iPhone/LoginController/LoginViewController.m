@@ -10,12 +10,14 @@
 #import "UsersProvider.h"
 #import "SuperSampleAppDelegate.h"
 #import "Users.h"
+#import "NumberToLetterConverter.h"
 
 @implementation LoginViewController
 @synthesize login;
 @synthesize password;
 @synthesize activityIndicator;
 @synthesize fbLoginButton;
+@synthesize fbUserBody;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,13 +31,13 @@
     [login release];
     [password release];
     [activityIndicator release];
+    [fbUserBody release];
     [super dealloc];
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark - View lifecycle
-#pragma mark
 
 - (void) viewDidLoad{
     [super viewDidLoad];
@@ -83,7 +85,7 @@
 	qbUser.password = password.text;
     
     // authenticate
-    [QBUsersService authenticateUser:qbUser delegate:self context:nil];
+    [QBUsersService authenticateUser:qbUser delegate:self];
     
     [qbUser release];
     
@@ -104,12 +106,13 @@
     
     if (![[delegate facebook] isSessionValid]) {
         [[delegate facebook] authorize:nil];
+        
+        [self busy:YES];
     } 
 }
 
 - (void)fbDidLogin:(NSNotification *)notification{
     SuperSampleAppDelegate *delegate = ((SuperSampleAppDelegate *)[[UIApplication sharedApplication] delegate]);
-    NSLog(@"fbDidLogin, %@", [delegate facebook]);
     
     // get information about the currently logged in user
     [[delegate facebook] requestWithGraphPath:@"me" andDelegate:self];
@@ -120,18 +123,31 @@
 #pragma mark FBRequestDelegate
 
 - (void)request:(FBRequest *)request didLoad:(id)result{
-    NSLog(@"result=%@", result);
+    NSDictionary *dict = [NSDictionary dictionaryWithDictionary:result];
+    self.fbUserBody = dict;
+
+    // try to auth
+    QBUUser *qbUser = [[QBUUser alloc] init];
+    qbUser.ownerID = ownerID;   
+    NSString *userLogin = [[NumberToLetterConverter instance] convertNumbersToLetters:[fbUserBody objectForKey:@"id"]];
+    NSString *passwordHash = [NSString stringWithFormat:@"%u", [[fbUserBody objectForKey:@"id"] hash]];
+    qbUser.login = userLogin;
+	qbUser.password = passwordHash;
+
+    // authenticate
+    [QBUsersService authenticateUser:qbUser delegate:self];
+    
+    [qbUser release];
 }
+
 
 #pragma mark -
 #pragma mark ActionStatusDelegate
 
 -(void)completedWithResult:(Result *)result{
-	[self completedWithResult:result context:nil];
-}
 
--(void)completedWithResult:(Result *)result context:(void*)contextInfo{
-
+    [self busy:NO];
+    
 	if([result isKindOfClass:[QBUUserAuthenticateResult class]]){
 		QBUUserAuthenticateResult *res = (QBUUserAuthenticateResult *)result;
         [res user];
@@ -150,17 +166,67 @@
             
             [[NSNotificationCenter defaultCenter] postNotificationName:nRefreshAnnotationDetails object:nil];
             
+            NSString *userName;
+            if(fbUserBody){
+                userName = [fbUserBody objectForKey:@"name"];
+            }else{
+                userName = answer.user.login;
+            }
 			[self showMessage:NSLocalizedString(@"Authentication successful", "") 
-					  message:[NSString stringWithFormat:NSLocalizedString(@"%@ was authenticated", ""), answer.user.login] delegate:self];
+					  message:[NSString stringWithFormat:NSLocalizedString(@"%@ was authenticated", ""), userName] delegate:self];
+            
+            
+            self.fbUserBody = nil;
 
 		}else if(401 == result.status){
-			[self showMessage:NSLocalizedString(@"Not registered!", "") message:nil delegate:nil];
+            
+            if(fbUserBody){
+                // Register FB user
+                QBUUser *user = [[QBUUser alloc] init];
+                user.ownerID = ownerID;        
+                NSString *userLogin = [[NumberToLetterConverter instance] convertNumbersToLetters:[fbUserBody objectForKey:@"id"]];
+                NSString *passwordHash = [NSString stringWithFormat:@"%u", [[fbUserBody objectForKey:@"id"] hash]]; 
+                user.login = userLogin;
+                user.password = passwordHash;
+                user.facebookID = [fbUserBody objectForKey:@"id"];
+                user.fullName = [fbUserBody objectForKey:@"name"];
+                
+                [QBUsersService createUser:user delegate:self];
+                [user release];
+                
+                [self busy:YES];
+                
+            }else{
+                [self showMessage:NSLocalizedString(@"Not registered!", "") message:nil delegate:nil];
+            }
 		}else{
             [self processErrors:result.errors];
         }
+        
+    // create user
+    }else if([result isKindOfClass:[QBUUserResult class]]){
+        QBUUserResult *res = (QBUUserResult *)result;
+
+		if(res.success){
+            // auth again
+
+            QBUUser *qbUser = [[QBUUser alloc] init];
+            qbUser.ownerID = ownerID;   
+            NSString *userLogin = [[NumberToLetterConverter instance] convertNumbersToLetters:[fbUserBody objectForKey:@"id"]];
+            NSString *passwordHash = [NSString stringWithFormat:@"%u", [[fbUserBody objectForKey:@"id"] hash]];
+            qbUser.login = userLogin;
+            qbUser.password = passwordHash;
+            
+            // authenticate
+            [QBUsersService authenticateUser:qbUser delegate:self];
+            
+            [self busy:YES];
+            
+            [qbUser release];
+        }else{
+            [self processErrors:result.errors];
+        }
     }
-    
-    [self busy:NO];
 }
 
 

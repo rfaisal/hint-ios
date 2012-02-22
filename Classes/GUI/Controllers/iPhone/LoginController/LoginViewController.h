@@ -19,6 +19,7 @@
 @property (nonatomic, retain) IBOutlet UITextField *password;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) IBOutlet UIButton *fbLoginButton;
+@property (nonatomic, retain) NSDictionary *fbUserBody;
 
 - (IBAction)next:(id)sender;
 - (IBAction)back:(id)sender;

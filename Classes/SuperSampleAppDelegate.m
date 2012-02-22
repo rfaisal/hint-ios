@@ -27,8 +27,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     [FlurryAPI startSession:FLURRY_API_KEY];
     
+    [QBSettings setServerDomainTemplate:[NSString stringWithFormat:@"%@%@", @"%@.", endpoint]];	
+    
     // set log level
-    [QBSettings setLogLevel:QBLogLevelNothing];
+    //[QBSettings setLogLevel:QBLogLevelNothing];
     
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
@@ -91,6 +93,7 @@
 }
 
 - (void)startTrackOwnLocation{
+    return;
     [[QBLLocationDataSource instance] setCallbackSelectorForLocationUpdate:@selector(didUpdateToLocation:fromLocation:) forTarget:self];
     [[[QBLLocationDataSource instance] locationManager] startUpdatingLocation];
 }
