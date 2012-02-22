@@ -77,6 +77,16 @@
     return self;
 }
 
+- (void) setAnnotationModel:(id<MKAnnotation>)annotation{
+    [annotationModel release];
+    annotationModel = [annotation retain];
+    
+    UIImage *img = NSClassFromString(@"MKUserLocation") == [annotation class] ? 
+        [UIImage imageNamed: @"marker_own_map.png"] : 
+        [UIImage imageNamed: @"marker_map.png"];
+    imageView.image = img;
+}
+
 -(void)handleTap:(UITapGestureRecognizer *) gesture{
     
     Users *annotationUser = NSClassFromString(@"MKUserLocation") == [annotationModel class] ? 

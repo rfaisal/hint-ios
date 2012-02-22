@@ -202,6 +202,8 @@
         [delegate stopTrackOwnLocation];
         [[delegate facebook] logout];
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:nRefreshAnnotationDetails object:nil];
+        
     // Sign Up
     }else{
        [self presentModalViewController:registrationController animated:YES];

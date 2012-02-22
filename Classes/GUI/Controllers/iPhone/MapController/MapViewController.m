@@ -49,6 +49,8 @@
 - (void) viewDidLoad{
     [super viewDidLoad];
     [FlurryAPI logEvent:@"MapViewController, viewDidLoad"];
+    
+    [annotationDataSource reloadData];
 }
 
 - (void) viewDidAppear:(BOOL)animated{

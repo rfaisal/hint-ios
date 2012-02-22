@@ -23,6 +23,16 @@
 #pragma mark MKMapDelegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation{
+    
+    // save own annotation
+    if(NSClassFromString(@"MKUserLocation") == [annotation class]){
+        
+        if([[UsersProvider sharedProvider] currentUser] == nil){
+            return nil;
+        }
+        
+        self.ownAnnotation = annotation;
+    }
 
     static NSString *annotationReuseIdentifier = @"UserAnnotationIdentifier";
     
@@ -36,13 +46,7 @@
 	pin.annotationModel = mapPinAnnotation;
     
     [pin updateStatusWithAnimation:YES];
-    
-    
-    // save own annotation
-    if(NSClassFromString(@"MKUserLocation") == [annotation class]){
-        self.ownAnnotation = annotation;
-    }
-    
+
 	return pin;
 }
 

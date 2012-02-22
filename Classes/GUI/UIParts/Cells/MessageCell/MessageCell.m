@@ -100,7 +100,7 @@
     // user name
     userName.text = [NSString stringWithFormat:@"At %@ %@ wrote:", 
                      [[mess.date description] substringToIndex:[[mess.date description] length]-6] , 
-                     user.qbUser.login];
+                     user.qbUser.fullName ? user.qbUser.fullName : user.qbUser.login];
     
     // avatar
     SourceImages *sourceImage = user.photo;
