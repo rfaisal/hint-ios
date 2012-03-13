@@ -93,7 +93,6 @@
 }
 
 - (void)startTrackOwnLocation{
-    return;
     [[QBLLocationDataSource instance] setCallbackSelectorForLocationUpdate:@selector(didUpdateToLocation:fromLocation:) forTarget:self];
     [[[QBLLocationDataSource instance] locationManager] startUpdatingLocation];
 }

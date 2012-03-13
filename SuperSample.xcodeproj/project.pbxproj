@@ -1280,7 +1280,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Taras Filatov (6AVH4TA956)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rasmus Gustavsen (YWZ4YRLS74)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Taras Filatov (6AVH4TA956)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1297,7 +1297,7 @@
 				HEADER_SEARCH_PATHS = "$(SDK_DIR)/usr/include/libxml2/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PROVISIONING_PROFILE = "E255B0AB-07FF-44D9-856C-C45EE242B069";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BC7B71E9-FE4D-4D7A-8399-5987F3001AB0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1308,7 +1308,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Taras Filatov (6AVH4TA956)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rasmus Gustavsen (YWZ4YRLS74)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Taras Filatov (6AVH4TA956)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -1319,7 +1319,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "E255B0AB-07FF-44D9-856C-C45EE242B069";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BC7B71E9-FE4D-4D7A-8399-5987F3001AB0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1387,7 +1387,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Taras Filatov (6AVH4TA956)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rasmus Gustavsen (YWZ4YRLS74)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Taras Filatov (6AVH4TA956)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -1398,7 +1398,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "E255B0AB-07FF-44D9-856C-C45EE242B069";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BC7B71E9-FE4D-4D7A-8399-5987F3001AB0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
