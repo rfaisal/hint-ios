@@ -34,8 +34,19 @@
     [super viewDidLoad];
     [FlurryAPI logEvent:@"SplashController, viewDidLoad"];
     
-    // Auth App
-    [QBAuthService authorizeAppId:appID key:authKey secret:authSecret delegate:self];
+    
+    
+    // Auth app
+    //
+    // extendedAuthRequest
+    QBASessionCreationRequest *extendedAuthRequest = [[QBASessionCreationRequest alloc] init];
+    extendedAuthRequest.devicePlatorm = DevicePlatformiOS;
+    extendedAuthRequest.deviceUDID = [[UIDevice currentDevice] uniqueIdentifier];
+    //
+    [QBAuthService authorizeAppId:appID key:authKey secret:authSecret withExtendedRequest:extendedAuthRequest delegate:self];
+    //
+    [extendedAuthRequest release];
+
 }
 
 - (void)hideSplash{

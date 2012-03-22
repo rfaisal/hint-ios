@@ -21,7 +21,6 @@
 		A7C3FFC11402E9B20039A28B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB81402E9B20039A28B /* SystemConfiguration.framework */; };
 		BDC7630F144EED820091EB17 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC7630E144EED820091EB17 /* AudioToolbox.framework */; };
 		BDED890A1445F0B8000FDF62 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BDED89091445F0B8000FDF62 /* libresolv.dylib */; };
-		FA0B4FCF14DD3526008E4C25 /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0B4FCE14DD3526008E4C25 /* Quickblox.framework */; };
 		FA524EE61498A0EA009FD3E2 /* QuizQuestionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524ECB1498A0EA009FD3E2 /* QuizQuestionVC.m */; };
 		FA524EE81498A0EA009FD3E2 /* QuizRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524ECE1498A0EA009FD3E2 /* QuizRootViewController.m */; };
 		FA524EEA1498A0EA009FD3E2 /* QuizStatisticVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524ED11498A0EA009FD3E2 /* QuizStatisticVC.m */; };
@@ -117,6 +116,7 @@
 		FAEA319514EE8B110081EF44 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEA318914EE8B110081EF44 /* libFlurry.a */; };
 		FAEA319E14EE984E0081EF44 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FAEA319D14EE984E0081EF44 /* FBConnect.bundle */; };
 		FAF086AE14F3B291005B2399 /* NumberToLetterConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF086AD14F3B291005B2399 /* NumberToLetterConverter.m */; };
+		FAF2DFB2151A448F006E839E /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF2DFB1151A448F006E839E /* Quickblox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,7 +136,6 @@
 		A7C3FFB81402E9B20039A28B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BDC7630E144EED820091EB17 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		BDED89091445F0B8000FDF62 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
-		FA0B4FCE14DD3526008E4C25 /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quickblox.framework; path = "../SDK-ios/Framework/build/Framework/Quickblox.framework"; sourceTree = "<group>"; };
 		FA4579E8149B95B300BD0560 /* QBConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBConsts.h; sourceTree = "<group>"; };
 		FA524ECA1498A0EA009FD3E2 /* QuizQuestionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizQuestionVC.h; sourceTree = "<group>"; };
 		FA524ECB1498A0EA009FD3E2 /* QuizQuestionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizQuestionVC.m; sourceTree = "<group>"; };
@@ -297,6 +296,7 @@
 		FAEA319D14EE984E0081EF44 /* FBConnect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBConnect.bundle; sourceTree = "<group>"; };
 		FAF086AC14F3B291005B2399 /* NumberToLetterConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberToLetterConverter.h; sourceTree = "<group>"; };
 		FAF086AD14F3B291005B2399 /* NumberToLetterConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberToLetterConverter.m; sourceTree = "<group>"; };
+		FAF2DFB1151A448F006E839E /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quickblox.framework; path = "../../SDK-ios/Framework/build/Framework/Quickblox.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,8 +320,8 @@
 				BDED890A1445F0B8000FDF62 /* libresolv.dylib in Frameworks */,
 				BDC7630F144EED820091EB17 /* AudioToolbox.framework in Frameworks */,
 				FA70D0451487BE7F00C21DAA /* libidn.a in Frameworks */,
-				FA0B4FCF14DD3526008E4C25 /* Quickblox.framework in Frameworks */,
 				FAEA319514EE8B110081EF44 /* libFlurry.a in Frameworks */,
+				FAF2DFB2151A448F006E839E /* Quickblox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,11 +353,11 @@
 			isa = PBXGroup;
 			children = (
 				BDC7630E144EED820091EB17 /* AudioToolbox.framework */,
-				FA0B4FCE14DD3526008E4C25 /* Quickblox.framework */,
 				BDED89091445F0B8000FDF62 /* libresolv.dylib */,
 				FA70D0441487BE7F00C21DAA /* libidn.a */,
 				FA70D0461487BFCA00C21DAA /* libz.1.2.5.dylib */,
 				A71E39341420B7F600810C66 /* CoreData.framework */,
+				FAF2DFB1151A448F006E839E /* Quickblox.framework */,
 				A7C3FFB01402E9B10039A28B /* CFNetwork.framework */,
 				A7C3FFB11402E9B10039A28B /* CoreLocation.framework */,
 				A7C3FFB21402E9B10039A28B /* CoreMedia.framework */,
@@ -1334,6 +1334,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../SDK-ios/Framework/build/Framework\"",
+					"\"$(SRCROOT)/../../SDK-ios/Framework/build/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SuperSample-Prefix.pch";
@@ -1362,6 +1363,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../SDK-ios/Framework/build/Framework\"",
+					"\"$(SRCROOT)/../../SDK-ios/Framework/build/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SuperSample-Prefix.pch";
@@ -1413,6 +1415,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../SDK-ios/Framework/build/Framework\"",
+					"\"$(SRCROOT)/../../SDK-ios/Framework/build/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SuperSample-Prefix.pch";

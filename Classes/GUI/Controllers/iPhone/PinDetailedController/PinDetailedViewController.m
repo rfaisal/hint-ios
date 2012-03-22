@@ -184,8 +184,10 @@
      
     QBMPushMessage *message = [[QBMPushMessage alloc] initWithPayload:payload];
      
+    
+    
     // Send push
-    [QBMessagesService TSendPush:message toUser:[userID intValue]  delegate:self];
+    [QBMessagesService TSendPush:message toUsers:[userID stringValue] environmentDevelopment:YES delegate:self];
 
     [message release];
     
