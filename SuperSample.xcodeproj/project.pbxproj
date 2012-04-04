@@ -14,13 +14,12 @@
 		A7C3FFB91402E9B20039A28B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB01402E9B10039A28B /* CFNetwork.framework */; };
 		A7C3FFBA1402E9B20039A28B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB11402E9B10039A28B /* CoreLocation.framework */; };
 		A7C3FFBB1402E9B20039A28B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB21402E9B10039A28B /* CoreMedia.framework */; };
-		A7C3FFBC1402E9B20039A28B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB31402E9B10039A28B /* libxml2.dylib */; };
 		A7C3FFBE1402E9B20039A28B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB51402E9B10039A28B /* MapKit.framework */; };
 		A7C3FFBF1402E9B20039A28B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB61402E9B10039A28B /* MobileCoreServices.framework */; };
 		A7C3FFC01402E9B20039A28B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB71402E9B20039A28B /* QuartzCore.framework */; };
 		A7C3FFC11402E9B20039A28B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB81402E9B20039A28B /* SystemConfiguration.framework */; };
 		BDC7630F144EED820091EB17 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC7630E144EED820091EB17 /* AudioToolbox.framework */; };
-		BDED890A1445F0B8000FDF62 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BDED89091445F0B8000FDF62 /* libresolv.dylib */; };
+		FA43AE74152C2F30000A2EF7 /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA43AE73152C2F30000A2EF7 /* Quickblox.framework */; };
 		FA524EE61498A0EA009FD3E2 /* QuizQuestionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524ECB1498A0EA009FD3E2 /* QuizQuestionVC.m */; };
 		FA524EE81498A0EA009FD3E2 /* QuizRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524ECE1498A0EA009FD3E2 /* QuizRootViewController.m */; };
 		FA524EEA1498A0EA009FD3E2 /* QuizStatisticVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524ED11498A0EA009FD3E2 /* QuizStatisticVC.m */; };
@@ -40,6 +39,7 @@
 		FA524F251498BEA8009FD3E2 /* QuizTestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524F241498BEA8009FD3E2 /* QuizTestEngine.m */; };
 		FA5D43EB1488E90D00BE9F9E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5D43EA1488E90D00BE9F9E /* logo.png */; };
 		FA5D43F014890C8400BE9F9E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5D43EF14890C8300BE9F9E /* Default.png */; };
+		FA6FE99B1529B6DA00BB373C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6FE99A1529B6DA00BB373C /* libz.dylib */; };
 		FA70CFA91487BBC000C21DAA /* Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CE9A1487BBC000C21DAA /* Messages.m */; };
 		FA70CFAB1487BBC000C21DAA /* SourceElement.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEA01487BBC000C21DAA /* SourceElement.m */; };
 		FA70CFAC1487BBC000C21DAA /* SourceImages.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CEA31487BBC000C21DAA /* SourceImages.m */; };
@@ -93,8 +93,6 @@
 		FA70D03C1487BBDA00C21DAA /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0231487BBDA00C21DAA /* RegistrationViewController.xib */; };
 		FA70D03D1487BBDA00C21DAA /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0241487BBDA00C21DAA /* SettingsViewController.xib */; };
 		FA70D0431487BDB700C21DAA /* SuperSample-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0421487BDB700C21DAA /* SuperSample-Info.plist */; };
-		FA70D0451487BE7F00C21DAA /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA70D0441487BE7F00C21DAA /* libidn.a */; };
-		FA70D0471487BFCA00C21DAA /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA70D0461487BFCA00C21DAA /* libz.1.2.5.dylib */; };
 		FA8EF00714DFE89500472642 /* SplashController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8EF00614DFE89500472642 /* SplashController.m */; };
 		FA8EF00E14DFF2E600472642 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8EF00A14DFF2E600472642 /* LoginViewController.m */; };
 		FA8EF00F14DFF2E600472642 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8EF00D14DFF2E600472642 /* RegistrationViewController.m */; };
@@ -107,16 +105,9 @@
 		FAEA318C14EE8B110081EF44 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA317014EE8B110081EF44 /* FBDialog.m */; };
 		FAEA318D14EE8B110081EF44 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA317214EE8B110081EF44 /* FBLoginDialog.m */; };
 		FAEA318E14EE8B110081EF44 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA317414EE8B110081EF44 /* FBRequest.m */; };
-		FAEA318F14EE8B110081EF44 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA317814EE8B110081EF44 /* NSObject+SBJSON.m */; };
-		FAEA319014EE8B110081EF44 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA317A14EE8B110081EF44 /* NSString+SBJSON.m */; };
-		FAEA319114EE8B110081EF44 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA317C14EE8B110081EF44 /* SBJSON.m */; };
-		FAEA319214EE8B110081EF44 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA317E14EE8B110081EF44 /* SBJsonBase.m */; };
-		FAEA319314EE8B110081EF44 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA318014EE8B110081EF44 /* SBJsonParser.m */; };
-		FAEA319414EE8B110081EF44 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA318214EE8B110081EF44 /* SBJsonWriter.m */; };
 		FAEA319514EE8B110081EF44 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEA318914EE8B110081EF44 /* libFlurry.a */; };
 		FAEA319E14EE984E0081EF44 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FAEA319D14EE984E0081EF44 /* FBConnect.bundle */; };
 		FAF086AE14F3B291005B2399 /* NumberToLetterConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF086AD14F3B291005B2399 /* NumberToLetterConverter.m */; };
-		FAF2DFB2151A448F006E839E /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF2DFB1151A448F006E839E /* Quickblox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,17 +116,15 @@
 		A7C3FF6D1402E7120039A28B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A7C3FF6F1402E7120039A28B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A7C3FF711402E7120039A28B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		A7C3FF8E1402E7130039A28B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		A7C3FFB01402E9B10039A28B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A7C3FFB11402E9B10039A28B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A7C3FFB21402E9B10039A28B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		A7C3FFB31402E9B10039A28B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		A7C3FFB51402E9B10039A28B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A7C3FFB61402E9B10039A28B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		A7C3FFB71402E9B20039A28B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A7C3FFB81402E9B20039A28B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BDC7630E144EED820091EB17 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		BDED89091445F0B8000FDF62 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		FA43AE73152C2F30000A2EF7 /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quickblox.framework; path = "../../../Downloads/SDK-ios/Framework/build/Framework/Quickblox.framework"; sourceTree = "<group>"; };
 		FA4579E8149B95B300BD0560 /* QBConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBConsts.h; sourceTree = "<group>"; };
 		FA524ECA1498A0EA009FD3E2 /* QuizQuestionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizQuestionVC.h; sourceTree = "<group>"; };
 		FA524ECB1498A0EA009FD3E2 /* QuizQuestionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizQuestionVC.m; sourceTree = "<group>"; };
@@ -160,6 +149,7 @@
 		FA524F241498BEA8009FD3E2 /* QuizTestEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizTestEngine.m; sourceTree = "<group>"; };
 		FA5D43EA1488E90D00BE9F9E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FA5D43EF14890C8300BE9F9E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		FA6FE99A1529B6DA00BB373C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		FA70CE931487BBC000C21DAA /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
 		FA70CE991487BBC000C21DAA /* Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Messages.h; sourceTree = "<group>"; };
 		FA70CE9A1487BBC000C21DAA /* Messages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Messages.m; sourceTree = "<group>"; };
@@ -253,8 +243,6 @@
 		FA70D0231487BBDA00C21DAA /* RegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistrationViewController.xib; sourceTree = "<group>"; };
 		FA70D0241487BBDA00C21DAA /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		FA70D0421487BDB700C21DAA /* SuperSample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SuperSample-Info.plist"; sourceTree = "<group>"; };
-		FA70D0441487BE7F00C21DAA /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
-		FA70D0461487BFCA00C21DAA /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		FA8EF00514DFE89500472642 /* SplashController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashController.h; sourceTree = "<group>"; };
 		FA8EF00614DFE89500472642 /* SplashController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashController.m; sourceTree = "<group>"; };
 		FA8EF00914DFF2E600472642 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -275,19 +263,6 @@
 		FAEA317214EE8B110081EF44 /* FBLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginDialog.m; sourceTree = "<group>"; };
 		FAEA317314EE8B110081EF44 /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequest.h; sourceTree = "<group>"; };
 		FAEA317414EE8B110081EF44 /* FBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequest.m; sourceTree = "<group>"; };
-		FAEA317614EE8B110081EF44 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
-		FAEA317714EE8B110081EF44 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
-		FAEA317814EE8B110081EF44 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
-		FAEA317914EE8B110081EF44 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
-		FAEA317A14EE8B110081EF44 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
-		FAEA317B14EE8B110081EF44 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
-		FAEA317C14EE8B110081EF44 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
-		FAEA317D14EE8B110081EF44 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
-		FAEA317E14EE8B110081EF44 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
-		FAEA317F14EE8B110081EF44 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
-		FAEA318014EE8B110081EF44 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
-		FAEA318114EE8B110081EF44 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
-		FAEA318214EE8B110081EF44 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		FAEA318514EE8B110081EF44 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
 		FAEA318614EE8B110081EF44 /* FlurryAPI+AppCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FlurryAPI+AppCircle.h"; sourceTree = "<group>"; };
 		FAEA318714EE8B110081EF44 /* FlurryOffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryOffer.h; sourceTree = "<group>"; };
@@ -296,7 +271,6 @@
 		FAEA319D14EE984E0081EF44 /* FBConnect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBConnect.bundle; sourceTree = "<group>"; };
 		FAF086AC14F3B291005B2399 /* NumberToLetterConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberToLetterConverter.h; sourceTree = "<group>"; };
 		FAF086AD14F3B291005B2399 /* NumberToLetterConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberToLetterConverter.m; sourceTree = "<group>"; };
-		FAF2DFB1151A448F006E839E /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quickblox.framework; path = "../../SDK-ios/Framework/build/Framework/Quickblox.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,12 +278,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA70D0471487BFCA00C21DAA /* libz.1.2.5.dylib in Frameworks */,
+				FA6FE99B1529B6DA00BB373C /* libz.dylib in Frameworks */,
 				A71E39351420B7F600810C66 /* CoreData.framework in Frameworks */,
 				A7C3FFB91402E9B20039A28B /* CFNetwork.framework in Frameworks */,
 				A7C3FFBA1402E9B20039A28B /* CoreLocation.framework in Frameworks */,
 				A7C3FFBB1402E9B20039A28B /* CoreMedia.framework in Frameworks */,
-				A7C3FFBC1402E9B20039A28B /* libxml2.dylib in Frameworks */,
 				A7C3FFBE1402E9B20039A28B /* MapKit.framework in Frameworks */,
 				A7C3FFBF1402E9B20039A28B /* MobileCoreServices.framework in Frameworks */,
 				A7C3FFC01402E9B20039A28B /* QuartzCore.framework in Frameworks */,
@@ -317,11 +290,9 @@
 				A7C3FF6E1402E7120039A28B /* UIKit.framework in Frameworks */,
 				A7C3FF701402E7120039A28B /* Foundation.framework in Frameworks */,
 				A7C3FF721402E7120039A28B /* CoreGraphics.framework in Frameworks */,
-				BDED890A1445F0B8000FDF62 /* libresolv.dylib in Frameworks */,
 				BDC7630F144EED820091EB17 /* AudioToolbox.framework in Frameworks */,
-				FA70D0451487BE7F00C21DAA /* libidn.a in Frameworks */,
 				FAEA319514EE8B110081EF44 /* libFlurry.a in Frameworks */,
-				FAF2DFB2151A448F006E839E /* Quickblox.framework in Frameworks */,
+				FA43AE74152C2F30000A2EF7 /* Quickblox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,15 +324,12 @@
 			isa = PBXGroup;
 			children = (
 				BDC7630E144EED820091EB17 /* AudioToolbox.framework */,
-				BDED89091445F0B8000FDF62 /* libresolv.dylib */,
-				FA70D0441487BE7F00C21DAA /* libidn.a */,
-				FA70D0461487BFCA00C21DAA /* libz.1.2.5.dylib */,
 				A71E39341420B7F600810C66 /* CoreData.framework */,
-				FAF2DFB1151A448F006E839E /* Quickblox.framework */,
 				A7C3FFB01402E9B10039A28B /* CFNetwork.framework */,
+				FA6FE99A1529B6DA00BB373C /* libz.dylib */,
 				A7C3FFB11402E9B10039A28B /* CoreLocation.framework */,
 				A7C3FFB21402E9B10039A28B /* CoreMedia.framework */,
-				A7C3FFB31402E9B10039A28B /* libxml2.dylib */,
+				FA43AE73152C2F30000A2EF7 /* Quickblox.framework */,
 				A7C3FFB51402E9B10039A28B /* MapKit.framework */,
 				A7C3FFB61402E9B10039A28B /* MobileCoreServices.framework */,
 				A7C3FFB71402E9B20039A28B /* QuartzCore.framework */,
@@ -369,7 +337,6 @@
 				A7C3FF6D1402E7120039A28B /* UIKit.framework */,
 				A7C3FF6F1402E7120039A28B /* Foundation.framework */,
 				A7C3FF711402E7120039A28B /* CoreGraphics.framework */,
-				A7C3FF8E1402E7130039A28B /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1059,30 +1026,9 @@
 				FAEA317214EE8B110081EF44 /* FBLoginDialog.m */,
 				FAEA317314EE8B110081EF44 /* FBRequest.h */,
 				FAEA317414EE8B110081EF44 /* FBRequest.m */,
-				FAEA317514EE8B110081EF44 /* JSON */,
 			);
 			name = "facebook-sdk";
 			path = "External/facebook-sdk";
-			sourceTree = "<group>";
-		};
-		FAEA317514EE8B110081EF44 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				FAEA317614EE8B110081EF44 /* JSON.h */,
-				FAEA317714EE8B110081EF44 /* NSObject+SBJSON.h */,
-				FAEA317814EE8B110081EF44 /* NSObject+SBJSON.m */,
-				FAEA317914EE8B110081EF44 /* NSString+SBJSON.h */,
-				FAEA317A14EE8B110081EF44 /* NSString+SBJSON.m */,
-				FAEA317B14EE8B110081EF44 /* SBJSON.h */,
-				FAEA317C14EE8B110081EF44 /* SBJSON.m */,
-				FAEA317D14EE8B110081EF44 /* SBJsonBase.h */,
-				FAEA317E14EE8B110081EF44 /* SBJsonBase.m */,
-				FAEA317F14EE8B110081EF44 /* SBJsonParser.h */,
-				FAEA318014EE8B110081EF44 /* SBJsonParser.m */,
-				FAEA318114EE8B110081EF44 /* SBJsonWriter.h */,
-				FAEA318214EE8B110081EF44 /* SBJsonWriter.m */,
-			);
-			path = JSON;
 			sourceTree = "<group>";
 		};
 		FAEA318314EE8B110081EF44 /* Flurry */ = {
@@ -1261,12 +1207,6 @@
 				FAEA318C14EE8B110081EF44 /* FBDialog.m in Sources */,
 				FAEA318D14EE8B110081EF44 /* FBLoginDialog.m in Sources */,
 				FAEA318E14EE8B110081EF44 /* FBRequest.m in Sources */,
-				FAEA318F14EE8B110081EF44 /* NSObject+SBJSON.m in Sources */,
-				FAEA319014EE8B110081EF44 /* NSString+SBJSON.m in Sources */,
-				FAEA319114EE8B110081EF44 /* SBJSON.m in Sources */,
-				FAEA319214EE8B110081EF44 /* SBJsonBase.m in Sources */,
-				FAEA319314EE8B110081EF44 /* SBJsonParser.m in Sources */,
-				FAEA319414EE8B110081EF44 /* SBJsonWriter.m in Sources */,
 				FAF086AE14F3B291005B2399 /* NumberToLetterConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1333,12 +1273,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../SDK-ios/Framework/build/Framework\"",
-					"\"$(SRCROOT)/../../SDK-ios/Framework/build/Framework\"",
+					"\"$(SRCROOT)/../../../Downloads/SDK-ios/Framework/build/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SuperSample-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "SuperSample-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1362,12 +1301,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../SDK-ios/Framework/build/Framework\"",
-					"\"$(SRCROOT)/../../SDK-ios/Framework/build/Framework\"",
+					"\"$(SRCROOT)/../../../Downloads/SDK-ios/Framework/build/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SuperSample-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "SuperSample-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1414,12 +1352,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../SDK-ios/Framework/build/Framework\"",
-					"\"$(SRCROOT)/../../SDK-ios/Framework/build/Framework\"",
+					"\"$(SRCROOT)/../../../Downloads/SDK-ios/Framework/build/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SuperSample-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "SuperSample-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

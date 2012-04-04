@@ -9,12 +9,6 @@
 #ifndef SuperSample_Consts_h
 #define SuperSample_Consts_h
 
-#pragma mark -
-#pragma mark Ratings module
-
-//static NSString *const RATINGS_GAME_MODE_TITLE = @"QB-SuperSample-iOS";
-//static int const RATINGS_GAME_MODE_ID = 6;
-
 
 #pragma mark -
 #pragma mark UserDefaults Keys
@@ -37,12 +31,6 @@ static CGFloat const kManagedObjectContextDelayedSaveInterval = 1.0;
 
 #define FLURRY_API_KEY @"DCQCH5K116J63XH7DDS"
 #define FACEBOOK_APP_ID @"329216907114105"
-
-#pragma mark -
-#pragma mark XMPPService
-
-//static NSString *const emailUserName = @"%i@jabber.quickblox.com";
-
 
 #pragma mark -
 #pragma mark UI

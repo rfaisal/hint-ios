@@ -77,8 +77,11 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    [self searchGeoData:nil];
-    [self startSearchGeoData];
+    // retrieve messages
+    [self retrieveMessages:nil];
+    
+    // retrieve mesages every kUpdateChatInterval seconds
+    [self strartRetrieveNewMessages];
 }
 
 - (void) viewDidDisappear:(BOOL)animated{
@@ -92,33 +95,33 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
-#pragma mark -
-#pragma mark GeoData
-
-- (void) searchGeoData:(NSTimer *) timer{
+// Retrieve new messages
+- (void) retrieveMessages:(NSTimer *) timer{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
+    // create QBLGeoDataSearchRequest entity
 	QBLGeoDataSearchRequest *searchRequest = [[QBLGeoDataSearchRequest alloc] init];
-	searchRequest.status = YES;
+	searchRequest.status = YES;// only with status
     searchRequest.sort_by = GeoDataSortByKindCreatedAt;
-    searchRequest.perPage = 15;
+    searchRequest.perPage = 15; // last 15 messages
+    
+    // retrieve messages
 	[QBLocationService findGeoData:searchRequest delegate:self];
 	[searchRequest release];
 }
 
--(void) startSearchGeoData{
+// Start retrieve new messages
+-(void) strartRetrieveNewMessages{
+    
+    // retrieve mesages every kUpdateChatInterval seconds
 	updateGeoDataTimer = [NSTimer scheduledTimerWithTimeInterval:kUpdateChatInterval
                                                           target:self
-                                                        selector:@selector(searchGeoData:)
+                                                        selector:@selector(retrieveMessages:)
                                                         userInfo:nil
                                                          repeats:YES];
 }
 
-
-#pragma mark -
-#pragma mark IBActions
-
+// Send new message
 -(IBAction) sendAction:(id)sender{
     
     if ([[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0) {
@@ -131,19 +134,19 @@
         return;
     }
 
+    // create QBLGeoData entity
 	QBLGeoData *geoData = [QBLGeoData currentGeoData];
 	geoData.user = user.qbUser;
-    geoData.appID = appID;
     geoData.status = textField.text;
 
-    // post geodata
+    // create message
 	[QBLocationService postGeoData:geoData delegate:self];	
     
     [wheel startAnimating];
 }
 
 // process single message
--(void) processGeoDatumAsync:(QBLGeoData *)data {
+-(void) processMessage:(QBLGeoData *)data {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
 	CLLocation *location =  [[QBLLocationDataSource instance] currentLocation];
@@ -183,7 +186,7 @@
 }
 
 // process array of messages
--(void) processGeoDataAsync:(NSArray *)geodata{
+-(void) processMessages:(NSArray *)geodata{
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
 	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
@@ -255,9 +258,8 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark Notifications
-#pragma mark
 
 // refresh Chat
 -(void)refreshChat:(NSNotification *)notification{
@@ -265,25 +267,34 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark ActionStatusDelegate
-#pragma mark
 
+// QuickBlox API queries delegate
 - (void)completedWithResult:(Result*)result{
-    // create
+    
+    // create new message result
     if([result isKindOfClass:[QBLGeoDataResult class]]){
+        
+        // Success result
         if(result.success){
+            
+            // process message
             QBLGeoDataResult *geoDataRes = (QBLGeoDataResult*)result; 
-            [self performSelectorInBackground:@selector(processGeoDatumAsync:) withObject:geoDataRes.geoData];
+            [self performSelectorInBackground:@selector(processMessage:) withObject:geoDataRes.geoData];
             textField.text = @"";
         }
         [wheel stopAnimating];
         
-    // search a new one
+    // retrieve new messages result
     }else if([result isKindOfClass:[QBLGeoDataPagedResult class]]){
+        
+        // Success result
         if(result.success){
+            
+            // process messagees
             QBLGeoDataPagedResult *geoDataSearchRes = (QBLGeoDataPagedResult *)result;
-            [self performSelectorInBackground:@selector(processGeoDataAsync:) withObject:geoDataSearchRes.geodatas];
+            [self performSelectorInBackground:@selector(processMessages:) withObject:geoDataSearchRes.geodatas];
         }
     }
     

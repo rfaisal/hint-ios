@@ -56,8 +56,11 @@
 - (void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    [self searchGeoData:nil];
-    [self startSearchGeoData];
+    // retrieve points
+    [self retrievePoints:nil];
+    
+    // retrieve points every kUpdateMapInterval seconds
+    [self startRetrieveNewPoints];
 }
 
 - (void) viewDidDisappear:(BOOL)animated{
@@ -80,29 +83,31 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
-#pragma mark -
-#pragma mark GeoData
-
-- (void) searchGeoData:(NSTimer *) timer{
+// Retrieve new points
+- (void) retrievePoints:(NSTimer *) timer{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
+    // create QBLGeoDataSearchRequest entity
 	QBLGeoDataSearchRequest *searchRequest = [[QBLGeoDataSearchRequest alloc] init];
 	searchRequest.last_only = YES; // only last location
-    searchRequest.perPage = 15;
+    searchRequest.perPage = 15; // last 15 points
+    
+    // retrieve geodata
 	[QBLocationService findGeoData:searchRequest delegate:self];
 	[searchRequest release];
 }
 
--(void) startSearchGeoData{
+// Retrieve points every kUpdateMapInterval seconds
+-(void) startRetrieveNewPoints{
 	updateGeoDataTimer = [NSTimer scheduledTimerWithTimeInterval:kUpdateMapInterval
                                                           target:self
-                                                        selector:@selector(searchGeoData:)
+                                                        selector:@selector(retrievePoints:)
                                                         userInfo:nil
                                                          repeats:YES];
 }
 
--(void) processGeoDatAsync:(NSArray *)geodatas{
+// Process points
+-(void) processPoints:(NSArray *)geodatas{
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
 	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
@@ -119,7 +124,7 @@
         }
         
 
-        // save user
+        // save point
 		CLLocation *location = [[CLLocation alloc] initWithLatitude:geoData.latitude longitude:geoData.longitude];
 		hasChanges |= [[UsersProvider sharedProvider] updateOrCreateUser:geoData.user                                                                                      
                                                                 location:location  
@@ -129,12 +134,13 @@
         
 		[location release];
         
-        // if user has avatar
+        // if user has avatar - get it
         if(geoData.user.blobID){
             [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:geoData.user];
         }
 	}
 	
+    
 	if(hasChanges){
 		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
 		[nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
@@ -151,6 +157,7 @@
     [pool drain];
 }
 
+// Retrieve user avatar
 - (void) getAvatarAndStoreForQBUserAsync:(QBUUser *)qbUser{
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
@@ -265,8 +272,7 @@
 }
 
 -(void)openPrivateChatView:(NSNotification *)notification{
-    // open Private Chat
-    // TODO: need implement Private Chat using Chat module
+    // not implemented yet
 }
 
 -(void)ownStatusDidChange:(NSNotification *)notification{
@@ -278,36 +284,32 @@
 #pragma mark -
 #pragma mark ActionStatusDelegate
 
+// QuickBlox API queries delegate
 - (void)completedWithResult:(Result *)result{
+    
+    // Result success
 	if(result.success){
-        // Search GeoData
+        
+        // Retrieve points result
 		if([result isKindOfClass:[QBLGeoDataPagedResult class]]){
 			QBLGeoDataPagedResult *geoDataSearchRes = (QBLGeoDataPagedResult *)result;
-			[self performSelectorInBackground:@selector(processGeoDatAsync:) withObject:geoDataSearchRes.geodatas];
+			[self performSelectorInBackground:@selector(processPoints:) withObject:geoDataSearchRes.geodatas];
 		}
         
-        // Get Blob Info
+        // Get Blob Info result
         else if([result isKindOfClass:[QBBlobResult class]]){
             QBBlobResult *res = (QBBlobResult *)result;
             NSString *blobUID = res.blob.UID;
             [QBBlobsService GetBlobAsync:blobUID delegate:self];
         
-        // Get Blob File
+        // Get Blob File result
         }else if([result isKindOfClass:[QBBlobFileResult class]]){
-            QBBlobFileResult* res = (QBBlobFileResult*)result;
-            NSData *avatarData = res.data;
-            if(avatarData){
-                    
-            }						
+					
         }
 	}
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
-
-
-#pragma mark -
-#pragma mark Dealloc
 
 - (void)dealloc {
     [super dealloc];

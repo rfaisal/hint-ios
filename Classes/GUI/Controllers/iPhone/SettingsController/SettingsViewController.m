@@ -68,6 +68,7 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    // setup buttons
     Users *user = [[UsersProvider sharedProvider] currentUser];
     if(user != nil){
         
@@ -124,6 +125,7 @@
 #pragma mark -
 #pragma mark IBAction
 
+// choose picture from gallery
 - (IBAction)choosePicture:(id)sender {
     imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
@@ -132,6 +134,7 @@
 	[self.navigationController presentModalViewController:imagePicker animated:NO];
 }
 
+// take picture using camera
 - (IBAction)takePicture:(id)sender {
     imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
@@ -166,16 +169,20 @@
                                     delegate:self];	
         }else{
             // update user fields
+            
+            // create QBUUser entity
             QBUUser *user = [[QBUUser alloc] init];
             user.ID = [[UsersProvider sharedProvider] currentUserID];
             user.fullName = fullName.text;
+            
+            // update user
             [QBUsersService editUser:user delegate:self];
             [user release];
         }
     
-    // Sign In
+    // show Sign In controller
     }else{
-         [self presentModalViewController:loginController animated:YES];
+         [self presentModalViewController:(UIViewController *)loginController animated:YES];
     }
 }
 
@@ -204,9 +211,9 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:nRefreshAnnotationDetails object:nil];
         
-    // Sign Up
+    // show Sign Up controller
     }else{
-       [self presentModalViewController:registrationController animated:YES];
+       [self presentModalViewController:(UIViewController *)registrationController animated:YES];
     }
 }
 
@@ -227,9 +234,8 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark UIImagePickerControllerDelegate
-#pragma mark
 
 - (void) imagePickerControllerDidCancel:(UIImagePickerController *) picker {
 	[self dismissModalViewControllerAnimated:YES];
@@ -253,39 +259,47 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark ActionStatusDelegate
-#pragma mark
 
 - (void)completedWithResult:(Result*)result{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
     // Edit User result
     if([result isKindOfClass:[QBUUserResult class]]){
-        QBUUserResult *res = (QBUUserResult *)result;
-        if(res.success){
-            // get & update user
+
+        // Success result
+        if(result.success){
+            
+            // get & update  current user
             Users *currentUser = [[UsersProvider sharedProvider] currentUser];
             currentUser.qbUser.fullName = fullName.text;
             [[UsersProvider sharedProvider] saveUser];
             
             [self showMessage:NSLocalizedString(@"User edited successfully", "") message:nil delegate:self];
+        
+        // show Errors
         }else{
-            [self processErrors:res.errors];
+            [self processErrors:result.errors];
         }
         
     // Upload image result
 	}else if([result isKindOfClass:[QBUploadFileTaskResult class]]){
-		QBUploadFileTaskResult *res = (QBUploadFileTaskResult*)result;
-		if(res.success){
+        // Success result
+		if(result.success){
             
+            QBUploadFileTaskResult *res = (QBUploadFileTaskResult*)result;
             int blobID = res.uploadedFileBlob.ID;
             
             // update current user
+            
+            // create QBUUser entity
             QBUUser *user = [[QBUUser alloc] init];
             user.ID = [[UsersProvider sharedProvider] currentUserID];
             user.fullName = fullName.text;
-            user.blobID = blobID;
+            user.blobID = blobID; // connect link to avatar
+            
+            // update user
             [QBUsersService editUser:user delegate:self];
             [user release];
             
@@ -295,10 +309,13 @@
             [[UsersProvider sharedProvider] saveUser];
             
 			[self performSelectorInBackground:@selector(saveAvatarAsync:) withObject:res.uploadedFileBlob];		
-		}else {
-			[self processErrors:res.errors];
+		
+        // show errors
+        }else {
+			[self processErrors:result.errors];
 		}
         
+    // show errors
 	}else if(!result.success){
         [self processErrors:result.errors];
     }

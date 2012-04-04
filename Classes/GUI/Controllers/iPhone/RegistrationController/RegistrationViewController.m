@@ -53,6 +53,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+// User Sign Up
 - (IBAction)next:(id)sender {
     
     // Validation
@@ -91,7 +92,7 @@
 		return;
     }
 	 
-    // Register user
+    // Create QuickBlox User entity
     QBUUser* user = [[QBUUser alloc] init];
     user.ownerID = ownerID;        
 	user.password = password.text;
@@ -99,6 +100,7 @@
 	
 	[self busy:YES];
     
+    // create User
 	[QBUsersService createUser:user delegate:self context:nil];
     [user release];
 }
@@ -118,20 +120,23 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark ActionStatusDelegate
-#pragma mark
 
+// QuickBlox API queries delegate
 -(void)completedWithResult:(Result*)result{
 	[self completedWithResult:result context:nil];
 }
 
 -(void)completedWithResult:(Result*)result context:(void*)contextInfo{
+    // QuickBlox User creation result
 	if([result isKindOfClass:[QBUUserResult class]]){
-		QBUUserResult* res = (QBUUserResult *)result;
         
-		if(res.success){
+        // Success result
+		if(result.success){
 			[self showMessage:NSLocalizedString(@"Registration successful. Please now sign in.", "") message:nil delegate:self];
+            
+        // show Errors
 		}else {
 			[self processErrors:result.errors];
 		}
@@ -141,9 +146,8 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark UITextFieldDelegate
-#pragma mark
 
 - (BOOL)textFieldShouldReturn:(UITextField *)_textField{
     [_textField resignFirstResponder];
@@ -152,9 +156,8 @@
 }
 
 
-#pragma mark
+#pragma mark -
 #pragma mark UIAlertView delegate
-#pragma mark
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
      [self dismissModalViewControllerAnimated:YES];

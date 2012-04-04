@@ -125,6 +125,7 @@
     [self.parentCustomModalController dismissCustomModalViewControllerAnimated:YES];
 }
 
+// open push messages view
 -(IBAction) openPushMessageView:(id)sender{
     
     Users *user = [[UsersProvider sharedProvider] currentUser];
@@ -168,10 +169,10 @@
     }];
 }
 
+// send push notification
 -(void) sendPushMessage:(id)sender{
     
-    NSNumber *userID = [[UsersProvider sharedProvider] userByID:self.objectID error:nil].uid;
-    
+    // create message
     NSString *mesage = [NSString stringWithFormat:@"QB SuperSample. Message from %@: %@", 
                         [[UsersProvider sharedProvider] currentUser].qbUser.login,  
                         ((UITextView *)[messageContainer viewWithTag:101]).text];
@@ -184,6 +185,8 @@
      
     QBMPushMessage *message = [[QBMPushMessage alloc] initWithPayload:payload];
      
+    // recipient id (user id)
+    NSNumber *userID = [[UsersProvider sharedProvider] userByID:self.objectID error:nil].uid;
     
     
     // Send push
@@ -199,11 +202,18 @@
     messageContainer = nil;
 }
 
+
+#pragma mark -
+#pragma mark ActionStatusDelegate
+
+// QuickBlox API queries delegate
 - (void)completedWithResult:(Result*)result{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
     // Send Push result
     if([result isKindOfClass:[QBMSendPushTaskResult class]]){
+        
+        // Success result
         if(result.success){
             
             // hide message view
@@ -211,6 +221,8 @@
             messageContainer = nil;
             
             [self showMessage:NSLocalizedString(@"Message sent successfully", "") message:nil delegate:nil];
+            
+        // Show errors
         }else{
             [self processErrors:result.errors];
         }

@@ -23,10 +23,9 @@
 @property (nonatomic, retain) IBOutlet PinDetailedViewController *pinDetailedController;
 
 - (void) openAnnotationDetails:(id) object;
-- (void) subscribe;
-- (void) unsubscribe;
-- (void) startSearchGeoData;
-- (void) searchGeoData:(NSTimer *) timer;
+
+- (void) startRetrieveNewPoints;
+- (void) retrievePoints:(NSTimer *) timer;
 
 - (void) getAvatarAndStoreForQBUserAsync:(QBUUser *)user;
 

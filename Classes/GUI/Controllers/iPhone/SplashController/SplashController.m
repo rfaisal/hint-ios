@@ -35,21 +35,19 @@
     [FlurryAPI logEvent:@"SplashController, viewDidLoad"];
     
     
-    
-    // Auth app
-    //
-    // extendedAuthRequest
+     // Create extended application authorization request (for push notifications)
     QBASessionCreationRequest *extendedAuthRequest = [[QBASessionCreationRequest alloc] init];
     extendedAuthRequest.devicePlatorm = DevicePlatformiOS;
     extendedAuthRequest.deviceUDID = [[UIDevice currentDevice] uniqueIdentifier];
-    //
+    
+    // QuickBlox application authorization
     [QBAuthService authorizeAppId:appID key:authKey secret:authSecret withExtendedRequest:extendedAuthRequest delegate:self];
-    //
+    
     [extendedAuthRequest release];
-
 }
 
 - (void)hideSplash{
+    // hide splash & show main controller
     [self dismissModalViewControllerAnimated:YES];     
 }
 
@@ -63,12 +61,18 @@
 #pragma mark -
 #pragma mark ActionStatusDelegate
 
+// QuickBlox API queries delegate
 - (void)completedWithResult:(Result *)result{
     
+    // QuickBlox application authorization result
     if([result isKindOfClass:[QBAAuthSessionCreationResult class]]){
+        
+        // Success result
         if(result.success){
+            // Hide splash & show main controller
             [self performSelector:@selector(hideSplash) withObject:nil afterDelay:2];
         }else{
+            // show Errors
             [self processErrors:result.errors];
         }
     }

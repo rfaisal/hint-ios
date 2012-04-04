@@ -26,6 +26,5 @@
 - (void) didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
 
 -(void)showMessage:(NSString*)title message:(NSString*)msg;
--(void)processErrors:(NSArray*)errors;
 
 @end

@@ -74,17 +74,19 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+// User Sign In
 - (IBAction)next:(id)sender {
 	if (isBusy) {
 		return;
 	}
     
+    // Create QuickBlox User entity
     QBUUser *qbUser = [[QBUUser alloc] init];
     qbUser.ownerID = ownerID;        
     qbUser.login = login.text;
 	qbUser.password = password.text;
     
-    // authenticate
+    // Authenticate user
     [QBUsersService authenticateUser:qbUser delegate:self];
     
     [qbUser release];
@@ -100,6 +102,7 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+// Auth via Facebook action
 - (IBAction)authViaFacebook:(id)sender{
     
     SuperSampleAppDelegate *delegate = ((SuperSampleAppDelegate *)[[UIApplication sharedApplication] delegate]);
@@ -111,6 +114,7 @@
     } 
 }
 
+// Facebook auth was successful
 - (void)fbDidLogin:(NSNotification *)notification{
     SuperSampleAppDelegate *delegate = ((SuperSampleAppDelegate *)[[UIApplication sharedApplication] delegate]);
     
@@ -127,6 +131,7 @@
     self.fbUserBody = dict;
 
     // try to auth
+    // Create QuickBlox User entity
     QBUUser *qbUser = [[QBUUser alloc] init];
     qbUser.ownerID = ownerID;   
     NSString *userLogin = [[NumberToLetterConverter instance] convertNumbersToLetters:[fbUserBody objectForKey:@"id"]];
@@ -134,7 +139,7 @@
     qbUser.login = userLogin;
 	qbUser.password = passwordHash;
 
-    // authenticate
+    // Authenticate user
     [QBUsersService authenticateUser:qbUser delegate:self];
     
     [qbUser release];
@@ -144,25 +149,26 @@
 #pragma mark -
 #pragma mark ActionStatusDelegate
 
+// QuickBlox API queries delegate
 -(void)completedWithResult:(Result *)result{
 
     [self busy:NO];
     
+     // QuickBlox User authenticate result
 	if([result isKindOfClass:[QBUUserAuthenticateResult class]]){
-		QBUUserAuthenticateResult *res = (QBUUserAuthenticateResult *)result;
-        [res user];
-		if(res.success){
 
-			QBUUserAuthenticateAnswer *answer = (QBUUserAuthenticateAnswer *)res.answer;
+        // Success result
+		if(result.success){
+            QBUUserAuthenticateResult *res = (QBUUserAuthenticateResult *)result;
             
             // fix issue with sign in
-            if(answer.user.ownerID != ownerID){
+            if(res.user.ownerID != ownerID){
                 [self showMessage:NSLocalizedString(@"Not registered!", "") message:nil delegate:nil];
                 return;
             }
             
-            // current user
-            [[UsersProvider sharedProvider] currentUserWithQBUser:answer.user];
+            // save current user
+            [[UsersProvider sharedProvider] currentUserWithQBUser:res.user];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:nRefreshAnnotationDetails object:nil];
             
@@ -170,7 +176,7 @@
             if(fbUserBody){
                 userName = [fbUserBody objectForKey:@"name"];
             }else{
-                userName = answer.user.login;
+                userName = res.user.login;
             }
 			[self showMessage:NSLocalizedString(@"Authentication successful", "") 
 					  message:[NSString stringWithFormat:NSLocalizedString(@"%@ was authenticated", ""), userName] delegate:self];
@@ -178,10 +184,12 @@
             
             self.fbUserBody = nil;
 
+        // Errors
 		}else if(401 == result.status){
             
             if(fbUserBody){
-                // Register FB user
+                // Register new user
+                // Create QBUUser entity
                 QBUUser *user = [[QBUUser alloc] init];
                 user.ownerID = ownerID;        
                 NSString *userLogin = [[NumberToLetterConverter instance] convertNumbersToLetters:[fbUserBody objectForKey:@"id"]];
@@ -191,6 +199,7 @@
                 user.facebookID = [fbUserBody objectForKey:@"id"];
                 user.fullName = [fbUserBody objectForKey:@"name"];
                 
+                // Create user
                 [QBUsersService createUser:user delegate:self];
                 [user release];
                 
@@ -199,17 +208,21 @@
             }else{
                 [self showMessage:NSLocalizedString(@"Not registered!", "") message:nil delegate:nil];
             }
+            
+        // Show Errors
 		}else{
             [self processErrors:result.errors];
         }
         
-    // create user
+    // Create user result
     }else if([result isKindOfClass:[QBUUserResult class]]){
-        QBUUserResult *res = (QBUUserResult *)result;
 
-		if(res.success){
+        // Success result
+		if(result.success){
+            
             // auth again
-
+            
+            // create QBUUser entity
             QBUUser *qbUser = [[QBUUser alloc] init];
             qbUser.ownerID = ownerID;   
             NSString *userLogin = [[NumberToLetterConverter instance] convertNumbersToLetters:[fbUserBody objectForKey:@"id"]];
@@ -217,12 +230,14 @@
             qbUser.login = userLogin;
             qbUser.password = passwordHash;
             
-            // authenticate
+            // authenticate user
             [QBUsersService authenticateUser:qbUser delegate:self];
             
             [self busy:YES];
             
             [qbUser release];
+            
+        // show Errors
         }else{
             [self processErrors:result.errors];
         }
@@ -260,7 +275,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
-    // register subscription
+    // Register user for receive push notifications
     [QBMessagesService TRegisterSubscriptionWithDelegate:self];
 
     [(SuperSampleAppDelegate *)[[UIApplication sharedApplication] delegate] startTrackOwnLocation];

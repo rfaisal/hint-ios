@@ -23,10 +23,11 @@
 @property (nonatomic, retain) IBOutlet UITextField *textField;
 
 - (IBAction) sendAction:(id)sender;
-- (void) searchGeoData:(NSTimer *) timer;
-- (void) startSearchGeoData;
 
--(void) processGeoDatumAsync:(QBLGeoData *)data;
--(void) processGeoDataAsync:(NSArray *)geodata;
+- (void) retrieveMessages:(NSTimer *) timer;
+- (void) strartRetrieveNewMessages;
+
+-(void) processMessage:(QBLGeoData *)data;
+-(void) processMessages:(NSArray *)geodata;
 
 @end

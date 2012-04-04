@@ -25,18 +25,14 @@
 @synthesize facebook;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
-    [FlurryAPI startSession:FLURRY_API_KEY];
-    
-    [QBSettings setServerDomainTemplate:[NSString stringWithFormat:@"%@%@", @"%@.", endpoint]];	
-    
-    // set log level
-    //[QBSettings setLogLevel:QBLogLevelNothing];
-    
+    [FlurryAPI startSession:FLURRY_API_KEY];	
+
+    // show main controller
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
-    
     [self.viewController presentModalViewController:self.splashController animated:NO];
     
+    // create Facebook object
     facebook = [[Facebook alloc] initWithAppId:FACEBOOK_APP_ID andDelegate:self];
     
     return YES;
@@ -89,19 +85,24 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     NSLog(@"didReceiveRemoteNotification userInfo=%@", userInfo);
+    
+    // Did receive push notification
     [self showMessage:[[userInfo objectForKey:QBMPushMessageApsKey] objectForKey:QBMPushMessageAlertKey] message:nil];
 }
 
+// Start track own location
 - (void)startTrackOwnLocation{
     [[QBLLocationDataSource instance] setCallbackSelectorForLocationUpdate:@selector(didUpdateToLocation:fromLocation:) forTarget:self];
     [[[QBLLocationDataSource instance] locationManager] startUpdatingLocation];
 }
 
+// Stop track own location
 - (void)stopTrackOwnLocation{
     [[QBLLocationDataSource instance] setCallbackSelectorForLocationUpdate:nil forTarget:nil];
     [[[QBLLocationDataSource instance] locationManager] stopUpdatingLocation];
 }
 
+// Callback method fro track location
 - (void)didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     NSLog(@"Location didUpdate from %@ to %@", oldLocation, newLocation);
     
@@ -112,30 +113,15 @@
         return;
     }
 
+    // Create QBLGeoData entity
     QBLGeoData *geoData = [[QBLGeoData alloc] init];
     geoData.status = curUser.status;
     geoData.latitude = newLocation.coordinate.latitude;
     geoData.longitude = newLocation.coordinate.longitude;
 
-    // post own location
+    // share own location
     [QBLocationService postGeoData:geoData delegate:self];
     [geoData release];
-}
-
-
-#pragma mark -
-#pragma mark FBSessionDelegate
-
-- (void)fbDidLogin {
-    [[NSNotificationCenter defaultCenter] postNotificationName:nFBDidLogin object:nil];
-}
-
-
-#pragma mark -
-#pragma mark ActionStatusDelegate
-
-- (void)completedWithResult:(Result *)result{
-
 }
 
 -(void)showMessage:(NSString*)title message:(NSString*)msg{
@@ -149,16 +135,12 @@
 	[alert release];	
 }
 
--(void)processErrors:(NSArray *)errors{
-	NSMutableString *errorsString = [NSMutableString stringWithCapacity:0];
-	
-	for(NSString *error in errors){
-		[errorsString appendFormat:@"%@\n", error];
-	}
-	
-	if ([errorsString length] > 0) {
-		[self showMessage:NSLocalizedString(@"Error", "") message:errorsString];
-	}
+
+#pragma mark -
+#pragma mark ActionStatusDelegate
+
+// QuickBlox API queries delegate
+- (void)completedWithResult:(Result*)result{
 }
 
 - (void)dealloc{
@@ -166,9 +148,17 @@
     [_viewController release];
     [_splashController release];
     [_quizRootController release];
-        [facebook release];
+    [facebook release];
     
 	[super dealloc];
 }
+
+#pragma mark -
+#pragma mark FBSessionDelegate
+
+- (void)fbDidLogin {
+    [[NSNotificationCenter defaultCenter] postNotificationName:nFBDidLogin object:nil];
+}
+
 
 @end
