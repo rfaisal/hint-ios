@@ -34,7 +34,6 @@
     [super viewDidLoad];
     [FlurryAPI logEvent:@"SplashController, viewDidLoad"];
     
-    
      // Create extended application authorization request (for push notifications)
     QBASessionCreationRequest *extendedAuthRequest = [[QBASessionCreationRequest alloc] init];
     extendedAuthRequest.devicePlatorm = DevicePlatformiOS;

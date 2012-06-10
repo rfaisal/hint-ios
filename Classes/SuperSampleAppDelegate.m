@@ -34,7 +34,7 @@
     
     // create Facebook object
     facebook = [[Facebook alloc] initWithAppId:FACEBOOK_APP_ID andDelegate:self];
-    
+
     return YES;
 }
 

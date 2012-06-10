@@ -16,10 +16,7 @@
 {
 	if ((self = [super initWithCoder:aDecoder]))
 	{
-		DESERIALIZE_INT(ownerID, aDecoder);
-        DESERIALIZE_INT(deviceID, aDecoder);
-        DESERIALIZE_INT(externalUserID, aDecoder);
-        
+        DESERIALIZE_INT(externalUserID, aDecoder);     
         DESERIALIZE_OBJECT(fullName, aDecoder);
         DESERIALIZE_OBJECT(email, aDecoder);
         DESERIALIZE_OBJECT(login, aDecoder);
@@ -33,11 +30,8 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    SERIALIZE_INT(ownerID, aCoder);
-    SERIALIZE_INT(deviceID, aCoder);
-    SERIALIZE_INT(externalUserID, aCoder);
-    
-	SERIALIZE_OBJECT(fullName, aCoder);
+    SERIALIZE_INT(externalUserID, aCoder);   
+    SERIALIZE_OBJECT(fullName, aCoder);
     SERIALIZE_OBJECT(email, aCoder);
     SERIALIZE_OBJECT(login, aCoder);
     SERIALIZE_OBJECT(password, aCoder);

@@ -19,7 +19,6 @@
 		A7C3FFC01402E9B20039A28B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB71402E9B20039A28B /* QuartzCore.framework */; };
 		A7C3FFC11402E9B20039A28B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C3FFB81402E9B20039A28B /* SystemConfiguration.framework */; };
 		BDC7630F144EED820091EB17 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC7630E144EED820091EB17 /* AudioToolbox.framework */; };
-		FA43AE74152C2F30000A2EF7 /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA43AE73152C2F30000A2EF7 /* Quickblox.framework */; };
 		FA524EE61498A0EA009FD3E2 /* QuizQuestionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524ECB1498A0EA009FD3E2 /* QuizQuestionVC.m */; };
 		FA524EE81498A0EA009FD3E2 /* QuizRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524ECE1498A0EA009FD3E2 /* QuizRootViewController.m */; };
 		FA524EEA1498A0EA009FD3E2 /* QuizStatisticVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524ED11498A0EA009FD3E2 /* QuizStatisticVC.m */; };
@@ -65,8 +64,6 @@
 		FA70CFEC1487BBC000C21DAA /* SubscribedView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF751487BBC000C21DAA /* SubscribedView.m */; };
 		FA70CFED1487BBC000C21DAA /* MapPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF791487BBC000C21DAA /* MapPinView.m */; };
 		FA70CFF01487BBC000C21DAA /* DeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF851487BBC000C21DAA /* DeviceHardware.m */; };
-		FA70CFF11487BBC000C21DAA /* Entity+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF881487BBC000C21DAA /* Entity+NSCoding.m */; };
-		FA70CFF21487BBC000C21DAA /* QBUUser+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF8A1487BBC000C21DAA /* QBUUser+NSCoding.m */; };
 		FA70CFF31487BBC000C21DAA /* FileSystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF8D1487BBC000C21DAA /* FileSystemHelper.m */; };
 		FA70CFF51487BBC000C21DAA /* ImageResize.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CF941487BBC000C21DAA /* ImageResize.m */; };
 		FA70CFFA1487BBC000C21DAA /* SuperSampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA70CFA61487BBC000C21DAA /* SuperSampleAppDelegate.m */; };
@@ -93,6 +90,7 @@
 		FA70D03C1487BBDA00C21DAA /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0231487BBDA00C21DAA /* RegistrationViewController.xib */; };
 		FA70D03D1487BBDA00C21DAA /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0241487BBDA00C21DAA /* SettingsViewController.xib */; };
 		FA70D0431487BDB700C21DAA /* SuperSample-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0421487BDB700C21DAA /* SuperSample-Info.plist */; };
+		FA7C2151153DBFAE00DD279C /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7C2150153DBFAE00DD279C /* Quickblox.framework */; };
 		FA8EF00714DFE89500472642 /* SplashController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8EF00614DFE89500472642 /* SplashController.m */; };
 		FA8EF00E14DFF2E600472642 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8EF00A14DFF2E600472642 /* LoginViewController.m */; };
 		FA8EF00F14DFF2E600472642 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8EF00D14DFF2E600472642 /* RegistrationViewController.m */; };
@@ -107,6 +105,8 @@
 		FAEA318E14EE8B110081EF44 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA317414EE8B110081EF44 /* FBRequest.m */; };
 		FAEA319514EE8B110081EF44 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEA318914EE8B110081EF44 /* libFlurry.a */; };
 		FAEA319E14EE984E0081EF44 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FAEA319D14EE984E0081EF44 /* FBConnect.bundle */; };
+		FAEFB55615851EF7000F310D /* Entity+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEFB55315851EF7000F310D /* Entity+NSCoding.m */; };
+		FAEFB55715851EF7000F310D /* QBUUser+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEFB55515851EF7000F310D /* QBUUser+NSCoding.m */; };
 		FAF086AE14F3B291005B2399 /* NumberToLetterConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF086AD14F3B291005B2399 /* NumberToLetterConverter.m */; };
 /* End PBXBuildFile section */
 
@@ -124,7 +124,6 @@
 		A7C3FFB71402E9B20039A28B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A7C3FFB81402E9B20039A28B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BDC7630E144EED820091EB17 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		FA43AE73152C2F30000A2EF7 /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quickblox.framework; path = "../../../Downloads/SDK-ios/Framework/build/Framework/Quickblox.framework"; sourceTree = "<group>"; };
 		FA4579E8149B95B300BD0560 /* QBConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBConsts.h; sourceTree = "<group>"; };
 		FA524ECA1498A0EA009FD3E2 /* QuizQuestionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizQuestionVC.h; sourceTree = "<group>"; };
 		FA524ECB1498A0EA009FD3E2 /* QuizQuestionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizQuestionVC.m; sourceTree = "<group>"; };
@@ -208,10 +207,6 @@
 		FA70CF791487BBC000C21DAA /* MapPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPinView.m; sourceTree = "<group>"; };
 		FA70CF841487BBC000C21DAA /* DeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceHardware.h; sourceTree = "<group>"; };
 		FA70CF851487BBC000C21DAA /* DeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceHardware.m; sourceTree = "<group>"; };
-		FA70CF871487BBC000C21DAA /* Entity+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Entity+NSCoding.h"; sourceTree = "<group>"; };
-		FA70CF881487BBC000C21DAA /* Entity+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Entity+NSCoding.m"; sourceTree = "<group>"; };
-		FA70CF891487BBC000C21DAA /* QBUUser+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QBUUser+NSCoding.h"; sourceTree = "<group>"; };
-		FA70CF8A1487BBC000C21DAA /* QBUUser+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "QBUUser+NSCoding.m"; sourceTree = "<group>"; };
 		FA70CF8C1487BBC000C21DAA /* FileSystemHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSystemHelper.h; sourceTree = "<group>"; };
 		FA70CF8D1487BBC000C21DAA /* FileSystemHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSystemHelper.m; sourceTree = "<group>"; };
 		FA70CF911487BBC000C21DAA /* Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helpers.h; sourceTree = "<group>"; };
@@ -243,6 +238,7 @@
 		FA70D0231487BBDA00C21DAA /* RegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistrationViewController.xib; sourceTree = "<group>"; };
 		FA70D0241487BBDA00C21DAA /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		FA70D0421487BDB700C21DAA /* SuperSample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SuperSample-Info.plist"; sourceTree = "<group>"; };
+		FA7C2150153DBFAE00DD279C /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quickblox.framework; path = "../SDK-ios/Framework/build/Framework/Quickblox.framework"; sourceTree = "<group>"; };
 		FA8EF00514DFE89500472642 /* SplashController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashController.h; sourceTree = "<group>"; };
 		FA8EF00614DFE89500472642 /* SplashController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashController.m; sourceTree = "<group>"; };
 		FA8EF00914DFF2E600472642 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -269,6 +265,10 @@
 		FAEA318814EE8B110081EF44 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
 		FAEA318914EE8B110081EF44 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		FAEA319D14EE984E0081EF44 /* FBConnect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBConnect.bundle; sourceTree = "<group>"; };
+		FAEFB55215851EF7000F310D /* Entity+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Entity+NSCoding.h"; sourceTree = "<group>"; };
+		FAEFB55315851EF7000F310D /* Entity+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Entity+NSCoding.m"; sourceTree = "<group>"; };
+		FAEFB55415851EF7000F310D /* QBUUser+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QBUUser+NSCoding.h"; sourceTree = "<group>"; };
+		FAEFB55515851EF7000F310D /* QBUUser+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "QBUUser+NSCoding.m"; sourceTree = "<group>"; };
 		FAF086AC14F3B291005B2399 /* NumberToLetterConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberToLetterConverter.h; sourceTree = "<group>"; };
 		FAF086AD14F3B291005B2399 /* NumberToLetterConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberToLetterConverter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -292,7 +292,7 @@
 				A7C3FF721402E7120039A28B /* CoreGraphics.framework in Frameworks */,
 				BDC7630F144EED820091EB17 /* AudioToolbox.framework in Frameworks */,
 				FAEA319514EE8B110081EF44 /* libFlurry.a in Frameworks */,
-				FA43AE74152C2F30000A2EF7 /* Quickblox.framework in Frameworks */,
+				FA7C2151153DBFAE00DD279C /* Quickblox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,9 +327,9 @@
 				A71E39341420B7F600810C66 /* CoreData.framework */,
 				A7C3FFB01402E9B10039A28B /* CFNetwork.framework */,
 				FA6FE99A1529B6DA00BB373C /* libz.dylib */,
+				FA7C2150153DBFAE00DD279C /* Quickblox.framework */,
 				A7C3FFB11402E9B10039A28B /* CoreLocation.framework */,
 				A7C3FFB21402E9B10039A28B /* CoreMedia.framework */,
-				FA43AE73152C2F30000A2EF7 /* Quickblox.framework */,
 				A7C3FFB51402E9B10039A28B /* MapKit.framework */,
 				A7C3FFB61402E9B10039A28B /* MobileCoreServices.framework */,
 				A7C3FFB71402E9B20039A28B /* QuartzCore.framework */,
@@ -820,8 +820,8 @@
 		FA70CF7F1487BBC000C21DAA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				FAEFB55115851EF7000F310D /* Categories */,
 				FA70CF831487BBC000C21DAA /* DeviceHardware */,
-				FA70CF861487BBC000C21DAA /* Extensions */,
 				FA70CF8B1487BBC000C21DAA /* FileSystemHelper */,
 				FA70CF911487BBC000C21DAA /* Helpers.h */,
 				FAF086AA14F3B269005B2399 /* Converters */,
@@ -837,17 +837,6 @@
 				FA70CF851487BBC000C21DAA /* DeviceHardware.m */,
 			);
 			path = DeviceHardware;
-			sourceTree = "<group>";
-		};
-		FA70CF861487BBC000C21DAA /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				FA70CF871487BBC000C21DAA /* Entity+NSCoding.h */,
-				FA70CF881487BBC000C21DAA /* Entity+NSCoding.m */,
-				FA70CF891487BBC000C21DAA /* QBUUser+NSCoding.h */,
-				FA70CF8A1487BBC000C21DAA /* QBUUser+NSCoding.m */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		FA70CF8B1487BBC000C21DAA /* FileSystemHelper */ = {
@@ -1052,6 +1041,17 @@
 			path = AppCircle;
 			sourceTree = "<group>";
 		};
+		FAEFB55115851EF7000F310D /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				FAEFB55215851EF7000F310D /* Entity+NSCoding.h */,
+				FAEFB55315851EF7000F310D /* Entity+NSCoding.m */,
+				FAEFB55415851EF7000F310D /* QBUUser+NSCoding.h */,
+				FAEFB55515851EF7000F310D /* QBUUser+NSCoding.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		FAF086AA14F3B269005B2399 /* Converters */ = {
 			isa = PBXGroup;
 			children = (
@@ -1189,8 +1189,6 @@
 				FA70CFEC1487BBC000C21DAA /* SubscribedView.m in Sources */,
 				FA70CFED1487BBC000C21DAA /* MapPinView.m in Sources */,
 				FA70CFF01487BBC000C21DAA /* DeviceHardware.m in Sources */,
-				FA70CFF11487BBC000C21DAA /* Entity+NSCoding.m in Sources */,
-				FA70CFF21487BBC000C21DAA /* QBUUser+NSCoding.m in Sources */,
 				FA70CFF31487BBC000C21DAA /* FileSystemHelper.m in Sources */,
 				FA70CFF51487BBC000C21DAA /* ImageResize.m in Sources */,
 				FA70CFFA1487BBC000C21DAA /* SuperSampleAppDelegate.m in Sources */,
@@ -1208,6 +1206,8 @@
 				FAEA318D14EE8B110081EF44 /* FBLoginDialog.m in Sources */,
 				FAEA318E14EE8B110081EF44 /* FBRequest.m in Sources */,
 				FAF086AE14F3B291005B2399 /* NumberToLetterConverter.m in Sources */,
+				FAEFB55615851EF7000F310D /* Entity+NSCoding.m in Sources */,
+				FAEFB55715851EF7000F310D /* QBUUser+NSCoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1235,7 +1235,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SDK_DIR)/usr/include/libxml2/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PROVISIONING_PROFILE = "E255B0AB-07FF-44D9-856C-C45EE242B069";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
 				SDKROOT = iphoneos;
@@ -1256,7 +1256,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SDK_DIR)/usr/include/libxml2/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "E255B0AB-07FF-44D9-856C-C45EE242B069";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
@@ -1273,7 +1273,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../../Downloads/SDK-ios/Framework/build/Framework\"",
+					"\"$(SRCROOT)/../SDK-ios/Framework/build/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SuperSample-Prefix.pch";
@@ -1301,7 +1301,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../../Downloads/SDK-ios/Framework/build/Framework\"",
+					"\"$(SRCROOT)/../SDK-ios/Framework/build/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SuperSample-Prefix.pch";
@@ -1335,7 +1335,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SDK_DIR)/usr/include/libxml2/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "E255B0AB-07FF-44D9-856C-C45EE242B069";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
@@ -1352,7 +1352,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../../Downloads/SDK-ios/Framework/build/Framework\"",
+					"\"$(SRCROOT)/../SDK-ios/Framework/build/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SuperSample-Prefix.pch";
@@ -1383,7 +1383,7 @@
 				A7C3FFC61402EA400039A28B /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		A7C3FFA11402E7130039A28B /* Build configuration list for PBXNativeTarget "SuperSample" */ = {
 			isa = XCConfigurationList;
@@ -1393,7 +1393,7 @@
 				A7C3FFC71402EA400039A28B /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 

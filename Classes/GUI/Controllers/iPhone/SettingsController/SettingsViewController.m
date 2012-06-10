@@ -128,8 +128,13 @@
 // choose picture from gallery
 - (IBAction)choosePicture:(id)sender {
     imagePicker = [[UIImagePickerController alloc] init];
+
+    
+    imagePicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    imagePicker.mediaTypes = [UIImagePickerController
+                              availableMediaTypesForSourceType:imagePicker.sourceType]; 
+
     imagePicker.delegate = self;
-    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
 	[self.navigationController presentModalViewController:imagePicker animated:NO];
 }
@@ -163,7 +168,7 @@
             // update avatar
             NSData *imageData = UIImagePNGRepresentation(avatarView.image);
             [QBBlobsService TUploadDataAsync:imageData 
-                                     ownerID:ownerID 
+                                     ownerID:0 
                                     fileName:@"image.jpeg" 
                                  contentType:@"image/jpeg"
                                     delegate:self];	

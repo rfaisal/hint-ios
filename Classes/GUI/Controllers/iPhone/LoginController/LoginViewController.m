@@ -81,8 +81,7 @@
 	}
     
     // Create QuickBlox User entity
-    QBUUser *qbUser = [[QBUUser alloc] init];
-    qbUser.ownerID = ownerID;        
+    QBUUser *qbUser = [[QBUUser alloc] init];    
     qbUser.login = login.text;
 	qbUser.password = password.text;
     
@@ -133,7 +132,6 @@
     // try to auth
     // Create QuickBlox User entity
     QBUUser *qbUser = [[QBUUser alloc] init];
-    qbUser.ownerID = ownerID;   
     NSString *userLogin = [[NumberToLetterConverter instance] convertNumbersToLetters:[fbUserBody objectForKey:@"id"]];
     NSString *passwordHash = [NSString stringWithFormat:@"%u", [[fbUserBody objectForKey:@"id"] hash]];
     qbUser.login = userLogin;
@@ -161,12 +159,6 @@
 		if(result.success){
             QBUUserAuthenticateResult *res = (QBUUserAuthenticateResult *)result;
             
-            // fix issue with sign in
-            if(res.user.ownerID != ownerID){
-                [self showMessage:NSLocalizedString(@"Not registered!", "") message:nil delegate:nil];
-                return;
-            }
-            
             // save current user
             [[UsersProvider sharedProvider] currentUserWithQBUser:res.user];
             
@@ -190,8 +182,7 @@
             if(fbUserBody){
                 // Register new user
                 // Create QBUUser entity
-                QBUUser *user = [[QBUUser alloc] init];
-                user.ownerID = ownerID;        
+                QBUUser *user = [[QBUUser alloc] init];      
                 NSString *userLogin = [[NumberToLetterConverter instance] convertNumbersToLetters:[fbUserBody objectForKey:@"id"]];
                 NSString *passwordHash = [NSString stringWithFormat:@"%u", [[fbUserBody objectForKey:@"id"] hash]]; 
                 user.login = userLogin;
@@ -224,7 +215,6 @@
             
             // create QBUUser entity
             QBUUser *qbUser = [[QBUUser alloc] init];
-            qbUser.ownerID = ownerID;   
             NSString *userLogin = [[NumberToLetterConverter instance] convertNumbersToLetters:[fbUserBody objectForKey:@"id"]];
             NSString *passwordHash = [NSString stringWithFormat:@"%u", [[fbUserBody objectForKey:@"id"] hash]];
             qbUser.login = userLogin;
