@@ -88,12 +88,12 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     // create QBLGeoDataSearchRequest entity
-	QBLGeoDataSearchRequest *searchRequest = [[QBLGeoDataSearchRequest alloc] init];
-	searchRequest.last_only = YES; // only last location
+	QBLGeoDataGetRequest *searchRequest = [[QBLGeoDataGetRequest alloc] init];
+	searchRequest.lastOnly = YES; // only last location
     searchRequest.perPage = 15; // last 15 points
     
     // retrieve geodata
-	[QBLocationService findGeoData:searchRequest delegate:self];
+	[QBLocation geoDataWithRequest:searchRequest delegate:self];
 	[searchRequest release];
 }
 
@@ -136,7 +136,9 @@
         
         // if user has avatar - get it
         if(geoData.user.blobID){
-            [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:geoData.user];
+            if(![[SourceImagesProvider sharedProvider] imageByUID:geoData.user.blobID error:nil context:context]){
+                [QBContent TDownloadFileWithBlobID:geoData.user.blobID delegate:self context:geoData.user];
+            }
         }
 	}
 	
@@ -153,59 +155,6 @@
 			[nc postNotificationName:nRefreshAnnotationDetails object:nil userInfo:nil];			
 		}		
 	}
-    
-    [pool drain];
-}
-
-// Retrieve user avatar
-- (void) getAvatarAndStoreForQBUserAsync:(QBUUser *)qbUser{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
-    NSManagedObjectContext *context = [StorageProvider threadSafeContext];
-    NSError *error;
-    
-    // already exist
-    if([[SourceImagesProvider sharedProvider] imageByUID:qbUser.blobID error:nil context:context]){
-        [pool drain];
-        return;
-    }
-    
-    // get blob
-    QBBlobResult *blobResul = [QBBlobsService GetBlobInfo:qbUser.blobID];
-    if(!blobResul.success){
-        NSLog(@"blobResul.errors=%@", blobResul.errors);
-        [pool drain];
-        return;
-    }
-    
-    QBBlob *blob = blobResul.blob;
-    
-
-    // get file
-    QBBlobFileResult *blobFileResult = [QBBlobsService GetBlob:blob.UID];
-    if(!blobFileResult.success){
-        NSLog(@"blobResul.errors=%@", blobResul.errors);
-        [pool drain];
-        return;
-    }
-    
-    // save image
-    SourceImages *sourceImage = [[SourceImagesProvider sharedProvider] addImage:[UIImage imageWithData:blobFileResult.data]
-                                                                        withUID:blob.ID 
-                                                                      globalURL:blob.UID 
-                                                                       localURL:nil 
-                                                                        context:context];
-    
-	if(sourceImage){
-        // update user
-        Users *user = [[UsersProvider sharedProvider] userByUID:[NSNumber numberWithUnsignedInt:qbUser.ID] context:context];
-		user.photo = sourceImage;
-		
-		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
-		[nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
-		[context save:&error];
-		[nc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];	
-	} 
     
     [pool drain];
 }
@@ -282,7 +231,7 @@
 
 
 #pragma mark -
-#pragma mark ActionStatusDelegate
+#pragma mark QBActionStatusDelegate
 
 // QuickBlox API queries delegate
 - (void)completedWithResult:(Result *)result{
@@ -293,22 +242,44 @@
         // Retrieve points result
 		if([result isKindOfClass:[QBLGeoDataPagedResult class]]){
 			QBLGeoDataPagedResult *geoDataSearchRes = (QBLGeoDataPagedResult *)result;
-			[self performSelectorInBackground:@selector(processPoints:) withObject:geoDataSearchRes.geodatas];
+			[self performSelectorInBackground:@selector(processPoints:) withObject:geoDataSearchRes.geodata];
 		}
-        
-        // Get Blob Info result
-        else if([result isKindOfClass:[QBBlobResult class]]){
-            QBBlobResult *res = (QBBlobResult *)result;
-            NSString *blobUID = res.blob.UID;
-            [QBBlobsService GetBlobAsync:blobUID delegate:self];
-        
-        // Get Blob File result
-        }else if([result isKindOfClass:[QBBlobFileResult class]]){
-					
-        }
 	}
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+}
+
+- (void)completedWithResult:(Result *)result context:(void *)contextInfo{
+    // Download file result 
+    if([result isKindOfClass:[QBCFileDownloadTaskResult class]]){
+        if(result.success){
+            QBCFileDownloadTaskResult *res = (QBCFileDownloadTaskResult *)result;
+            
+            QBUUser *qbuser = (QBUUser *)contextInfo;
+            
+            NSManagedObjectContext *context = [StorageProvider threadSafeContext];
+            NSError *error;
+            
+            // save image
+            SourceImages *sourceImage = [[SourceImagesProvider sharedProvider] addImage:[UIImage imageWithData:res.file]
+                                                                                withUID:qbuser.blobID
+                                                                              globalURL:nil
+                                                                               localURL:nil 
+                                                                                context:context];
+            
+            if(sourceImage){
+                // update user
+                Users *user = [[UsersProvider sharedProvider] userByUID:[NSNumber numberWithUnsignedInt:qbuser.ID] context:context];
+                user.photo = sourceImage;
+                
+                NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
+                [nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
+                [context save:&error];
+                [nc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];	
+            } 
+
+        }
+    }
 }
 
 - (void)dealloc {

@@ -16,7 +16,6 @@
 	if ((self = [super init]))
 	{
 		DESERIALIZE_INT(ID, aDecoder);
-        DESERIALIZE_BOOL(autosave, aDecoder);
         
         DESERIALIZE_OBJECT(updatedAt, aDecoder);
         DESERIALIZE_OBJECT(createdAt, aDecoder);
@@ -28,7 +27,6 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     SERIALIZE_INT(ID, aCoder);
-    SERIALIZE_BOOL(autosave, aCoder);
     
 	SERIALIZE_OBJECT(updatedAt, aCoder);
     SERIALIZE_OBJECT(createdAt, aCoder);

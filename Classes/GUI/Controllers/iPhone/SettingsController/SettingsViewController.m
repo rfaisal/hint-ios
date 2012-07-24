@@ -85,8 +85,8 @@
         // set avatar
         if(user.photo){
             [avatarView setImage:[UIImage imageWithData:user.photo.image]];
-        }else if(user.qbUser.externalUserID){
-            [self performSelectorInBackground:@selector(getAvatarAndStoreForQBUserAsync:) withObject:user.qbUser];
+        }else if(user.qbUser.blobID){
+            [QBContent TDownloadFileWithBlobID:user.qbUser.blobID delegate:self];
         }
         
     }else{
@@ -167,22 +167,17 @@
             
             // update avatar
             NSData *imageData = UIImagePNGRepresentation(avatarView.image);
-            [QBBlobsService TUploadDataAsync:imageData 
-                                     ownerID:0 
-                                    fileName:@"image.jpeg" 
-                                 contentType:@"image/jpeg"
-                                    delegate:self];	
+            [QBContent TUploadFile:imageData fileName:@"image.jpeg" contentType:@"image/jpeg" isPublic:NO delegate:self];	
         }else{
             // update user fields
             
             // create QBUUser entity
-            QBUUser *user = [[QBUUser alloc] init];
+            QBUUser *user = [QBUUser user];
             user.ID = [[UsersProvider sharedProvider] currentUserID];
             user.fullName = fullName.text;
             
             // update user
-            [QBUsersService editUser:user delegate:self];
-            [user release];
+            [QBUsers updateUser:user delegate:self];
         }
     
     // show Sign In controller
@@ -197,7 +192,7 @@
     // Logout
     if([[rightBarButtonItem title] isEqualToString:@"Logout"]){
         // logout
-        [QBUsersService logoutUser:nil];
+        [QBUsers logOutWithDelegate:nil];
         
         [[UsersProvider sharedProvider] setCurrentUserID:-1];
         
@@ -265,7 +260,7 @@
 
 
 #pragma mark -
-#pragma mark ActionStatusDelegate
+#pragma mark QBActionStatusDelegate
 
 - (void)completedWithResult:(Result*)result{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -289,36 +284,66 @@
         }
         
     // Upload image result
-	}else if([result isKindOfClass:[QBUploadFileTaskResult class]]){
+	}else if([result isKindOfClass:[QBCFileUploadTaskResult class]]){
         // Success result
 		if(result.success){
             
-            QBUploadFileTaskResult *res = (QBUploadFileTaskResult*)result;
-            int blobID = res.uploadedFileBlob.ID;
+            QBCFileUploadTaskResult *res = (QBCFileUploadTaskResult*)result;
+            int blobID = res.uploadedBlob.ID;
             
             // update current user
             
             // create QBUUser entity
-            QBUUser *user = [[QBUUser alloc] init];
+            QBUUser *user = [QBUUser user];
             user.ID = [[UsersProvider sharedProvider] currentUserID];
             user.fullName = fullName.text;
             user.blobID = blobID; // connect link to avatar
             
             // update user
-            [QBUsersService editUser:user delegate:self];
-            [user release];
+            [QBUsers updateUser:user delegate:self];
             
             // save blob_id
             Users *currentUser = [[UsersProvider sharedProvider] currentUser];
-            currentUser.qbUser.externalUserID = blobID; // temporary fix. Use 'blob_id' instead 'externalUserID'
+            currentUser.qbUser.blobID = blobID;
             [[UsersProvider sharedProvider] saveUser];
             
-			[self performSelectorInBackground:@selector(saveAvatarAsync:) withObject:res.uploadedFileBlob];		
+			[self performSelectorInBackground:@selector(saveAvatarAsync:) withObject:res.uploadedBlob];		
 		
         // show errors
         }else {
 			[self processErrors:result.errors];
 		}
+        
+    // Download file result 
+    }else if([result isKindOfClass:[QBCFileDownloadTaskResult class]]){
+        QBCFileDownloadTaskResult *res = (QBCFileDownloadTaskResult *)result;
+        
+        // show photo
+        avatarView.image = [UIImage imageWithData:res.file];	
+        
+        
+        NSManagedObjectContext *context = [StorageProvider threadSafeContext];
+        
+        // save image
+        SourceImages *sourceImage = [[SourceImagesProvider sharedProvider] addImage:[UIImage imageWithData:res.file]
+                                                                            withUID:[[UsersProvider sharedProvider] currentUser].qbUser.blobID
+                                                                          globalURL:nil
+                                                                           localURL:nil 
+                                                                            context:context];
+        
+        if(sourceImage){
+            
+            // update user
+            Users *user = [[UsersProvider sharedProvider] userByUID:[NSNumber numberWithUnsignedInt:[[UsersProvider sharedProvider] currentUserID]] context:context];
+            user.photo = sourceImage;
+            
+            
+            NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
+            [nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
+            NSError *error;
+            [context save:&error];
+            [nc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];	
+        } 
         
     // show errors
 	}else if(!result.success){
@@ -326,60 +351,7 @@
     }
 }
 
-- (void) getAvatarAndStoreForQBUserAsync:(QBUUser *)qbUser{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
-    NSManagedObjectContext *context = [StorageProvider threadSafeContext];
-    NSError *error;
-    
-    // get blob
-    QBBlobResult *blobResult = [QBBlobsService GetBlobInfo:qbUser.externalUserID];
-    
-    if(!blobResult.success){
-        [self performSelectorOnMainThread:@selector(processErrors:) withObject:blobResult.errors waitUntilDone:YES];
-        [pool drain];
-        return;
-    }
-    
-    QBBlob *blob = blobResult.blob;
-    
-    // get file
-    QBBlobFileResult *blobFileResult = [QBBlobsService GetBlob:blob.UID];
-    if(!blobFileResult.success){
-        [self performSelectorOnMainThread:@selector(processErrors:) withObject:blobResult.errors waitUntilDone:YES];
-        [pool drain];
-        return;
-    }
-    
-    if(blobFileResult.data == nil){
-        [pool drain];
-        return;
-    }
-    
-    avatarView.image = [UIImage imageWithData:blobFileResult.data];	
-    
-    // save image
-    SourceImages *sourceImage = [[SourceImagesProvider sharedProvider] addImage:[UIImage imageWithData:blobFileResult.data]
-                                                                        withUID:blob.ID 
-                                                                      globalURL:blob.UID 
-                                                                       localURL:nil 
-                                                                        context:context];
-    
-	if(sourceImage){
-        // update user
-        Users *user = [[UsersProvider sharedProvider] userByUID:[NSNumber numberWithUnsignedInt:qbUser.ID] context:context];
-		user.photo = sourceImage;
-		
-		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
-		[nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:nil];
-		[context save:&error];
-		[nc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];	
-	} 
-    
-    [pool drain];
-}
-
--(void) saveAvatarAsync:(QBBlob *)blob {	
+-(void) saveAvatarAsync:(QBCBlob *)blob {	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSManagedObjectContext *context = [StorageProvider threadSafeContext];
 	

@@ -79,16 +79,9 @@
 	if (isBusy) {
 		return;
 	}
-    
-    // Create QuickBlox User entity
-    QBUUser *qbUser = [[QBUUser alloc] init];    
-    qbUser.login = login.text;
-	qbUser.password = password.text;
-    
+
     // Authenticate user
-    [QBUsersService authenticateUser:qbUser delegate:self];
-    
-    [qbUser release];
+    [QBUsers logInWithUserLogin:login.text password:password.text delegate:self];
     
     [self busy:YES];
 }
@@ -130,22 +123,16 @@
     self.fbUserBody = dict;
 
     // try to auth
-    // Create QuickBlox User entity
-    QBUUser *qbUser = [[QBUUser alloc] init];
     NSString *userLogin = [[NumberToLetterConverter instance] convertNumbersToLetters:[fbUserBody objectForKey:@"id"]];
     NSString *passwordHash = [NSString stringWithFormat:@"%u", [[fbUserBody objectForKey:@"id"] hash]];
-    qbUser.login = userLogin;
-	qbUser.password = passwordHash;
 
     // Authenticate user
-    [QBUsersService authenticateUser:qbUser delegate:self];
-    
-    [qbUser release];
+    [QBUsers logInWithUserLogin:userLogin password:passwordHash delegate:self];
 }
 
 
 #pragma mark -
-#pragma mark ActionStatusDelegate
+#pragma mark QBActionStatusDelegate
 
 // QuickBlox API queries delegate
 -(void)completedWithResult:(Result *)result{
@@ -153,11 +140,11 @@
     [self busy:NO];
     
      // QuickBlox User authenticate result
-	if([result isKindOfClass:[QBUUserAuthenticateResult class]]){
+	if([result isKindOfClass:[QBUUserLogInResult class]]){
 
         // Success result
 		if(result.success){
-            QBUUserAuthenticateResult *res = (QBUUserAuthenticateResult *)result;
+            QBUUserLogInResult *res = (QBUUserLogInResult *)result;
             
             // save current user
             [[UsersProvider sharedProvider] currentUserWithQBUser:res.user];
@@ -182,7 +169,7 @@
             if(fbUserBody){
                 // Register new user
                 // Create QBUUser entity
-                QBUUser *user = [[QBUUser alloc] init];      
+                QBUUser *user = [QBUUser user];      
                 NSString *userLogin = [[NumberToLetterConverter instance] convertNumbersToLetters:[fbUserBody objectForKey:@"id"]];
                 NSString *passwordHash = [NSString stringWithFormat:@"%u", [[fbUserBody objectForKey:@"id"] hash]]; 
                 user.login = userLogin;
@@ -191,8 +178,7 @@
                 user.fullName = [fbUserBody objectForKey:@"name"];
                 
                 // Create user
-                [QBUsersService createUser:user delegate:self];
-                [user release];
+                [QBUsers signUp:user delegate:self];
                 
                 [self busy:YES];
                 
@@ -212,20 +198,13 @@
 		if(result.success){
             
             // auth again
-            
-            // create QBUUser entity
-            QBUUser *qbUser = [[QBUUser alloc] init];
             NSString *userLogin = [[NumberToLetterConverter instance] convertNumbersToLetters:[fbUserBody objectForKey:@"id"]];
             NSString *passwordHash = [NSString stringWithFormat:@"%u", [[fbUserBody objectForKey:@"id"] hash]];
-            qbUser.login = userLogin;
-            qbUser.password = passwordHash;
             
             // authenticate user
-            [QBUsersService authenticateUser:qbUser delegate:self];
+            [QBUsers logInWithUserLogin:userLogin password:passwordHash delegate:self];
             
             [self busy:YES];
-            
-            [qbUser release];
             
         // show Errors
         }else{
@@ -266,7 +245,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     // Register user for receive push notifications
-    [QBMessagesService TRegisterSubscriptionWithDelegate:self];
+    [QBMessages TRegisterSubscriptionWithDelegate:self];
 
     [(SuperSampleAppDelegate *)[[UIApplication sharedApplication] delegate] startTrackOwnLocation];
     [self dismissModalViewControllerAnimated:YES];

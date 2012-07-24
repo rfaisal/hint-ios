@@ -23,6 +23,7 @@
         DESERIALIZE_OBJECT(password, aDecoder);
         DESERIALIZE_OBJECT(phone, aDecoder);
         DESERIALIZE_OBJECT(website, aDecoder);
+        DESERIALIZE_INT(blobID, aDecoder);
 	}
 	
 	return self;
@@ -37,6 +38,7 @@
     SERIALIZE_OBJECT(password, aCoder);
     SERIALIZE_OBJECT(phone, aCoder);
     SERIALIZE_OBJECT(website, aCoder);
+    SERIALIZE_INT(blobID, aCoder);
 }
 
 @end

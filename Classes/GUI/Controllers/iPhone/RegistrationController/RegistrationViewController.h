@@ -9,7 +9,7 @@
 #import "SubscribedViewController.h"
 
 
-@interface RegistrationViewController : SubscribedViewController <ActionStatusDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
+@interface RegistrationViewController : SubscribedViewController <QBActionStatusDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
     UITextField *userName;
     UITextField *password;
     UITextField *retypePassword;

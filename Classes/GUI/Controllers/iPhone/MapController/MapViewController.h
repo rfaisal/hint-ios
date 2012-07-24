@@ -11,7 +11,7 @@
 @class AnnotationViewDataSource;
 @class PinDetailedViewController;
 
-@interface MapViewController : SubscribedViewController <ActionStatusDelegate> {
+@interface MapViewController : SubscribedViewController <QBActionStatusDelegate> {
     MKMapView *mapView;
     AnnotationViewDataSource *annotationDataSource;
     

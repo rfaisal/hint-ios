@@ -100,13 +100,13 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     // create QBLGeoDataSearchRequest entity
-	QBLGeoDataSearchRequest *searchRequest = [[QBLGeoDataSearchRequest alloc] init];
+	QBLGeoDataGetRequest *searchRequest = [[QBLGeoDataGetRequest alloc] init];
 	searchRequest.status = YES;// only with status
-    searchRequest.sort_by = GeoDataSortByKindCreatedAt;
+    searchRequest.sortBy = GeoDataSortByKindCreatedAt;
     searchRequest.perPage = 15; // last 15 messages
     
     // retrieve messages
-	[QBLocationService findGeoData:searchRequest delegate:self];
+	[QBLocation geoDataWithRequest:searchRequest delegate:self];
 	[searchRequest release];
 }
 
@@ -140,7 +140,7 @@
     geoData.status = textField.text;
 
     // create message
-	[QBLocationService postGeoData:geoData delegate:self];	
+	[QBLocation createGeoData:geoData delegate:self];	
     
     [wheel startAnimating];
 }
@@ -167,7 +167,7 @@
                                                     text:chatMessage 
                                                 location:[NSString stringWithFormat:@"%@", location] 
                                                     user:currentUser
-                                                    date:data.created_at
+                                                    date:data.createdAt
                                                  context:context];
 		
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
@@ -219,7 +219,7 @@
                                                         text:msg 
                                                     location:[NSString stringWithFormat:@"%@", [geoData location]] 
                                                         user:user
-                                                        date:geoData.created_at
+                                                        date:geoData.createdAt
                                                      context:context];
         
 
@@ -268,7 +268,7 @@
 
 
 #pragma mark -
-#pragma mark ActionStatusDelegate
+#pragma mark QBActionStatusDelegate
 
 // QuickBlox API queries delegate
 - (void)completedWithResult:(Result*)result{
@@ -294,7 +294,7 @@
             
             // process messagees
             QBLGeoDataPagedResult *geoDataSearchRes = (QBLGeoDataPagedResult *)result;
-            [self performSelectorInBackground:@selector(processMessages:) withObject:geoDataSearchRes.geodatas];
+            [self performSelectorInBackground:@selector(processMessages:) withObject:geoDataSearchRes.geodata];
         }
     }
     

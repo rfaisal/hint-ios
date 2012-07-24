@@ -9,7 +9,7 @@
 #import "SubscribedViewController.h"
 #import "FBConnect.h"
 
-@interface LoginViewController : SubscribedViewController <ActionStatusDelegate, UIAlertViewDelegate, UITextFieldDelegate, FBRequestDelegate> {    
+@interface LoginViewController : SubscribedViewController <QBActionStatusDelegate, UIAlertViewDelegate, UITextFieldDelegate, FBRequestDelegate> {    
     UITextField *login;
     UITextField *password;
     UIActivityIndicatorView *activityIndicator;

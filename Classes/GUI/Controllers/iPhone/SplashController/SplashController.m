@@ -40,7 +40,7 @@
     extendedAuthRequest.deviceUDID = [[UIDevice currentDevice] uniqueIdentifier];
     
     // QuickBlox application authorization
-    [QBAuthService authorizeAppId:appID key:authKey secret:authSecret withExtendedRequest:extendedAuthRequest delegate:self];
+    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
     
     [extendedAuthRequest release];
 }
@@ -58,7 +58,7 @@
 
 
 #pragma mark -
-#pragma mark ActionStatusDelegate
+#pragma mark QBActionStatusDelegate
 
 // QuickBlox API queries delegate
 - (void)completedWithResult:(Result *)result{

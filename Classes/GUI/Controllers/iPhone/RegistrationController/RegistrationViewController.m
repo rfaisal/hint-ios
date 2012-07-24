@@ -100,7 +100,7 @@
 	[self busy:YES];
     
     // create User
-	[QBUsersService createUser:user delegate:self context:nil];
+	[QBUsers signUp:user delegate:self context:nil];
     [user release];
 }
 
@@ -120,7 +120,7 @@
 
 
 #pragma mark -
-#pragma mark ActionStatusDelegate
+#pragma mark QBActionStatusDelegate
 
 // QuickBlox API queries delegate
 -(void)completedWithResult:(Result*)result{

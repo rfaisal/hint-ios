@@ -26,6 +26,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     [FlurryAPI startSession:FLURRY_API_KEY];	
+    
+    
+    // Set QuickBlox credentials (You must create application in admin.quickblox.com)
+    [QBSettings setApplicationID:92];
+    [QBSettings setAuthorizationKey:@"wJHdOcQSxXQGWx5"];
+    [QBSettings setAuthorizationSecret:@"BTFsj7Rtt27DAmT"];
+    //
+    // Additional setup
+    [QBSettings setRestAPIVersion:@"0.1.1"]; // version of server API
+    
 
     // show main controller
     self.window.rootViewController = self.viewController;
@@ -92,13 +102,13 @@
 
 // Start track own location
 - (void)startTrackOwnLocation{
-    [[QBLLocationDataSource instance] setCallbackSelectorForLocationUpdate:@selector(didUpdateToLocation:fromLocation:) forTarget:self];
+    [[QBLLocationDataSource instance] setActionForLocationUpdate:@selector(didUpdateToLocation:fromLocation:) target:self];
     [[[QBLLocationDataSource instance] locationManager] startUpdatingLocation];
 }
 
 // Stop track own location
 - (void)stopTrackOwnLocation{
-    [[QBLLocationDataSource instance] setCallbackSelectorForLocationUpdate:nil forTarget:nil];
+    [[QBLLocationDataSource instance] setActionForLocationUpdate:nil target:nil];
     [[[QBLLocationDataSource instance] locationManager] stopUpdatingLocation];
 }
 
@@ -114,13 +124,13 @@
     }
 
     // Create QBLGeoData entity
-    QBLGeoData *geoData = [[QBLGeoData alloc] init];
+    QBLGeoData *geoData = [QBLGeoData geoData];
     geoData.status = curUser.status;
     geoData.latitude = newLocation.coordinate.latitude;
     geoData.longitude = newLocation.coordinate.longitude;
 
     // share own location
-    [QBLocationService postGeoData:geoData delegate:self];
+    [QBLocation createGeoData:geoData delegate:nil];
     [geoData release];
 }
 
@@ -133,14 +143,6 @@
 										  otherButtonTitles:nil];
 	[alert show];
 	[alert release];	
-}
-
-
-#pragma mark -
-#pragma mark ActionStatusDelegate
-
-// QuickBlox API queries delegate
-- (void)completedWithResult:(Result*)result{
 }
 
 - (void)dealloc{

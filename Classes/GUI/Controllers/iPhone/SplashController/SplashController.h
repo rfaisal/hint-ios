@@ -8,7 +8,7 @@
 
 #import "SubscribedViewController.h"
 
-@interface SplashController : SubscribedViewController <ActionStatusDelegate>{
+@interface SplashController : SubscribedViewController <QBActionStatusDelegate>{
     UIActivityIndicatorView *wheel;
 }
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *wheel;

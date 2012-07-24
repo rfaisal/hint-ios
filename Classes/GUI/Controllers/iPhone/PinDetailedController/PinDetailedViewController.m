@@ -190,7 +190,7 @@
     
     
     // Send push
-    [QBMessagesService TSendPush:message toUsers:[userID stringValue] environmentDevelopment:YES delegate:self];
+    [QBMessages TSendPush:message toUsers:[userID stringValue] isDevelopmentEnvironment:YES delegate:self];
 
     [message release];
     
@@ -204,7 +204,7 @@
 
 
 #pragma mark -
-#pragma mark ActionStatusDelegate
+#pragma mark QBActionStatusDelegate
 
 // QuickBlox API queries delegate
 - (void)completedWithResult:(Result*)result{

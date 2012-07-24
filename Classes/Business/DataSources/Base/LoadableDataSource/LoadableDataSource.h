@@ -6,7 +6,7 @@
 //  Copyright 2011 YAS. All rights reserved.
 //
 
-@interface LoadableDataSource : NSObject <ActionStatusDelegate> {
+@interface LoadableDataSource : NSObject <QBActionStatusDelegate> {
     NSObject<BaseDataSourceDelegate> *delegate;
 	NSObject<Cancelable> *canceler;
 }

@@ -12,7 +12,7 @@
 @class SplashController;
 @class QuizRootViewController;
 
-@interface SuperSampleAppDelegate : NSObject <UIApplicationDelegate, ActionStatusDelegate, FBSessionDelegate>{	
+@interface SuperSampleAppDelegate : NSObject <UIApplicationDelegate, FBSessionDelegate>{	
     Facebook *facebook;
 }
 @property (nonatomic, retain) IBOutlet UIWindow *window;

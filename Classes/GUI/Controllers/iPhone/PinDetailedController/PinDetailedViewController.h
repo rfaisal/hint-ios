@@ -9,7 +9,7 @@
 #import "SubscribedViewController.h"
 
 @class Users;
-@interface PinDetailedViewController : SubscribedViewController <ActionStatusDelegate>{
+@interface PinDetailedViewController : SubscribedViewController <QBActionStatusDelegate>{
     UIView *messageContainer;
 }
 

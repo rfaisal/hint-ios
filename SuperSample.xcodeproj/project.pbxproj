@@ -36,6 +36,7 @@
 		FA524F131498B18F009FD3E2 /* white_quiz_info_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FA524F121498B18F009FD3E2 /* white_quiz_info_bg.png */; };
 		FA524F151498B1EF009FD3E2 /* btn_view_leaderboard.png in Resources */ = {isa = PBXBuildFile; fileRef = FA524F141498B1EF009FD3E2 /* btn_view_leaderboard.png */; };
 		FA524F251498BEA8009FD3E2 /* QuizTestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = FA524F241498BEA8009FD3E2 /* QuizTestEngine.m */; };
+		FA58D0C11587873200E203DB /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA58D0C01587873200E203DB /* Quickblox.framework */; };
 		FA5D43EB1488E90D00BE9F9E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5D43EA1488E90D00BE9F9E /* logo.png */; };
 		FA5D43F014890C8400BE9F9E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5D43EF14890C8300BE9F9E /* Default.png */; };
 		FA6FE99B1529B6DA00BB373C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6FE99A1529B6DA00BB373C /* libz.dylib */; };
@@ -90,11 +91,11 @@
 		FA70D03C1487BBDA00C21DAA /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0231487BBDA00C21DAA /* RegistrationViewController.xib */; };
 		FA70D03D1487BBDA00C21DAA /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0241487BBDA00C21DAA /* SettingsViewController.xib */; };
 		FA70D0431487BDB700C21DAA /* SuperSample-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA70D0421487BDB700C21DAA /* SuperSample-Info.plist */; };
-		FA7C2151153DBFAE00DD279C /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7C2150153DBFAE00DD279C /* Quickblox.framework */; };
 		FA8EF00714DFE89500472642 /* SplashController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8EF00614DFE89500472642 /* SplashController.m */; };
 		FA8EF00E14DFF2E600472642 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8EF00A14DFF2E600472642 /* LoginViewController.m */; };
 		FA8EF00F14DFF2E600472642 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8EF00D14DFF2E600472642 /* RegistrationViewController.m */; };
 		FA8EF01314E0173600472642 /* SplashController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA8EF01214E0173600472642 /* SplashController.xib */; };
+		FAA0BCCB15BDDF03009B1352 /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA0BCCA15BDDF03009B1352 /* Quickblox.framework */; };
 		FACBCEB014911A6D00E876FC /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = FACBCEAF14911A6D00E876FC /* user.png */; };
 		FACBCEB41491201000E876FC /* marker_own_map.png in Resources */ = {isa = PBXBuildFile; fileRef = FACBCEB31491201000E876FC /* marker_own_map.png */; };
 		FAE3CAD514EBC52300182FA5 /* EnvelopeBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE3CAD414EBC52300182FA5 /* EnvelopeBlue.png */; };
@@ -124,7 +125,6 @@
 		A7C3FFB71402E9B20039A28B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A7C3FFB81402E9B20039A28B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BDC7630E144EED820091EB17 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		FA4579E8149B95B300BD0560 /* QBConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBConsts.h; sourceTree = "<group>"; };
 		FA524ECA1498A0EA009FD3E2 /* QuizQuestionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizQuestionVC.h; sourceTree = "<group>"; };
 		FA524ECB1498A0EA009FD3E2 /* QuizQuestionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizQuestionVC.m; sourceTree = "<group>"; };
 		FA524ECD1498A0EA009FD3E2 /* QuizRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizRootViewController.h; sourceTree = "<group>"; };
@@ -146,6 +146,7 @@
 		FA524F141498B1EF009FD3E2 /* btn_view_leaderboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_view_leaderboard.png; sourceTree = "<group>"; };
 		FA524F231498BEA8009FD3E2 /* QuizTestEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizTestEngine.h; sourceTree = "<group>"; };
 		FA524F241498BEA8009FD3E2 /* QuizTestEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizTestEngine.m; sourceTree = "<group>"; };
+		FA58D0C01587873200E203DB /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quickblox.framework; path = "../../../Downloads/SDK-ios/Framework/build/Framework/Quickblox.framework"; sourceTree = "<group>"; };
 		FA5D43EA1488E90D00BE9F9E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FA5D43EF14890C8300BE9F9E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		FA6FE99A1529B6DA00BB373C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -238,7 +239,6 @@
 		FA70D0231487BBDA00C21DAA /* RegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistrationViewController.xib; sourceTree = "<group>"; };
 		FA70D0241487BBDA00C21DAA /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		FA70D0421487BDB700C21DAA /* SuperSample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SuperSample-Info.plist"; sourceTree = "<group>"; };
-		FA7C2150153DBFAE00DD279C /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quickblox.framework; path = "../SDK-ios/Framework/build/Framework/Quickblox.framework"; sourceTree = "<group>"; };
 		FA8EF00514DFE89500472642 /* SplashController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashController.h; sourceTree = "<group>"; };
 		FA8EF00614DFE89500472642 /* SplashController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashController.m; sourceTree = "<group>"; };
 		FA8EF00914DFF2E600472642 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -246,6 +246,7 @@
 		FA8EF00C14DFF2E600472642 /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
 		FA8EF00D14DFF2E600472642 /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
 		FA8EF01214E0173600472642 /* SplashController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashController.xib; sourceTree = "<group>"; };
+		FAA0BCCA15BDDF03009B1352 /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quickblox.framework; path = "../SDK-ios/Framework/build/Framework/Quickblox.framework"; sourceTree = "<group>"; };
 		FACBCEAF14911A6D00E876FC /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		FACBCEB31491201000E876FC /* marker_own_map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_own_map.png; sourceTree = "<group>"; };
 		FAE3CAD414EBC52300182FA5 /* EnvelopeBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EnvelopeBlue.png; sourceTree = "<group>"; };
@@ -292,7 +293,8 @@
 				A7C3FF721402E7120039A28B /* CoreGraphics.framework in Frameworks */,
 				BDC7630F144EED820091EB17 /* AudioToolbox.framework in Frameworks */,
 				FAEA319514EE8B110081EF44 /* libFlurry.a in Frameworks */,
-				FA7C2151153DBFAE00DD279C /* Quickblox.framework in Frameworks */,
+				FA58D0C11587873200E203DB /* Quickblox.framework in Frameworks */,
+				FAA0BCCB15BDDF03009B1352 /* Quickblox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,11 +325,12 @@
 		A7C3FF6C1402E7120039A28B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FAA0BCCA15BDDF03009B1352 /* Quickblox.framework */,
 				BDC7630E144EED820091EB17 /* AudioToolbox.framework */,
 				A71E39341420B7F600810C66 /* CoreData.framework */,
+				FA58D0C01587873200E203DB /* Quickblox.framework */,
 				A7C3FFB01402E9B10039A28B /* CFNetwork.framework */,
 				FA6FE99A1529B6DA00BB373C /* libz.dylib */,
-				FA7C2150153DBFAE00DD279C /* Quickblox.framework */,
 				A7C3FFB11402E9B10039A28B /* CoreLocation.framework */,
 				A7C3FFB21402E9B10039A28B /* CoreMedia.framework */,
 				A7C3FFB51402E9B10039A28B /* MapKit.framework */,
@@ -632,7 +635,6 @@
 		FA70CEF91487BBC000C21DAA /* Definitions */ = {
 			isa = PBXGroup;
 			children = (
-				FA4579E8149B95B300BD0560 /* QBConsts.h */,
 				FA70CEFA1487BBC000C21DAA /* Consts.h */,
 				FA70CEFB1487BBC000C21DAA /* Definitions.h */,
 				FA70CEFC1487BBC000C21DAA /* Delegates.h */,
@@ -1286,8 +1288,7 @@
 					"\"$(SRCROOT)/Classes/External/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3EE8B1BD-439D-4500-AC0F-B74B1CF059FF";
+				PROVISIONING_PROFILE = "CCA37F84-FBA5-47B8-A7B5-FA6D470AEB95";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) \"$(SRCROOT)\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1314,7 +1315,7 @@
 					"\"$(SRCROOT)/Classes/External/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
+				PROVISIONING_PROFILE = "CCA37F84-FBA5-47B8-A7B5-FA6D470AEB95";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) \"$(SRCROOT)\"";
 				WRAPPER_EXTENSION = app;
@@ -1365,7 +1366,7 @@
 					"\"$(SRCROOT)/Classes/External/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
+				PROVISIONING_PROFILE = "CCA37F84-FBA5-47B8-A7B5-FA6D470AEB95";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2AC1319-BB2C-472C-9BB8-86E92551A5CF";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) \"$(SRCROOT)\"";
 				WRAPPER_EXTENSION = app;

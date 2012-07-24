@@ -10,7 +10,7 @@
 
 @class ChatListDataSource;
 
-@interface ChatViewController : SubscribedViewController<ActionStatusDelegate, UITextFieldDelegate>{
+@interface ChatViewController : SubscribedViewController<QBActionStatusDelegate, UITextFieldDelegate>{
     NSArray *tableView;
     UITableView *tabView;
     

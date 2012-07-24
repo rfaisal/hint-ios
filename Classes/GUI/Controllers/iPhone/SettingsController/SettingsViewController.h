@@ -12,7 +12,7 @@
 @class LoginViewController;
 @class RegistrationViewController;
 
-@interface SettingsViewController : SubscribedViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, ActionStatusDelegate> {
+@interface SettingsViewController : SubscribedViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, QBActionStatusDelegate> {
     BOOL isAvatarChanged;
 }
 
