@@ -30,7 +30,7 @@ static CGFloat const kManagedObjectContextDelayedSaveInterval = 1.0;
 #define kUpdateChatInterval 20 //s
 
 #define FLURRY_API_KEY @"DCQCH5K116J63XH7DDS"
-#define FACEBOOK_APP_ID @"329216907114105"
+#define FACEBOOK_APP_ID @"123719004441213"
 
 #pragma mark -
 #pragma mark UI
